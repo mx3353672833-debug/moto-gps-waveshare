@@ -48,6 +48,9 @@ git clone --recurse-submodules https://github.com/mx3353672833-debug/moto-gps-wa
 cd moto-gps-waveshare
 ```
 
+请优先使用上述 clone 命令。GitHub 的 Download ZIP 不包含 LVGL 子模块，单独解压后
+不能直接编译；不要用任意最新版 LVGL 替代这里固定的提交。
+
 1. [配置自己的路线网关](backend/README.md)：先用 fixture 测试，再配置自己的高德 Web 服务 Key 和 HTTPS。
 2. [构建并安装 iOS App](platforms/ios/README.md)：设置网关、自己的 Bundle ID 和签名团队。
 3. [构建并刷入圆屏固件](platforms/esp32/README.md)：先备份原厂 Flash，再刷写正确型号。
