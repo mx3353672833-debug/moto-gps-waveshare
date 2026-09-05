@@ -1,0 +1,2307 @@
+** Drc report for moto-gps-rev-a-autoroute-experiment.kicad_pcb **
+** Created on 2026-09-03T10:46:15 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 582 DRC violations **
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1578 mm)
+    Local override; error
+    @(100.7479 mm, 95.3021 mm): 走线 [3V3] (F.Cu), 长度: 0.2157 mm
+    @(101.2125 mm, 95.5000 mm): F.Cu 上 U5 的焊盘 7 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(97.1131 mm, 79.7335 mm): 走线 [3V3] (F.Cu), 长度: 2.1448 mm
+    @(97.5648 mm, 81.6913 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1845 mm)
+    Local override; error
+    @(95.7695 mm, 88.2795 mm): 走线 [3V3] (F.Cu), 长度: 1.6205 mm
+    @(96.2100 mm, 87.7000 mm): F.Cu 上 R29 的焊盘 2 [MCU_EN]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1585 mm)
+    Local override; error
+    @(104.9327 mm, 105.3772 mm): 走线 [3V3] (F.Cu), 长度: 1.3090 mm
+    @(104.2100 mm, 106.8500 mm): F.Cu 上 R7 的焊盘 2 [LCD_RESET_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1692 mm)
+    Local override; error
+    @(102.6824 mm, 96.3504 mm): 走线 [3V3] (F.Cu), 长度: 1.3203 mm
+    @(101.2125 mm, 96.0000 mm): F.Cu 上 U5 的焊盘 6 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1815 mm)
+    Local override; error
+    @(99.7315 mm, 89.8236 mm): 走线 [3V3] (F.Cu), 长度: 1.2199 mm
+    @(99.0000 mm, 90.2250 mm): F.Cu 上 C19 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1956 mm)
+    Local override; error
+    @(97.3900 mm, 82.1551 mm): 走线 [3V3] (F.Cu), 长度: 5.5449 mm
+    @(97.5648 mm, 81.6913 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1880 mm)
+    Local override; error
+    @(97.4345 mm, 103.5977 mm): 走线 [3V3] (F.Cu), 长度: 1.0526 mm
+    @(98.3750 mm, 103.3474 mm): 过孔 [LCD_CS_N_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(100.1700 mm, 99.6996 mm): 走线 [3V3] (F.Cu), 长度: 3.0259 mm
+    @(99.4208 mm, 99.5892 mm): 过孔 [QMI_INT2] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1561 mm)
+    Local override; error
+    @(100.5998 mm, 78.9500 mm): 走线 [3V3] (F.Cu), 长度: 0.7071 mm
+    @(100.7625 mm, 79.4500 mm): F.Cu 上 U6 的焊盘 8 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1785 mm)
+    Local override; error
+    @(98.5577 mm, 102.8534 mm): 走线 [3V3] (F.Cu), 长度: 0.6017 mm
+    @(98.3750 mm, 103.3474 mm): 过孔 [LCD_CS_N_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1942 mm)
+    Local override; error
+    @(105.1465 mm, 113.9334 mm): 走线 [3V3] (F.Cu), 长度: 1.8119 mm
+    @(108.5575 mm, 113.5892 mm): 走线 [I2C_SCL] (F.Cu), 长度: 2.9172 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1849 mm)
+    Local override; error
+    @(101.2125 mm, 95.5000 mm): F.Cu 上 U5 的焊盘 7 [GND]
+    @(101.1366 mm, 94.9436 mm): 走线 [3V3] (F.Cu), 长度: 0.2913 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1601 mm)
+    Local override; error
+    @(98.4551 mm, 95.9301 mm): 走线 [3V3] (F.Cu), 长度: 1.0748 mm
+    @(97.9000 mm, 96.5400 mm): F.Cu 上 R30 的焊盘 2 [BOOT_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1849 mm)
+    Local override; error
+    @(101.2125 mm, 95.5000 mm): F.Cu 上 U5 的焊盘 7 [GND]
+    @(100.9306 mm, 95.1496 mm): 走线 [3V3] (F.Cu), 长度: 0.0302 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1940 mm)
+    Local override; error
+    @(98.1788 mm, 102.8534 mm): 走线 [3V3] (F.Cu), 长度: 0.3789 mm
+    @(98.3750 mm, 103.3474 mm): 过孔 [LCD_CS_N_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1652 mm)
+    Local override; error
+    @(99.4018 mm, 89.4939 mm): 走线 [3V3] (F.Cu), 长度: 0.4663 mm
+    @(99.0000 mm, 90.2250 mm): F.Cu 上 C19 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1692 mm)
+    Local override; error
+    @(101.2125 mm, 96.0000 mm): F.Cu 上 U5 的焊盘 6 [GND]
+    @(101.3621 mm, 96.3504 mm): 走线 [3V3] (F.Cu), 长度: 0.2116 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1969 mm)
+    Local override; error
+    @(122.8281 mm, 101.7781 mm): 走线 [3V3] (F.Cu), 长度: 2.3327 mm
+    @(121.4000 mm, 102.5500 mm): F.Cu 上 C15 的焊盘 1 [SYS]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1664 mm)
+    Local override; error
+    @(106.0700 mm, 123.3000 mm): 走线 [3V3] (F.Cu), 长度: 1.7702 mm
+    @(105.6019 mm, 121.7319 mm): 走线 [USB_VBUS] (F.Cu), 长度: 1.8085 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1737 mm)
+    Local override; error
+    @(114.7737 mm, 81.7500 mm): 走线 [3V3] (F.Cu), 长度: 1.2681 mm
+    @(113.9000 mm, 81.2500 mm): F.Cu 上 U8 的焊盘 7 [GNSS_3V0]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1768 mm)
+    Local override; error
+    @(119.2832 mm, 115.7768 mm): 走线 [3V3] (F.Cu), 长度: 2.2564 mm
+    @(117.9500 mm, 114.8000 mm): F.Cu 上 C16 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(97.5648 mm, 81.6913 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+    @(97.1131 mm, 81.8783 mm): 走线 [3V3] (F.Cu), 长度: 0.3915 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1874 mm)
+    Local override; error
+    @(108.5375 mm, 78.8500 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 1.4583 mm
+    @(107.1689 mm, 79.2742 mm): 走线 [3V3] (F.Cu), 长度: 0.8836 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(89.3016 mm, 91.4512 mm): 走线 [3V3] (F.Cu), 长度: 0.4117 mm
+    @(89.1145 mm, 90.9995 mm): 过孔 [GND] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(79.1179 mm, 91.4512 mm): 走线 [3V3] (F.Cu), 长度: 10.1837 mm
+    @(89.1145 mm, 90.9995 mm): 过孔 [GND] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1696 mm)
+    Local override; error
+    @(106.2625 mm, 79.8000 mm): F.Cu 上 U7 的焊盘 2 [GND]
+    @(106.6867 mm, 79.2742 mm): 走线 [3V3] (F.Cu), 长度: 0.5999 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1660 mm)
+    Local override; error
+    @(106.6700 mm, 82.6000 mm): F.Cu 上 C30 的焊盘 1 [GNSS_3V0]
+    @(106.1490 mm, 80.8635 mm): 走线 [3V3] (F.Cu), 长度: 2.3155 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(98.0165 mm, 81.8784 mm): 走线 [I2C_SCL] (F.Cu), 长度: 2.6216 mm
+    @(98.8598 mm, 77.9868 mm): 走线 [3V3] (F.Cu), 长度: 2.4702 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(99.2475 mm, 80.5079 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+    @(98.7958 mm, 79.4775 mm): 走线 [3V3] (F.Cu), 长度: 2.0933 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1585 mm)
+    Local override; error
+    @(104.2100 mm, 106.8500 mm): F.Cu 上 R7 的焊盘 2 [LCD_RESET_N]
+    @(104.0071 mm, 106.3028 mm): 走线 [3V3] (F.Cu), 长度: 0.2699 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1874 mm)
+    Local override; error
+    @(107.1689 mm, 80.1578 mm): 走线 [3V3] (F.Cu), 长度: 0.8375 mm
+    @(107.5063 mm, 79.8812 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 1.8825 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1956 mm)
+    Local override; error
+    @(97.5648 mm, 81.6913 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+    @(97.3899 mm, 82.1551 mm): 走线 [3V3] (F.Cu), 长度: 0.0001 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1942 mm)
+    Local override; error
+    @(108.5575 mm, 113.5892 mm): 走线 [I2C_SCL] (F.Cu), 长度: 2.9172 mm
+    @(106.9584 mm, 113.9334 mm): 走线 [3V3] (F.Cu), 长度: 2.0387 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1781 mm)
+    Local override; error
+    @(101.2125 mm, 95.5000 mm): F.Cu 上 U5 的焊盘 7 [GND]
+    @(100.2582 mm, 95.3021 mm): 走线 [3V3] (F.Cu), 长度: 0.4897 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1882 mm)
+    Local override; error
+    @(100.2500 mm, 78.4375 mm): F.Cu 上 U6 的焊盘 11 [unconnected-(U6-NC-Pad11)]
+    @(100.7010 mm, 77.9868 mm): 走线 [3V3] (F.Cu), 长度: 1.8412 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1944 mm)
+    Local override; error
+    @(100.0759 mm, 88.4906 mm): 走线 [MCU_EN] (F.Cu), 长度: 2.9653 mm
+    @(99.7315 mm, 91.0435 mm): 走线 [3V3] (F.Cu), 长度: 1.0345 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1923 mm)
+    Local override; error
+    @(99.0261 mm, 107.7823 mm): 过孔 [LCD_SIO2] (F.Cu - B.Cu)
+    @(98.4275 mm, 106.4875 mm): 走线 [3V3] (F.Cu), 长度: 2.0117 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(104.3200 mm, 123.0750 mm): J1 的PTH 焊盘 SH [<no net>]
+    @(104.8183 mm, 122.0483 mm): 走线 [3V3] (F.Cu), 长度: 2.4958 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1696 mm)
+    Local override; error
+    @(106.2625 mm, 79.8000 mm): F.Cu 上 U7 的焊盘 2 [GND]
+    @(107.1689 mm, 79.2742 mm): 走线 [3V3] (F.Cu), 长度: 0.4822 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(119.0583 mm, 103.8539 mm): 过孔 [TPS63070_VAUX] (F.Cu - B.Cu)
+    @(120.4954 mm, 101.7781 mm): 走线 [3V3] (F.Cu), 长度: 3.1721 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1958 mm)
+    Local override; error
+    @(95.6654 mm, 108.2802 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(96.1269 mm, 108.7319 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1958 mm)
+    Local override; error
+    @(95.6654 mm, 108.2802 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(96.1269 mm, 108.7319 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1958 mm)
+    Local override; error
+    @(95.6654 mm, 108.2802 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(96.1269 mm, 108.7319 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1958 mm)
+    Local override; error
+    @(95.6654 mm, 108.2802 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(96.1269 mm, 108.7319 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1587 mm)
+    Local override; error
+    @(98.9832 mm, 103.3227 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(98.3750 mm, 103.3474 mm): 过孔 [LCD_CS_N_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1587 mm)
+    Local override; error
+    @(98.9832 mm, 103.3227 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(98.3750 mm, 103.3474 mm): 过孔 [LCD_CS_N_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1902 mm)
+    Local override; error
+    @(117.4237 mm, 111.0991 mm): 过孔 [BAT] (F.Cu - B.Cu)
+    @(117.4459 mm, 110.4593 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1902 mm)
+    Local override; error
+    @(117.4237 mm, 111.0991 mm): 过孔 [BAT] (F.Cu - B.Cu)
+    @(117.4459 mm, 110.4593 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1587 mm)
+    Local override; error
+    @(98.9832 mm, 103.3227 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(98.3750 mm, 103.3474 mm): 过孔 [LCD_CS_N_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1902 mm)
+    Local override; error
+    @(117.4237 mm, 111.0991 mm): 过孔 [BAT] (F.Cu - B.Cu)
+    @(117.4459 mm, 110.4593 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(104.8495 mm, 104.9518 mm): 走线 [3V3] (B.Cu), 长度: 0.6670 mm
+    @(104.3978 mm, 104.3587 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(117.4248 mm, 110.4593 mm): 走线 [3V3] (B.Cu), 长度: 1.3786 mm
+    @(117.4237 mm, 111.0991 mm): 过孔 [BAT] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1587 mm)
+    Local override; error
+    @(98.9832 mm, 103.3227 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(98.3750 mm, 103.3474 mm): 过孔 [LCD_CS_N_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1577 mm)
+    Local override; error
+    @(104.8495 mm, 104.2848 mm): 走线 [3V3] (B.Cu), 长度: 1.8124 mm
+    @(104.3978 mm, 104.3587 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1902 mm)
+    Local override; error
+    @(117.4237 mm, 111.0991 mm): 过孔 [BAT] (F.Cu - B.Cu)
+    @(117.4459 mm, 110.4593 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1577 mm)
+    Local override; error
+    @(118.2524 mm, 104.2848 mm): 走线 [3V3] (B.Cu), 长度: 13.4029 mm
+    @(104.3978 mm, 104.3587 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1596 mm)
+    Local override; error
+    @(98.0420 mm, 91.0612 mm): 走线 [3V3] (B.Cu), 长度: 3.6990 mm
+    @(100.5726 mm, 87.9939 mm): 过孔 [MCU_EN] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1596 mm)
+    Local override; error
+    @(100.5726 mm, 87.9939 mm): 过孔 [MCU_EN] (F.Cu - B.Cu)
+    @(100.6576 mm, 88.4456 mm): 走线 [3V3] (B.Cu), 长度: 2.5301 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1597 mm)
+    Local override; error
+    @(104.8495 mm, 102.4724 mm): 走线 [3V3] (B.Cu), 长度: 3.7369 mm
+    @(102.5301 mm, 100.8031 mm): 过孔 [I2C_SCL] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1773 mm)
+    Local override; error
+    @(97.8858 mm, 111.2647 mm): 走线 [3V3] (In2.Cu), 长度: 3.1401 mm
+    @(96.3807 mm, 110.4346 mm): 过孔 [GND] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(120.0155 mm, 104.2483 mm): 走线 [3V3] (In2.Cu), 长度: 0.3325 mm
+    @(119.3647 mm, 103.1708 mm): 走线 [CHARGER_STAT_N] (In2.Cu), 长度: 1.6795 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(97.4591 mm, 92.2223 mm): 走线 [3V3] (In2.Cu), 长度: 2.7601 mm
+    @(97.7608 mm, 94.8135 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 0.8552 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1765 mm)
+    Local override; error
+    @(119.1111 mm, 106.0226 mm): 走线 [3V3] (In2.Cu), 长度: 0.0353 mm
+    @(119.2628 mm, 106.4743 mm): 过孔 [BAT_TS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(119.0758 mm, 106.0226 mm): 走线 [3V3] (In2.Cu), 长度: 0.3892 mm
+    @(119.2628 mm, 106.4743 mm): 过孔 [BAT_TS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(119.3647 mm, 103.1708 mm): 走线 [CHARGER_STAT_N] (In2.Cu), 长度: 1.6795 mm
+    @(119.3027 mm, 104.2483 mm): 走线 [3V3] (In2.Cu), 长度: 0.7128 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1640 mm)
+    Local override; error
+    @(119.2454 mm, 104.3056 mm): 走线 [3V3] (In2.Cu), 长度: 0.0810 mm
+    @(119.0583 mm, 103.8539 mm): 过孔 [TPS63070_VAUX] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1707 mm)
+    Local override; error
+    @(101.8652 mm, 116.1524 mm): 走线 [3V3] (In2.Cu), 长度: 5.6277 mm
+    @(98.9313 mm, 112.7650 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 1.0519 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1622 mm)
+    Local override; error
+    @(119.2628 mm, 106.4743 mm): 过孔 [BAT_TS] (F.Cu - B.Cu)
+    @(118.8006 mm, 106.2978 mm): 走线 [3V3] (In2.Cu), 长度: 3.6270 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(119.3647 mm, 103.1708 mm): 走线 [CHARGER_STAT_N] (In2.Cu), 长度: 1.6795 mm
+    @(120.2506 mm, 104.4834 mm): 走线 [3V3] (In2.Cu), 长度: 0.3997 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1828 mm)
+    Local override; error
+    @(97.7608 mm, 94.8135 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 0.8552 mm
+    @(97.4591 mm, 94.9824 mm): 走线 [3V3] (In2.Cu), 长度: 0.8533 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1530 mm)
+    Local override; error
+    @(98.3655 mm, 100.5399 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 2.5224 mm
+    @(98.0625 mm, 95.5858 mm): 走线 [3V3] (In2.Cu), 长度: 6.1666 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(97.8858 mm, 112.1730 mm): 走线 [3V3] (In2.Cu), 长度: 0.9083 mm
+    @(98.9313 mm, 112.7650 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 1.0519 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(119.0583 mm, 103.8539 mm): 过孔 [TPS63070_VAUX] (F.Cu - B.Cu)
+    @(118.2732 mm, 104.3056 mm): 走线 [3V3] (In2.Cu), 长度: 0.9722 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1591 mm)
+    Local override; error
+    @(119.7694 mm, 104.7150 mm): 过孔 [FUNC_KEY_N] (F.Cu - B.Cu)
+    @(120.2506 mm, 104.8831 mm): 走线 [3V3] (In2.Cu), 长度: 1.6115 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1615 mm)
+    Local override; error
+    @(96.1269 mm, 108.7319 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+    @(95.6654 mm, 109.0443 mm): 走线 [3V3] (In2.Cu), 长度: 0.7641 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1530 mm)
+    Local override; error
+    @(113.0823 mm, 114.3470 mm): 走线 [3V3_PG_N] (B.Cu), 长度: 5.7584 mm
+    @(113.7020 mm, 114.8000 mm): 过孔 [TPS_EN_SYNC] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1950 mm)
+    Local override; error
+    @(105.1489 mm, 117.5750 mm): 走线 [GND] (F.Cu), 长度: 1.1939 mm
+    @(104.3200 mm, 118.8950 mm): J1 的PTH 焊盘 SH [<no net>]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1595 mm)
+    Local override; error
+    @(104.3133 mm, 103.9070 mm): 走线 [GND] (F.Cu), 长度: 0.1025 mm
+    @(104.3978 mm, 104.3587 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1758 mm)
+    Local override; error
+    @(117.0257 mm, 106.8231 mm): 走线 [GND] (F.Cu), 长度: 0.6425 mm
+    @(116.9007 mm, 107.1248 mm): 走线 [SYS] (F.Cu), 长度: 0.0021 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1560 mm)
+    Local override; error
+    @(112.7785 mm, 113.3585 mm): 过孔 [BAT_TS] (F.Cu - B.Cu)
+    @(112.3225 mm, 113.1509 mm): 走线 [3V3_PG_N] (B.Cu), 长度: 0.4363 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1565 mm)
+    Local override; error
+    @(114.9500 mm, 109.3500 mm): F.Cu 上 U3 的焊盘 3 [TPS63070_VAUX]
+    @(114.7269 mm, 108.8500 mm): 走线 [3V3_PG_N] (F.Cu), 长度: 0.4982 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1842 mm)
+    Local override; error
+    @(112.7785 mm, 113.3585 mm): 过孔 [BAT_TS] (F.Cu - B.Cu)
+    @(112.3225 mm, 113.5872 mm): 走线 [3V3_PG_N] (B.Cu), 长度: 1.0745 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1713 mm)
+    Local override; error
+    @(96.4075 mm, 119.3197 mm): 走线 [GND] (F.Cu), 长度: 0.5972 mm
+    @(95.6800 mm, 118.8950 mm): J1 的PTH 焊盘 SH [<no net>]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1650 mm)
+    Local override; error
+    @(105.5767 mm, 111.7486 mm): 走线 [GND] (F.Cu), 长度: 0.0736 mm
+    @(105.1500 mm, 112.3025 mm): F.Cu 上 J3 的焊盘 [<no net>]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1692 mm)
+    Local override; error
+    @(112.7785 mm, 113.3585 mm): 过孔 [BAT_TS] (F.Cu - B.Cu)
+    @(114.2153 mm, 111.2581 mm): 走线 [3V3_PG_N] (B.Cu), 长度: 2.6768 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1693 mm)
+    Local override; error
+    @(111.1000 mm, 81.7500 mm): F.Cu 上 U8 的焊盘 3 [3V3]
+    @(109.1320 mm, 81.3495 mm): 走线 [GND] (F.Cu), 长度: 1.8685 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(117.8216 mm, 97.5620 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 1.6461 mm
+    @(116.1500 mm, 97.2000 mm): 走线 [GND] (F.Cu), 长度: 1.6069 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1836 mm)
+    Local override; error
+    @(107.4079 mm, 123.2999 mm): 走线 [GND] (F.Cu), 长度: 0.7777 mm
+    @(108.2400 mm, 122.2000 mm): F.Cu 上 R12 的焊盘 1 [USB_SHIELD]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(95.7233 mm, 112.1086 mm): 走线 [GND] (F.Cu), 长度: 0.9878 mm
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [unconnected-(J3-FPC_3-Pad3)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(110.3087 mm, 117.3711 mm): 走线 [GND] (F.Cu), 长度: 0.9812 mm
+    @(110.5508 mm, 116.4902 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1724 mm)
+    Local override; error
+    @(103.7106 mm, 111.9773 mm): 走线 [GND] (F.Cu), 长度: 0.2230 mm
+    @(103.9000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 29 [TP_RESET_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1861 mm)
+    Local override; error
+    @(113.4125 mm, 85.9000 mm): 走线 [GND] (F.Cu), 长度: 0.6364 mm
+    @(113.8603 mm, 86.1396 mm): 过孔 [GNSS_3V0] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(100.4682 mm, 96.6466 mm): 走线 [GND] (F.Cu), 长度: 0.3742 mm
+    @(100.2811 mm, 96.1949 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1804 mm)
+    Local override; error
+    @(111.0024 mm, 115.5669 mm): 走线 [GND] (F.Cu), 长度: 3.4357 mm
+    @(108.5575 mm, 113.5892 mm): 走线 [I2C_SCL] (F.Cu), 长度: 2.9172 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1882 mm)
+    Local override; error
+    @(112.0300 mm, 85.9000 mm): 走线 [GND] (F.Cu), 长度: 1.3825 mm
+    @(112.6160 mm, 85.4118 mm): 过孔 [GNSS_RESET_DRV] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1890 mm)
+    Local override; error
+    @(114.3746 mm, 111.2581 mm): 走线 [3V3_PG_N] (B.Cu), 长度: 0.1593 mm
+    @(117.8414 mm, 107.1526 mm): 走线 [SYS] (B.Cu), 长度: 5.5562 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(118.5339 mm, 96.4230 mm): 走线 [GND] (F.Cu), 长度: 5.2214 mm
+    @(117.8216 mm, 97.5620 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 1.6461 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(111.0025 mm, 116.6773 mm): 走线 [GND] (F.Cu), 长度: 0.4616 mm
+    @(110.5508 mm, 116.4902 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1657 mm)
+    Local override; error
+    @(117.9500 mm, 114.8000 mm): F.Cu 上 C16 的焊盘 2 [GND]
+    @(118.8407 mm, 114.3470 mm): 过孔 [3V3_PG_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [unconnected-(J3-FPC_3-Pad3)]
+    @(95.7942 mm, 112.0377 mm): 走线 [GND] (F.Cu), 长度: 0.1003 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1956 mm)
+    Local override; error
+    @(97.3000 mm, 110.2752 mm): 走线 [GND] (F.Cu), 长度: 0.0021 mm
+    @(97.0000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 6 [unconnected-(J3-FPC_6-Pad6)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1822 mm)
+    Local override; error
+    @(108.8308 mm, 81.3495 mm): 走线 [GND] (F.Cu), 长度: 0.8017 mm
+    @(108.7319 mm, 82.1303 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(104.5849 mm, 103.9070 mm): 走线 [GND] (F.Cu), 长度: 0.2716 mm
+    @(104.3978 mm, 104.3587 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1693 mm)
+    Local override; error
+    @(111.1000 mm, 81.7500 mm): F.Cu 上 U8 的焊盘 3 [3V3]
+    @(111.0005 mm, 81.3495 mm): 走线 [GND] (F.Cu), 长度: 0.1407 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1840 mm)
+    Local override; error
+    @(106.2346 mm, 104.6828 mm): 走线 [GND] (F.Cu), 长度: 0.5387 mm
+    @(106.9250 mm, 104.3000 mm): F.Cu 上 C12 的焊盘 1 [BQ_PMID]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(110.0985 mm, 116.9194 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+    @(110.0220 mm, 117.3711 mm): 走线 [GND] (F.Cu), 长度: 0.2867 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1879 mm)
+    Local override; error
+    @(113.9353 mm, 86.7751 mm): 走线 [GND] (F.Cu), 长度: 4.1352 mm
+    @(113.8603 mm, 86.1396 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.4209 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1781 mm)
+    Local override; error
+    @(96.3625 mm, 113.2292 mm): 走线 [GND] (F.Cu), 长度: 0.7142 mm
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [unconnected-(J3-FPC_3-Pad3)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1519 mm)
+    Local override; error
+    @(101.2296 mm, 98.8368 mm): 走线 [GND] (F.Cu), 长度: 1.0690 mm
+    @(102.5301 mm, 100.8031 mm): 走线 [I2C_SCL] (F.Cu), 长度: 2.3538 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1550 mm)
+    Local override; error
+    @(107.9578 mm, 122.7500 mm): 走线 [GND] (F.Cu), 长度: 0.7522 mm
+    @(108.2400 mm, 122.2000 mm): F.Cu 上 R12 的焊盘 1 [USB_SHIELD]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1821 mm)
+    Local override; error
+    @(123.6000 mm, 102.5500 mm): F.Cu 上 C17 的焊盘 1 [3V3]
+    @(124.5821 mm, 101.6321 mm): 走线 [GND] (F.Cu), 长度: 1.3519 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1708 mm)
+    Local override; error
+    @(104.3133 mm, 101.9205 mm): 走线 [GND] (F.Cu), 长度: 4.3610 mm
+    @(102.5301 mm, 100.8031 mm): 过孔 [I2C_SCL] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1713 mm)
+    Local override; error
+    @(96.4075 mm, 118.7225 mm): 走线 [GND] (F.Cu), 长度: 0.0392 mm
+    @(95.6800 mm, 118.8950 mm): J1 的PTH 焊盘 SH [<no net>]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1942 mm)
+    Local override; error
+    @(106.5076 mm, 116.2596 mm): 走线 [USB_CC2] (F.Cu), 长度: 0.1986 mm
+    @(105.8500 mm, 116.7254 mm): 走线 [GND] (F.Cu), 长度: 2.2504 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1883 mm)
+    Local override; error
+    @(109.8162 mm, 117.5769 mm): 走线 [GND] (F.Cu), 长度: 0.2910 mm
+    @(109.6000 mm, 117.0250 mm): F.Cu 上 U4 的焊盘 6 [TYPEC_INT_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1690 mm)
+    Local override; error
+    @(116.8375 mm, 107.7000 mm): 走线 [SYS] (F.Cu), 长度: 0.5767 mm
+    @(116.5242 mm, 106.8231 mm): 走线 [GND] (F.Cu), 长度: 0.5015 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1598 mm)
+    Local override; error
+    @(111.9948 mm, 106.8146 mm): 走线 [GND] (F.Cu), 长度: 1.6896 mm
+    @(111.4800 mm, 106.5000 mm): F.Cu 上 C7 的焊盘 2 [BQ_SW]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1840 mm)
+    Local override; error
+    @(106.2346 mm, 104.8105 mm): 走线 [GND] (F.Cu), 长度: 0.1277 mm
+    @(106.9250 mm, 104.3000 mm): F.Cu 上 C12 的焊盘 1 [BQ_PMID]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1802 mm)
+    Local override; error
+    @(96.4352 mm, 118.6948 mm): 走线 [GND] (F.Cu), 长度: 0.5159 mm
+    @(95.6800 mm, 118.8950 mm): J1 的PTH 焊盘 SH [<no net>]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1690 mm)
+    Local override; error
+    @(103.9000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 29 [TP_RESET_N]
+    @(103.7106 mm, 111.9773 mm): 走线 [GND] (F.Cu), 长度: 0.5646 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(99.9034 mm, 96.6466 mm): 走线 [GND] (F.Cu), 长度: 0.5648 mm
+    @(100.2811 mm, 96.1949 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1642 mm)
+    Local override; error
+    @(100.5998 mm, 78.9500 mm): 走线 [3V3] (F.Cu), 长度: 0.7071 mm
+    @(100.5176 mm, 79.4500 mm): 走线 [GND] (F.Cu), 长度: 0.3784 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1610 mm)
+    Local override; error
+    @(115.4261 mm, 111.6390 mm): 走线 [GND] (F.Cu), 长度: 0.3717 mm
+    @(115.5000 mm, 112.6000 mm): F.Cu 上 C14 的焊盘 1 [SYS]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(100.6000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 18 [LCD_RESET_N]
+    @(101.2000 mm, 110.2767 mm): 走线 [GND] (F.Cu), 长度: 2.9985 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1609 mm)
+    Local override; error
+    @(100.7328 mm, 96.2864 mm): 走线 [GND] (F.Cu), 长度: 0.4050 mm
+    @(100.2811 mm, 96.1949 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1892 mm)
+    Local override; error
+    @(113.8625 mm, 85.4500 mm): 走线 [GND] (F.Cu), 长度: 0.6363 mm
+    @(113.8603 mm, 86.1396 mm): 过孔 [GNSS_3V0] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1519 mm)
+    Local override; error
+    @(109.4353 mm, 117.5769 mm): 走线 [GND] (F.Cu), 长度: 0.3809 mm
+    @(109.6000 mm, 117.0250 mm): F.Cu 上 U4 的焊盘 6 [TYPEC_INT_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1534 mm)
+    Local override; error
+    @(105.5008 mm, 111.5991 mm): 走线 [GND] (F.Cu), 长度: 1.6350 mm
+    @(105.1500 mm, 112.3025 mm): F.Cu 上 J3 的焊盘 [<no net>]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(97.0767 mm, 113.2292 mm): 走线 [GND] (F.Cu), 长度: 5.6233 mm
+    @(97.9000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 9 [unconnected-(J3-FPC_9-Pad9)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(104.9798 mm, 104.3019 mm): 走线 [GND] (F.Cu), 长度: 0.5585 mm
+    @(104.3978 mm, 104.3587 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1578 mm)
+    Local override; error
+    @(100.0500 mm, 97.1625 mm): F.Cu 上 U5 的焊盘 2 [unconnected-(U5-SDx-Pad2)]
+    @(99.5500 mm, 97.0000 mm): 走线 [GND] (F.Cu), 长度: 0.4998 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1987 mm)
+    Local override; error
+    @(99.4463 mm, 93.7837 mm): 走线 [GND] (F.Cu), 长度: 1.5876 mm
+    @(99.0700 mm, 93.2000 mm): F.Cu 上 C37 的焊盘 1 [GNSS_3V0]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1806 mm)
+    Local override; error
+    @(85.3000 mm, 84.7800 mm): F.Cu 上 SW2 的焊盘 1 [MCU_EN]
+    @(88.0000 mm, 83.5200 mm): 走线 [GND] (F.Cu), 长度: 3.8184 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1932 mm)
+    Local override; error
+    @(105.5767 mm, 111.6750 mm): 走线 [GND] (F.Cu), 长度: 0.1073 mm
+    @(105.1500 mm, 112.3025 mm): F.Cu 上 J3 的焊盘 [<no net>]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1550 mm)
+    Local override; error
+    @(104.5386 mm, 79.9050 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+    @(100.7625 mm, 79.4500 mm): 走线 [GND] (F.Cu), 长度: 5.1500 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1690 mm)
+    Local override; error
+    @(98.2000 mm, 110.2752 mm): 走线 [GND] (F.Cu), 长度: 0.9000 mm
+    @(97.6000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 8 [unconnected-(J3-FPC_8-Pad8)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1585 mm)
+    Local override; error
+    @(110.6212 mm, 119.2683 mm): 过孔 [USB_D_N_MCU] (F.Cu - B.Cu)
+    @(113.8966 mm, 118.8098 mm): 走线 [GND] (F.Cu), 长度: 3.5564 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(96.7000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 5 [unconnected-(J3-FPC_5-Pad5)]
+    @(97.0767 mm, 113.2292 mm): 走线 [GND] (F.Cu), 长度: 1.1206 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1690 mm)
+    Local override; error
+    @(113.3000 mm, 99.0000 mm): F.Cu 上 U10 的焊盘 27 [unconnected-(U10-SPI_MOSI-Pad27)]
+    @(114.7873 mm, 98.3748 mm): 走线 [GND] (F.Cu), 长度: 4.3125 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1659 mm)
+    Local override; error
+    @(109.2830 mm, 118.0058 mm): 走线 [GND] (F.Cu), 长度: 0.1174 mm
+    @(108.8000 mm, 118.1616 mm): 过孔 [TYPEC_VBUS_DET] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1942 mm)
+    Local override; error
+    @(108.1004 mm, 116.7254 mm): 走线 [GND] (F.Cu), 长度: 0.4237 mm
+    @(106.6480 mm, 116.4000 mm): 走线 [USB_CC2] (F.Cu), 长度: 1.6270 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1704 mm)
+    Local override; error
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [unconnected-(J3-FPC_3-Pad3)]
+    @(93.0853 mm, 116.0000 mm): 走线 [GND] (F.Cu), 长度: 3.9185 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1680 mm)
+    Local override; error
+    @(108.7319 mm, 82.1303 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+    @(108.2639 mm, 81.9164 mm): 走线 [GND] (F.Cu), 长度: 0.6836 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1525 mm)
+    Local override; error
+    @(104.3978 mm, 104.3587 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+    @(104.0591 mm, 104.0587 mm): 走线 [GND] (F.Cu), 长度: 0.6428 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(117.8216 mm, 97.5620 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 1.6461 mm
+    @(117.7569 mm, 97.2000 mm): 走线 [GND] (F.Cu), 长度: 1.0988 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [unconnected-(J3-FPC_3-Pad3)]
+    @(95.8561 mm, 113.2292 mm): 走线 [GND] (F.Cu), 长度: 0.5064 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1519 mm)
+    Local override; error
+    @(109.2000 mm, 117.3416 mm): 走线 [GND] (F.Cu), 长度: 0.3328 mm
+    @(109.6000 mm, 117.0250 mm): F.Cu 上 U4 的焊盘 6 [TYPEC_INT_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1659 mm)
+    Local override; error
+    @(109.2000 mm, 117.9228 mm): 走线 [GND] (F.Cu), 长度: 0.8978 mm
+    @(108.8000 mm, 118.1616 mm): 过孔 [TYPEC_VBUS_DET] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1598 mm)
+    Local override; error
+    @(118.6803 mm, 91.0552 mm): 走线 [GND] (F.Cu), 长度: 3.0049 mm
+    @(121.2700 mm, 91.6000 mm): F.Cu 上 C33 的焊盘 1 [GNSS_RF_IN]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1692 mm)
+    Local override; error
+    @(114.9500 mm, 109.3500 mm): F.Cu 上 U3 的焊盘 3 [TPS63070_VAUX]
+    @(115.4601 mm, 109.7004 mm): 走线 [GND] (F.Cu), 长度: 0.3605 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1615 mm)
+    Local override; error
+    @(100.6500 mm, 92.0300 mm): F.Cu 上 C21 的焊盘 1 [MCU_EN]
+    @(100.3225 mm, 93.2000 mm): 走线 [GND] (F.Cu), 长度: 1.7378 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1595 mm)
+    Local override; error
+    @(104.3978 mm, 104.3587 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+    @(104.3133 mm, 103.9070 mm): 走线 [GND] (F.Cu), 长度: 1.9865 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [unconnected-(J3-FPC_3-Pad3)]
+    @(95.7233 mm, 113.0964 mm): 走线 [GND] (F.Cu), 长度: 0.1878 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1642 mm)
+    Local override; error
+    @(100.5998 mm, 78.9500 mm): 走线 [3V3] (F.Cu), 长度: 0.7071 mm
+    @(100.7625 mm, 79.4500 mm): 走线 [GND] (F.Cu), 长度: 0.2449 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(96.7000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 5 [unconnected-(J3-FPC_5-Pad5)]
+    @(97.0074 mm, 112.0393 mm): 走线 [GND] (F.Cu), 长度: 0.0620 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1610 mm)
+    Local override; error
+    @(115.5000 mm, 112.6000 mm): F.Cu 上 C14 的焊盘 1 [SYS]
+    @(116.4390 mm, 111.6390 mm): 走线 [GND] (F.Cu), 长度: 1.0129 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1781 mm)
+    Local override; error
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [unconnected-(J3-FPC_3-Pad3)]
+    @(96.3625 mm, 113.2292 mm): 走线 [GND] (F.Cu), 长度: 0.1690 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1523 mm)
+    Local override; error
+    @(111.4800 mm, 106.5000 mm): F.Cu 上 C7 的焊盘 2 [BQ_SW]
+    @(111.5750 mm, 107.2344 mm): 走线 [GND] (F.Cu), 长度: 0.5937 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1692 mm)
+    Local override; error
+    @(123.6000 mm, 98.7500 mm): F.Cu 上 D2 的焊盘 1 [GNSS_ANT_BIASED]
+    @(124.3000 mm, 98.1746 mm): 走线 [GND] (F.Cu), 长度: 0.5517 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1830 mm)
+    Local override; error
+    @(109.2830 mm, 118.9750 mm): 走线 [GND] (F.Cu), 长度: 0.9692 mm
+    @(108.8000 mm, 118.1616 mm): 过孔 [TYPEC_VBUS_DET] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1987 mm)
+    Local override; error
+    @(105.1500 mm, 112.3025 mm): F.Cu 上 J3 的焊盘 [<no net>]
+    @(107.1500 mm, 109.9500 mm): 走线 [GND] (F.Cu), 长度: 2.3322 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1637 mm)
+    Local override; error
+    @(123.6000 mm, 102.5500 mm): F.Cu 上 C17 的焊盘 1 [3V3]
+    @(124.5821 mm, 102.9840 mm): 走线 [GND] (F.Cu), 长度: 2.2854 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1631 mm)
+    Local override; error
+    @(105.8537 mm, 104.3019 mm): 走线 [GND] (F.Cu), 长度: 0.8739 mm
+    @(105.5000 mm, 104.8100 mm): F.Cu 上 R17 的焊盘 1 [3V3]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1518 mm)
+    Local override; error
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [unconnected-(J3-FPC_3-Pad3)]
+    @(95.7942 mm, 111.9759 mm): 走线 [GND] (F.Cu), 长度: 0.0618 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1527 mm)
+    Local override; error
+    @(116.1500 mm, 98.3000 mm): F.Cu 上 U10 的焊盘 11 [GNSS_RF_IN]
+    @(115.6983 mm, 97.2000 mm): 走线 [GND] (F.Cu), 长度: 1.2883 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(97.0000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 6 [unconnected-(J3-FPC_6-Pad6)]
+    @(97.2985 mm, 110.2767 mm): 走线 [GND] (F.Cu), 长度: 0.8985 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1525 mm)
+    Local override; error
+    @(95.6800 mm, 118.8950 mm): J1 的PTH 焊盘 SH [<no net>]
+    @(96.4075 mm, 119.3197 mm): 走线 [GND] (F.Cu), 长度: 0.5293 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1609 mm)
+    Local override; error
+    @(100.2811 mm, 96.1949 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+    @(100.7328 mm, 96.3820 mm): 走线 [GND] (F.Cu), 长度: 0.0956 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(96.7000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 5 [unconnected-(J3-FPC_5-Pad5)]
+    @(97.0767 mm, 112.1086 mm): 走线 [GND] (F.Cu), 长度: 0.0980 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1757 mm)
+    Local override; error
+    @(100.5998 mm, 78.9500 mm): 走线 [3V3] (F.Cu), 长度: 0.7071 mm
+    @(100.2500 mm, 79.7176 mm): 走线 [GND] (F.Cu), 长度: 0.2449 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1987 mm)
+    Local override; error
+    @(105.1500 mm, 112.3025 mm): F.Cu 上 J3 的焊盘 [<no net>]
+    @(105.5009 mm, 111.5991 mm): 走线 [GND] (F.Cu), 长度: 0.0001 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(100.0358 mm, 99.1387 mm): 走线 [I2C_SCL] (F.Cu), 长度: 1.5993 mm
+    @(99.5500 mm, 98.2262 mm): 走线 [GND] (F.Cu), 长度: 1.0637 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1697 mm)
+    Local override; error
+    @(108.7319 mm, 82.1303 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+    @(108.2639 mm, 82.6000 mm): 走线 [GND] (F.Cu), 长度: 0.7611 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1692 mm)
+    Local override; error
+    @(114.9500 mm, 109.3500 mm): F.Cu 上 U3 的焊盘 3 [TPS63070_VAUX]
+    @(115.0996 mm, 109.7004 mm): 走线 [GND] (F.Cu), 长度: 0.2116 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1980 mm)
+    Local override; error
+    @(110.2250 mm, 104.8500 mm): F.Cu 上 C8 的焊盘 1 [BQ_REGN]
+    @(108.6730 mm, 104.1020 mm): 走线 [GND] (F.Cu), 长度: 2.3540 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1690 mm)
+    Local override; error
+    @(103.3000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 27 [I2C_SCL]
+    @(102.7000 mm, 111.9773 mm): 走线 [GND] (F.Cu), 长度: 1.0106 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1864 mm)
+    Local override; error
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [unconnected-(J3-FPC_3-Pad3)]
+    @(96.3625 mm, 113.3982 mm): 过孔 [GND] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1692 mm)
+    Local override; error
+    @(123.6000 mm, 98.7500 mm): F.Cu 上 D2 的焊盘 1 [GNSS_ANT_BIASED]
+    @(123.7483 mm, 98.1746 mm): 走线 [GND] (F.Cu), 长度: 0.1414 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1521 mm)
+    Local override; error
+    @(113.8603 mm, 86.1396 mm): 过孔 [GNSS_3V0] (F.Cu - B.Cu)
+    @(114.3124 mm, 85.8999 mm): 走线 [GND] (F.Cu), 长度: 0.4981 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1519 mm)
+    Local override; error
+    @(100.8657 mm, 99.1387 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.8299 mm
+    @(100.1606 mm, 98.8368 mm): 走线 [GND] (F.Cu), 长度: 0.8635 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(104.3978 mm, 104.3587 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+    @(104.2108 mm, 103.9070 mm): 走线 [GND] (F.Cu), 长度: 0.2145 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1709 mm)
+    Local override; error
+    @(106.9250 mm, 104.3000 mm): F.Cu 上 C12 的焊盘 1 [BQ_PMID]
+    @(107.5724 mm, 105.0209 mm): 走线 [GND] (F.Cu), 长度: 1.1274 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1650 mm)
+    Local override; error
+    @(105.1500 mm, 112.3025 mm): F.Cu 上 J3 的焊盘 [<no net>]
+    @(106.9656 mm, 113.1375 mm): 走线 [GND] (F.Cu), 长度: 1.9642 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1937 mm)
+    Local override; error
+    @(96.6938 mm, 98.8644 mm): 走线 [CHARGER_INT_N] (B.Cu), 长度: 8.6260 mm
+    @(100.3335 mm, 98.3707 mm): 过孔 [QMI_INT1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1649 mm)
+    Local override; error
+    @(112.4000 mm, 109.1070 mm): F.Cu 上 U2 的焊盘 12 [I2C_SDA]
+    @(113.0820 mm, 109.2398 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1536 mm)
+    Local override; error
+    @(105.3214 mm, 107.8555 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+    @(106.1750 mm, 107.3000 mm): F.Cu 上 L1 的焊盘 1 [BQ_SW]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1601 mm)
+    Local override; error
+    @(111.0535 mm, 109.1098 mm): 过孔 [BAT] (F.Cu - B.Cu)
+    @(110.0061 mm, 109.5699 mm): 走线 [CHARGER_INT_N] (B.Cu), 长度: 2.7458 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(106.0466 mm, 97.3201 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 12.6131 mm
+    @(105.3198 mm, 98.8644 mm): 走线 [CHARGER_INT_N] (In2.Cu), 长度: 0.6012 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(105.4432 mm, 102.9240 mm): 走线 [I2C_SCL] (In2.Cu), 长度: 3.3197 mm
+    @(105.7449 mm, 99.2895 mm): 走线 [CHARGER_INT_N] (In2.Cu), 长度: 8.1425 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1833 mm)
+    Local override; error
+    @(103.6678 mm, 89.6116 mm): 走线 [GNSS_RESET_N_1V8] (In2.Cu), 长度: 9.7884 mm
+    @(104.0011 mm, 80.4425 mm): 走线 [CHARGER_INT_N] (In2.Cu), 长度: 17.1032 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1833 mm)
+    Local override; error
+    @(103.6678 mm, 89.6116 mm): 走线 [GNSS_RESET_N_1V8] (In2.Cu), 长度: 9.7884 mm
+    @(104.0011 mm, 97.5457 mm): 走线 [CHARGER_INT_N] (In2.Cu), 长度: 1.8649 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1640 mm)
+    Local override; error
+    @(83.0000 mm, 114.9250 mm): 走线 [BAT] (F.Cu), 长度: 0.7716 mm
+    @(83.7343 mm, 114.8469 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(105.7449 mm, 107.4320 mm): 走线 [CHARGER_INT_N] (In2.Cu), 长度: 0.5989 mm
+    @(106.0466 mm, 97.3201 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 12.6131 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1675 mm)
+    Local override; error
+    @(83.7343 mm, 114.8469 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+    @(83.5456 mm, 114.3794 mm): 走线 [BAT] (F.Cu), 长度: 0.6442 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1684 mm)
+    Local override; error
+    @(85.0033 mm, 109.6604 mm): 走线 [TP_INT_N] (B.Cu), 长度: 19.5200 mm
+    @(86.1851 mm, 109.2038 mm): 走线 [BAT] (B.Cu), 长度: 0.1954 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1589 mm)
+    Local override; error
+    @(99.0104 mm, 109.0774 mm): 走线 [BAT] (B.Cu), 长度: 0.2019 mm
+    @(98.5587 mm, 108.8903 mm): 走线 [LCD_SIO1] (B.Cu), 长度: 3.3937 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1589 mm)
+    Local override; error
+    @(101.0194 mm, 106.8665 mm): 走线 [BAT] (B.Cu), 长度: 8.0114 mm
+    @(98.5587 mm, 108.8903 mm): 走线 [LCD_SIO1] (B.Cu), 长度: 3.3937 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1880 mm)
+    Local override; error
+    @(99.0104 mm, 108.8755 mm): 走线 [BAT] (B.Cu), 长度: 2.8412 mm
+    @(99.8631 mm, 108.7130 mm): 过孔 [LCD_CLK] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(86.3233 mm, 109.3420 mm): 走线 [BAT] (B.Cu), 长度: 12.4225 mm
+    @(98.5587 mm, 108.8903 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(98.5587 mm, 108.8903 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+    @(98.7458 mm, 109.3420 mm): 走线 [BAT] (B.Cu), 长度: 0.3742 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1520 mm)
+    Local override; error
+    @(111.7057 mm, 109.0778 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+    @(112.7541 mm, 107.3902 mm): 走线 [BAT] (In2.Cu), 长度: 2.4050 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1591 mm)
+    Local override; error
+    @(112.6621 mm, 80.6308 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+    @(111.4896 mm, 79.9920 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 1.0194 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1693 mm)
+    Local override; error
+    @(113.8005 mm, 81.1505 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.1407 mm
+    @(113.9000 mm, 80.7500 mm): F.Cu 上 U8 的焊盘 8 [GNSS_RX_3V0]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1695 mm)
+    Local override; error
+    @(107.7757 mm, 97.8257 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.6708 mm
+    @(108.2500 mm, 97.2000 mm): F.Cu 上 U10 的焊盘 7 [unconnected-(U10-RESERVED-Pad7)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1568 mm)
+    Local override; error
+    @(112.6621 mm, 80.6308 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+    @(112.2104 mm, 80.8251 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.4602 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1693 mm)
+    Local override; error
+    @(112.5358 mm, 81.1505 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 1.2647 mm
+    @(113.9000 mm, 80.7500 mm): F.Cu 上 U8 的焊盘 8 [GNSS_RX_3V0]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1695 mm)
+    Local override; error
+    @(107.0728 mm, 97.8257 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.7029 mm
+    @(108.2500 mm, 97.2000 mm): F.Cu 上 U10 的焊盘 7 [unconnected-(U10-RESERVED-Pad7)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1522 mm)
+    Local override; error
+    @(113.5627 mm, 86.4372 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 1.9555 mm
+    @(112.0300 mm, 85.9000 mm): F.Cu 上 C35 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(100.5726 mm, 87.9939 mm): 过孔 [MCU_EN] (F.Cu - B.Cu)
+    @(101.5387 mm, 86.3891 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 2.9539 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1529 mm)
+    Local override; error
+    @(107.5063 mm, 81.7637 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 1.1827 mm
+    @(107.0211 mm, 81.6084 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1609 mm)
+    Local override; error
+    @(102.2000 mm, 87.3625 mm): F.Cu 上 Q1 的焊盘 3 [GNSS_RESET_N_1V8]
+    @(107.5359 mm, 86.3891 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 5.9972 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1695 mm)
+    Local override; error
+    @(108.7243 mm, 95.6257 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.6708 mm
+    @(108.2500 mm, 95.0000 mm): F.Cu 上 U10 的焊盘 5 [unconnected-(U10-RESERVED-Pad5)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1695 mm)
+    Local override; error
+    @(110.0503 mm, 95.6257 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 1.3260 mm
+    @(108.2500 mm, 95.0000 mm): F.Cu 上 U10 的焊盘 5 [unconnected-(U10-RESERVED-Pad5)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1852 mm)
+    Local override; error
+    @(107.0211 mm, 81.6084 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+    @(107.5063 mm, 79.8812 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 1.8825 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1591 mm)
+    Local override; error
+    @(112.6621 mm, 80.6308 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+    @(112.2104 mm, 80.7128 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.1123 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1646 mm)
+    Local override; error
+    @(113.8603 mm, 86.1396 mm): 过孔 [GNSS_3V0] (F.Cu - B.Cu)
+    @(113.8625 mm, 85.4500 mm): F.Cu 上 U9 的焊盘 3 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1629 mm)
+    Local override; error
+    @(113.8603 mm, 91.8157 mm): 走线 [GNSS_3V0] (In2.Cu), 长度: 5.3882 mm
+    @(111.9042 mm, 94.4264 mm): 过孔 [GNSS_PPS_3V0] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1689 mm)
+    Local override; error
+    @(113.8603 mm, 86.1396 mm): 走线 [GNSS_3V0] (In2.Cu), 长度: 5.6761 mm
+    @(113.3914 mm, 87.8538 mm): 过孔 [GNSS_PPS_3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1588 mm)
+    Local override; error
+    @(113.8603 mm, 86.0173 mm): 走线 [GNSS_3V0] (In2.Cu), 长度: 3.3527 mm
+    @(112.7419 mm, 84.2500 mm): 过孔 [GNSS_PPS_3V0] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1823 mm)
+    Local override; error
+    @(117.9282 mm, 111.2336 mm): 走线 [TPS63070_FB] (In2.Cu), 长度: 3.1905 mm
+    @(117.4459 mm, 110.4593 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1794 mm)
+    Local override; error
+    @(115.7402 mm, 111.1790 mm): 走线 [TPS63070_FB] (In2.Cu), 长度: 0.5259 mm
+    @(117.7082 mm, 111.8803 mm): 走线 [CHARGER_STAT_N] (In2.Cu), 长度: 3.9856 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(116.1121 mm, 111.5509 mm): 走线 [TPS63070_FB] (In2.Cu), 长度: 1.4988 mm
+    @(119.7733 mm, 109.8152 mm): 走线 [CHARGER_STAT_N] (In2.Cu), 长度: 2.9205 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1581 mm)
+    Local override; error
+    @(115.7402 mm, 111.1790 mm): 过孔 [TPS63070_FB] (F.Cu - B.Cu)
+    @(115.8750 mm, 110.5000 mm): F.Cu 上 U3 的焊盘 6 [unconnected-(U3-FB2-Pad6)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(119.7733 mm, 109.8152 mm): 走线 [CHARGER_STAT_N] (In2.Cu), 长度: 2.9205 mm
+    @(117.6109 mm, 111.5509 mm): 走线 [TPS63070_FB] (In2.Cu), 长度: 0.4487 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(110.2822 mm, 106.5000 mm): 走线 [BQ_BTST] (F.Cu), 长度: 0.7638 mm
+    @(110.1938 mm, 107.2271 mm): 过孔 [BQ_PMID] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1653 mm)
+    Local override; error
+    @(106.1750 mm, 106.9981 mm): 走线 [BQ_SW] (F.Cu), 长度: 2.8150 mm
+    @(108.4750 mm, 104.3000 mm): F.Cu 上 C12 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(109.7421 mm, 107.0401 mm): 走线 [BQ_BTST] (F.Cu), 长度: 0.7270 mm
+    @(110.1938 mm, 107.2271 mm): 过孔 [BQ_PMID] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1576 mm)
+    Local override; error
+    @(108.4750 mm, 104.3000 mm): F.Cu 上 C12 的焊盘 2 [GND]
+    @(108.1655 mm, 105.0076 mm): 走线 [BQ_SW] (F.Cu), 长度: 1.2215 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1630 mm)
+    Local override; error
+    @(109.3870 mm, 105.0076 mm): 过孔 [BQ_SW] (F.Cu - B.Cu)
+    @(110.2250 mm, 104.8500 mm): F.Cu 上 C8 的焊盘 1 [BQ_REGN]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1809 mm)
+    Local override; error
+    @(100.1106 mm, 106.9539 mm): 走线 [3V3_DISPLAY] (In2.Cu), 长度: 0.7702 mm
+    @(100.0673 mm, 106.2305 mm): 过孔 [TP_RESET_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1518 mm)
+    Local override; error
+    @(103.3375 mm, 107.1399 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 0.6897 mm
+    @(102.9799 mm, 108.5957 mm): 走线 [3V3_DISPLAY] (In2.Cu), 长度: 1.3866 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(102.8498 mm, 106.6522 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 2.3608 mm
+    @(102.7247 mm, 106.9539 mm): 走线 [3V3_DISPLAY] (In2.Cu), 长度: 2.6141 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(102.8498 mm, 106.6522 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 2.3608 mm
+    @(102.9799 mm, 107.2091 mm): 走线 [3V3_DISPLAY] (In2.Cu), 长度: 0.3609 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1536 mm)
+    Local override; error
+    @(112.6572 mm, 111.0814 mm): 走线 [BQ_CE_N] (F.Cu), 长度: 0.6508 mm
+    @(112.4701 mm, 110.6278 mm): 过孔 [CHARGER_STAT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1949 mm)
+    Local override; error
+    @(110.0500 mm, 112.5500 mm): 走线 [SYS] (F.Cu), 长度: 2.1567 mm
+    @(111.2050 mm, 111.8828 mm): 走线 [BQ_CE_N] (F.Cu), 长度: 1.9322 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1530 mm)
+    Local override; error
+    @(112.4701 mm, 110.6278 mm): 过孔 [CHARGER_STAT_N] (F.Cu - B.Cu)
+    @(113.5805 mm, 110.1581 mm): 走线 [BQ_CE_N] (F.Cu), 长度: 1.3057 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1628 mm)
+    Local override; error
+    @(112.7467 mm, 108.2500 mm): 走线 [BQ_CE_N] (F.Cu), 长度: 1.1792 mm
+    @(113.0820 mm, 109.2398 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1985 mm)
+    Local override; error
+    @(113.5805 mm, 109.0838 mm): 走线 [BQ_CE_N] (F.Cu), 长度: 1.0743 mm
+    @(113.0820 mm, 109.2398 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1949 mm)
+    Local override; error
+    @(110.0500 mm, 112.5500 mm): 走线 [SYS] (F.Cu), 长度: 2.1567 mm
+    @(112.0064 mm, 111.0814 mm): 走线 [BQ_CE_N] (F.Cu), 长度: 1.1334 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1907 mm)
+    Local override; error
+    @(118.7000 mm, 107.0100 mm): F.Cu 上 R19 的焊盘 1 [BQ_TS_BIAS]
+    @(119.2628 mm, 106.4743 mm): 过孔 [BAT_TS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1927 mm)
+    Local override; error
+    @(112.7785 mm, 113.3585 mm): 过孔 [BAT_TS] (F.Cu - B.Cu)
+    @(111.9500 mm, 112.5500 mm): F.Cu 上 C10 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1698 mm)
+    Local override; error
+    @(85.0000 mm, 116.0000 mm): F.Cu 上 J2 的焊盘 3 [GND]
+    @(84.0000 mm, 115.6666 mm): 走线 [BAT_TS] (F.Cu), 长度: 2.7637 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1773 mm)
+    Local override; error
+    @(116.0210 mm, 110.6253 mm): 走线 [BAT_TS] (B.Cu), 长度: 3.4399 mm
+    @(117.9282 mm, 108.0431 mm): 过孔 [TPS63070_FB] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1766 mm)
+    Local override; error
+    @(119.3979 mm, 108.1929 mm): 走线 [BAT_TS] (B.Cu), 长度: 0.4431 mm
+    @(119.2594 mm, 107.6574 mm): 过孔 [BQ_TS_BIAS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(112.9130 mm, 113.3585 mm): 走线 [BAT_TS] (B.Cu), 长度: 3.8653 mm
+    @(114.3746 mm, 111.2581 mm): 过孔 [3V3_PG_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1518 mm)
+    Local override; error
+    @(119.7112 mm, 107.8796 mm): 走线 [BAT_TS] (B.Cu), 长度: 0.9569 mm
+    @(119.2594 mm, 107.6574 mm): 过孔 [BQ_TS_BIAS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1928 mm)
+    Local override; error
+    @(103.7746 mm, 113.3792 mm): 过孔 [TP_RESET_N] (F.Cu - B.Cu)
+    @(92.1109 mm, 113.8720 mm): 走线 [BAT_TS] (B.Cu), 长度: 13.8383 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1664 mm)
+    Local override; error
+    @(103.7934 mm, 121.7319 mm): 走线 [USB_VBUS] (F.Cu), 长度: 3.0020 mm
+    @(102.3225 mm, 122.0483 mm): 走线 [3V3] (F.Cu), 长度: 1.5186 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1918 mm)
+    Local override; error
+    @(101.5607 mm, 124.1418 mm): 走线 [USB_VBUS] (F.Cu), 长度: 5.8375 mm
+    @(104.3200 mm, 123.0750 mm): J1 的PTH 焊盘 SH [<no net>]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1754 mm)
+    Local override; error
+    @(98.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B8 [unconnected-(J1-SBU2-PadB8)]
+    @(97.6000 mm, 118.7152 mm): 走线 [USB_VBUS] (F.Cu), 长度: 4.2663 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1573 mm)
+    Local override; error
+    @(101.2487 mm, 123.1221 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(100.7914 mm, 121.7319 mm): 走线 [USB_VBUS] (F.Cu), 长度: 1.6406 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1520 mm)
+    Local override; error
+    @(101.7500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B5 [USB_CC2]
+    @(102.4000 mm, 118.3300 mm): 走线 [USB_VBUS] (F.Cu), 长度: 0.3861 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1520 mm)
+    Local override; error
+    @(101.7500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B5 [USB_CC2]
+    @(102.1270 mm, 118.6030 mm): 走线 [USB_VBUS] (F.Cu), 长度: 0.6453 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1715 mm)
+    Local override; error
+    @(110.7750 mm, 108.1500 mm): F.Cu 上 U2 的焊盘 17 [BQ_PMID]
+    @(110.3750 mm, 108.8773 mm): 过孔 [USB_VBUS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1539 mm)
+    Local override; error
+    @(118.3753 mm, 103.6247 mm): 走线 [USB_VBUS] (B.Cu), 长度: 4.1750 mm
+    @(118.1890 mm, 103.1708 mm): 过孔 [CHARGER_STAT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1527 mm)
+    Local override; error
+    @(122.0000 mm, 100.0000 mm): 走线 [USB_VBUS] (B.Cu), 长度: 5.1261 mm
+    @(118.1890 mm, 103.1708 mm): 过孔 [CHARGER_STAT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1648 mm)
+    Local override; error
+    @(108.8756 mm, 117.4287 mm): 走线 [USB_VBUS] (In2.Cu), 长度: 0.7695 mm
+    @(108.8000 mm, 118.1616 mm): 过孔 [TYPEC_VBUS_DET] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1848 mm)
+    Local override; error
+    @(110.0985 mm, 116.9194 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+    @(113.2727 mm, 114.4308 mm): 走线 [USB_VBUS] (In2.Cu), 长度: 4.2397 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1942 mm)
+    Local override; error
+    @(113.2727 mm, 112.8377 mm): 走线 [USB_VBUS] (In2.Cu), 长度: 1.5931 mm
+    @(112.7785 mm, 113.3585 mm): 过孔 [BAT_TS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1685 mm)
+    Local override; error
+    @(108.8000 mm, 118.1616 mm): 过孔 [TYPEC_VBUS_DET] (F.Cu - B.Cu)
+    @(108.3315 mm, 117.9728 mm): 走线 [USB_VBUS] (In2.Cu), 长度: 2.8022 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1695 mm)
+    Local override; error
+    @(122.6855 mm, 99.7357 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 1.1093 mm
+    @(122.3000 mm, 99.2300 mm): F.Cu 上 C32 的焊盘 1 [GNSS_RF_MATCH_IN]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1960 mm)
+    Local override; error
+    @(123.6000 mm, 98.8212 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 1.2933 mm
+    @(122.3000 mm, 99.2300 mm): F.Cu 上 C32 的焊盘 1 [GNSS_RF_MATCH_IN]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1591 mm)
+    Local override; error
+    @(120.6559 mm, 95.4191 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 3.2668 mm
+    @(121.2000 mm, 98.2700 mm): F.Cu 上 C31 的焊盘 2 [GNSS_RF_MATCH_IN]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1950 mm)
+    Local override; error
+    @(122.2300 mm, 91.6000 mm): F.Cu 上 C33 的焊盘 2 [GND]
+    @(122.7649 mm, 91.0330 mm): 过孔 [GNSS_ANT_BIASED] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1702 mm)
+    Local override; error
+    @(122.3000 mm, 99.2300 mm): F.Cu 上 C32 的焊盘 1 [GNSS_RF_MATCH_IN]
+    @(123.0052 mm, 99.1936 mm): 过孔 [GNSS_ANT_BIASED] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(122.7649 mm, 91.0330 mm): 过孔 [GNSS_ANT_BIASED] (F.Cu - B.Cu)
+    @(123.2166 mm, 90.3566 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 1.0940 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1578 mm)
+    Local override; error
+    @(122.2300 mm, 91.6000 mm): F.Cu 上 C33 的焊盘 2 [GND]
+    @(123.2166 mm, 91.4506 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 1.0096 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1795 mm)
+    Local override; error
+    @(122.2300 mm, 91.6000 mm): F.Cu 上 C33 的焊盘 2 [GND]
+    @(122.5027 mm, 92.1645 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.6682 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1917 mm)
+    Local override; error
+    @(116.1500 mm, 97.2000 mm): F.Cu 上 U10 的焊盘 12 [GND]
+    @(116.6569 mm, 98.3000 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.9844 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1951 mm)
+    Local override; error
+    @(100.5710 mm, 89.1908 mm): 过孔 [GNSS_RESET_DRV] (F.Cu - B.Cu)
+    @(100.0759 mm, 88.4906 mm): 走线 [MCU_EN] (F.Cu), 长度: 2.9653 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1991 mm)
+    Local override; error
+    @(98.4339 mm, 85.2625 mm): 走线 [MCU_EN] (B.Cu), 长度: 3.0246 mm
+    @(98.3637 mm, 85.8982 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1529 mm)
+    Local override; error
+    @(104.9486 mm, 115.0414 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 1.5836 mm
+    @(105.4015 mm, 115.2386 mm): 过孔 [USB_D_N_CONN] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1922 mm)
+    Local override; error
+    @(103.4949 mm, 116.6957 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.5846 mm
+    @(103.7600 mm, 116.1500 mm): F.Cu 上 R16 的焊盘 2 [TYPEC_INT_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1637 mm)
+    Local override; error
+    @(100.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A7 [USB_D_N_CONN]
+    @(99.7500 mm, 117.8113 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.4557 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1920 mm)
+    Local override; error
+    @(102.8088 mm, 116.8364 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 1.0979 mm
+    @(102.3067 mm, 117.3284 mm): 过孔 [USB_CC2] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1736 mm)
+    Local override; error
+    @(100.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A7 [USB_D_N_CONN]
+    @(100.4418 mm, 117.4891 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.4359 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1909 mm)
+    Local override; error
+    @(100.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A7 [USB_D_N_CONN]
+    @(100.0722 mm, 117.4891 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.3696 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1597 mm)
+    Local override; error
+    @(105.4900 mm, 114.5000 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.7657 mm
+    @(105.4015 mm, 115.2386 mm): 过孔 [USB_D_N_CONN] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1695 mm)
+    Local override; error
+    @(104.4098 mm, 116.6957 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.9149 mm
+    @(103.7600 mm, 116.1500 mm): F.Cu 上 R16 的焊盘 2 [TYPEC_INT_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1736 mm)
+    Local override; error
+    @(101.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A8 [unconnected-(J1-SBU1-PadA8)]
+    @(101.7109 mm, 116.8364 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 1.3589 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1569 mm)
+    Local override; error
+    @(99.5331 mm, 119.1462 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.4004 mm
+    @(99.0270 mm, 119.2862 mm): 过孔 [USB_CC1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1920 mm)
+    Local override; error
+    @(100.2500 mm, 118.8887 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 1.8638 mm
+    @(100.7500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B6 [USB_D_P_CONN]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1783 mm)
+    Local override; error
+    @(99.0270 mm, 119.2862 mm): 过孔 [USB_CC1] (F.Cu - B.Cu)
+    @(99.2500 mm, 118.8631 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.5331 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1662 mm)
+    Local override; error
+    @(99.9925 mm, 119.1462 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.4594 mm
+    @(99.7500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A6 [USB_D_P_CONN]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1920 mm)
+    Local override; error
+    @(99.7500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A6 [USB_D_P_CONN]
+    @(100.2500 mm, 118.8887 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.3642 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1866 mm)
+    Local override; error
+    @(104.3200 mm, 118.8950 mm): J1 的PTH 焊盘 SH [<no net>]
+    @(101.5679 mm, 120.2066 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 3.9736 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1936 mm)
+    Local override; error
+    @(105.4015 mm, 115.2386 mm): 过孔 [USB_D_N_CONN] (F.Cu - B.Cu)
+    @(105.4900 mm, 114.5000 mm): F.Cu 上 R13 的焊盘 1 [USB_D_P_CONN]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1796 mm)
+    Local override; error
+    @(99.0270 mm, 119.2862 mm): 过孔 [USB_CC1] (F.Cu - B.Cu)
+    @(99.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B7 [USB_D_N_CONN]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1555 mm)
+    Local override; error
+    @(101.4403 mm, 116.8729 mm): 走线 [USB_CC1] (In2.Cu), 长度: 2.6168 mm
+    @(102.3067 mm, 117.3284 mm): 过孔 [USB_CC2] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1875 mm)
+    Local override; error
+    @(106.1963 mm, 115.2109 mm): 过孔 [USB_D_P_MCU] (F.Cu - B.Cu)
+    @(106.3980 mm, 114.7232 mm): 走线 [USB_CC1] (In2.Cu), 长度: 1.0116 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1877 mm)
+    Local override; error
+    @(105.2709 mm, 114.7232 mm): 走线 [USB_CC1] (In2.Cu), 长度: 1.1271 mm
+    @(106.1963 mm, 115.2109 mm): 过孔 [USB_D_P_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(104.4133 mm, 115.8516 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+    @(104.8650 mm, 116.0650 mm): 走线 [USB_CC1] (In2.Cu), 长度: 0.9359 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1703 mm)
+    Local override; error
+    @(104.4133 mm, 115.8516 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+    @(104.0571 mm, 116.8729 mm): 走线 [USB_CC1] (In2.Cu), 长度: 1.1425 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1568 mm)
+    Local override; error
+    @(105.4015 mm, 115.2386 mm): 过孔 [USB_D_N_CONN] (F.Cu - B.Cu)
+    @(104.8650 mm, 115.1291 mm): 走线 [USB_CC1] (In2.Cu), 长度: 0.5740 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1656 mm)
+    Local override; error
+    @(107.1133 mm, 115.9344 mm): 过孔 [USB_CC1] (F.Cu - B.Cu)
+    @(106.6480 mm, 116.4000 mm): 走线 [USB_CC2] (F.Cu), 长度: 1.6270 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(92.4202 mm, 108.7319 mm): 走线 [TYPEC_INT_N] (F.Cu), 长度: 3.7067 mm
+    @(95.6654 mm, 108.2802 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1735 mm)
+    Local override; error
+    @(110.0985 mm, 116.9194 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+    @(110.5508 mm, 116.4902 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1735 mm)
+    Local override; error
+    @(110.0985 mm, 116.9194 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+    @(110.5508 mm, 116.4902 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1735 mm)
+    Local override; error
+    @(110.0985 mm, 116.9194 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+    @(110.5508 mm, 116.4902 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1549 mm)
+    Local override; error
+    @(106.2838 mm, 110.1704 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 2.4710 mm
+    @(108.5706 mm, 110.6253 mm): 过孔 [SYS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1735 mm)
+    Local override; error
+    @(110.0985 mm, 116.9194 mm): 过孔 [TYPEC_INT_N] (F.Cu - B.Cu)
+    @(110.5508 mm, 116.4902 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1523 mm)
+    Local override; error
+    @(110.0985 mm, 111.5141 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 5.4053 mm
+    @(110.5508 mm, 116.4902 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1616 mm)
+    Local override; error
+    @(104.3028 mm, 84.3267 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 11.2496 mm
+    @(104.7644 mm, 94.7917 mm): 过孔 [FUNC_KEY_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(106.0466 mm, 97.3201 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 12.6131 mm
+    @(106.3483 mm, 108.3082 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 1.0631 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(104.3028 mm, 95.5763 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 2.4661 mm
+    @(106.3483 mm, 95.9582 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 12.3500 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1519 mm)
+    Local override; error
+    @(108.7548 mm, 110.1704 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 1.9003 mm
+    @(108.5706 mm, 110.6253 mm): 过孔 [SYS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1791 mm)
+    Local override; error
+    @(99.8545 mm, 96.1949 mm): 走线 [I2C_SDA] (F.Cu), 长度: 0.4266 mm
+    @(99.3875 mm, 96.0000 mm): F.Cu 上 U5 的焊盘 13 [I2C_SCL]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1662 mm)
+    Local override; error
+    @(104.4492 mm, 109.1733 mm): 走线 [TP_INT_N] (F.Cu), 长度: 0.3968 mm
+    @(104.0229 mm, 108.8571 mm): 走线 [I2C_SDA] (F.Cu), 长度: 2.8743 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1574 mm)
+    Local override; error
+    @(99.5494 mm, 96.5000 mm): 走线 [I2C_SDA] (F.Cu), 长度: 0.4315 mm
+    @(99.3875 mm, 96.0000 mm): F.Cu 上 U5 的焊盘 13 [I2C_SCL]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1988 mm)
+    Local override; error
+    @(104.2000 mm, 109.7250 mm): 走线 [TP_INT_N] (F.Cu), 长度: 0.5517 mm
+    @(103.7067 mm, 109.1733 mm): 走线 [I2C_SDA] (F.Cu), 长度: 0.4472 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(98.8925 mm, 112.2995 mm): 走线 [LCD_SIO1] (In2.Cu), 长度: 0.4721 mm
+    @(98.9313 mm, 112.7650 mm): 走线 [TYPEC_INT_N] (In2.Cu), 长度: 1.0519 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1853 mm)
+    Local override; error
+    @(100.9832 mm, 80.0167 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 1.2445 mm
+    @(100.7625 mm, 80.5020 mm): 过孔 [MAG_DRDY] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1594 mm)
+    Local override; error
+    @(100.4891 mm, 88.4456 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 0.8303 mm
+    @(100.5726 mm, 87.9939 mm): 过孔 [MCU_EN] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1799 mm)
+    Local override; error
+    @(105.3214 mm, 107.8555 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+    @(104.8415 mm, 108.0765 mm): 走线 [I2C_SDA] (B.Cu), 长度: 0.4558 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1553 mm)
+    Local override; error
+    @(105.3214 mm, 107.8555 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+    @(105.0620 mm, 107.4002 mm): 走线 [I2C_SDA] (B.Cu), 长度: 4.4670 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1956 mm)
+    Local override; error
+    @(105.3214 mm, 107.8555 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+    @(105.8249 mm, 109.0599 mm): 走线 [I2C_SDA] (B.Cu), 长度: 1.3907 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1656 mm)
+    Local override; error
+    @(83.7343 mm, 114.8469 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+    @(84.0000 mm, 116.0000 mm): F.Cu 上 J2 的焊盘 2 [BAT_TS]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1729 mm)
+    Local override; error
+    @(76.7117 mm, 95.2862 mm): 走线 [I2C_SDA] (B.Cu), 长度: 13.2766 mm
+    @(78.7496 mm, 94.3060 mm): B.Cu 上 TP11 的焊盘 1 [GNSS_RX_3V0]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1838 mm)
+    Local override; error
+    @(110.9402 mm, 108.3123 mm): 走线 [I2C_SDA] (B.Cu), 长度: 1.0826 mm
+    @(111.0535 mm, 109.1098 mm): 过孔 [BAT] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1651 mm)
+    Local override; error
+    @(107.1500 mm, 109.9500 mm): F.Cu 上 C11 的焊盘 2 [GND]
+    @(107.1000 mm, 109.0599 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(98.3669 mm, 86.4269 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 2.8549 mm
+    @(100.5726 mm, 87.9939 mm): 过孔 [MCU_EN] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1604 mm)
+    Local override; error
+    @(106.3483 mm, 95.9582 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 12.3500 mm
+    @(106.8087 mm, 102.6550 mm): 过孔 [CHARGER_PG_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1992 mm)
+    Local override; error
+    @(100.7625 mm, 80.5020 mm): 过孔 [MAG_DRDY] (F.Cu - B.Cu)
+    @(101.2166 mm, 80.2501 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 0.3301 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1541 mm)
+    Local override; error
+    @(100.7625 mm, 80.5020 mm): 过孔 [MAG_DRDY] (F.Cu - B.Cu)
+    @(101.2166 mm, 83.0485 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 2.7984 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1541 mm)
+    Local override; error
+    @(98.3669 mm, 85.8982 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 4.0301 mm
+    @(101.5207 mm, 87.4645 mm): 走线 [GNSS_RESET_N_1V8] (In2.Cu), 长度: 9.2782 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1594 mm)
+    Local override; error
+    @(100.5726 mm, 87.9939 mm): 过孔 [MCU_EN] (F.Cu - B.Cu)
+    @(100.3856 mm, 88.4456 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 0.1035 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1529 mm)
+    Local override; error
+    @(97.9076 mm, 81.9873 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.1540 mm
+    @(97.5648 mm, 81.6913 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1822 mm)
+    Local override; error
+    @(98.4100 mm, 88.8000 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.7031 mm
+    @(99.4500 mm, 88.5800 mm): F.Cu 上 C36 的焊盘 1 [GNSS_3V0]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1982 mm)
+    Local override; error
+    @(103.5278 mm, 113.8369 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.3222 mm
+    @(103.7746 mm, 113.3792 mm): 过孔 [TP_RESET_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1708 mm)
+    Local override; error
+    @(109.9434 mm, 114.9751 mm): 走线 [I2C_SCL] (F.Cu), 长度: 1.9600 mm
+    @(109.6000 mm, 115.3750 mm): F.Cu 上 U4 的焊盘 9 [unconnected-(U4-ID-Pad9)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(100.1700 mm, 99.6996 mm): 走线 [3V3] (F.Cu), 长度: 3.0259 mm
+    @(100.8657 mm, 99.1387 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.8299 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1684 mm)
+    Local override; error
+    @(109.9434 mm, 115.7816 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.8065 mm
+    @(109.6000 mm, 115.3750 mm): F.Cu 上 U4 的焊盘 9 [unconnected-(U4-ID-Pad9)]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1574 mm)
+    Local override; error
+    @(97.9076 mm, 88.2976 mm): 走线 [I2C_SCL] (F.Cu), 长度: 6.3103 mm
+    @(98.4100 mm, 87.7000 mm): F.Cu 上 R28 的焊盘 2 [I2C_SDA]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1746 mm)
+    Local override; error
+    @(103.3000 mm, 113.6091 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.3799 mm
+    @(103.7746 mm, 113.3792 mm): 过孔 [TP_RESET_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1701 mm)
+    Local override; error
+    @(99.3875 mm, 96.5000 mm): F.Cu 上 U5 的焊盘 14 [I2C_SDA]
+    @(98.9049 mm, 98.0078 mm): 走线 [I2C_SCL] (F.Cu), 长度: 1.7666 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(100.1700 mm, 99.6996 mm): 走线 [3V3] (F.Cu), 长度: 3.0259 mm
+    @(100.0358 mm, 99.1387 mm): 走线 [I2C_SCL] (F.Cu), 长度: 1.5993 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1977 mm)
+    Local override; error
+    @(103.3000 mm, 112.6025 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.6267 mm
+    @(103.7746 mm, 113.3792 mm): 过孔 [TP_RESET_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1709 mm)
+    Local override; error
+    @(103.8869 mm, 115.1930 mm): 走线 [3V3] (F.Cu), 长度: 1.7813 mm
+    @(104.7892 mm, 113.8369 mm): 走线 [I2C_SCL] (F.Cu), 长度: 1.2614 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1755 mm)
+    Local override; error
+    @(109.6000 mm, 115.3750 mm): F.Cu 上 U4 的焊盘 9 [unconnected-(U4-ID-Pad9)]
+    @(109.7250 mm, 116.0000 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.3089 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(97.5648 mm, 81.6913 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+    @(98.0165 mm, 81.8784 mm): 走线 [I2C_SCL] (F.Cu), 长度: 2.6216 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1709 mm)
+    Local override; error
+    @(103.8869 mm, 115.1930 mm): 走线 [3V3] (F.Cu), 长度: 1.7813 mm
+    @(105.3386 mm, 113.2875 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.7770 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1522 mm)
+    Local override; error
+    @(98.4100 mm, 87.7000 mm): F.Cu 上 R28 的焊盘 2 [I2C_SDA]
+    @(98.9072 mm, 88.3028 mm): 走线 [I2C_SCL] (F.Cu), 长度: 1.0592 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1685 mm)
+    Local override; error
+    @(102.0100 mm, 101.3500 mm): F.Cu 上 R9 的焊盘 2 [TP_INT_N]
+    @(102.5301 mm, 100.8031 mm): 过孔 [I2C_SCL] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1557 mm)
+    Local override; error
+    @(102.5301 mm, 100.9915 mm): 走线 [I2C_SCL] (B.Cu), 长度: 9.6690 mm
+    @(96.4772 mm, 106.4000 mm): 过孔 [BOOT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(95.6654 mm, 108.2802 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(95.6931 mm, 107.8285 mm): 走线 [I2C_SCL] (B.Cu), 长度: 6.2216 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1632 mm)
+    Local override; error
+    @(104.9800 mm, 106.0681 mm): 过孔 [LCD_RESET_N] (F.Cu - B.Cu)
+    @(105.4432 mm, 102.9240 mm): 走线 [I2C_SCL] (In2.Cu), 长度: 3.3197 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(104.9800 mm, 106.0681 mm): 过孔 [LCD_RESET_N] (F.Cu - B.Cu)
+    @(105.4432 mm, 106.2437 mm): 走线 [I2C_SCL] (In2.Cu), 长度: 0.8491 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1786 mm)
+    Local override; error
+    @(105.3214 mm, 107.8555 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+    @(104.8428 mm, 106.8441 mm): 走线 [I2C_SCL] (In2.Cu), 长度: 1.2612 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1766 mm)
+    Local override; error
+    @(105.1301 mm, 105.9180 mm): 走线 [LCD_RESET_N] (In2.Cu), 长度: 2.8452 mm
+    @(103.0972 mm, 100.5780 mm): 走线 [I2C_SCL] (In2.Cu), 长度: 3.3177 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1899 mm)
+    Local override; error
+    @(104.2267 mm, 108.3088 mm): 走线 [LCD_CS_N] (In2.Cu), 长度: 1.3674 mm
+    @(105.5335 mm, 108.7960 mm): 走线 [I2C_SCL] (In2.Cu), 长度: 4.2966 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1695 mm)
+    Local override; error
+    @(118.0700 mm, 106.0249 mm): 走线 [SYS] (F.Cu), 长度: 0.1192 mm
+    @(118.7000 mm, 105.9900 mm): F.Cu 上 R19 的焊盘 2 [BAT_TS]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1782 mm)
+    Local override; error
+    @(115.3238 mm, 114.2362 mm): 走线 [SYS] (F.Cu), 长度: 0.7771 mm
+    @(116.0500 mm, 114.8000 mm): F.Cu 上 C16 的焊盘 1 [3V3]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1851 mm)
+    Local override; error
+    @(107.1500 mm, 109.9500 mm): F.Cu 上 C11 的焊盘 2 [GND]
+    @(108.1351 mm, 107.6101 mm): 走线 [SYS] (F.Cu), 长度: 2.5797 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1695 mm)
+    Local override; error
+    @(118.7000 mm, 105.9900 mm): F.Cu 上 R19 的焊盘 2 [BAT_TS]
+    @(118.1543 mm, 106.1092 mm): 走线 [SYS] (F.Cu), 长度: 0.3765 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(109.0973 mm, 112.1278 mm): 过孔 [BQ_QON] (F.Cu - B.Cu)
+    @(107.8795 mm, 112.5795 mm): 走线 [SYS] (F.Cu), 长度: 2.1410 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1851 mm)
+    Local override; error
+    @(107.1500 mm, 109.9500 mm): F.Cu 上 C11 的焊盘 2 [GND]
+    @(108.1351 mm, 110.1898 mm): 走线 [SYS] (F.Cu), 长度: 0.6159 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1782 mm)
+    Local override; error
+    @(116.0500 mm, 114.8000 mm): F.Cu 上 C16 的焊盘 1 [3V3]
+    @(115.3238 mm, 114.0463 mm): 走线 [SYS] (F.Cu), 长度: 0.1899 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1736 mm)
+    Local override; error
+    @(118.7000 mm, 105.9900 mm): F.Cu 上 R19 的焊盘 2 [BAT_TS]
+    @(118.0700 mm, 105.7575 mm): 走线 [SYS] (F.Cu), 长度: 4.5361 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1691 mm)
+    Local override; error
+    @(106.5500 mm, 119.2250 mm): F.Cu 上 C3 的焊盘 2 [GND]
+    @(107.1736 mm, 118.5063 mm): 过孔 [SYS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1853 mm)
+    Local override; error
+    @(111.6826 mm, 110.4797 mm): 走线 [SYS] (B.Cu), 长度: 2.9664 mm
+    @(110.3714 mm, 110.9650 mm): 过孔 [BAT_TS] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1521 mm)
+    Local override; error
+    @(112.4701 mm, 110.6278 mm): 过孔 [CHARGER_STAT_N] (F.Cu - B.Cu)
+    @(112.2843 mm, 111.0814 mm): 走线 [SYS] (B.Cu), 长度: 0.8509 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1946 mm)
+    Local override; error
+    @(113.9126 mm, 111.0814 mm): 走线 [SYS] (B.Cu), 长度: 1.6283 mm
+    @(114.3746 mm, 111.2581 mm): 过孔 [3V3_PG_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(117.8414 mm, 107.1526 mm): 走线 [SYS] (B.Cu), 长度: 5.5562 mm
+    @(114.3746 mm, 111.2581 mm): 过孔 [3V3_PG_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1668 mm)
+    Local override; error
+    @(115.4626 mm, 108.3500 mm): 走线 [TPS_EN_SYNC] (F.Cu), 长度: 0.5832 mm
+    @(115.3750 mm, 107.7000 mm): F.Cu 上 U3 的焊盘 15 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1619 mm)
+    Local override; error
+    @(113.7020 mm, 114.8000 mm): 过孔 [TPS_EN_SYNC] (F.Cu - B.Cu)
+    @(114.2500 mm, 115.3100 mm): F.Cu 上 R34 的焊盘 1 [SYS]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1854 mm)
+    Local override; error
+    @(112.4701 mm, 110.6278 mm): 过孔 [CHARGER_STAT_N] (F.Cu - B.Cu)
+    @(111.9847 mm, 110.8641 mm): 走线 [TPS_EN_SYNC] (In2.Cu), 长度: 1.2082 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1817 mm)
+    Local override; error
+    @(111.9847 mm, 109.6559 mm): 走线 [TPS_EN_SYNC] (In2.Cu), 长度: 1.9986 mm
+    @(113.0820 mm, 109.2398 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1933 mm)
+    Local override; error
+    @(85.1000 mm, 97.6100 mm): F.Cu 上 U1 的焊盘 41 [GND]
+    @(82.3016 mm, 99.0910 mm): 走线 [LCD_SIO2_MCU] (F.Cu), 长度: 1.0147 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1735 mm)
+    Local override; error
+    @(85.1000 mm, 97.6100 mm): F.Cu 上 U1 的焊盘 41 [GND]
+    @(83.0191 mm, 99.8085 mm): 走线 [LCD_SIO2_MCU] (F.Cu), 长度: 6.3020 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1520 mm)
+    Local override; error
+    @(94.2011 mm, 98.0683 mm): 走线 [LCD_SIO2_MCU] (In2.Cu), 长度: 3.3350 mm
+    @(94.0156 mm, 98.5220 mm): 过孔 [QMI_INT1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1646 mm)
+    Local override; error
+    @(99.4000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 14 [LCD_CLK]
+    @(98.8000 mm, 109.7250 mm): 走线 [LCD_SIO2] (F.Cu), 长度: 0.2976 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1537 mm)
+    Local override; error
+    @(91.0613 mm, 98.0683 mm): 走线 [LCD_SIO2_MCU] (In2.Cu), 长度: 3.1398 mm
+    @(94.0156 mm, 98.5220 mm): 过孔 [QMI_INT1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(99.0104 mm, 109.5146 mm): 走线 [LCD_SIO2] (F.Cu), 长度: 1.7166 mm
+    @(98.5587 mm, 108.8903 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1883 mm)
+    Local override; error
+    @(102.5406 mm, 101.9146 mm): 过孔 [LCD_SIO2] (F.Cu - B.Cu)
+    @(102.0100 mm, 101.3500 mm): F.Cu 上 R9 的焊盘 2 [TP_INT_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1825 mm)
+    Local override; error
+    @(95.1280 mm, 94.7917 mm): 走线 [FUNC_KEY_N] (B.Cu), 长度: 9.6364 mm
+    @(98.5143 mm, 94.3092 mm): 过孔 [LCD_SIO0_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1983 mm)
+    Local override; error
+    @(95.3500 mm, 92.4300 mm): 走线 [TP_RESET_N] (F.Cu), 长度: 0.9767 mm
+    @(96.6130 mm, 92.8378 mm): 过孔 [LCD_SIO1_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1983 mm)
+    Local override; error
+    @(96.6130 mm, 92.8378 mm): 过孔 [LCD_SIO1_MCU] (F.Cu - B.Cu)
+    @(96.3706 mm, 92.3861 mm): 走线 [TP_RESET_N] (F.Cu), 长度: 0.0621 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(96.6130 mm, 92.8378 mm): 过孔 [LCD_SIO1_MCU] (F.Cu - B.Cu)
+    @(98.0340 mm, 92.3861 mm): 走线 [TP_RESET_N] (F.Cu), 长度: 1.6634 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1780 mm)
+    Local override; error
+    @(98.3655 mm, 100.5399 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 2.5224 mm
+    @(98.6720 mm, 101.5224 mm): 过孔 [LCD_SIO2_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1518 mm)
+    Local override; error
+    @(97.7608 mm, 94.8135 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 0.8552 mm
+    @(98.6673 mm, 99.9884 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 4.7904 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(97.7608 mm, 93.2623 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 1.5512 mm
+    @(98.0625 mm, 94.5932 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 0.4984 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(101.2659 mm, 106.3505 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 1.0358 mm
+    @(102.8498 mm, 106.6522 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 2.3608 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1518 mm)
+    Local override; error
+    @(98.3655 mm, 95.4182 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 5.1217 mm
+    @(98.6673 mm, 99.9884 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 4.7904 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1569 mm)
+    Local override; error
+    @(103.6444 mm, 103.7898 mm): 走线 [TP_INT_N] (In2.Cu), 长度: 4.5787 mm
+    @(103.3375 mm, 107.1399 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 0.6897 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1569 mm)
+    Local override; error
+    @(103.6444 mm, 103.7898 mm): 走线 [TP_INT_N] (In2.Cu), 长度: 4.5787 mm
+    @(103.3375 mm, 112.9421 mm): 走线 [TP_RESET_N] (In2.Cu), 长度: 5.8022 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1937 mm)
+    Local override; error
+    @(100.7250 mm, 105.2000 mm): F.Cu 上 C1 的焊盘 1 [3V3_DISPLAY]
+    @(101.4339 mm, 105.8745 mm): 过孔 [LCD_SIO0_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(100.5335 mm, 105.6181 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 3.7635 mm
+    @(98.9690 mm, 99.8634 mm): 走线 [LCD_SIO0_MCU] (In2.Cu), 长度: 3.4859 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1518 mm)
+    Local override; error
+    @(98.9690 mm, 94.7639 mm): 走线 [LCD_SIO0_MCU] (In2.Cu), 长度: 5.0995 mm
+    @(99.4208 mm, 99.5892 mm): 过孔 [QMI_INT2] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1802 mm)
+    Local override; error
+    @(100.0000 mm, 109.1733 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.0416 mm
+    @(99.8631 mm, 108.7130 mm): 过孔 [LCD_CLK] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1802 mm)
+    Local override; error
+    @(100.0000 mm, 109.7250 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.5517 mm
+    @(99.8631 mm, 108.7130 mm): 过孔 [LCD_CLK] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1544 mm)
+    Local override; error
+    @(100.7766 mm, 108.6590 mm): 过孔 [LCD_SIO3_MCU] (F.Cu - B.Cu)
+    @(100.4928 mm, 108.3041 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.6891 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1772 mm)
+    Local override; error
+    @(102.0100 mm, 107.9500 mm): F.Cu 上 R4 的焊盘 2 [LCD_SIO3]
+    @(101.8002 mm, 107.4043 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.2967 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(99.8631 mm, 108.7130 mm): 过孔 [LCD_CLK] (F.Cu - B.Cu)
+    @(100.0416 mm, 109.1733 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.3864 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(100.7766 mm, 108.6590 mm): 过孔 [LCD_SIO3_MCU] (F.Cu - B.Cu)
+    @(100.3148 mm, 108.4821 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.2517 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1772 mm)
+    Local override; error
+    @(102.0100 mm, 107.9500 mm): F.Cu 上 R4 的焊盘 2 [LCD_SIO3]
+    @(101.6500 mm, 107.4043 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.1502 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(99.8631 mm, 108.7130 mm): 过孔 [LCD_CLK] (F.Cu - B.Cu)
+    @(100.3148 mm, 108.9001 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.4180 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1699 mm)
+    Local override; error
+    @(99.2250 mm, 82.0000 mm): F.Cu 上 C25 的焊盘 1 [3V3]
+    @(99.9011 mm, 83.4016 mm): 走线 [LIS2MDL_C1] (F.Cu), 长度: 1.6558 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1699 mm)
+    Local override; error
+    @(99.9011 mm, 81.7458 mm): 走线 [LIS2MDL_C1] (F.Cu), 长度: 0.2797 mm
+    @(99.2250 mm, 82.0000 mm): F.Cu 上 C25 的焊盘 1 [3V3]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1943 mm)
+    Local override; error
+    @(100.7750 mm, 82.0000 mm): F.Cu 上 C25 的焊盘 2 [GND]
+    @(100.0989 mm, 81.5480 mm): 走线 [LIS2MDL_C1] (F.Cu), 长度: 0.4934 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1872 mm)
+    Local override; error
+    @(100.9900 mm, 106.8500 mm): F.Cu 上 R1 的焊盘 1 [LCD_SIO0_MCU]
+    @(100.4928 mm, 107.6150 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.3001 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(95.5579 mm, 84.9945 mm): 走线 [BOOT_N] (In2.Cu), 长度: 12.1179 mm
+    @(100.7625 mm, 80.5020 mm): 走线 [MAG_DRDY] (In2.Cu), 长度: 6.9337 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1578 mm)
+    Local override; error
+    @(100.9900 mm, 106.8500 mm): F.Cu 上 R1 的焊盘 1 [LCD_SIO0_MCU]
+    @(100.7050 mm, 107.4028 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.9435 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1811 mm)
+    Local override; error
+    @(109.3870 mm, 105.0076 mm): 过孔 [BQ_SW] (F.Cu - B.Cu)
+    @(109.0726 mm, 106.0024 mm): 走线 [BQ_REGN] (F.Cu), 长度: 1.6297 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1736 mm)
+    Local override; error
+    @(100.1795 mm, 94.2047 mm): 过孔 [QMI_INT2] (F.Cu - B.Cu)
+    @(100.0500 mm, 94.8375 mm): F.Cu 上 U5 的焊盘 10 [3V3]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1692 mm)
+    Local override; error
+    @(109.4809 mm, 108.5754 mm): 走线 [BQ_REGN] (F.Cu), 长度: 0.1861 mm
+    @(109.6875 mm, 108.2500 mm): F.Cu 上 U2 的焊盘 1 [BQ_BTST]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1524 mm)
+    Local override; error
+    @(109.0726 mm, 108.5754 mm): 走线 [BQ_REGN] (F.Cu), 长度: 2.5730 mm
+    @(109.6875 mm, 108.2500 mm): F.Cu 上 U2 的焊盘 1 [BQ_BTST]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1692 mm)
+    Local override; error
+    @(109.0726 mm, 108.5754 mm): 走线 [BQ_REGN] (F.Cu), 长度: 0.4083 mm
+    @(109.6875 mm, 108.2500 mm): F.Cu 上 U2 的焊盘 1 [BQ_BTST]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1829 mm)
+    Local override; error
+    @(112.6160 mm, 85.4118 mm): 过孔 [GNSS_RESET_DRV] (F.Cu - B.Cu)
+    @(112.0300 mm, 85.9000 mm): F.Cu 上 C35 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1573 mm)
+    Local override; error
+    @(94.2209 mm, 98.3167 mm): 走线 [QMI_INT1] (B.Cu), 长度: 6.0586 mm
+    @(96.6034 mm, 98.7740 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(95.5579 mm, 84.9945 mm): 走线 [BOOT_N] (In2.Cu), 长度: 12.1179 mm
+    @(95.8596 mm, 85.4049 mm): 走线 [MAG_DRDY] (In2.Cu), 长度: 10.2095 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(95.8596 mm, 95.6144 mm): 走线 [MAG_DRDY] (In2.Cu), 长度: 0.8847 mm
+    @(95.5579 mm, 84.9945 mm): 走线 [BOOT_N] (In2.Cu), 长度: 12.1179 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1700 mm)
+    Local override; error
+    @(96.6472 mm, 106.8700 mm): 走线 [GNSS_RESET_DRV] (In2.Cu), 长度: 4.9684 mm
+    @(96.4772 mm, 106.4000 mm): 过孔 [BOOT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1525 mm)
+    Local override; error
+    @(97.6858 mm, 105.8314 mm): 走线 [GNSS_RESET_DRV] (In2.Cu), 长度: 1.4688 mm
+    @(96.4772 mm, 106.4000 mm): 过孔 [BOOT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1658 mm)
+    Local override; error
+    @(96.6457 mm, 91.1600 mm): 过孔 [LCD_RESET_N] (F.Cu - B.Cu)
+    @(97.9561 mm, 89.1908 mm): 走线 [GNSS_RESET_DRV] (In2.Cu), 长度: 2.5382 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(96.6130 mm, 92.8378 mm): 过孔 [LCD_SIO1_MCU] (F.Cu - B.Cu)
+    @(96.1613 mm, 90.9856 mm): 走线 [GNSS_RESET_DRV] (In2.Cu), 长度: 3.2296 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1812 mm)
+    Local override; error
+    @(98.6720 mm, 101.5224 mm): 过孔 [LCD_SIO2_MCU] (F.Cu - B.Cu)
+    @(98.3935 mm, 102.0535 mm): 走线 [LCD_CLK_MCU] (F.Cu), 长度: 0.1387 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(99.4349 mm, 102.2852 mm): 走线 [LCD_CLK] (In2.Cu), 长度: 1.5309 mm
+    @(98.9832 mm, 103.3227 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1805 mm)
+    Local override; error
+    @(98.9832 mm, 103.3227 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(99.8500 mm, 103.5100 mm): 走线 [LCD_CLK_MCU] (F.Cu), 长度: 2.0598 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1962 mm)
+    Local override; error
+    @(110.6212 mm, 119.2683 mm): 过孔 [USB_D_N_MCU] (F.Cu - B.Cu)
+    @(109.8500 mm, 119.3000 mm): F.Cu 上 D1 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1924 mm)
+    Local override; error
+    @(107.1133 mm, 115.9344 mm): 过孔 [USB_CC1] (F.Cu - B.Cu)
+    @(106.1804 mm, 114.3051 mm): 走线 [USB_D_N_MCU] (B.Cu), 长度: 6.2802 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1680 mm)
+    Local override; error
+    @(99.0261 mm, 107.7823 mm): 过孔 [LCD_SIO2] (F.Cu - B.Cu)
+    @(99.1893 mm, 107.2837 mm): 走线 [LCD_CLK] (In2.Cu), 长度: 0.9529 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(99.6410 mm, 105.4364 mm): 过孔 [3V3_DISPLAY] (F.Cu - B.Cu)
+    @(99.1893 mm, 104.0617 mm): 走线 [LCD_CLK] (In2.Cu), 长度: 3.2220 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1953 mm)
+    Local override; error
+    @(117.6000 mm, 104.8100 mm): F.Cu 上 R21 的焊盘 1 [3V3]
+    @(117.9713 mm, 105.3503 mm): 走线 [TPS63070_VAUX] (F.Cu), 长度: 0.8016 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1730 mm)
+    Local override; error
+    @(118.1480 mm, 112.6839 mm): 走线 [TPS63070_L2] (F.Cu), 长度: 2.1624 mm
+    @(117.4000 mm, 112.6000 mm): F.Cu 上 C14 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1730 mm)
+    Local override; error
+    @(118.7832 mm, 113.3191 mm): 走线 [TPS63070_L2] (F.Cu), 长度: 0.8983 mm
+    @(117.4000 mm, 112.6000 mm): F.Cu 上 C14 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1941 mm)
+    Local override; error
+    @(119.1750 mm, 111.8000 mm): F.Cu 上 L2 的焊盘 1 [TPS63070_L1]
+    @(119.5672 mm, 113.3191 mm): 走线 [TPS63070_L2] (F.Cu), 长度: 0.7840 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1551 mm)
+    Local override; error
+    @(119.1750 mm, 111.8000 mm): F.Cu 上 L2 的焊盘 1 [TPS63070_L1]
+    @(120.8250 mm, 112.0613 mm): 走线 [TPS63070_L2] (F.Cu), 长度: 1.7788 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1525 mm)
+    Local override; error
+    @(118.1480 mm, 110.5215 mm): 走线 [TPS63070_L2] (F.Cu), 长度: 1.3032 mm
+    @(117.4459 mm, 110.4593 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1902 mm)
+    Local override; error
+    @(119.1750 mm, 110.9925 mm): 走线 [TPS63070_L1] (F.Cu), 长度: 1.5834 mm
+    @(118.8006 mm, 109.9248 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1588 mm)
+    Local override; error
+    @(79.2273 mm, 94.4166 mm): 走线 [LCD_SIO1_MCU] (F.Cu), 长度: 1.3181 mm
+    @(79.4382 mm, 94.8754 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1735 mm)
+    Local override; error
+    @(78.8267 mm, 94.8172 mm): 走线 [LCD_SIO1_MCU] (F.Cu), 长度: 0.5665 mm
+    @(79.4382 mm, 94.8754 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1785 mm)
+    Local override; error
+    @(102.2714 mm, 106.1415 mm): 过孔 [LCD_SIO1_MCU] (F.Cu - B.Cu)
+    @(102.0100 mm, 106.8500 mm): F.Cu 上 R1 的焊盘 2 [LCD_SIO0]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1760 mm)
+    Local override; error
+    @(102.0624 mm, 106.3505 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 0.7965 mm
+    @(101.4339 mm, 105.8745 mm): 过孔 [LCD_SIO0_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1926 mm)
+    Local override; error
+    @(97.8247 mm, 91.1600 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 1.7136 mm
+    @(98.0420 mm, 91.6394 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1518 mm)
+    Local override; error
+    @(98.0625 mm, 94.5932 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 0.4984 mm
+    @(98.5143 mm, 94.3092 mm): 过孔 [LCD_SIO0_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(98.8577 mm, 93.2996 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 1.5472 mm
+    @(100.6398 mm, 93.1078 mm): 走线 [LCD_RESET_N] (In2.Cu), 长度: 3.1813 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1794 mm)
+    Local override; error
+    @(98.2653 mm, 91.1600 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 0.4406 mm
+    @(98.0420 mm, 91.6394 mm): 过孔 [3V3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1554 mm)
+    Local override; error
+    @(101.2659 mm, 106.3505 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 1.0358 mm
+    @(101.4339 mm, 105.8745 mm): 过孔 [LCD_SIO0_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1969 mm)
+    Local override; error
+    @(98.0420 mm, 91.6394 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(98.8577 mm, 91.7524 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 0.8378 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1711 mm)
+    Local override; error
+    @(98.5143 mm, 94.3092 mm): 过孔 [LCD_SIO0_MCU] (F.Cu - B.Cu)
+    @(98.0625 mm, 94.0948 mm): 走线 [LCD_SIO1_MCU] (In2.Cu), 长度: 1.1246 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1632 mm)
+    Local override; error
+    @(100.9584 mm, 105.6950 mm): 走线 [LCD_SIO1] (B.Cu), 长度: 1.8898 mm
+    @(101.4339 mm, 105.8745 mm): 过孔 [LCD_SIO0_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1755 mm)
+    Local override; error
+    @(100.9584 mm, 106.4906 mm): 走线 [LCD_SIO1] (B.Cu), 长度: 0.7956 mm
+    @(101.4339 mm, 105.8745 mm): 过孔 [LCD_SIO0_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1530 mm)
+    Local override; error
+    @(99.0261 mm, 107.7823 mm): 过孔 [LCD_SIO2] (F.Cu - B.Cu)
+    @(98.5587 mm, 108.8903 mm): 走线 [LCD_SIO1] (B.Cu), 长度: 3.3937 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1859 mm)
+    Local override; error
+    @(98.8925 mm, 112.2995 mm): 走线 [LCD_SIO1] (In2.Cu), 长度: 0.4721 mm
+    @(99.1000 mm, 111.8198 mm): 过孔 [LCD_SIO3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1797 mm)
+    Local override; error
+    @(99.3763 mm, 112.2995 mm): 走线 [LCD_SIO1] (In2.Cu), 长度: 0.4838 mm
+    @(99.1000 mm, 111.8198 mm): 过孔 [LCD_SIO3] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1583 mm)
+    Local override; error
+    @(110.7750 mm, 107.6584 mm): 走线 [BQ_PMID] (F.Cu), 长度: 0.6100 mm
+    @(110.3750 mm, 107.9590 mm): F.Cu 上 U2 的焊盘 18 [USB_VBUS]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(95.6654 mm, 108.2802 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(98.2561 mm, 107.8285 mm): 走线 [LCD_SIO3_MCU] (In2.Cu), 长度: 7.5921 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(89.3471 mm, 90.5478 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 0.4196 mm
+    @(89.1145 mm, 90.9995 mm): 过孔 [GND] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1516 mm)
+    Local override; error
+    @(88.9275 mm, 90.5478 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 0.3743 mm
+    @(89.1145 mm, 90.9995 mm): 过孔 [GND] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1518 mm)
+    Local override; error
+    @(101.3360 mm, 78.0016 mm): 过孔 [GNSS_RESET_N_1V8] (F.Cu - B.Cu)
+    @(110.2232 mm, 77.5498 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 9.0753 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1616 mm)
+    Local override; error
+    @(87.9023 mm, 94.0606 mm): 过孔 [LCD_SIO0_MCU] (F.Cu - B.Cu)
+    @(88.6628 mm, 92.6473 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 12.2650 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(88.6628 mm, 90.8125 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 1.8348 mm
+    @(89.1145 mm, 90.9995 mm): 过孔 [GND] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1934 mm)
+    Local override; error
+    @(112.6621 mm, 80.6308 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+    @(113.1555 mm, 81.9768 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 1.4947 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(97.5648 mm, 81.6913 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+    @(98.0165 mm, 81.8784 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 12.2604 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(97.5648 mm, 81.6913 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+    @(98.0165 mm, 80.6812 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 1.1972 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1525 mm)
+    Local override; error
+    @(101.3360 mm, 78.0016 mm): 过孔 [GNSS_RESET_N_1V8] (F.Cu - B.Cu)
+    @(101.1479 mm, 77.5498 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 4.4285 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1540 mm)
+    Local override; error
+    @(112.6621 mm, 80.6308 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+    @(113.1555 mm, 80.4821 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 4.1469 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1748 mm)
+    Local override; error
+    @(88.3611 mm, 90.9885 mm): 走线 [GNSS_UART_RX_3V3] (In2.Cu), 长度: 13.2578 mm
+    @(80.7604 mm, 97.9177 mm): 过孔 [LCD_SIO3_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1843 mm)
+    Local override; error
+    @(100.9900 mm, 101.3500 mm): F.Cu 上 R9 的焊盘 1 [3V3]
+    @(101.0080 mm, 100.6207 mm): 过孔 [TP_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(103.6444 mm, 103.7898 mm): 走线 [TP_INT_N] (In2.Cu), 长度: 4.5787 mm
+    @(103.9461 mm, 102.6035 mm): 走线 [LCD_CS_N] (In2.Cu), 长度: 1.9422 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1566 mm)
+    Local override; error
+    @(85.0033 mm, 109.6604 mm): 走线 [TP_INT_N] (B.Cu), 长度: 19.5200 mm
+    @(86.1851 mm, 109.2038 mm): 过孔 [BAT] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1994 mm)
+    Local override; error
+    @(100.4643 mm, 103.2204 mm): 走线 [LCD_CS_N_MCU] (F.Cu), 长度: 0.3046 mm
+    @(100.9900 mm, 102.4500 mm): F.Cu 上 R3 的焊盘 1 [LCD_SIO2_MCU]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(103.9461 mm, 102.6035 mm): 走线 [LCD_CS_N] (In2.Cu), 长度: 1.9422 mm
+    @(101.0080 mm, 101.1534 mm): 走线 [TP_INT_N] (In2.Cu), 长度: 3.7284 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1600 mm)
+    Local override; error
+    @(100.6797 mm, 103.0050 mm): 走线 [LCD_CS_N_MCU] (F.Cu), 长度: 1.9653 mm
+    @(100.9900 mm, 102.4500 mm): F.Cu 上 R3 的焊盘 1 [LCD_SIO2_MCU]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1933 mm)
+    Local override; error
+    @(99.8500 mm, 103.5100 mm): F.Cu 上 R5 的焊盘 1 [LCD_CLK_MCU]
+    @(100.1697 mm, 104.0807 mm): 走线 [LCD_CS_N_MCU] (F.Cu), 长度: 0.4166 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1657 mm)
+    Local override; error
+    @(94.8500 mm, 112.3025 mm): F.Cu 上 J3 的焊盘 [<no net>]
+    @(90.3858 mm, 111.5868 mm): 走线 [LCD_TE] (F.Cu), 长度: 7.7252 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1940 mm)
+    Local override; error
+    @(96.4904 mm, 97.3463 mm): 过孔 [GNSS_PPS_3V3] (F.Cu - B.Cu)
+    @(95.5579 mm, 97.1124 mm): 走线 [BOOT_N] (In2.Cu), 长度: 1.0406 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1902 mm)
+    Local override; error
+    @(97.0936 mm, 97.8482 mm): 走线 [BOOT_N] (In2.Cu), 长度: 7.9354 mm
+    @(96.6034 mm, 98.7740 mm): 过孔 [CHARGER_INT_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(89.3211 mm, 99.8085 mm): 过孔 [LCD_SIO2_MCU] (F.Cu - B.Cu)
+    @(84.3309 mm, 105.4375 mm): 走线 [UART0_RX] (F.Cu), 长度: 14.2021 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1940 mm)
+    Local override; error
+    @(103.8643 mm, 108.5169 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.2529 mm
+    @(104.3600 mm, 108.1500 mm): F.Cu 上 R22 的焊盘 2 [CHARGER_INT_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(100.7766 mm, 108.6590 mm): 过孔 [LCD_SIO3_MCU] (F.Cu - B.Cu)
+    @(101.2900 mm, 108.7844 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.5500 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1962 mm)
+    Local override; error
+    @(101.2000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 20 [GND]
+    @(100.9011 mm, 109.1733 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.3011 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1745 mm)
+    Local override; error
+    @(103.6855 mm, 108.6957 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.1502 mm
+    @(103.3400 mm, 108.1500 mm): F.Cu 上 R22 的焊盘 1 [3V3]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1695 mm)
+    Local override; error
+    @(103.8643 mm, 107.7545 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.7624 mm
+    @(104.3600 mm, 108.1500 mm): F.Cu 上 R22 的焊盘 2 [CHARGER_INT_N]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1745 mm)
+    Local override; error
+    @(103.3400 mm, 108.1500 mm): F.Cu 上 R22 的焊盘 1 [3V3]
+    @(103.5353 mm, 108.6957 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.1254 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1914 mm)
+    Local override; error
+    @(102.5709 mm, 109.0047 mm): 过孔 [3V3_DISPLAY] (F.Cu - B.Cu)
+    @(103.0456 mm, 108.7844 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.4067 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1913 mm)
+    Local override; error
+    @(102.5709 mm, 109.0047 mm): 过孔 [3V3_DISPLAY] (F.Cu - B.Cu)
+    @(102.3840 mm, 108.4968 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.4067 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1988 mm)
+    Local override; error
+    @(96.6457 mm, 91.1600 mm): 过孔 [LCD_RESET_N] (F.Cu - B.Cu)
+    @(97.3500 mm, 91.4800 mm): F.Cu 上 C20 的焊盘 1 [3V3]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1603 mm)
+    Local override; error
+    @(100.1795 mm, 94.2047 mm): 过孔 [QMI_INT2] (F.Cu - B.Cu)
+    @(100.6398 mm, 94.7729 mm): 走线 [LCD_RESET_N] (In2.Cu), 长度: 1.6651 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1518 mm)
+    Local override; error
+    @(102.3628 mm, 101.2748 mm): 走线 [LCD_RESET_N] (In2.Cu), 长度: 3.6531 mm
+    @(102.5301 mm, 100.8031 mm): 过孔 [I2C_SCL] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1717 mm)
+    Local override; error
+    @(102.5301 mm, 100.8031 mm): 过孔 [I2C_SCL] (F.Cu - B.Cu)
+    @(103.3321 mm, 101.2748 mm): 走线 [LCD_RESET_N] (In2.Cu), 长度: 0.9693 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(104.6784 mm, 105.1229 mm): 过孔 [3V3] (F.Cu - B.Cu)
+    @(105.1301 mm, 105.9180 mm): 走线 [LCD_RESET_N] (In2.Cu), 长度: 2.8452 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1902 mm)
+    Local override; error
+    @(109.2542 mm, 109.1070 mm): 走线 [CHARGER_PG_N] (F.Cu), 长度: 0.4941 mm
+    @(109.6125 mm, 109.5070 mm): F.Cu 上 U2 的焊盘 4 [BQ_ILIM]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1702 mm)
+    Local override; error
+    @(108.9048 mm, 109.4564 mm): 过孔 [CHARGER_PG_N] (F.Cu - B.Cu)
+    @(109.6125 mm, 109.5070 mm): F.Cu 上 U2 的焊盘 4 [BQ_ILIM]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1568 mm)
+    Local override; error
+    @(107.2655 mm, 103.4351 mm): 过孔 [BQ_PMID] (F.Cu - B.Cu)
+    @(106.8087 mm, 102.6550 mm): 走线 [CHARGER_PG_N] (In2.Cu), 长度: 4.7053 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1902 mm)
+    Local override; error
+    @(104.8129 mm, 92.3188 mm): 走线 [GNSS_TX_3V0] (F.Cu), 长度: 0.8751 mm
+    @(105.4375 mm, 92.3875 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1687 mm)
+    Local override; error
+    @(78.9937 mm, 99.0063 mm): 过孔 [GNSS_TX_3V0] (F.Cu - B.Cu)
+    @(77.8500 mm, 98.7800 mm): F.Cu 上 U1 的焊盘 8 [I2C_SDA]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1784 mm)
+    Local override; error
+    @(109.7022 mm, 80.8216 mm): 走线 [GNSS_TX_3V0] (F.Cu), 长度: 1.3262 mm
+    @(111.1000 mm, 81.2500 mm): F.Cu 上 U8 的焊盘 2 [GND]
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1784 mm)
+    Local override; error
+    @(111.1000 mm, 81.2500 mm): F.Cu 上 U8 的焊盘 2 [GND]
+    @(111.0284 mm, 80.8216 mm): 走线 [GNSS_TX_3V0] (F.Cu), 长度: 0.1013 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1795 mm)
+    Local override; error
+    @(78.9937 mm, 99.0063 mm): 走线 [GNSS_TX_3V0] (B.Cu), 长度: 8.1469 mm
+    @(80.7604 mm, 97.9177 mm): 过孔 [LCD_SIO3_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1686 mm)
+    Local override; error
+    @(96.3821 mm, 93.2456 mm): 走线 [GNSS_TX_3V0] (B.Cu), 长度: 0.0621 mm
+    @(96.6130 mm, 92.8378 mm): 过孔 [LCD_SIO1_MCU] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(96.6130 mm, 92.8378 mm): 过孔 [LCD_SIO1_MCU] (F.Cu - B.Cu)
+    @(96.4260 mm, 93.2895 mm): 走线 [GNSS_TX_3V0] (B.Cu), 长度: 8.1224 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1686 mm)
+    Local override; error
+    @(96.6130 mm, 92.8378 mm): 过孔 [LCD_SIO1_MCU] (F.Cu - B.Cu)
+    @(84.7544 mm, 93.2456 mm): 走线 [GNSS_TX_3V0] (B.Cu), 长度: 11.6277 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1905 mm)
+    Local override; error
+    @(105.4375 mm, 92.3875 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+    @(109.7022 mm, 88.8165 mm): 走线 [GNSS_TX_3V0] (In2.Cu), 长度: 5.9517 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1585 mm)
+    Local override; error
+    @(80.5454 mm, 94.4166 mm): 过孔 [LCD_SIO1_MCU] (F.Cu - B.Cu)
+    @(82.0777 mm, 92.2359 mm): 走线 [GNSS_RX_3V0] (B.Cu), 长度: 3.7328 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1519 mm)
+    Local override; error
+    @(111.6248 mm, 79.4881 mm): 走线 [GNSS_RX_3V0] (In2.Cu), 长度: 1.4670 mm
+    @(111.4896 mm, 79.9920 mm): 过孔 [GNSS_3V0] (F.Cu - B.Cu)
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1517 mm)
+    Local override; error
+    @(98.3355 mm, 92.6876 mm): 过孔 [TP_RESET_N] (F.Cu - B.Cu)
+    @(105.2859 mm, 92.2359 mm): 走线 [GNSS_RX_3V0] (B.Cu), 长度: 23.2082 mm
+[clearance]: 间距违规 ( 间距 0.2000 mm; 实际 0.1921 mm)
+    Local override; error
+    @(100.3000 mm, 111.9758 mm): 走线 [LCD_CS_N] (F.Cu), 长度: 0.5548 mm
+    @(100.1763 mm, 111.4995 mm): 过孔 [LCD_SIO1] (F.Cu - B.Cu)
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(101.1464 mm, 94.9338 mm): 走线 [3V3] (F.Cu), 长度: 0.0001 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(100.0998 mm, 79.4500 mm): 走线 [3V3] (F.Cu), 长度: 0.8623 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(102.6824 mm, 96.3504 mm): 走线 [3V3] (F.Cu), 长度: 1.3203 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(100.5998 mm, 78.9500 mm): 走线 [3V3] (F.Cu), 长度: 0.7071 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(101.1366 mm, 94.9436 mm): 走线 [3V3] (F.Cu), 长度: 0.2913 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(100.9306 mm, 95.1496 mm): 走线 [3V3] (F.Cu), 长度: 0.0302 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(101.3621 mm, 96.3504 mm): 走线 [3V3] (F.Cu), 长度: 0.2116 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(114.7737 mm, 81.7500 mm): 走线 [3V3] (F.Cu), 长度: 0.8737 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(101.0982 mm, 94.8857 mm): 走线 [3V3] (F.Cu), 长度: 0.0682 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(101.1463 mm, 94.9337 mm): 走线 [3V3] (F.Cu), 长度: 0.0480 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(106.6867 mm, 79.2742 mm): 走线 [3V3] (F.Cu), 长度: 0.5999 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(107.1689 mm, 79.2742 mm): 走线 [3V3] (F.Cu), 长度: 0.4822 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(115.9558 mm, 81.8495 mm): 走线 [3V3] (F.Cu), 长度: 1.1821 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(96.4075 mm, 119.3197 mm): 走线 [GND] (F.Cu), 长度: 0.5972 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(109.1320 mm, 81.3495 mm): 走线 [GND] (F.Cu), 长度: 1.8685 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(103.7106 mm, 111.9773 mm): 走线 [GND] (F.Cu), 长度: 0.2230 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(123.9252 mm, 94.1019 mm): 走线 [GND] (F.Cu), 长度: 0.1027 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(105.8500 mm, 116.7254 mm): 走线 [GND] (F.Cu), 长度: 2.2504 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(111.0005 mm, 81.3495 mm): 走线 [GND] (F.Cu), 长度: 0.1407 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(114.0812 mm, 118.6252 mm): 走线 [GND] (F.Cu), 长度: 0.2611 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(96.4075 mm, 118.7225 mm): 走线 [GND] (F.Cu), 长度: 0.0392 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(116.5242 mm, 106.8231 mm): 走线 [GND] (F.Cu), 长度: 0.5015 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(103.7106 mm, 111.9773 mm): 走线 [GND] (F.Cu), 长度: 0.5646 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(114.1530 mm, 118.6252 mm): 走线 [GND] (F.Cu), 长度: 0.0718 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(98.2000 mm, 110.2752 mm): 走线 [GND] (F.Cu), 长度: 0.9000 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(114.7873 mm, 98.3748 mm): 走线 [GND] (F.Cu), 长度: 4.3125 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(108.1004 mm, 116.7254 mm): 走线 [GND] (F.Cu), 长度: 0.4237 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(115.4601 mm, 109.7004 mm): 走线 [GND] (F.Cu), 长度: 0.3605 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(124.3000 mm, 98.1746 mm): 走线 [GND] (F.Cu), 长度: 0.5517 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(123.9252 mm, 96.4750 mm): 走线 [GND] (F.Cu), 长度: 2.3731 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(115.0996 mm, 109.7004 mm): 走线 [GND] (F.Cu), 长度: 0.2116 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(102.7000 mm, 111.9773 mm): 走线 [GND] (F.Cu), 长度: 1.0106 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(123.7483 mm, 98.1746 mm): 走线 [GND] (F.Cu), 长度: 0.1414 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(113.8005 mm, 81.1505 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.1407 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(107.7757 mm, 97.8257 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.6708 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(112.5358 mm, 81.1505 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 1.2647 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(107.0728 mm, 97.8257 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.7029 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(108.7243 mm, 95.6257 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.6708 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(110.0503 mm, 95.6257 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 1.3260 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(121.5762 mm, 99.7357 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.5320 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(122.6855 mm, 99.7357 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 1.1093 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(103.4949 mm, 116.6957 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.5846 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(104.4098 mm, 116.6957 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.9149 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(118.0700 mm, 106.0249 mm): 走线 [SYS] (F.Cu), 长度: 0.1192 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(115.3238 mm, 114.2362 mm): 走线 [SYS] (F.Cu), 长度: 0.7771 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(118.1543 mm, 106.1092 mm): 走线 [SYS] (F.Cu), 长度: 0.3765 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(115.3238 mm, 114.0463 mm): 走线 [SYS] (F.Cu), 长度: 0.1899 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(101.8002 mm, 107.4043 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.2967 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(101.6500 mm, 107.4043 mm): 走线 [LCD_SIO0] (F.Cu), 长度: 0.1502 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(99.9011 mm, 81.7458 mm): 走线 [LIS2MDL_C1] (F.Cu), 长度: 0.2797 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(99.9011 mm, 83.4016 mm): 走线 [LIS2MDL_C1] (F.Cu), 长度: 1.6558 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(109.4809 mm, 108.5754 mm): 走线 [BQ_REGN] (F.Cu), 长度: 0.1861 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(109.0726 mm, 108.5754 mm): 走线 [BQ_REGN] (F.Cu), 长度: 0.4083 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(96.9027 mm, 101.9148 mm): 走线 [LCD_CLK_MCU] (F.Cu), 长度: 0.8412 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(95.3500 mm, 101.3200 mm): 走线 [LCD_CLK_MCU] (F.Cu), 长度: 0.9579 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(98.3935 mm, 101.9148 mm): 走线 [LCD_CLK_MCU] (F.Cu), 长度: 1.4908 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(94.3921 mm, 93.7000 mm): 走线 [UART0_TX] (F.Cu), 长度: 0.4911 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(95.3500 mm, 93.7000 mm): 走线 [UART0_TX] (F.Cu), 长度: 0.9579 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(103.6855 mm, 108.6957 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.1502 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(103.8643 mm, 107.7545 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.7624 mm
+[track_width]: 走线宽度 (电路板配置约束 最小宽度 0.1500 mm; 实际 0.1124 mm)
+    Rule: 网络类 'Default'; error
+    @(103.5353 mm, 108.6957 mm): 走线 [LCD_RESET_N] (F.Cu), 长度: 0.1254 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(119.2594 mm, 107.6574 mm): 过孔 [BQ_TS_BIAS] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(110.5508 mm, 116.4902 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(98.6720 mm, 101.5224 mm): 过孔 [LCD_SIO2_MCU] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(119.0583 mm, 103.8539 mm): 过孔 [TPS63070_VAUX] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(115.9659 mm, 105.3441 mm): 过孔 [BQ_ILIM] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(87.5775 mm, 108.7785 mm): 过孔 [LCD_TE] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(78.9937 mm, 99.0063 mm): 过孔 [GNSS_TX_3V0] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(79.4382 mm, 94.8754 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(94.9803 mm, 79.3375 mm): 过孔 [GNSS_PPS_3V0] (F.Cu - B.Cu)
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(81.5191 mm, 116.6403 mm): Edge.Cuts 上的 线段
+    @(81.3900 mm, 118.7150 mm): J2 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(84.3528 mm, 120.7645 mm): Edge.Cuts 上的 线段
+    @(82.5600 mm, 120.6850 mm): J2 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(95.4851 mm, 125.6050 mm): Edge.Cuts 上的 线段
+    @(95.4200 mm, 125.7850 mm): J1 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(104.9610 mm, 125.5223 mm): Edge.Cuts 上的 线段
+    @(104.5800 mm, 124.0800 mm): J1 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(96.3815 mm, 125.7470 mm): Edge.Cuts 上的 线段
+    @(104.5800 mm, 125.7850 mm): J1 的 线段, 位于 F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(113.7600 mm, 82.6850 mm): U8 的 线段, 位于 F.Silkscreen
+    @(113.5500 mm, 82.9900 mm): U9 的 多边形, 位于 F.Silkscreen
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(86.5000 mm, 85.0000 mm): F.Silkscreen 上的 PCB 文本 'MOTO GPS REV A EVT'
+    @(81.7000 mm, 84.7800 mm): F.Cu 上 SW2 的焊盘 1 [MCU_EN]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(86.5000 mm, 85.0000 mm): F.Silkscreen 上的 PCB 文本 'MOTO GPS REV A EVT'
+    @(83.5000 mm, 84.6000 mm): SW2 的 NPTH 焊盘
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(86.5000 mm, 85.0000 mm): F.Silkscreen 上的 PCB 文本 'MOTO GPS REV A EVT'
+    @(85.3000 mm, 84.7800 mm): F.Cu 上 SW2 的焊盘 1 [MCU_EN]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.9000 mm, 116.8000 mm): U11 的 线段, 位于 F.Silkscreen
+    @(105.1500 mm, 116.6250 mm): F.Cu 上 U11 的焊盘 1 [USB_D_P_CONN]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.9000 mm, 116.8000 mm): U11 的 线段, 位于 F.Silkscreen
+    @(105.8500 mm, 116.6250 mm): F.Cu 上 U11 的焊盘 2 [GND]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.9000 mm, 115.6000 mm): U11 的 线段, 位于 F.Silkscreen
+    @(105.5000 mm, 115.7750 mm): F.Cu 上 U11 的焊盘 3 [USB_D_N_CONN]
+[nonmirrored_text_on_back_layer]: Non-Mirrored text on back layer
+    Local override; warning
+    @(100.0000 mm, 116.2000 mm): B.Silkscreen 上的 PCB 文本 'ENGINEERING - NOT FOR FABRICATION'
+
+** Found 8 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(101.3175 mm, 91.0700 mm): 走线 [GND] (F.Cu), 长度: 0.6675 mm
+    @(99.0000 mm, 90.2250 mm): 走线 [GND] (F.Cu), 长度: 1.3550 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(105.8500 mm, 116.7254 mm): 走线 [GND] (F.Cu), 长度: 2.2504 mm
+    @(108.8000 mm, 115.3750 mm): 走线 [GND] (F.Cu), 长度: 0.4000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(99.4500 mm, 88.4778 mm): 走线 [GNSS_3V0] (F.Cu), 长度: 0.1022 mm
+    @(99.0700 mm, 93.2000 mm): F.Cu 上 C37 的焊盘 1 [GNSS_3V0]
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(118.7000 mm, 107.0980 mm): 走线 [BQ_TS_BIAS] (F.Cu), 长度: 0.7911 mm
+    @(109.9750 mm, 110.2000 mm): 走线 [BQ_TS_BIAS] (F.Cu), 长度: 0.0375 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(111.7349 mm, 109.1070 mm): 走线 [I2C_SDA] (F.Cu), 长度: 0.6651 mm
+    @(110.4606 mm, 116.4000 mm): 走线 [I2C_SDA] (F.Cu), 长度: 0.1276 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(112.4000 mm, 108.7070 mm): F.Cu 上 U2 的焊盘 13 [I2C_SCL]
+    @(108.5575 mm, 113.5892 mm): 走线 [I2C_SCL] (F.Cu), 长度: 2.9172 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(117.1697 mm, 105.3503 mm): 走线 [TPS63070_VAUX] (F.Cu), 长度: 0.9188 mm
+    @(114.9500 mm, 109.3500 mm): F.Cu 上 U3 的焊盘 3 [TPS63070_VAUX]
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(109.6125 mm, 109.5070 mm): F.Cu 上 U2 的焊盘 4 [BQ_ILIM]
+    @(116.5000 mm, 104.8100 mm): 走线 [BQ_ILIM] (F.Cu), 长度: 0.7553 mm
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

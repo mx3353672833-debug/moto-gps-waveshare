@@ -1,0 +1,1050 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-03T19:41:12",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.6",
+    "schematic_parity": [],
+    "source": "moto-gps-rev-a1.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_SIO0 和 /3V3_DISPLAY)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_SIO0] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.0056,
+                        "y": 110.4527
+                    },
+                    "uuid": "7940232e-ddba-4212-9288-8e0a4f290a44"
+                },
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In1.Cu), 长度: 7.6414 mm",
+                    "pos": {
+                        "x": 95.0,
+                        "y": 110.0
+                    },
+                    "uuid": "88bd0f38-3467-4c01-82f7-e93d217d8600"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In1.Cu), 长度: 7.6414 mm",
+                    "pos": {
+                        "x": 95.0,
+                        "y": 110.0
+                    },
+                    "uuid": "88bd0f38-3467-4c01-82f7-e93d217d8600"
+                },
+                {
+                    "description": "过孔 [/LCD_SIO0] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.0056,
+                        "y": 110.4527
+                    },
+                    "uuid": "7940232e-ddba-4212-9288-8e0a4f290a44"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_SIO2 和 /3V3_DISPLAY)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_SIO2] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 98.5941,
+                        "y": 110.5266
+                    },
+                    "uuid": "3032775a-6271-418f-88ef-60be8cdcd2d3"
+                },
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In1.Cu), 长度: 7.6414 mm",
+                    "pos": {
+                        "x": 95.0,
+                        "y": 110.0
+                    },
+                    "uuid": "88bd0f38-3467-4c01-82f7-e93d217d8600"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0459 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In1.Cu), 长度: 7.6414 mm",
+                    "pos": {
+                        "x": 95.0,
+                        "y": 110.0
+                    },
+                    "uuid": "88bd0f38-3467-4c01-82f7-e93d217d8600"
+                },
+                {
+                    "description": "过孔 [/LCD_SIO2] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 98.5941,
+                        "y": 110.5266
+                    },
+                    "uuid": "3032775a-6271-418f-88ef-60be8cdcd2d3"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /3V3_DISPLAY 和 /LCD_CLK)",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In1.Cu), 长度: 7.6414 mm",
+                    "pos": {
+                        "x": 95.0,
+                        "y": 110.0
+                    },
+                    "uuid": "88bd0f38-3467-4c01-82f7-e93d217d8600"
+                },
+                {
+                    "description": "过孔 [/LCD_CLK] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 99.7551,
+                        "y": 110.6953
+                    },
+                    "uuid": "d935ddcc-13a9-4224-b33c-1705db53f84f"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.1158 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In1.Cu), 长度: 7.6414 mm",
+                    "pos": {
+                        "x": 95.0,
+                        "y": 110.0
+                    },
+                    "uuid": "88bd0f38-3467-4c01-82f7-e93d217d8600"
+                },
+                {
+                    "description": "过孔 [/LCD_CLK] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 99.7551,
+                        "y": 110.6953
+                    },
+                    "uuid": "d935ddcc-13a9-4224-b33c-1705db53f84f"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /I2C_SDA 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "过孔 [/I2C_SDA] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 98.8804,
+                        "y": 87.1249
+                    },
+                    "uuid": "1c496b47-ea6a-4972-bc0c-11692be08c50"
+                },
+                {
+                    "description": "B.Cu 上 TP18 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 98.2,
+                        "y": 86.9
+                    },
+                    "uuid": "3ba6878a-db35-41b9-8f18-c7aeda030b1c"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.1166 mm)",
+            "items": [
+                {
+                    "description": "B.Cu 上 TP18 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 98.2,
+                        "y": 86.9
+                    },
+                    "uuid": "3ba6878a-db35-41b9-8f18-c7aeda030b1c"
+                },
+                {
+                    "description": "过孔 [/I2C_SDA] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 98.8804,
+                        "y": 87.1249
+                    },
+                    "uuid": "1c496b47-ea6a-4972-bc0c-11692be08c50"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0356 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 18.0000 mm",
+                    "pos": {
+                        "x": 104.5,
+                        "y": 106.0
+                    },
+                    "uuid": "30625115-e51e-4256-b749-386a64c7b062"
+                },
+                {
+                    "description": "过孔 [/LCD_SIO1] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 104.25,
+                        "y": 106.2239
+                    },
+                    "uuid": "b4d09cc2-78f8-4cd5-a296-2afcd7473c2b"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_VBAT 和 /LCD_SIO1)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.8447 mm",
+                    "pos": {
+                        "x": 97.0,
+                        "y": 108.3
+                    },
+                    "uuid": "5115c9e1-aabe-40fd-9bfa-8fd51a6286e8"
+                },
+                {
+                    "description": "过孔 [/LCD_SIO1] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 104.25,
+                        "y": 106.2239
+                    },
+                    "uuid": "b4d09cc2-78f8-4cd5-a296-2afcd7473c2b"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0154 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_RESET_N] (F.Cu), 长度: 0.2176 mm",
+                    "pos": {
+                        "x": 100.128,
+                        "y": 109.0154
+                    },
+                    "uuid": "28a8e092-05a7-456b-abcd-a2f1b85a8f48"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 4.8000 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 108.85
+                    },
+                    "uuid": "402a35dc-4fcc-499a-b759-7b3471a46375"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.8447 mm",
+                    "pos": {
+                        "x": 97.0,
+                        "y": 108.3
+                    },
+                    "uuid": "5115c9e1-aabe-40fd-9bfa-8fd51a6286e8"
+                },
+                {
+                    "description": "过孔 [/LCD_SIO1] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 104.25,
+                        "y": 106.2239
+                    },
+                    "uuid": "b4d09cc2-78f8-4cd5-a296-2afcd7473c2b"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0154 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 4.8000 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 108.85
+                    },
+                    "uuid": "402a35dc-4fcc-499a-b759-7b3471a46375"
+                },
+                {
+                    "description": "走线 [/LCD_RESET_N] (F.Cu), 长度: 0.6675 mm",
+                    "pos": {
+                        "x": 100.6,
+                        "y": 109.4874
+                    },
+                    "uuid": "adcf12eb-47ea-4b48-bf8d-c37ebe4f7591"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_RESET_N 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_RESET_N] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 99.9104,
+                        "y": 109.0154
+                    },
+                    "uuid": "2ba91735-004f-454f-9840-1489970ffc69"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 4.8000 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 108.85
+                    },
+                    "uuid": "402a35dc-4fcc-499a-b759-7b3471a46375"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 4.8000 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 108.85
+                    },
+                    "uuid": "402a35dc-4fcc-499a-b759-7b3471a46375"
+                },
+                {
+                    "description": "过孔 [/LCD_RESET_N] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 99.9104,
+                        "y": 109.0154
+                    },
+                    "uuid": "2ba91735-004f-454f-9840-1489970ffc69"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_VBAT 和 /LCD_SIO2)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.8447 mm",
+                    "pos": {
+                        "x": 97.0,
+                        "y": 108.3
+                    },
+                    "uuid": "5115c9e1-aabe-40fd-9bfa-8fd51a6286e8"
+                },
+                {
+                    "description": "过孔 [/LCD_SIO2] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 98.0864,
+                        "y": 108.1744
+                    },
+                    "uuid": "c2bbdb99-f0fb-4d12-80f4-739b0a70a13c"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0507 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_SIO3_MCU] (F.Cu), 长度: 0.1206 mm",
+                    "pos": {
+                        "x": 100.99,
+                        "y": 108.564
+                    },
+                    "uuid": "25692f21-8928-4ec1-ba60-ed929c092457"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 4.8000 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 108.85
+                    },
+                    "uuid": "402a35dc-4fcc-499a-b759-7b3471a46375"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0234 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.8447 mm",
+                    "pos": {
+                        "x": 97.0,
+                        "y": 108.3
+                    },
+                    "uuid": "5115c9e1-aabe-40fd-9bfa-8fd51a6286e8"
+                },
+                {
+                    "description": "过孔 [/LCD_SIO2] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 98.0864,
+                        "y": 108.1744
+                    },
+                    "uuid": "c2bbdb99-f0fb-4d12-80f4-739b0a70a13c"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1360 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 4.8000 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 108.85
+                    },
+                    "uuid": "402a35dc-4fcc-499a-b759-7b3471a46375"
+                },
+                {
+                    "description": "走线 [/LCD_SIO3_MCU] (F.Cu), 长度: 0.6140 mm",
+                    "pos": {
+                        "x": 100.99,
+                        "y": 107.95
+                    },
+                    "uuid": "d12fb63a-a10f-4481-bd91-a31ff664ff29"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_VBAT 和 /LCD_SIO3_MCU)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 4.8000 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 108.85
+                    },
+                    "uuid": "402a35dc-4fcc-499a-b759-7b3471a46375"
+                },
+                {
+                    "description": "过孔 [/LCD_SIO3_MCU] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 100.9047,
+                        "y": 108.6493
+                    },
+                    "uuid": "84f2e35c-c7aa-4dd7-9f0c-e1aba0a90858"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0257 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 4.8000 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 108.85
+                    },
+                    "uuid": "402a35dc-4fcc-499a-b759-7b3471a46375"
+                },
+                {
+                    "description": "过孔 [/LCD_SIO3_MCU] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 100.9047,
+                        "y": 108.6493
+                    },
+                    "uuid": "84f2e35c-c7aa-4dd7-9f0c-e1aba0a90858"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_VBAT 和 /TP_INT_N)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.8447 mm",
+                    "pos": {
+                        "x": 97.0,
+                        "y": 108.3
+                    },
+                    "uuid": "5115c9e1-aabe-40fd-9bfa-8fd51a6286e8"
+                },
+                {
+                    "description": "过孔 [/TP_INT_N] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 98.6674,
+                        "y": 107.4776
+                    },
+                    "uuid": "a40ad47b-4aff-46e7-8b0c-43423d96b473"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.1224 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.8447 mm",
+                    "pos": {
+                        "x": 97.0,
+                        "y": 108.3
+                    },
+                    "uuid": "5115c9e1-aabe-40fd-9bfa-8fd51a6286e8"
+                },
+                {
+                    "description": "过孔 [/TP_INT_N] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 98.6674,
+                        "y": 107.4776
+                    },
+                    "uuid": "a40ad47b-4aff-46e7-8b0c-43423d96b473"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /GND 和 /3V3_DISPLAY)",
+            "items": [
+                {
+                    "description": "过孔 [/GND] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 91.4237,
+                        "y": 89.89
+                    },
+                    "uuid": "81ac9a14-7cba-4553-bbb5-58a997599007"
+                },
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In1.Cu), 长度: 23.0000 mm",
+                    "pos": {
+                        "x": 91.5,
+                        "y": 84.0
+                    },
+                    "uuid": "d7c7620c-071c-4728-9e31-27e7a2a644fb"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In1.Cu), 长度: 23.0000 mm",
+                    "pos": {
+                        "x": 91.5,
+                        "y": 84.0
+                    },
+                    "uuid": "d7c7620c-071c-4728-9e31-27e7a2a644fb"
+                },
+                {
+                    "description": "过孔 [/GND] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 91.4237,
+                        "y": 89.89
+                    },
+                    "uuid": "81ac9a14-7cba-4553-bbb5-58a997599007"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0901 mm)",
+            "items": [
+                {
+                    "description": "走线 [/MAG_DRDY] (In2.Cu), 长度: 10.0782 mm",
+                    "pos": {
+                        "x": 97.3099,
+                        "y": 79.1643
+                    },
+                    "uuid": "8c2174f0-b129-4591-9354-1142afeb7d73"
+                },
+                {
+                    "description": "过孔 [/GND] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 97.7,
+                        "y": 83.2
+                    },
+                    "uuid": "d6f7e35a-7a7b-4726-bfa7-a2b2feb839ad"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0079 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_RESET_N] (F.Cu), 长度: 0.2176 mm",
+                    "pos": {
+                        "x": 100.128,
+                        "y": 109.0154
+                    },
+                    "uuid": "28a8e092-05a7-456b-abcd-a2f1b85a8f48"
+                },
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 4.3835 mm",
+                    "pos": {
+                        "x": 100.7835,
+                        "y": 109.1733
+                    },
+                    "uuid": "4c53cc98-80f3-4cc5-ad74-e41c1d0c1d3a"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 4.3835 mm",
+                    "pos": {
+                        "x": 100.7835,
+                        "y": 109.1733
+                    },
+                    "uuid": "4c53cc98-80f3-4cc5-ad74-e41c1d0c1d3a"
+                },
+                {
+                    "description": "走线 [/LCD_RESET_N] (F.Cu), 长度: 0.6675 mm",
+                    "pos": {
+                        "x": 100.6,
+                        "y": 109.4874
+                    },
+                    "uuid": "adcf12eb-47ea-4b48-bf8d-c37ebe4f7591"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_RESET_N 和 /GND)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_RESET_N] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 99.9104,
+                        "y": 109.0154
+                    },
+                    "uuid": "2ba91735-004f-454f-9840-1489970ffc69"
+                },
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 4.3835 mm",
+                    "pos": {
+                        "x": 100.7835,
+                        "y": 109.1733
+                    },
+                    "uuid": "4c53cc98-80f3-4cc5-ad74-e41c1d0c1d3a"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 4.3835 mm",
+                    "pos": {
+                        "x": 100.7835,
+                        "y": 109.1733
+                    },
+                    "uuid": "4c53cc98-80f3-4cc5-ad74-e41c1d0c1d3a"
+                },
+                {
+                    "description": "过孔 [/LCD_RESET_N] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 99.9104,
+                        "y": 109.0154
+                    },
+                    "uuid": "2ba91735-004f-454f-9840-1489970ffc69"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In1.Cu), 长度: 2.7879 mm",
+                    "pos": {
+                        "x": 93.15,
+                        "y": 84.0
+                    },
+                    "uuid": "ca40955b-ff5b-461d-ae36-b83f25d26d88"
+                },
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In1.Cu), 长度: 23.0000 mm",
+                    "pos": {
+                        "x": 91.5,
+                        "y": 84.0
+                    },
+                    "uuid": "d7c7620c-071c-4728-9e31-27e7a2a644fb"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /SYS 和 /I2C_SCL)",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In1.Cu), 长度: 13.0000 mm",
+                    "pos": {
+                        "x": 94.5,
+                        "y": 112.0
+                    },
+                    "uuid": "2b44a986-e0f3-46a7-bb8c-b4fe24e71e1a"
+                },
+                {
+                    "description": "过孔 [/I2C_SCL] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 106.1025,
+                        "y": 112.203
+                    },
+                    "uuid": "f2b41704-1af8-435d-bfb7-86c312e1c186"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0280 mm)",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In1.Cu), 长度: 13.0000 mm",
+                    "pos": {
+                        "x": 94.5,
+                        "y": 112.0
+                    },
+                    "uuid": "2b44a986-e0f3-46a7-bb8c-b4fe24e71e1a"
+                },
+                {
+                    "description": "过孔 [/I2C_SCL] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 106.1025,
+                        "y": 112.203
+                    },
+                    "uuid": "f2b41704-1af8-435d-bfb7-86c312e1c186"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /SYS 和 /I2C_SCL)",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In1.Cu), 长度: 13.0000 mm",
+                    "pos": {
+                        "x": 94.5,
+                        "y": 112.0
+                    },
+                    "uuid": "2b44a986-e0f3-46a7-bb8c-b4fe24e71e1a"
+                },
+                {
+                    "description": "过孔 [/I2C_SCL] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 103.3165,
+                        "y": 111.8193
+                    },
+                    "uuid": "f33533c5-7fd5-46df-ba55-53e9ee4b9db6"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0057 mm)",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In1.Cu), 长度: 13.0000 mm",
+                    "pos": {
+                        "x": 94.5,
+                        "y": 112.0
+                    },
+                    "uuid": "2b44a986-e0f3-46a7-bb8c-b4fe24e71e1a"
+                },
+                {
+                    "description": "过孔 [/I2C_SCL] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 103.3165,
+                        "y": 111.8193
+                    },
+                    "uuid": "f33533c5-7fd5-46df-ba55-53e9ee4b9db6"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_SIO1 和 /SYS)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_SIO1] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 99.6613,
+                        "y": 111.8214
+                    },
+                    "uuid": "1806e82e-20a4-4f55-b6ed-68118fdb1e4d"
+                },
+                {
+                    "description": "走线 [/SYS] (In1.Cu), 长度: 13.0000 mm",
+                    "pos": {
+                        "x": 94.5,
+                        "y": 112.0
+                    },
+                    "uuid": "2b44a986-e0f3-46a7-bb8c-b4fe24e71e1a"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0036 mm)",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In1.Cu), 长度: 13.0000 mm",
+                    "pos": {
+                        "x": 94.5,
+                        "y": 112.0
+                    },
+                    "uuid": "2b44a986-e0f3-46a7-bb8c-b4fe24e71e1a"
+                },
+                {
+                    "description": "过孔 [/LCD_SIO1] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 99.6613,
+                        "y": 111.8214
+                    },
+                    "uuid": "1806e82e-20a4-4f55-b6ed-68118fdb1e4d"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /BAT 和 /SYS)",
+            "items": [
+                {
+                    "description": "过孔 [/BAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 109.8507,
+                        "y": 111.237
+                    },
+                    "uuid": "26475d5a-10e3-494b-9a66-a486700ea727"
+                },
+                {
+                    "description": "走线 [/SYS] (In1.Cu), 长度: 3.2184 mm",
+                    "pos": {
+                        "x": 107.5,
+                        "y": 112.0
+                    },
+                    "uuid": "9ed75726-6ce5-4e33-9b4d-8d53edcd5681"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In1.Cu), 长度: 3.2184 mm",
+                    "pos": {
+                        "x": 107.5,
+                        "y": 112.0
+                    },
+                    "uuid": "9ed75726-6ce5-4e33-9b4d-8d53edcd5681"
+                },
+                {
+                    "description": "过孔 [/BAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 109.8507,
+                        "y": 111.237
+                    },
+                    "uuid": "26475d5a-10e3-494b-9a66-a486700ea727"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1324 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 97.0,
+                        "y": 108.3
+                    },
+                    "uuid": "13630f7f-ad10-44c6-9ebb-56190d3a42ac"
+                },
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 3.7573 mm",
+                    "pos": {
+                        "x": 97.0396,
+                        "y": 107.6489
+                    },
+                    "uuid": "bb6b1609-5ab6-446b-a24f-0dccc92b0767"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.1166 mm)",
+            "items": [
+                {
+                    "description": "B.Cu 上 TP18 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 98.2,
+                        "y": 86.9
+                    },
+                    "uuid": "3ba6878a-db35-41b9-8f18-c7aeda030b1c"
+                },
+                {
+                    "description": "过孔 [/I2C_SDA] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 98.8804,
+                        "y": 87.1249
+                    },
+                    "uuid": "1c496b47-ea6a-4972-bc0c-11692be08c50"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 C38",
+                    "pos": {
+                        "x": 96.5,
+                        "y": 83.2
+                    },
+                    "uuid": "1269cc2b-f1d8-4b8a-ba76-07ecec8fc203"
+                },
+                {
+                    "description": "封装 R36",
+                    "pos": {
+                        "x": 94.2,
+                        "y": 84.0
+                    },
+                    "uuid": "2a8c6e51-ead8-4b66-8e02-cbdf0aa11b15"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 C38",
+                    "pos": {
+                        "x": 96.5,
+                        "y": 83.2
+                    },
+                    "uuid": "1269cc2b-f1d8-4b8a-ba76-07ecec8fc203"
+                },
+                {
+                    "description": "封装 R35",
+                    "pos": {
+                        "x": 94.2,
+                        "y": 82.4
+                    },
+                    "uuid": "55b3621e-3319-44ae-bac6-3dade220e625"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "底层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "过孔 [/I2C_SDA] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 98.8804,
+                        "y": 87.1249
+                    },
+                    "uuid": "1c496b47-ea6a-4972-bc0c-11692be08c50"
+                },
+                {
+                    "description": "B.Cu 上 TP18 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 98.2,
+                        "y": 86.9
+                    },
+                    "uuid": "3ba6878a-db35-41b9-8f18-c7aeda030b1c"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+build/*.xml
+build/*.dsn
+build/*.ses
+build/*.log
+build/*.rpt
+build/*.json
+build/*-autoroute-experiment.kicad_pcb
+build/*.svg.png

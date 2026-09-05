@@ -1,0 +1,148 @@
+** Drc report for moto-gps-rev-a-route2-cleaned.kicad_pcb **
+** Created on 2026-09-03T14:29:49 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 33 DRC violations **
+[shorting_items]: 短路了两个不同网络的项目 (网络 /BQ_ILIM 和 /CHARGER_PG_N)
+    Local override; error
+    @(107.8587 mm, 105.0636 mm): 走线 [/BQ_ILIM] (In2.Cu), 长度: 4.4434 mm
+    @(107.8010 mm, 108.8677 mm): 过孔 [/CHARGER_PG_N] (F.Cu - B.Cu)
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.0000 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(107.8587 mm, 105.0636 mm): 走线 [/BQ_ILIM] (In2.Cu), 长度: 4.4434 mm
+    @(107.8010 mm, 108.8677 mm): 过孔 [/CHARGER_PG_N] (F.Cu - B.Cu)
+[shorting_items]: 短路了两个不同网络的项目 (网络 /CHARGER_PG_N 和 /BQ_ILIM)
+    Local override; error
+    @(107.8010 mm, 108.8677 mm): 走线 [/CHARGER_PG_N] (In2.Cu), 长度: 3.3326 mm
+    @(107.8587 mm, 105.0636 mm): 走线 [/BQ_ILIM] (In2.Cu), 长度: 4.4434 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /CHARGER_PG_N 和 /BQ_REGN)
+    Local override; error
+    @(107.8010 mm, 108.8677 mm): 过孔 [/CHARGER_PG_N] (F.Cu - B.Cu)
+    @(107.0492 mm, 108.5754 mm): 走线 [/BQ_REGN] (F.Cu), 长度: 1.4317 mm
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.1173 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(107.0492 mm, 108.5754 mm): 走线 [/BQ_REGN] (F.Cu), 长度: 1.4317 mm
+    @(107.8010 mm, 108.8677 mm): 过孔 [/CHARGER_PG_N] (F.Cu - B.Cu)
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1465 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(102.2000 mm, 87.3625 mm): F.Cu 上 Q1 的焊盘 3 [/GNSS_RESET_N_1V8]
+    @(101.8685 mm, 88.2742 mm): 走线 [/GND] (F.Cu), 长度: 0.0258 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1465 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(101.9565 mm, 88.3622 mm): 走线 [/GND] (F.Cu), 长度: 0.1245 mm
+    @(102.2000 mm, 87.3625 mm): F.Cu 上 Q1 的焊盘 3 [/GNSS_RESET_N_1V8]
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1458 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(100.7625 mm, 79.4500 mm): F.Cu 上 U6 的焊盘 8 [/GND]
+    @(100.5878 mm, 78.9500 mm): 走线 [/3V3] (F.Cu), 长度: 0.7071 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1398 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(100.2500 mm, 79.6977 mm): 走线 [/GND] (F.Cu), 长度: 0.2092 mm
+    @(100.5878 mm, 78.9500 mm): 走线 [/3V3] (F.Cu), 长度: 0.7071 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1398 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(100.3979 mm, 79.5498 mm): 走线 [/GND] (F.Cu), 长度: 0.2648 mm
+    @(100.5878 mm, 78.9500 mm): 走线 [/3V3] (F.Cu), 长度: 0.7071 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1461 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(100.2500 mm, 79.9625 mm): 走线 [/GND] (F.Cu), 长度: 0.2648 mm
+    @(100.5878 mm, 78.9500 mm): 走线 [/3V3] (F.Cu), 长度: 0.7071 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1398 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(100.2500 mm, 79.6977 mm): 走线 [/GND] (F.Cu), 长度: 0.2092 mm
+    @(100.0878 mm, 79.4500 mm): 走线 [/3V3] (F.Cu), 长度: 0.8503 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1461 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(100.2500 mm, 79.9625 mm): 走线 [/GND] (F.Cu), 长度: 0.2648 mm
+    @(100.0878 mm, 79.4500 mm): 走线 [/3V3] (F.Cu), 长度: 0.8503 mm
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.0000 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(113.7000 mm, 118.1625 mm): F.Cu 上 R15 的焊盘 1 [/USB_VBUS]
+    @(113.8000 mm, 117.9000 mm): SW1 的 NPTH 焊盘
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.0000 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(113.7000 mm, 116.3375 mm): F.Cu 上 R15 的焊盘 2 [/TYPEC_VBUS_DET]
+    @(113.8000 mm, 116.1000 mm): SW1 的 NPTH 焊盘
+[npth_inside_courtyard]: NPTH inside courtyard
+    Local override; error
+    @(113.8000 mm, 117.9000 mm): SW1 的 NPTH 焊盘
+    @(113.7000 mm, 117.2500 mm): 封装 R15
+[npth_inside_courtyard]: NPTH inside courtyard
+    Local override; error
+    @(113.8000 mm, 116.1000 mm): SW1 的 NPTH 焊盘
+    @(113.7000 mm, 117.2500 mm): 封装 R15
+[solder_mask_bridge]: 顶层阻焊开窗区域与不同网络的项目相连
+    Rule: <电路板配置> 中的 "阻焊层最小宽度"; error
+    @(113.8000 mm, 117.9000 mm): SW1 的 NPTH 焊盘
+    @(113.7000 mm, 118.1625 mm): F.Cu 上 R15 的焊盘 1 [/USB_VBUS]
+[solder_mask_bridge]: 顶层阻焊开窗区域与不同网络的项目相连
+    Rule: <电路板配置> 中的 "阻焊层最小宽度"; error
+    @(113.8000 mm, 116.1000 mm): SW1 的 NPTH 焊盘
+    @(113.7000 mm, 116.3375 mm): F.Cu 上 R15 的焊盘 2 [/TYPEC_VBUS_DET]
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(97.3900 mm, 80.0000 mm): 过孔 [/3V3] (F.Cu - B.Cu)
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(101.7527 mm, 120.5121 mm): 走线 [/GND] (In2.Cu), 长度: 0.9073 mm
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(100.0000 mm, 122.0000 mm): 封装 J1
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(100.3000 mm, 96.0000 mm): 封装 U5
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(112.2000 mm, 95.0000 mm): 封装 U10
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(115.0000 mm, 84.5000 mm): 封装 U9
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(100.0000 mm, 111.5000 mm): 封装 J3
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(110.0000 mm, 109.1000 mm): 封装 U2
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(123.1000 mm, 95.0000 mm): 封装 J4
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(86.6000 mm, 98.3000 mm): 封装 U1
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(105.2000 mm, 116.4000 mm): 封装 U11
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(112.5000 mm, 81.5000 mm): 封装 U8
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(84.0000 mm, 118.0000 mm): 封装 J2
+[lib_footprint_issues]: 当前配置中未启用封装库 'MOTO_GPS'
+    Local override; warning
+    @(118.3000 mm, 108.9000 mm): 封装 U3
+
+** Found 3 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(110.1594 mm, 120.4909 mm): 走线 [/USB_VBUS] (In2.Cu), 长度: 4.9369 mm
+    @(113.7000 mm, 118.1625 mm): F.Cu 上 R15 的焊盘 1 [/USB_VBUS]
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(105.5838 mm, 112.8391 mm): 走线 [/I2C_SDA] (B.Cu), 长度: 4.4363 mm
+    @(111.4000 mm, 109.1070 mm): F.Cu 上 U2 的焊盘 12 [/I2C_SDA]
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(110.3000 mm, 117.0250 mm): F.Cu 上 U4 的焊盘 4 [/TYPEC_VBUS_DET]
+    @(113.7000 mm, 116.3375 mm): F.Cu 上 R15 的焊盘 2 [/TYPEC_VBUS_DET]
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

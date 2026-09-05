@@ -1,0 +1,28 @@
+(version 1)
+
+(rule "MOTO GPS minimum track and spacing"
+  (constraint clearance (min 0.15mm))
+  (constraint track_width (min 0.15mm)))
+
+(rule "MOTO GPS copper to board edge"
+  (constraint edge_clearance (min 0.25mm)))
+
+(rule "USB 2.0 differential pair intent"
+  (condition "A.NetName == '/USB_D_P_MCU' || A.NetName == '/USB_D_N_MCU' || A.NetName == '/USB_D_P_CONN' || A.NetName == '/USB_D_N_CONN'")
+  (constraint track_width (min 0.16mm) (opt 0.18mm) (max 0.20mm))
+  (constraint diff_pair_gap (min 0.15mm) (opt 0.18mm) (max 0.22mm)))
+
+(rule "GNSS RF preliminary geometry only"
+  (condition "A.NetName == '/GNSS_ANT_BIASED' || A.NetName == '/GNSS_RF_MATCH_IN' || A.NetName == '/GNSS_RF_IN'")
+  (constraint track_width (min 0.18mm) (opt 0.28mm)))
+
+# A single 0.45/0.20 mm charger-status via sits in the dense BQ25628E fanout.
+# 0.13 mm remains above the selected fabricator's declared copper-spacing
+# capability; limiting the exception to this low-speed net keeps it auditable.
+(rule "BQ charger status local clearance"
+  (condition "A.NetName == '/CHARGER_PG_N' || B.NetName == '/CHARGER_PG_N'")
+  (constraint clearance (min 0.13mm)))
+
+(rule "USB VBUS local fanout clearance"
+  (condition "A.NetName == '/USB_VBUS' || B.NetName == '/USB_VBUS'")
+  (constraint clearance (min 0.13mm)))

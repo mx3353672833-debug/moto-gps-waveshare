@@ -1,0 +1,27 @@
+ERC report (2026-09-03T10:24:09, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(73.66 mm, 193.04 mm): 符号 U5 [MOTO_GPS_QMI8658C]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(269.24 mm, 114.30 mm): 符号 U2 [MOTO_GPS_BQ25628E]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(299.72 mm, 35.56 mm): 符号 U11 [MOTO_GPS_USB_ESD]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(358.14 mm, 115.57 mm): 符号 U3 [MOTO_GPS_TPS63070]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(358.14 mm, 193.04 mm): 符号 U10 [MOTO_GPS_LC76GABMD]
+
+ ** ERC messages: 5  Errors 0  Warnings 5
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters

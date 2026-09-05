@@ -1,0 +1,234 @@
+** Drc report for moto-gps-rev-a.kicad_pcb **
+** Created on 2026-09-03T14:40:59 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 53 DRC violations **
+[shorting_items]: 短路了两个不同网络的项目 (网络 /TYPEC_VBUS_DET 和 /3V3)
+    Local override; error
+    @(115.8000 mm, 115.9875 mm): F.Cu 上 R15 的焊盘 2 [/TYPEC_VBUS_DET]
+    @(116.3416 mm, 115.8584 mm): 走线 [/3V3] (F.Cu), 长度: 1.2140 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(115.8000 mm, 115.9875 mm): 走线 [/TYPEC_VBUS_DET] (F.Cu), 长度: 1.2610 mm
+    @(116.3416 mm, 115.8584 mm): 走线 [/3V3] (F.Cu), 长度: 1.2140 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /TYPEC_VBUS_DET 和 /3V3)
+    Local override; error
+    @(117.0000 mm, 115.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+    @(116.3416 mm, 115.8584 mm): 走线 [/3V3] (F.Cu), 长度: 1.2140 mm
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.1078 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(116.3416 mm, 115.8584 mm): 走线 [/3V3] (F.Cu), 长度: 1.2140 mm
+    @(117.0000 mm, 115.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1000 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(110.3000 mm, 117.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+    @(109.9000 mm, 118.6250 mm): 走线 [/GND] (F.Cu), 长度: 1.0331 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1020 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(110.3000 mm, 117.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+    @(110.7019 mm, 117.5919 mm): 走线 [/GND] (F.Cu), 长度: 1.8499 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /GND 和 /TYPEC_VBUS_DET)
+    Local override; error
+    @(109.9000 mm, 117.5919 mm): 走线 [/GND] (F.Cu), 长度: 0.8000 mm
+    @(110.3000 mm, 117.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.0000 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(109.9000 mm, 117.5919 mm): 走线 [/GND] (F.Cu), 长度: 0.8000 mm
+    @(110.3000 mm, 117.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1001 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(110.3000 mm, 117.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+    @(110.7000 mm, 117.5919 mm): 走线 [/GND] (F.Cu), 长度: 0.0019 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1001 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(110.3000 mm, 117.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+    @(109.9000 mm, 117.5919 mm): 走线 [/GND] (F.Cu), 长度: 0.5669 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1001 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(110.3000 mm, 117.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+    @(110.7000 mm, 117.5919 mm): 走线 [/GND] (F.Cu), 长度: 0.5669 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0825 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(117.0000 mm, 115.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+    @(119.5000 mm, 115.0000 mm): 走线 [/3V3] (In2.Cu), 长度: 2.3000 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0127 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(108.5740 mm, 119.7682 mm): 走线 [/SYS] (In2.Cu), 长度: 6.2261 mm
+    @(110.3000 mm, 117.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.1377 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(108.5740 mm, 119.7682 mm): 走线 [/SYS] (In2.Cu), 长度: 6.2261 mm
+    @(110.3000 mm, 117.6000 mm): 过孔 [/TYPEC_VBUS_DET] (F.Cu - B.Cu)
+[shorting_items]: 短路了两个不同网络的项目 (网络 /I2C_SCL 和 /I2C_SDA)
+    Local override; error
+    @(112.1516 mm, 109.1010 mm): 走线 [/I2C_SCL] (F.Cu), 长度: 0.5572 mm
+    @(111.9000 mm, 109.1070 mm): 过孔 [/I2C_SDA] (F.Cu - B.Cu)
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.0072 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(112.1516 mm, 109.1010 mm): 走线 [/I2C_SCL] (F.Cu), 长度: 0.5572 mm
+    @(111.9000 mm, 109.1070 mm): 过孔 [/I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1246 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(111.9000 mm, 109.1070 mm): 过孔 [/I2C_SDA] (F.Cu - B.Cu)
+    @(111.7576 mm, 108.7070 mm): 走线 [/I2C_SCL] (F.Cu), 长度: 0.3576 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /I2C_SCL 和 /I2C_SDA)
+    Local override; error
+    @(112.1516 mm, 109.8631 mm): 走线 [/I2C_SCL] (F.Cu), 长度: 0.7621 mm
+    @(111.9000 mm, 109.1070 mm): 过孔 [/I2C_SDA] (F.Cu - B.Cu)
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.0766 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(112.1516 mm, 109.8631 mm): 走线 [/I2C_SCL] (F.Cu), 长度: 0.7621 mm
+    @(111.9000 mm, 109.1070 mm): 过孔 [/I2C_SDA] (F.Cu - B.Cu)
+[shorting_items]: 短路了两个不同网络的项目 (网络 /I2C_SDA 和 /BAT_TS)
+    Local override; error
+    @(111.9000 mm, 109.1070 mm): 过孔 [/I2C_SDA] (F.Cu - B.Cu)
+    @(114.5360 mm, 106.4847 mm): 走线 [/BAT_TS] (In2.Cu), 长度: 4.2424 mm
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.0000 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(114.5360 mm, 106.4847 mm): 走线 [/BAT_TS] (In2.Cu), 长度: 4.2424 mm
+    @(111.9000 mm, 109.1070 mm): 过孔 [/I2C_SDA] (F.Cu - B.Cu)
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1165 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(112.1516 mm, 109.8631 mm): 过孔 [/I2C_SCL] (F.Cu - B.Cu)
+    @(111.9000 mm, 109.1070 mm): 走线 [/I2C_SDA] (In1.Cu), 长度: 4.6741 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1016 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(111.4000 mm, 109.1070 mm): 走线 [/I2C_SDA] (F.Cu), 长度: 0.5000 mm
+    @(112.1516 mm, 109.8631 mm): 走线 [/I2C_SCL] (F.Cu), 长度: 0.7621 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0321 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(112.1516 mm, 109.1010 mm): 走线 [/I2C_SCL] (F.Cu), 长度: 0.5572 mm
+    @(111.4000 mm, 109.1070 mm): 走线 [/I2C_SDA] (F.Cu), 长度: 0.5000 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /TYPEC_VBUS_DET 和 /USB_VBUS)
+    Local override; error
+    @(116.8000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 3.1064 mm
+    @(117.0000 mm, 118.0000 mm): 过孔 [/USB_VBUS] (F.Cu - B.Cu)
+[hole_clearance]: 孔间距违规 (<电路板配置> 中的 "孔" 约束 间距 0.1500 mm; 实际 0.0000 mm)
+    Rule: <电路板配置> 中的 "孔" 约束; error
+    @(116.8000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 3.1064 mm
+    @(117.0000 mm, 118.0000 mm): 过孔 [/USB_VBUS] (F.Cu - B.Cu)
+[shorting_items]: 短路了两个不同网络的项目 (网络 /TYPEC_VBUS_DET 和 /GND)
+    Local override; error
+    @(110.6000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 6.2000 mm
+    @(115.6000 mm, 117.7200 mm): 走线 [/GND] (B.Cu), 长度: 1.3404 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0354 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(110.6000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 6.2000 mm
+    @(112.9478 mm, 118.8854 mm): 走线 [/GND] (B.Cu), 长度: 0.3465 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(112.9478 mm, 118.6678 mm): 走线 [/GND] (B.Cu), 长度: 0.2176 mm
+    @(110.6000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 6.2000 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /GND 和 /TYPEC_VBUS_DET)
+    Local override; error
+    @(114.6522 mm, 118.6678 mm): 走线 [/GND] (B.Cu), 长度: 1.7044 mm
+    @(110.6000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 6.2000 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /GND 和 /TYPEC_VBUS_DET)
+    Local override; error
+    @(112.9478 mm, 118.6678 mm): 走线 [/GND] (B.Cu), 长度: 1.3404 mm
+    @(110.6000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 6.2000 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1304 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(110.6000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 6.2000 mm
+    @(112.7028 mm, 119.1304 mm): 过孔 [/GND] (F.Cu - B.Cu)
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(109.9000 mm, 117.5919 mm): 走线 [/GND] (F.Cu), 长度: 0.8000 mm
+    @(110.3000 mm, 117.0250 mm): 走线 [/TYPEC_VBUS_DET] (F.Cu), 长度: 0.5750 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /USB_VBUS 和 /3V3)
+    Local override; error
+    @(115.8000 mm, 117.8125 mm): F.Cu 上 R15 的焊盘 1 [/USB_VBUS]
+    @(116.3416 mm, 117.4788 mm): 走线 [/3V3] (F.Cu), 长度: 1.6204 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /TYPEC_VBUS_DET 和 /3V3)
+    Local override; error
+    @(115.8000 mm, 115.9875 mm): F.Cu 上 R15 的焊盘 2 [/TYPEC_VBUS_DET]
+    @(116.3416 mm, 117.4788 mm): 走线 [/3V3] (F.Cu), 长度: 1.6204 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /TYPEC_VBUS_DET 和 /3V3)
+    Local override; error
+    @(115.8000 mm, 115.9875 mm): 走线 [/TYPEC_VBUS_DET] (F.Cu), 长度: 1.2610 mm
+    @(116.3416 mm, 117.4788 mm): 走线 [/3V3] (F.Cu), 长度: 1.6204 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 /USB_VBUS 和 /3V3)
+    Local override; error
+    @(115.8000 mm, 117.8125 mm): F.Cu 上 R15 的焊盘 1 [/USB_VBUS]
+    @(113.0258 mm, 120.7946 mm): 走线 [/3V3] (F.Cu), 长度: 4.6892 mm
+[tracks_crossing]: Tracks crossing
+    Rule: USB VBUS local fanout clearance; error
+    @(115.8000 mm, 117.8125 mm): 走线 [/USB_VBUS] (F.Cu), 长度: 1.2146 mm
+    @(113.0258 mm, 120.7946 mm): 走线 [/3V3] (F.Cu), 长度: 4.6892 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.0000 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(116.8152 mm, 118.0321 mm): Edge.Cuts 上的 线段
+    @(115.8000 mm, 117.8125 mm): 走线 [/USB_VBUS] (F.Cu), 长度: 1.2146 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.0000 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(117.0455 mm, 117.6511 mm): Edge.Cuts 上的 线段
+    @(115.8000 mm, 117.8125 mm): 走线 [/USB_VBUS] (F.Cu), 长度: 1.2146 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.0000 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(116.8152 mm, 118.0321 mm): Edge.Cuts 上的 线段
+    @(117.0000 mm, 118.0000 mm): 过孔 [/USB_VBUS] (F.Cu - B.Cu)
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.0086 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(116.8152 mm, 118.0321 mm): Edge.Cuts 上的 线段
+    @(117.0000 mm, 118.0000 mm): 走线 [/USB_VBUS] (In2.Cu), 长度: 3.4958 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.0000 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(117.0455 mm, 117.6511 mm): Edge.Cuts 上的 线段
+    @(117.0000 mm, 118.0000 mm): 走线 [/USB_VBUS] (In2.Cu), 长度: 3.4958 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.0985 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(116.6403 mm, 118.4809 mm): Edge.Cuts 上的 线段
+    @(116.8000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 3.1064 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.0000 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(116.8152 mm, 118.0321 mm): Edge.Cuts 上的 线段
+    @(116.8000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 3.1064 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.0000 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(117.0455 mm, 117.6511 mm): Edge.Cuts 上的 线段
+    @(116.8000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 3.1064 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.1024 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(117.3241 mm, 117.3241 mm): Edge.Cuts 上的 线段
+    @(116.8000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 3.1064 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.0000 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(116.6403 mm, 118.4809 mm): Edge.Cuts 上的 线段
+    @(110.6000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 6.2000 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (规则 'MOTO GPS copper to board edge' 间距 0.2500 mm; 实际 0.1441 mm)
+    Rule: MOTO GPS copper to board edge; error
+    @(116.8152 mm, 118.0321 mm): Edge.Cuts 上的 线段
+    @(110.6000 mm, 118.7000 mm): 走线 [/TYPEC_VBUS_DET] (B.Cu), 长度: 6.2000 mm
+[solder_mask_bridge]: 顶层阻焊开窗区域与不同网络的项目相连
+    Rule: <电路板配置> 中的 "阻焊层最小宽度"; error
+    @(116.3416 mm, 115.8584 mm): 走线 [/3V3] (F.Cu), 长度: 1.2140 mm
+    @(115.8000 mm, 115.9875 mm): F.Cu 上 R15 的焊盘 2 [/TYPEC_VBUS_DET]
+[solder_mask_bridge]: 顶层阻焊开窗区域与不同网络的项目相连
+    Rule: <电路板配置> 中的 "阻焊层最小宽度"; error
+    @(113.0258 mm, 120.7946 mm): 走线 [/3V3] (F.Cu), 长度: 4.6892 mm
+    @(115.8000 mm, 117.8125 mm): F.Cu 上 R15 的焊盘 1 [/USB_VBUS]
+[solder_mask_bridge]: 顶层阻焊开窗区域与不同网络的项目相连
+    Rule: <电路板配置> 中的 "阻焊层最小宽度"; error
+    @(116.3416 mm, 117.4788 mm): 走线 [/3V3] (F.Cu), 长度: 1.6204 mm
+    @(115.8000 mm, 117.8125 mm): F.Cu 上 R15 的焊盘 1 [/USB_VBUS]
+[solder_mask_bridge]: 顶层阻焊开窗区域与不同网络的项目相连
+    Rule: <电路板配置> 中的 "阻焊层最小宽度"; error
+    @(116.3416 mm, 117.4788 mm): 走线 [/3V3] (F.Cu), 长度: 1.6204 mm
+    @(115.8000 mm, 115.9875 mm): F.Cu 上 R15 的焊盘 2 [/TYPEC_VBUS_DET]
+
+** Found 1 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(99.2375 mm, 79.4500 mm): 走线 [/3V3] (F.Cu), 长度: 0.4142 mm
+    @(100.7625 mm, 78.9500 mm): 走线 [/3V3] (F.Cu), 长度: 5.4000 mm
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

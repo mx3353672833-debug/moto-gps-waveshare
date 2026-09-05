@@ -1,0 +1,11 @@
+MOTO GPS J3 footprint geometry audit
+EasyEDA source: hardware/rev_a/references/C5343228-easyeda.json
+KiCad footprint: hardware/rev_a/board/MOTO_GPS.pretty/XUNPU_FPC-0.3FX-31PWBH10.kicad_mod
+EasyEDA pads: 33
+KiCad pads: 33
+Translation removed: dx=1015.999975 mm, dy=761.999504 mm
+Maximum signal-pad centre residual: 0.000493 mm
+Maximum signal-pad size residual: 0.000011 mm
+EasyEDA mounting-pad sizes: [(0.4, 0.95), (0.4, 0.95)]
+KiCad unnumbered mounting-pad sizes: [(0.4, 0.95), (0.4, 0.95)]
+RESULT: PASS

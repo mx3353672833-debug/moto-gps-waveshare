@@ -1,0 +1,84 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-03T14:51:51",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.6",
+    "schematic_parity": [],
+    "source": "moto-gps-rev-a.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1398 mm)",
+            "items": [
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 0.2092 mm",
+                    "pos": {
+                        "x": 100.25,
+                        "y": 79.6977
+                    },
+                    "uuid": "2cd161f5-b19d-4290-9e0d-da12229ae4f6"
+                },
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 0.8503 mm",
+                    "pos": {
+                        "x": 100.0878,
+                        "y": 79.45
+                    },
+                    "uuid": "65cb1d69-bc68-4de4-b0ec-2dd637f5b2e9"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1398 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 0.7071 mm",
+                    "pos": {
+                        "x": 100.5878,
+                        "y": 78.95
+                    },
+                    "uuid": "1424329d-ffdc-4fa8-a4cd-55ee45849287"
+                },
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 0.2648 mm",
+                    "pos": {
+                        "x": 100.3979,
+                        "y": 79.5498
+                    },
+                    "uuid": "59c4d36e-3d4d-493e-b209-6f35f7f3db46"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        }
+    ]
+}

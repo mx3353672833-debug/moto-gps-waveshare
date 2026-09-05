@@ -1,0 +1,31 @@
+{
+  "passed": false,
+  "metrics": {
+    "symbols": 93,
+    "wires": 354,
+    "footprints": 93,
+    "pads": 458,
+    "named_nets": 74,
+    "tracks": 1437,
+    "vias": 190,
+    "zones": 2,
+    "copper_layers": 4,
+    "edge_items": 360,
+    "smd_assembly_refs": 93
+  },
+  "errors": [
+    {
+      "code": "FAB_BLOCK_MARKER",
+      "message": "schematic contains fabrication-blocking marker(s): NOT_FOR_FAB"
+    },
+    {
+      "code": "FAB_BLOCK_MARKER",
+      "message": "PCB contains fabrication-blocking marker(s): NOT_FOR_FAB"
+    },
+    {
+      "code": "LCSC_PART_MISSING",
+      "message": "production symbols without a valid 'LCSC Part #' C-number: C1, C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C2, C20, C21, C22, C23, C24, C25, C26, C27, C28, C29, C3, C30, C31, C34, C35, C36, C37, C4, C5, C6, C7, C8, C9, D1, D2, FB1, J1, J2, J3, J4, L1, L2, L3, Q1, R1, R12, R13, R14, R15, R16, R17, R18, R19, R2, R20, R21, R22, R23, R24, R25, R26, R27, R28, R29, R3, R30, R31, R32, R33, R34, R4, R5, R6, R7, R8, R9, SW1, SW2, SW3, SW4, U1, U10, U11, U2, U3, U4, U5, U6, U7, U8, U9"
+    }
+  ],
+  "warnings": []
+}

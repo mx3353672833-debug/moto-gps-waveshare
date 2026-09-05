@@ -1,0 +1,198 @@
+{
+  "revision": "V3",
+  "parts": {
+    "v3_front_bezel": {
+      "valid": true,
+      "x_mm": 61.0,
+      "y_mm": 61.0,
+      "z_mm": 3.0,
+      "min_x_mm": -30.5,
+      "min_y_mm": -30.5,
+      "min_z_mm": 0.0,
+      "max_x_mm": 30.5,
+      "max_y_mm": 30.5,
+      "max_z_mm": 3.0
+    },
+    "v3_rear_shell": {
+      "valid": true,
+      "x_mm": 61.0,
+      "y_mm": 61.0,
+      "z_mm": 13.0,
+      "min_x_mm": -30.5,
+      "min_y_mm": -30.5,
+      "min_z_mm": -13.0,
+      "max_x_mm": 30.5,
+      "max_y_mm": 30.5,
+      "max_z_mm": 0.0
+    },
+    "v3_mount_insert": {
+      "valid": true,
+      "x_mm": 28.6,
+      "y_mm": 24.9,
+      "z_mm": 3.0,
+      "min_x_mm": -14.3,
+      "min_y_mm": -12.45,
+      "min_z_mm": -16.0,
+      "max_x_mm": 14.3,
+      "max_y_mm": 12.45,
+      "max_z_mm": -13.0
+    },
+    "v3_screw_set": {
+      "valid": true,
+      "x_mm": 42.174,
+      "y_mm": 42.174,
+      "z_mm": 7.5,
+      "min_x_mm": -21.087,
+      "min_y_mm": -21.087,
+      "min_z_mm": -4.5,
+      "max_x_mm": 21.087,
+      "max_y_mm": 21.087,
+      "max_z_mm": 3.0
+    },
+    "screen_cover": {
+      "valid": true,
+      "x_mm": 48.96,
+      "y_mm": 48.96,
+      "z_mm": 1.1,
+      "min_x_mm": -24.48,
+      "min_y_mm": -24.48,
+      "min_z_mm": 1.65,
+      "max_x_mm": 24.48,
+      "max_y_mm": 24.48,
+      "max_z_mm": 2.75
+    },
+    "screen_touch_visible": {
+      "valid": true,
+      "x_mm": 44.16,
+      "y_mm": 44.16,
+      "z_mm": 0.05,
+      "min_x_mm": -22.08,
+      "min_y_mm": -22.08,
+      "min_z_mm": 2.75,
+      "max_x_mm": 22.08,
+      "max_y_mm": 22.08,
+      "max_z_mm": 2.8
+    },
+    "screen_active": {
+      "valid": true,
+      "x_mm": 43.76,
+      "y_mm": 43.76,
+      "z_mm": 0.05,
+      "min_x_mm": -21.88,
+      "min_y_mm": -21.88,
+      "min_z_mm": 2.76,
+      "max_x_mm": 21.88,
+      "max_y_mm": 21.88,
+      "max_z_mm": 2.81
+    },
+    "screen_lcm": {
+      "valid": true,
+      "x_mm": 45.93,
+      "y_mm": 46.35,
+      "z_mm": 0.8,
+      "min_x_mm": -22.965,
+      "min_y_mm": -23.175,
+      "min_z_mm": 0.68,
+      "max_x_mm": 22.965,
+      "max_y_mm": 23.175,
+      "max_z_mm": 1.48
+    },
+    "pcb_with_boss_notches": {
+      "valid": true,
+      "x_mm": 52.0,
+      "y_mm": 52.0,
+      "z_mm": 1.0,
+      "min_x_mm": -26.0,
+      "min_y_mm": -26.0,
+      "min_z_mm": -2.5,
+      "max_x_mm": 26.0,
+      "max_y_mm": 26.0,
+      "max_z_mm": -1.5
+    },
+    "battery": {
+      "valid": true,
+      "x_mm": 27.0,
+      "y_mm": 32.0,
+      "z_mm": 7.0,
+      "min_x_mm": -13.5,
+      "min_y_mm": -21.0,
+      "min_z_mm": -9.9,
+      "max_x_mm": 13.5,
+      "max_y_mm": 11.0,
+      "max_z_mm": -2.9
+    },
+    "gnss_antenna": {
+      "valid": true,
+      "x_mm": 10.0,
+      "y_mm": 10.0,
+      "z_mm": 6.0,
+      "min_x_mm": -5.0,
+      "min_y_mm": 13.8,
+      "min_z_mm": -11.0,
+      "max_x_mm": 5.0,
+      "max_y_mm": 23.8,
+      "max_z_mm": -5.0
+    },
+    "gnss_rf_keepout": {
+      "valid": true,
+      "x_mm": 12.0,
+      "y_mm": 12.0,
+      "z_mm": 7.5,
+      "min_x_mm": -6.0,
+      "min_y_mm": 12.8,
+      "min_z_mm": -11.75,
+      "max_x_mm": 6.0,
+      "max_y_mm": 24.8,
+      "max_z_mm": -4.25
+    },
+    "body_assembly": {
+      "valid": true,
+      "x_mm": 61.0,
+      "y_mm": 61.0,
+      "z_mm": 19.0,
+      "min_x_mm": -30.5,
+      "min_y_mm": -30.5,
+      "min_z_mm": -16.0,
+      "max_x_mm": 30.5,
+      "max_y_mm": 30.5,
+      "max_z_mm": 3.0
+    }
+  },
+  "radial_clearances_mm": {
+    "screen_cover_max_to_screw_head_seat": 1.545,
+    "screw_head_seat_to_body_edge": 1.15,
+    "glass_pocket_to_seal_groove": 0.27,
+    "seal_groove_to_insert_pocket": 0.275,
+    "glass_support_shoulder": 2.13,
+    "screw_tip_blind_clearance": 0.3
+  },
+  "packaging_gaps_mm": {
+    "screen_worst_case_back_to_pcb_top": 2.03,
+    "screen_1p5mm_rear_keepout_to_pcb_top": 0.53,
+    "battery_to_gnss_keepout_y": 1.8,
+    "gnss_keepout_to_inner_wall_at_12_oclock": 3.3
+  },
+  "checks": {
+    "all_shapes_valid": true,
+    "screen_screw_clearance_positive": true,
+    "screw_head_inside_body": true,
+    "continuous_seal_clear_of_insert_pockets": true,
+    "glass_has_positive_support_shoulder": true,
+    "battery_clear_of_gnss_keepout": true
+  },
+  "notes": [
+    "Rev A1 uses the H0175Y003AMT003 V1 controlled drawing: cover 48.96 +/- 0.05 mm, touch VA 44.16 mm, AMOLED AA 43.76 mm.",
+    "M1.6 was selected because an M2 head leaves inadequate material in the radial face band.",
+    "Front bezel uses a 45.00 mm visible aperture and 49.26 mm rear glass pocket.",
+    "Screen face is 0.25 mm below the protective rim; worst-case total stack is 2.22 mm.",
+    "PCB top is lowered to z=-1.50 mm so the drawing's 1.50 mm rear component zone retains nominal clearance.",
+    "The drawing's local 0.6/1.5 mm rear component zones still require sample/DXF coordinate sign-off.",
+    "PCB envelope includes four R2.7 mm edge scallops for insert-boss clearance.",
+    "The split-plane seal runs in a 1.2 x 0.75 mm groove on a real annular land.",
+    "Blind screw-tip clearance extends 4.8 mm below the split plane for M1.6x6 hardware.",
+    "GNSS keepout is internal at 12 o'clock behind the RF-transparent plastic rear floor.",
+    "No external RF pod is present in V3.",
+    "Rear interface is a replaceable Garmin Edge-compatible male quarter-turn cleat envelope.",
+    "Garmin interface dimensions and locking detents require gauge fitting to OEM mount 010-11430-00 before release."
+  ]
+}

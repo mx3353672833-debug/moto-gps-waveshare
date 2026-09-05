@@ -31,3 +31,11 @@ Web 构建使用 Emscripten / SDL，相关工具链及运行时亦保留其原�
 `backend/fixtures` 是自动测试样例，不是可用于导航的服务数据。
 
 MOTO GPS 是独立开发项目，不代表 Waveshare、Garmin、Apple 或高德的官方产品、认证或背书。
+
+## 硬件与技术方案参考材料
+
+`hardware/rev_a/references/`、制造候选包的 `references/`、验证报告配图及
+`docs/technical-proposal/assets/` 包含供应商数据手册、公开原理图、器件/封装资料和场景参考。
+Waveshare、Quectel、华夏彩光、连接器与其他器件厂商的资料，以及带原发布者标识的参考图，
+版权和使用条件由各原发布者保留。仓库提供这些材料用于理解设计依据，根目录许可不重新授权这些材料。
+第三方符号、封装及其派生内容继续保留原有声明；其余项目原创电路、机械脚本和设计文档沿用项目许可。

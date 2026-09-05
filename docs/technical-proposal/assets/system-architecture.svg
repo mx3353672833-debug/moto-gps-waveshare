@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071016"/><stop offset="1" stop-color="#101b22"/></linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#73cdf5"/></marker>
+    <style>
+      .t{font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif;fill:#f7fbfd}.h{font-size:35px;font-weight:700}.s{font-size:21px;fill:#b9c8cf}.k{font-size:22px;font-weight:700}.b{fill:#14242d;stroke:#3e6d80;stroke-width:2}.hot{fill:#132d34;stroke:#6bd2c0}.amber{fill:#33291b;stroke:#edaa47}.line{fill:none;stroke:#73cdf5;stroke-width:4;marker-end:url(#arrow)}.dash{fill:none;stroke:#82939b;stroke-width:2;stroke-dasharray:9 8}.tag{font-size:17px;fill:#73cdf5;font-weight:700}.n{font-size:18px;fill:#cfdae0}
+    </style>
+  </defs>
+  <rect width="1400" height="800" rx="34" fill="url(#bg)"/>
+  <text x="70" y="76" class="t h">端到端系统架构</text><text x="70" y="112" class="t s">手机只负责网络与目的地输入；锁屏后，设备继续定位、判断和显示</text>
+  <rect x="70" y="170" width="330" height="470" rx="28" class="b"/>
+  <text x="105" y="225" class="t k">手机 / iPhone · Android</text>
+  <text x="105" y="275" class="t n">- 开启 2.4 GHz 热点</text><text x="105" y="316" class="t n">- 网页搜索目的地</text><text x="105" y="357" class="t n">- 完成设备配对与下发</text><text x="105" y="398" class="t n">- 导航开始后可锁屏收纳</text>
+  <rect x="105" y="458" width="260" height="120" rx="20" class="hot"/><text x="130" y="500" class="t k">不是画面投屏</text><text x="130" y="535" class="t n">不读取高德/百度通知</text><text x="130" y="568" class="t n">不依赖手机摆放朝向</text>
+  <rect x="535" y="170" width="330" height="470" rx="28" class="b"/>
+  <text x="570" y="225" class="t k">自有导航后端</text>
+  <text x="570" y="275" class="t n">- 隔离高德 Key</text><text x="570" y="316" class="t n">- POI 搜索 / 路线 / 路况</text><text x="570" y="357" class="t n">- WGS84 / GCJ-02 边界</text><text x="570" y="398" class="t n">- RouteBundle 标准化</text><text x="570" y="439" class="t n">- 设备会话与目的地下发</text>
+  <rect x="570" y="492" width="260" height="86" rx="18" class="amber"/><text x="595" y="529" class="t k">高德开放平台</text><text x="595" y="561" class="t n">道路、路线、实时路况</text>
+  <rect x="1000" y="170" width="330" height="470" rx="28" class="b"/>
+  <text x="1035" y="225" class="t k">MOTO GPS 终端</text>
+  <text x="1035" y="275" class="t n">- 独立 GNSS 位置 / 速度</text><text x="1035" y="316" class="t n">- IMU + 罗盘车头航向</text><text x="1035" y="357" class="t n">- NavCore 推进 / 偏航</text><text x="1035" y="398" class="t n">- LVGL 四页圆屏界面</text><text x="1035" y="439" class="t n">- 路线缓存 / 自动重连</text><text x="1035" y="480" class="t n">- BLE 媒体遥控（附加）</text>
+  <rect x="1035" y="520" width="260" height="58" rx="18" class="hot"/><text x="1060" y="557" class="t k">偏航时自行请求重算</text>
+  <path d="M400 285H535" class="line"/><path d="M865 285H1000" class="line"/><path d="M1000 405H865" class="line"/>
+  <text x="430" y="268" class="t tag">HTTPS</text><text x="891" y="268" class="t tag">热点 / HTTPS</text><text x="883" y="390" class="t tag">偏航 · 路况刷新</text>
+  <path d="M235 640V704H1165V640" class="dash"/><text x="475" y="744" class="t s">网络中断：终端沿缓存路线继续；恢复后补做重算和路况刷新</text>
+</svg>

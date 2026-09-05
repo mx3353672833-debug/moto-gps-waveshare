@@ -1,0 +1,2615 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-03T17:31:44",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.6",
+    "schematic_parity": [],
+    "source": "moto-gps-rev-a1.kicad_pcb",
+    "unconnected_items": [
+        {
+            "description": "Missing connection between items",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (F.Cu), 长度: 0.6900 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 99.49
+                    },
+                    "uuid": "c63950d9-0391-4990-a64d-4ffebe6cafb3"
+                },
+                {
+                    "description": "F.Cu 上 R36 的焊盘 1 [/SYS]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "5e69f171-896a-4113-a80a-7dd3a7286407"
+                }
+            ],
+            "severity": "error",
+            "type": "unconnected_items"
+        },
+        {
+            "description": "Missing connection between items",
+            "items": [
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                },
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 6.4129 mm",
+                    "pos": {
+                        "x": 109.5716,
+                        "y": 100.0551
+                    },
+                    "uuid": "6fc92b7f-0c6b-4aea-a649-044724c8efb0"
+                }
+            ],
+            "severity": "error",
+            "type": "unconnected_items"
+        },
+        {
+            "description": "Missing connection between items",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (F.Cu), 长度: 0.6900 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.01
+                    },
+                    "uuid": "9c67c637-01f7-4f5b-b1e0-1f7fb293a84b"
+                },
+                {
+                    "description": "F.Cu 上 R35 的焊盘 1 [/3V3_DISPLAY]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 101.99
+                    },
+                    "uuid": "489fa1d9-337c-43c7-953f-739f8631d93a"
+                }
+            ],
+            "severity": "error",
+            "type": "unconnected_items"
+        },
+        {
+            "description": "Missing connection between items",
+            "items": [
+                {
+                    "description": "F.Cu 上 R36 的焊盘 2 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 99.49
+                    },
+                    "uuid": "a096017c-e27f-465a-8274-0d06e1a388e0"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 1.4800 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "40401842-51d9-49a1-bdf0-298cd9b857b9"
+                }
+            ],
+            "severity": "error",
+            "type": "unconnected_items"
+        },
+        {
+            "description": "Missing connection between items",
+            "items": [
+                {
+                    "description": "F.Cu 上 R35 的焊盘 2 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.01
+                    },
+                    "uuid": "74231dd9-c3fd-4cfb-9a17-6ba295dc6166"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 1.4800 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "40401842-51d9-49a1-bdf0-298cd9b857b9"
+                }
+            ],
+            "severity": "error",
+            "type": "unconnected_items"
+        }
+    ],
+    "violations": [
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_CLK_MCU 和 /GND)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_CLK_MCU] (F.Cu), 长度: 0.4407 mm",
+                    "pos": {
+                        "x": 100.7225,
+                        "y": 101.32
+                    },
+                    "uuid": "aa2968f8-9f74-4371-9c8e-9a316fa6f068"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_CLK_MCU 和 /GND)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_CLK_MCU] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.0341,
+                        "y": 101.0084
+                    },
+                    "uuid": "567ce615-bf8e-4c29-b304-678c9adf3b12"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_VBAT 和 /3V3_DISPLAY)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 1.4800 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "40401842-51d9-49a1-bdf0-298cd9b857b9"
+                },
+                {
+                    "description": "F.Cu 上 R35 的焊盘 1 [/3V3_DISPLAY]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 101.99
+                    },
+                    "uuid": "489fa1d9-337c-43c7-953f-739f8631d93a"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_VBAT 和 /SYS)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 1.4800 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "40401842-51d9-49a1-bdf0-298cd9b857b9"
+                },
+                {
+                    "description": "F.Cu 上 R36 的焊盘 1 [/SYS]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "5e69f171-896a-4113-a80a-7dd3a7286407"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /GNSS_ANT_ON 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "B.Cu 上 TP17 的焊盘 1 [/GNSS_ANT_ON]",
+                    "pos": {
+                        "x": 121.2504,
+                        "y": 94.306
+                    },
+                    "uuid": "f5e2b9b1-f747-40e0-8c24-3929d2549246"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (B.Cu), 长度: 0.7004 mm",
+                    "pos": {
+                        "x": 121.250368,
+                        "y": 94.305981
+                    },
+                    "uuid": "fe95626b-d1ad-40b0-8b66-d5592b750431"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.9430 mm",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "208d733a-9e0f-457a-a8f6-79c45655a9e4"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.8111 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "b85b96e0-f2f4-4cb8-b547-34bfa99fd817"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                },
+                {
+                    "description": "过孔 [/LCD_CLK_MCU] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.0341,
+                        "y": 101.0084
+                    },
+                    "uuid": "567ce615-bf8e-4c29-b304-678c9adf3b12"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (B.Cu), 长度: 0.7004 mm",
+                    "pos": {
+                        "x": 121.250368,
+                        "y": 94.305981
+                    },
+                    "uuid": "fe95626b-d1ad-40b0-8b66-d5592b750431"
+                },
+                {
+                    "description": "填充区[/GND]在 B.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.55,
+                        "y": 100.0
+                    },
+                    "uuid": "42b70fa2-e8c7-458e-bb2a-bde0e0011388"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 11.1780 mm",
+                    "pos": {
+                        "x": 110.0,
+                        "y": 98.0
+                    },
+                    "uuid": "07131c77-01dd-4044-8c2b-accdeb0c6f07"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_VBAT 和 /GNSS_ANT_ON)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 120.55,
+                        "y": 94.306
+                    },
+                    "uuid": "062c3ae6-63fc-4566-b32f-524d6978a8dc"
+                },
+                {
+                    "description": "B.Cu 上 TP17 的焊盘 1 [/GNSS_ANT_ON]",
+                    "pos": {
+                        "x": 121.2504,
+                        "y": 94.306
+                    },
+                    "uuid": "f5e2b9b1-f747-40e0-8c24-3929d2549246"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.1004 mm)",
+            "items": [
+                {
+                    "description": "B.Cu 上 TP17 的焊盘 1 [/GNSS_ANT_ON]",
+                    "pos": {
+                        "x": 121.2504,
+                        "y": 94.306
+                    },
+                    "uuid": "f5e2b9b1-f747-40e0-8c24-3929d2549246"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 120.55,
+                        "y": 94.306
+                    },
+                    "uuid": "062c3ae6-63fc-4566-b32f-524d6978a8dc"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "849161eb-72f0-4922-82dc-de54828856ce"
+                },
+                {
+                    "description": "填充区[/GND]在 B.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.55,
+                        "y": 100.0
+                    },
+                    "uuid": "42b70fa2-e8c7-458e-bb2a-bde0e0011388"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /SYS 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "F.Cu 上 R36 的焊盘 1 [/SYS]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "5e69f171-896a-4113-a80a-7dd3a7286407"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 2.2250 mm",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 100.5
+                    },
+                    "uuid": "e5d3049d-20c5-4208-80b2-59bd2739c44c"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "849161eb-72f0-4922-82dc-de54828856ce"
+                },
+                {
+                    "description": "填充区[/GND]在 B.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.55,
+                        "y": 100.0
+                    },
+                    "uuid": "42b70fa2-e8c7-458e-bb2a-bde0e0011388"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 120.55,
+                        "y": 94.306
+                    },
+                    "uuid": "062c3ae6-63fc-4566-b32f-524d6978a8dc"
+                },
+                {
+                    "description": "填充区[/GND]在 B.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.55,
+                        "y": 100.0
+                    },
+                    "uuid": "42b70fa2-e8c7-458e-bb2a-bde0e0011388"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 120.55,
+                        "y": 94.306
+                    },
+                    "uuid": "062c3ae6-63fc-4566-b32f-524d6978a8dc"
+                },
+                {
+                    "description": "填充区[/GND]在 B.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.55,
+                        "y": 100.0
+                    },
+                    "uuid": "42b70fa2-e8c7-458e-bb2a-bde0e0011388"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "849161eb-72f0-4922-82dc-de54828856ce"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "849161eb-72f0-4922-82dc-de54828856ce"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 120.55,
+                        "y": 94.306
+                    },
+                    "uuid": "062c3ae6-63fc-4566-b32f-524d6978a8dc"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 120.55,
+                        "y": 94.306
+                    },
+                    "uuid": "062c3ae6-63fc-4566-b32f-524d6978a8dc"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_CS_N 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_CS_N] (In2.Cu), 长度: 2.6727 mm",
+                    "pos": {
+                        "x": 101.5521,
+                        "y": 108.6578
+                    },
+                    "uuid": "0e0db59e-81cc-4314-a5ed-b4a77c22232f"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0729 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_CS_N] (In2.Cu), 长度: 2.6727 mm",
+                    "pos": {
+                        "x": 101.5521,
+                        "y": 108.6578
+                    },
+                    "uuid": "0e0db59e-81cc-4314-a5ed-b4a77c22232f"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_CLK 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_CLK] (B.Cu), 长度: 3.6340 mm",
+                    "pos": {
+                        "x": 105.3269,
+                        "y": 108.9365
+                    },
+                    "uuid": "4d93e1ec-7ca4-4a20-ac46-e7e9d965e562"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_CLK] (B.Cu), 长度: 3.6340 mm",
+                    "pos": {
+                        "x": 105.3269,
+                        "y": 108.9365
+                    },
+                    "uuid": "4d93e1ec-7ca4-4a20-ac46-e7e9d965e562"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_CLK 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_CLK] (B.Cu), 长度: 2.4873 mm",
+                    "pos": {
+                        "x": 101.6929,
+                        "y": 108.9365
+                    },
+                    "uuid": "549a87b9-5889-4a45-a943-68c1ffb5b033"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_CLK] (B.Cu), 长度: 2.4873 mm",
+                    "pos": {
+                        "x": 101.6929,
+                        "y": 108.9365
+                    },
+                    "uuid": "549a87b9-5889-4a45-a943-68c1ffb5b033"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0876 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_SIO2] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.6856,
+                        "y": 101.2332
+                    },
+                    "uuid": "b14d1776-6c9a-41ed-bb9d-2f9828afc5d8"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_SIO0 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_SIO0] (In2.Cu), 长度: 3.6343 mm",
+                    "pos": {
+                        "x": 102.0056,
+                        "y": 106.8184
+                    },
+                    "uuid": "1c89d0d4-22ab-47bd-be74-c7990096e43c"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0306 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_SIO0] (In2.Cu), 长度: 3.6343 mm",
+                    "pos": {
+                        "x": 102.0056,
+                        "y": 106.8184
+                    },
+                    "uuid": "1c89d0d4-22ab-47bd-be74-c7990096e43c"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1088 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.8111 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "b85b96e0-f2f4-4cb8-b547-34bfa99fd817"
+                },
+                {
+                    "description": "过孔 [/LCD_RESET_N] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 103.1197,
+                        "y": 101.835
+                    },
+                    "uuid": "cb590e46-3639-46fe-bf37-0d3046da84ba"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /GNSS_ANT_ON 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/GNSS_ANT_ON] (B.Cu), 长度: 2.9508 mm",
+                    "pos": {
+                        "x": 119.1639,
+                        "y": 96.3925
+                    },
+                    "uuid": "4558e793-0fa6-464d-8133-d7f94f564558"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (B.Cu), 长度: 0.7004 mm",
+                    "pos": {
+                        "x": 121.250368,
+                        "y": 94.305981
+                    },
+                    "uuid": "fe95626b-d1ad-40b0-8b66-d5592b750431"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /GNSS_ANT_ON 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/GNSS_ANT_ON] (B.Cu), 长度: 2.9508 mm",
+                    "pos": {
+                        "x": 119.1639,
+                        "y": 96.3925
+                    },
+                    "uuid": "4558e793-0fa6-464d-8133-d7f94f564558"
+                },
+                {
+                    "description": "B.Cu 上 TP18 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 121.250368,
+                        "y": 94.305981
+                    },
+                    "uuid": "eefb26ef-69fa-4af4-8024-01389779219d"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_VBAT 和 /GNSS_RESET_N_1V8)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.9430 mm",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "208d733a-9e0f-457a-a8f6-79c45655a9e4"
+                },
+                {
+                    "description": "过孔 [/GNSS_RESET_N_1V8] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 106.9727,
+                        "y": 99.4
+                    },
+                    "uuid": "67c91cad-cf7e-4616-937b-f95b700ab579"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.9430 mm",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "208d733a-9e0f-457a-a8f6-79c45655a9e4"
+                },
+                {
+                    "description": "过孔 [/GNSS_RESET_N_1V8] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 106.9727,
+                        "y": 99.4
+                    },
+                    "uuid": "67c91cad-cf7e-4616-937b-f95b700ab579"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0988 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                },
+                {
+                    "description": "走线 [/LCD_SIO1] (B.Cu), 长度: 3.6499 mm",
+                    "pos": {
+                        "x": 105.4686,
+                        "y": 109.4484
+                    },
+                    "uuid": "c3bf5b2a-757d-4b6b-aecf-ee59ade9f20e"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0988 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_SIO1] (B.Cu), 长度: 3.0510 mm",
+                    "pos": {
+                        "x": 101.8187,
+                        "y": 109.4484
+                    },
+                    "uuid": "43d69cb2-c76e-4062-868f-02dd7480f17e"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "5d637c7a-0129-4101-94f2-6947171a68ab"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0222 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_SIO1_MCU] (B.Cu), 长度: 1.9440 mm",
+                    "pos": {
+                        "x": 103.8619,
+                        "y": 101.9313
+                    },
+                    "uuid": "4fe45bc2-4709-497c-9e4c-1cee6796963b"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "849161eb-72f0-4922-82dc-de54828856ce"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.1472 mm)",
+            "items": [
+                {
+                    "description": "走线 [/LCD_SIO1_MCU] (B.Cu), 长度: 1.9440 mm",
+                    "pos": {
+                        "x": 103.8619,
+                        "y": 101.9313
+                    },
+                    "uuid": "4fe45bc2-4709-497c-9e4c-1cee6796963b"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "849161eb-72f0-4922-82dc-de54828856ce"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In2.Cu), 长度: 1.5556 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "2821ce29-3f10-4990-8327-efe0fd51405c"
+                },
+                {
+                    "description": "走线 [/LCD_CLK_MCU] (In2.Cu), 长度: 5.4078 mm",
+                    "pos": {
+                        "x": 105.2114,
+                        "y": 105.8247
+                    },
+                    "uuid": "e19ecfe6-65a0-4cfc-a4a7-4f062f6259cf"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0592 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_CLK] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.2841,
+                        "y": 104.1226
+                    },
+                    "uuid": "8e45a234-6192-4a06-bb72-4460d38639d9"
+                },
+                {
+                    "description": "过孔 [/3V3_DISPLAY] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "97278ab9-368a-4b07-91a1-2bd93c09bc87"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0527 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In2.Cu), 长度: 1.8763 mm",
+                    "pos": {
+                        "x": 103.9,
+                        "y": 104.8
+                    },
+                    "uuid": "d79dee6b-7aca-4a5e-8903-fd10f50123f4"
+                },
+                {
+                    "description": "走线 [/LCD_CLK_MCU] (In2.Cu), 长度: 5.4078 mm",
+                    "pos": {
+                        "x": 105.2114,
+                        "y": 105.8247
+                    },
+                    "uuid": "e19ecfe6-65a0-4cfc-a4a7-4f062f6259cf"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0592 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_CLK] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.2841,
+                        "y": 104.1226
+                    },
+                    "uuid": "8e45a234-6192-4a06-bb72-4460d38639d9"
+                },
+                {
+                    "description": "过孔 [/3V3_DISPLAY] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "97278ab9-368a-4b07-91a1-2bd93c09bc87"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0752 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/3V3_DISPLAY] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.5491,
+                        "y": 106.1015
+                    },
+                    "uuid": "2d4d9e42-4fd2-4c4b-8bcf-62f85e41fb80"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (In1.Cu), 长度: 7.8111 mm",
+                    "pos": {
+                        "x": 101.8,
+                        "y": 109.05
+                    },
+                    "uuid": "b85b96e0-f2f4-4cb8-b547-34bfa99fd817"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/3V3_DISPLAY] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "97278ab9-368a-4b07-91a1-2bd93c09bc87"
+                },
+                {
+                    "description": "填充区[/GND]在 B.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.55,
+                        "y": 100.0
+                    },
+                    "uuid": "42b70fa2-e8c7-458e-bb2a-bde0e0011388"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/3V3_DISPLAY] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "97278ab9-368a-4b07-91a1-2bd93c09bc87"
+                },
+                {
+                    "description": "填充区[/GND]在 B.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.55,
+                        "y": 100.0
+                    },
+                    "uuid": "42b70fa2-e8c7-458e-bb2a-bde0e0011388"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0592 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_CLK] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.2841,
+                        "y": 104.1226
+                    },
+                    "uuid": "8e45a234-6192-4a06-bb72-4460d38639d9"
+                },
+                {
+                    "description": "过孔 [/3V3_DISPLAY] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "97278ab9-368a-4b07-91a1-2bd93c09bc87"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_VBAT 和 /3V3_DISPLAY)",
+            "items": [
+                {
+                    "description": "F.Cu 上 R35 的焊盘 2 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.01
+                    },
+                    "uuid": "74231dd9-c3fd-4cfb-9a17-6ba295dc6166"
+                },
+                {
+                    "description": "走线 [/3V3_DISPLAY] (F.Cu), 长度: 0.6900 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.01
+                    },
+                    "uuid": "9c67c637-01f7-4f5b-b1e0-1f7fb293a84b"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/3V3_DISPLAY] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "97278ab9-368a-4b07-91a1-2bd93c09bc87"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/3V3_DISPLAY] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "97278ab9-368a-4b07-91a1-2bd93c09bc87"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0592 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_CLK] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.2841,
+                        "y": 104.1226
+                    },
+                    "uuid": "8e45a234-6192-4a06-bb72-4460d38639d9"
+                },
+                {
+                    "description": "过孔 [/3V3_DISPLAY] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "97278ab9-368a-4b07-91a1-2bd93c09bc87"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "走线 [/I2C_SDA] (In2.Cu), 长度: 5.4755 mm",
+                    "pos": {
+                        "x": 103.0622,
+                        "y": 110.0044
+                    },
+                    "uuid": "d66e04e3-06be-4ebf-a604-8f5f8415b203"
+                },
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In2.Cu), 长度: 1.8763 mm",
+                    "pos": {
+                        "x": 103.9,
+                        "y": 104.8
+                    },
+                    "uuid": "d79dee6b-7aca-4a5e-8903-fd10f50123f4"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0331 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In2.Cu), 长度: 1.5556 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "2821ce29-3f10-4990-8327-efe0fd51405c"
+                },
+                {
+                    "description": "走线 [/I2C_SCL] (In2.Cu), 长度: 1.5929 mm",
+                    "pos": {
+                        "x": 103.7169,
+                        "y": 106.3498
+                    },
+                    "uuid": "43bcdd46-4312-4aeb-a66e-edf7018f175d"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0381 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In2.Cu), 长度: 1.5556 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.7
+                    },
+                    "uuid": "2821ce29-3f10-4990-8327-efe0fd51405c"
+                },
+                {
+                    "description": "走线 [/I2C_SCL] (In2.Cu), 长度: 3.7209 mm",
+                    "pos": {
+                        "x": 103.7169,
+                        "y": 104.7569
+                    },
+                    "uuid": "4be1b817-6a7e-4ec4-9500-ec01a82abf71"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "走线 [/I2C_SCL] (In2.Cu), 长度: 1.5929 mm",
+                    "pos": {
+                        "x": 103.7169,
+                        "y": 106.3498
+                    },
+                    "uuid": "43bcdd46-4312-4aeb-a66e-edf7018f175d"
+                },
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In2.Cu), 长度: 1.8763 mm",
+                    "pos": {
+                        "x": 103.9,
+                        "y": 104.8
+                    },
+                    "uuid": "d79dee6b-7aca-4a5e-8903-fd10f50123f4"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0081 mm)",
+            "items": [
+                {
+                    "description": "走线 [/I2C_SCL] (In2.Cu), 长度: 3.7209 mm",
+                    "pos": {
+                        "x": 103.7169,
+                        "y": 104.7569
+                    },
+                    "uuid": "4be1b817-6a7e-4ec4-9500-ec01a82abf71"
+                },
+                {
+                    "description": "走线 [/3V3_DISPLAY] (In2.Cu), 长度: 1.8763 mm",
+                    "pos": {
+                        "x": 103.9,
+                        "y": 104.8
+                    },
+                    "uuid": "d79dee6b-7aca-4a5e-8903-fd10f50123f4"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /GND 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 3.1011 mm",
+                    "pos": {
+                        "x": 103.1587,
+                        "y": 100.0551
+                    },
+                    "uuid": "884369a7-d6cf-4727-b135-e86c963d434d"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 100.5
+                    },
+                    "uuid": "ff517529-daf4-407b-b496-8a5881df6143"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1099 mm)",
+            "items": [
+                {
+                    "description": "F.Cu 上 R36 的焊盘 1 [/SYS]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "5e69f171-896a-4113-a80a-7dd3a7286407"
+                },
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 6.4129 mm",
+                    "pos": {
+                        "x": 109.5716,
+                        "y": 100.0551
+                    },
+                    "uuid": "6fc92b7f-0c6b-4aea-a649-044724c8efb0"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /GND 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 6.4129 mm",
+                    "pos": {
+                        "x": 109.5716,
+                        "y": 100.0551
+                    },
+                    "uuid": "6fc92b7f-0c6b-4aea-a649-044724c8efb0"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 100.5
+                    },
+                    "uuid": "ff517529-daf4-407b-b496-8a5881df6143"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /SYS 和 /BQ_TS_BIAS)",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In2.Cu), 长度: 5.0974 mm",
+                    "pos": {
+                        "x": 107.3,
+                        "y": 101.1
+                    },
+                    "uuid": "4ecf1723-7c60-439b-b765-72657deada5d"
+                },
+                {
+                    "description": "过孔 [/BQ_TS_BIAS] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 109.309,
+                        "y": 104.8949
+                    },
+                    "uuid": "c41480b3-809b-4daf-a2fd-311202c787ae"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In2.Cu), 长度: 5.0974 mm",
+                    "pos": {
+                        "x": 107.3,
+                        "y": 101.1
+                    },
+                    "uuid": "4ecf1723-7c60-439b-b765-72657deada5d"
+                },
+                {
+                    "description": "过孔 [/BQ_TS_BIAS] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 109.309,
+                        "y": 104.8949
+                    },
+                    "uuid": "c41480b3-809b-4daf-a2fd-311202c787ae"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In2.Cu), 长度: 3.2527 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "02b5ef6f-2068-4db8-8998-367e4f07caa3"
+                },
+                {
+                    "description": "走线 [/CHARGER_INT_N] (In2.Cu), 长度: 1.4378 mm",
+                    "pos": {
+                        "x": 107.1777,
+                        "y": 99.8853
+                    },
+                    "uuid": "f7fe0b31-d1e3-4a7f-a8cb-94d851fe66da"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In2.Cu), 长度: 3.2527 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "02b5ef6f-2068-4db8-8998-367e4f07caa3"
+                },
+                {
+                    "description": "走线 [/I2C_SCL] (In2.Cu), 长度: 7.4949 mm",
+                    "pos": {
+                        "x": 100.5937,
+                        "y": 100.4917
+                    },
+                    "uuid": "9fefc0e7-5240-4b15-b383-edbe2dd7e1f4"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0942 mm)",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In2.Cu), 长度: 3.2527 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "02b5ef6f-2068-4db8-8998-367e4f07caa3"
+                },
+                {
+                    "description": "走线 [/CHARGER_INT_N] (In2.Cu), 长度: 4.3457 mm",
+                    "pos": {
+                        "x": 105.7399,
+                        "y": 99.8853
+                    },
+                    "uuid": "fe4fa064-8c29-447e-84cd-079bc65ee63c"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (In2.Cu), 长度: 5.0974 mm",
+                    "pos": {
+                        "x": 107.3,
+                        "y": 101.1
+                    },
+                    "uuid": "4ecf1723-7c60-439b-b765-72657deada5d"
+                },
+                {
+                    "description": "走线 [/CHARGER_PG_N] (In2.Cu), 长度: 5.1947 mm",
+                    "pos": {
+                        "x": 109.9663,
+                        "y": 103.0123
+                    },
+                    "uuid": "7d514cc6-db8b-4a4b-b7d8-0ba6ea260b45"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /GNSS_PPS_3V3 和 /SYS)",
+            "items": [
+                {
+                    "description": "走线 [/GNSS_PPS_3V3] (B.Cu), 长度: 6.1054 mm",
+                    "pos": {
+                        "x": 102.6547,
+                        "y": 96.161
+                    },
+                    "uuid": "2b4b8acf-142d-400a-bfbb-d83c4c4c1b7b"
+                },
+                {
+                    "description": "过孔 [/SYS] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "6549780f-6c01-4d33-84ff-3afe056b62fd"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0327 mm)",
+            "items": [
+                {
+                    "description": "走线 [/GNSS_PPS_3V3] (B.Cu), 长度: 6.1054 mm",
+                    "pos": {
+                        "x": 102.6547,
+                        "y": 96.161
+                    },
+                    "uuid": "2b4b8acf-142d-400a-bfbb-d83c4c4c1b7b"
+                },
+                {
+                    "description": "过孔 [/SYS] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "6549780f-6c01-4d33-84ff-3afe056b62fd"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/SYS] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "6549780f-6c01-4d33-84ff-3afe056b62fd"
+                },
+                {
+                    "description": "填充区[/GND]在 B.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.55,
+                        "y": 100.0
+                    },
+                    "uuid": "42b70fa2-e8c7-458e-bb2a-bde0e0011388"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/SYS] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "6549780f-6c01-4d33-84ff-3afe056b62fd"
+                },
+                {
+                    "description": "填充区[/GND]在 B.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.55,
+                        "y": 100.0
+                    },
+                    "uuid": "42b70fa2-e8c7-458e-bb2a-bde0e0011388"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/SYS] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "6549780f-6c01-4d33-84ff-3afe056b62fd"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "过孔 [/SYS] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "6549780f-6c01-4d33-84ff-3afe056b62fd"
+                },
+                {
+                    "description": "填充区[/GND]在 In1.Cu 上, 优先级 0",
+                    "pos": {
+                        "x": 125.65,
+                        "y": 100.0
+                    },
+                    "uuid": "fc1f7b91-f2f3-471b-819d-bdd6fe059596"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /SYS 和 /CHARGER_INT_N)",
+            "items": [
+                {
+                    "description": "过孔 [/SYS] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "6549780f-6c01-4d33-84ff-3afe056b62fd"
+                },
+                {
+                    "description": "走线 [/CHARGER_INT_N] (In2.Cu), 长度: 4.3457 mm",
+                    "pos": {
+                        "x": 105.7399,
+                        "y": 99.8853
+                    },
+                    "uuid": "fe4fa064-8c29-447e-84cd-079bc65ee63c"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0692 mm)",
+            "items": [
+                {
+                    "description": "走线 [/CHARGER_INT_N] (In2.Cu), 长度: 4.3457 mm",
+                    "pos": {
+                        "x": 105.7399,
+                        "y": 99.8853
+                    },
+                    "uuid": "fe4fa064-8c29-447e-84cd-079bc65ee63c"
+                },
+                {
+                    "description": "过孔 [/SYS] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 98.8
+                    },
+                    "uuid": "6549780f-6c01-4d33-84ff-3afe056b62fd"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /LCD_VBAT 和 /SYS)",
+            "items": [
+                {
+                    "description": "F.Cu 上 R36 的焊盘 2 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 99.49
+                    },
+                    "uuid": "a096017c-e27f-465a-8274-0d06e1a388e0"
+                },
+                {
+                    "description": "走线 [/SYS] (F.Cu), 长度: 0.6900 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 99.49
+                    },
+                    "uuid": "c63950d9-0391-4990-a64d-4ffebe6cafb3"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /3V3 和 /3V3_DISPLAY)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 4.6300 mm",
+                    "pos": {
+                        "x": 108.29,
+                        "y": 103.0
+                    },
+                    "uuid": "4fb56fbb-1707-4e13-a1f4-1cd7e0534f1c"
+                },
+                {
+                    "description": "走线 [/3V3_DISPLAY] (F.Cu), 长度: 0.6900 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.01
+                    },
+                    "uuid": "9c67c637-01f7-4f5b-b1e0-1f7fb293a84b"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /3V3 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 4.6300 mm",
+                    "pos": {
+                        "x": 108.29,
+                        "y": 103.0
+                    },
+                    "uuid": "4fb56fbb-1707-4e13-a1f4-1cd7e0534f1c"
+                },
+                {
+                    "description": "F.Cu 上 R35 的焊盘 2 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.01
+                    },
+                    "uuid": "74231dd9-c3fd-4cfb-9a17-6ba295dc6166"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1379 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 1.4512 mm",
+                    "pos": {
+                        "x": 102.5152,
+                        "y": 102.8752
+                    },
+                    "uuid": "36e86117-987f-4c65-abf6-c4df7ff48745"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 0.8000 mm",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "aa2f6902-9683-4d0b-bdab-7cffc3776ff0"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /3V3 和 /GND)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 1.8882 mm",
+                    "pos": {
+                        "x": 101.6479,
+                        "y": 100.5567
+                    },
+                    "uuid": "331d1c33-deb9-4233-a571-6cc36615e210"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /3V3 和 /GND)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 1.2265 mm",
+                    "pos": {
+                        "x": 102.5152,
+                        "y": 101.424
+                    },
+                    "uuid": "40ce4772-c928-401a-9e78-edaeddf2443b"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /3V3 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 1.4512 mm",
+                    "pos": {
+                        "x": 102.5152,
+                        "y": 102.8752
+                    },
+                    "uuid": "36e86117-987f-4c65-abf6-c4df7ff48745"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "849161eb-72f0-4922-82dc-de54828856ce"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.1129 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 1.4512 mm",
+                    "pos": {
+                        "x": 102.5152,
+                        "y": 102.8752
+                    },
+                    "uuid": "36e86117-987f-4c65-abf6-c4df7ff48745"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "849161eb-72f0-4922-82dc-de54828856ce"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1379 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 1.2265 mm",
+                    "pos": {
+                        "x": 102.5152,
+                        "y": 101.424
+                    },
+                    "uuid": "40ce4772-c928-401a-9e78-edaeddf2443b"
+                },
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 0.8000 mm",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "aa2f6902-9683-4d0b-bdab-7cffc3776ff0"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /3V3 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 1.2265 mm",
+                    "pos": {
+                        "x": 102.5152,
+                        "y": 101.424
+                    },
+                    "uuid": "40ce4772-c928-401a-9e78-edaeddf2443b"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "849161eb-72f0-4922-82dc-de54828856ce"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.1129 mm)",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 1.2265 mm",
+                    "pos": {
+                        "x": 102.5152,
+                        "y": 101.424
+                    },
+                    "uuid": "40ce4772-c928-401a-9e78-edaeddf2443b"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 101.3
+                    },
+                    "uuid": "849161eb-72f0-4922-82dc-de54828856ce"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.1004 mm)",
+            "items": [
+                {
+                    "description": "B.Cu 上 TP17 的焊盘 1 [/GNSS_ANT_ON]",
+                    "pos": {
+                        "x": 121.2504,
+                        "y": 94.306
+                    },
+                    "uuid": "f5e2b9b1-f747-40e0-8c24-3929d2549246"
+                },
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 120.55,
+                        "y": 94.306
+                    },
+                    "uuid": "062c3ae6-63fc-4566-b32f-524d6978a8dc"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "短路了两个不同网络的项目 (网络 /GNSS_ANT_ON 和 /LCD_VBAT)",
+            "items": [
+                {
+                    "description": "B.Cu 上 TP17 的焊盘 1 [/GNSS_ANT_ON]",
+                    "pos": {
+                        "x": 121.2504,
+                        "y": 94.306
+                    },
+                    "uuid": "f5e2b9b1-f747-40e0-8c24-3929d2549246"
+                },
+                {
+                    "description": "B.Cu 上 TP18 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 121.250368,
+                        "y": 94.305981
+                    },
+                    "uuid": "eefb26ef-69fa-4af4-8024-01389779219d"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "孔间距违规 (<电路板配置> 中的 \"孔\" 约束 间距 0.1500 mm; 实际 0.0000 mm)",
+            "items": [
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                },
+                {
+                    "description": "过孔 [/LCD_CLK_MCU] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.0341,
+                        "y": 101.0084
+                    },
+                    "uuid": "567ce615-bf8e-4c29-b304-678c9adf3b12"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Courtyards overlap",
+            "items": [
+                {
+                    "description": "封装 TP17",
+                    "pos": {
+                        "x": 121.2504,
+                        "y": 94.306
+                    },
+                    "uuid": "15ad39f1-835b-4832-8fad-cd1ce50017a7"
+                },
+                {
+                    "description": "封装 TP18",
+                    "pos": {
+                        "x": 121.250368,
+                        "y": 94.305981
+                    },
+                    "uuid": "8f575664-8063-4e8d-a0ec-757ffc12997e"
+                }
+            ],
+            "severity": "error",
+            "type": "courtyards_overlap"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 3.1011 mm",
+                    "pos": {
+                        "x": 103.1587,
+                        "y": 100.0551
+                    },
+                    "uuid": "884369a7-d6cf-4727-b135-e86c963d434d"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 100.5
+                    },
+                    "uuid": "ff517529-daf4-407b-b496-8a5881df6143"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/LCD_CLK_MCU] (F.Cu), 长度: 0.4407 mm",
+                    "pos": {
+                        "x": 100.7225,
+                        "y": 101.32
+                    },
+                    "uuid": "aa2968f8-9f74-4371-9c8e-9a316fa6f068"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_CLK_MCU] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 101.0341,
+                        "y": 101.0084
+                    },
+                    "uuid": "567ce615-bf8e-4c29-b304-678c9adf3b12"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "底层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/GNSS_ANT_ON] (B.Cu), 长度: 2.9508 mm",
+                    "pos": {
+                        "x": 119.1639,
+                        "y": 96.3925
+                    },
+                    "uuid": "4558e793-0fa6-464d-8133-d7f94f564558"
+                },
+                {
+                    "description": "B.Cu 上 TP18 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 121.250368,
+                        "y": 94.305981
+                    },
+                    "uuid": "eefb26ef-69fa-4af4-8024-01389779219d"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 1.8882 mm",
+                    "pos": {
+                        "x": 101.6479,
+                        "y": 100.5567
+                    },
+                    "uuid": "331d1c33-deb9-4233-a571-6cc36615e210"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/3V3_DISPLAY] (F.Cu), 长度: 0.6900 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.01
+                    },
+                    "uuid": "9c67c637-01f7-4f5b-b1e0-1f7fb293a84b"
+                },
+                {
+                    "description": "F.Cu 上 R35 的焊盘 2 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.01
+                    },
+                    "uuid": "74231dd9-c3fd-4cfb-9a17-6ba295dc6166"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 1.2265 mm",
+                    "pos": {
+                        "x": 102.5152,
+                        "y": 101.424
+                    },
+                    "uuid": "40ce4772-c928-401a-9e78-edaeddf2443b"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 2 [/GND]",
+                    "pos": {
+                        "x": 101.225,
+                        "y": 100.5
+                    },
+                    "uuid": "b2af74ee-5fed-46f4-8ffe-27136469149a"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/3V3] (F.Cu), 长度: 4.6300 mm",
+                    "pos": {
+                        "x": 108.29,
+                        "y": 103.0
+                    },
+                    "uuid": "4fb56fbb-1707-4e13-a1f4-1cd7e0534f1c"
+                },
+                {
+                    "description": "F.Cu 上 R35 的焊盘 2 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 103.01
+                    },
+                    "uuid": "74231dd9-c3fd-4cfb-9a17-6ba295dc6166"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 1.4800 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "40401842-51d9-49a1-bdf0-298cd9b857b9"
+                },
+                {
+                    "description": "F.Cu 上 R35 的焊盘 1 [/3V3_DISPLAY]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 101.99
+                    },
+                    "uuid": "489fa1d9-337c-43c7-953f-739f8631d93a"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 1.4800 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "40401842-51d9-49a1-bdf0-298cd9b857b9"
+                },
+                {
+                    "description": "F.Cu 上 R36 的焊盘 1 [/SYS]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "5e69f171-896a-4113-a80a-7dd3a7286407"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (F.Cu), 长度: 2.2250 mm",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 100.5
+                    },
+                    "uuid": "e5d3049d-20c5-4208-80b2-59bd2739c44c"
+                },
+                {
+                    "description": "F.Cu 上 R36 的焊盘 1 [/SYS]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 100.51
+                    },
+                    "uuid": "5e69f171-896a-4113-a80a-7dd3a7286407"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "底层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "过孔 [/LCD_VBAT] (F.Cu - B.Cu)",
+                    "pos": {
+                        "x": 120.55,
+                        "y": 94.306
+                    },
+                    "uuid": "062c3ae6-63fc-4566-b32f-524d6978a8dc"
+                },
+                {
+                    "description": "B.Cu 上 TP17 的焊盘 1 [/GNSS_ANT_ON]",
+                    "pos": {
+                        "x": 121.2504,
+                        "y": 94.306
+                    },
+                    "uuid": "f5e2b9b1-f747-40e0-8c24-3929d2549246"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "底层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/LCD_VBAT] (B.Cu), 长度: 0.7004 mm",
+                    "pos": {
+                        "x": 121.250368,
+                        "y": 94.305981
+                    },
+                    "uuid": "fe95626b-d1ad-40b0-8b66-d5592b750431"
+                },
+                {
+                    "description": "B.Cu 上 TP17 的焊盘 1 [/GNSS_ANT_ON]",
+                    "pos": {
+                        "x": 121.2504,
+                        "y": 94.306
+                    },
+                    "uuid": "f5e2b9b1-f747-40e0-8c24-3929d2549246"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "底层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "B.Cu 上 TP17 的焊盘 1 [/GNSS_ANT_ON]",
+                    "pos": {
+                        "x": 121.2504,
+                        "y": 94.306
+                    },
+                    "uuid": "f5e2b9b1-f747-40e0-8c24-3929d2549246"
+                },
+                {
+                    "description": "B.Cu 上 TP18 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 121.250368,
+                        "y": 94.305981
+                    },
+                    "uuid": "eefb26ef-69fa-4af4-8024-01389779219d"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/SYS] (F.Cu), 长度: 0.6900 mm",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 99.49
+                    },
+                    "uuid": "c63950d9-0391-4990-a64d-4ffebe6cafb3"
+                },
+                {
+                    "description": "F.Cu 上 R36 的焊盘 2 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 105.0,
+                        "y": 99.49
+                    },
+                    "uuid": "a096017c-e27f-465a-8274-0d06e1a388e0"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "顶层阻焊开窗区域与不同网络的项目相连",
+            "items": [
+                {
+                    "description": "走线 [/GND] (F.Cu), 长度: 6.4129 mm",
+                    "pos": {
+                        "x": 109.5716,
+                        "y": 100.0551
+                    },
+                    "uuid": "6fc92b7f-0c6b-4aea-a649-044724c8efb0"
+                },
+                {
+                    "description": "F.Cu 上 C38 的焊盘 1 [/LCD_VBAT]",
+                    "pos": {
+                        "x": 102.775,
+                        "y": 100.5
+                    },
+                    "uuid": "ff517529-daf4-407b-b496-8a5881df6143"
+                }
+            ],
+            "severity": "error",
+            "type": "solder_mask_bridge"
+        },
+        {
+            "description": "Silkscreen clearance",
+            "items": [
+                {
+                    "description": "TP18 的 圆形, 位于 B.Silkscreen",
+                    "pos": {
+                        "x": 121.250368,
+                        "y": 94.305981
+                    },
+                    "uuid": "c7a76785-fa74-46b6-b07f-ec83ee4e61b8"
+                },
+                {
+                    "description": "TP17 的 圆形, 位于 B.Silkscreen",
+                    "pos": {
+                        "x": 121.2504,
+                        "y": 94.306
+                    },
+                    "uuid": "cb890754-c17e-42ca-af60-6877dd1a2289"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        }
+    ]
+}

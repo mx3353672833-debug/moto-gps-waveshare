@@ -1,0 +1,394 @@
+** Drc report for moto-gps-rev-a-autoroute-experiment.kicad_pcb **
+** Created on 2026-09-03T10:49:04 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 111 DRC violations **
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1199 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(85.1000 mm, 96.9100 mm): U1 的PTH 焊盘 41 [GND]
+    @(88.6628 mm, 92.6473 mm): 走线 [GNSS_UART_TX_3V3] (In2.Cu), 长度: 12.2650 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1454 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(100.7625 mm, 79.4500 mm): 走线 [GND] (F.Cu), 长度: 0.2449 mm
+    @(100.5998 mm, 78.9500 mm): 走线 [3V3] (F.Cu), 长度: 0.7071 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1454 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(100.0998 mm, 79.4500 mm): 走线 [3V3] (F.Cu), 长度: 0.8623 mm
+    @(100.5176 mm, 79.4500 mm): 走线 [GND] (F.Cu), 长度: 0.3784 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(121.1866 mm, 98.2566 mm): 走线 [GNSS_RF_MATCH_IN] (F.Cu), 长度: 0.6583 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(121.2000 mm, 98.2700 mm): 走线 [GNSS_RF_MATCH_IN] (F.Cu), 长度: 0.0190 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(120.5710 mm, 89.5937 mm): 走线 [GNSS_RF_MATCH_IN] (F.Cu), 长度: 0.4753 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(121.2000 mm, 98.2700 mm): 走线 [GNSS_RF_MATCH_IN] (F.Cu), 长度: 0.1400 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(121.0463 mm, 89.5937 mm): 走线 [GNSS_RF_MATCH_IN] (F.Cu), 长度: 0.2739 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(121.3400 mm, 98.2700 mm): 走线 [GNSS_RF_MATCH_IN] (F.Cu), 长度: 1.3576 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(121.1866 mm, 90.2093 mm): 走线 [GNSS_RF_MATCH_IN] (In2.Cu), 长度: 7.3890 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(120.5710 mm, 89.5937 mm): 走线 [GNSS_RF_MATCH_IN] (In2.Cu), 长度: 0.8706 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(121.5762 mm, 99.7357 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.5320 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(123.6000 mm, 98.7500 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.0712 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(123.0052 mm, 99.1936 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.1512 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(123.1564 mm, 99.1936 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.6273 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(120.6559 mm, 95.4191 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 3.2668 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(121.0750 mm, 95.0000 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.5927 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(123.6000 mm, 98.8212 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 1.2933 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(122.7648 mm, 91.0330 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.0001 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(122.2350 mm, 90.5000 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.7493 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(122.6855 mm, 99.7357 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 1.1093 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(121.2000 mm, 99.3595 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.1295 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(120.6559 mm, 98.6859 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.7695 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(122.7648 mm, 91.0298 mm): 走线 [GNSS_ANT_BIASED] (F.Cu), 长度: 0.0032 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(123.0052 mm, 99.1936 mm): 走线 [GNSS_ANT_BIASED] (In2.Cu), 长度: 0.3398 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(122.7649 mm, 98.9533 mm): 走线 [GNSS_ANT_BIASED] (In2.Cu), 长度: 7.9203 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(116.6569 mm, 98.3000 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.9844 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(116.1500 mm, 98.3000 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.5069 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(117.8216 mm, 97.5620 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 1.6461 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(121.8345 mm, 92.1645 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.7983 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(123.2166 mm, 90.3566 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 1.0940 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(122.2600 mm, 89.4000 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 1.3528 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(117.5634 mm, 97.6039 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.0593 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(118.9856 mm, 96.3980 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 2.4614 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(118.9606 mm, 93.9116 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.5118 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(118.9856 mm, 93.9366 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.0354 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(119.3225 mm, 93.5497 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.0022 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(117.3530 mm, 97.6039 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.2104 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(123.2166 mm, 91.4506 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 1.0096 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(119.3225 mm, 93.5475 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 2.7542 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(117.6053 mm, 97.5620 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.2163 mm
+[track_width]: 走线宽度 (规则 'GNSS RF preliminary geometry only' 最小宽度 0.1800 mm; 实际 0.1500 mm)
+    Rule: GNSS RF preliminary geometry only; error
+    @(122.5027 mm, 92.1645 mm): 走线 [GNSS_RF_IN] (F.Cu), 长度: 0.6682 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(101.7109 mm, 116.8364 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 1.3589 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(99.7500 mm, 117.8113 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.4557 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(104.9486 mm, 115.0414 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 1.5836 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(103.0815 mm, 117.1091 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.3857 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(105.1500 mm, 116.6250 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.2014 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(104.4805 mm, 116.6250 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.1000 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(102.8088 mm, 116.8364 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 1.0979 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(104.4098 mm, 116.6957 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.9149 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(100.4418 mm, 117.4891 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.4359 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(99.7500 mm, 118.3300 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.5187 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(100.0722 mm, 117.4891 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.3696 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(104.9486 mm, 116.6250 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.4681 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(105.4900 mm, 114.5000 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.7657 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(100.7500 mm, 117.7973 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.5327 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(103.4949 mm, 116.6957 mm): 走线 [USB_D_P_CONN] (F.Cu), 长度: 0.5846 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(105.5415 mm, 120.2066 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.2524 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(111.0181 mm, 120.0281 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 5.2981 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(101.5679 mm, 120.2066 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 3.9736 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(100.2500 mm, 118.8887 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 1.8638 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(99.2500 mm, 118.8631 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.5331 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(99.5331 mm, 119.1462 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.4004 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(100.2500 mm, 118.8887 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.3642 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(105.5000 mm, 115.3371 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.4379 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(100.2500 mm, 118.3300 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.5587 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(105.4015 mm, 115.2386 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.1393 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(111.5000 mm, 120.5100 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.6815 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(99.9925 mm, 119.1462 mm): 走线 [USB_D_N_CONN] (F.Cu), 长度: 0.4594 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(105.4015 mm, 119.7096 mm): 走线 [USB_D_N_CONN] (In2.Cu), 长度: 4.4710 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(105.7200 mm, 120.0281 mm): 走线 [USB_D_N_CONN] (In2.Cu), 长度: 0.4504 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(77.8500 mm, 105.1300 mm): 走线 [USB_D_N_MCU] (F.Cu), 长度: 0.9767 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(111.2783 mm, 119.2683 mm): 走线 [USB_D_N_MCU] (F.Cu), 长度: 0.3135 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(79.2130 mm, 104.7437 mm): 走线 [USB_D_N_MCU] (F.Cu), 长度: 0.6788 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(110.6212 mm, 119.2683 mm): 走线 [USB_D_N_MCU] (F.Cu), 长度: 0.6571 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(78.8267 mm, 105.1300 mm): 走线 [USB_D_N_MCU] (F.Cu), 长度: 0.5463 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(106.1804 mm, 114.3051 mm): 走线 [USB_D_N_MCU] (B.Cu), 长度: 6.2802 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(79.8918 mm, 104.7437 mm): 走线 [USB_D_N_MCU] (B.Cu), 长度: 0.3445 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(110.6212 mm, 118.7459 mm): 走线 [USB_D_N_MCU] (B.Cu), 长度: 0.5224 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(88.9362 mm, 114.3051 mm): 走线 [USB_D_N_MCU] (B.Cu), 长度: 17.2442 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(80.1354 mm, 105.5043 mm): 走线 [USB_D_N_MCU] (B.Cu), 长度: 12.4462 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(80.1354 mm, 104.9873 mm): 走线 [USB_D_N_MCU] (B.Cu), 长度: 0.5170 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(106.1963 mm, 114.8137 mm): 走线 [USB_D_P_MCU] (F.Cu), 长度: 0.3972 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(106.5100 mm, 114.5000 mm): 走线 [USB_D_P_MCU] (F.Cu), 长度: 0.4436 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(79.4778 mm, 106.4000 mm): 走线 [USB_D_P_MCU] (F.Cu), 长度: 0.3801 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(77.8500 mm, 106.4000 mm): 走线 [USB_D_P_MCU] (F.Cu), 长度: 1.6278 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(79.7466 mm, 106.1312 mm): 走线 [USB_D_P_MCU] (B.Cu), 长度: 12.0714 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(105.6524 mm, 114.6670 mm): 走线 [USB_D_P_MCU] (B.Cu), 长度: 0.7692 mm
+[track_width]: 走线宽度 (规则 'USB 2.0 differential pair intent' 最小宽度 0.1600 mm; 实际 0.1500 mm)
+    Rule: USB 2.0 differential pair intent; error
+    @(88.2824 mm, 114.6670 mm): 走线 [USB_D_P_MCU] (B.Cu), 长度: 17.3700 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(119.2594 mm, 107.6574 mm): 过孔 [BQ_TS_BIAS] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(110.5508 mm, 116.4902 mm): 过孔 [I2C_SDA] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(98.6720 mm, 101.5224 mm): 过孔 [LCD_SIO2_MCU] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(119.0583 mm, 103.8539 mm): 过孔 [TPS63070_VAUX] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(115.9659 mm, 105.3441 mm): 过孔 [BQ_ILIM] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(87.5775 mm, 108.7785 mm): 过孔 [LCD_TE] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(78.9937 mm, 99.0063 mm): 过孔 [GNSS_TX_3V0] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(79.4382 mm, 94.8754 mm): 过孔 [GNSS_RX_3V0] (F.Cu - B.Cu)
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(94.9803 mm, 79.3375 mm): 过孔 [GNSS_PPS_3V0] (F.Cu - B.Cu)
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(81.5191 mm, 116.6403 mm): Edge.Cuts 上的 线段
+    @(81.3900 mm, 118.7150 mm): J2 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(84.3528 mm, 120.7645 mm): Edge.Cuts 上的 线段
+    @(82.5600 mm, 120.6850 mm): J2 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(95.4851 mm, 125.6050 mm): Edge.Cuts 上的 线段
+    @(95.4200 mm, 125.7850 mm): J1 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(104.9610 mm, 125.5223 mm): Edge.Cuts 上的 线段
+    @(104.5800 mm, 124.0800 mm): J1 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(96.3815 mm, 125.7470 mm): Edge.Cuts 上的 线段
+    @(104.5800 mm, 125.7850 mm): J1 的 线段, 位于 F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(113.7600 mm, 82.6850 mm): U8 的 线段, 位于 F.Silkscreen
+    @(113.5500 mm, 82.9900 mm): U9 的 多边形, 位于 F.Silkscreen
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(86.5000 mm, 85.0000 mm): F.Silkscreen 上的 PCB 文本 'MOTO GPS REV A EVT'
+    @(81.7000 mm, 84.7800 mm): F.Cu 上 SW2 的焊盘 1 [MCU_EN]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(86.5000 mm, 85.0000 mm): F.Silkscreen 上的 PCB 文本 'MOTO GPS REV A EVT'
+    @(83.5000 mm, 84.6000 mm): SW2 的 NPTH 焊盘
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(86.5000 mm, 85.0000 mm): F.Silkscreen 上的 PCB 文本 'MOTO GPS REV A EVT'
+    @(85.3000 mm, 84.7800 mm): F.Cu 上 SW2 的焊盘 1 [MCU_EN]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.9000 mm, 116.8000 mm): U11 的 线段, 位于 F.Silkscreen
+    @(105.1500 mm, 116.6250 mm): F.Cu 上 U11 的焊盘 1 [USB_D_P_CONN]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.9000 mm, 116.8000 mm): U11 的 线段, 位于 F.Silkscreen
+    @(105.8500 mm, 116.6250 mm): F.Cu 上 U11 的焊盘 2 [GND]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.9000 mm, 115.6000 mm): U11 的 线段, 位于 F.Silkscreen
+    @(105.5000 mm, 115.7750 mm): F.Cu 上 U11 的焊盘 3 [USB_D_N_CONN]
+[nonmirrored_text_on_back_layer]: Non-Mirrored text on back layer
+    Local override; warning
+    @(100.0000 mm, 116.2000 mm): B.Silkscreen 上的 PCB 文本 'ENGINEERING - NOT FOR FABRICATION'
+
+** Found 7 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(105.8500 mm, 116.7254 mm): 走线 [GND] (F.Cu), 长度: 2.2504 mm
+    @(108.8000 mm, 115.3750 mm): 走线 [GND] (F.Cu), 长度: 0.4000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(99.4500 mm, 88.5800 mm): F.Cu 上 C36 的焊盘 1 [GNSS_3V0]
+    @(99.0700 mm, 93.2000 mm): F.Cu 上 C37 的焊盘 1 [GNSS_3V0]
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(118.7000 mm, 107.0980 mm): 走线 [BQ_TS_BIAS] (F.Cu), 长度: 0.7911 mm
+    @(109.9750 mm, 110.2000 mm): F.Cu 上 U2 的焊盘 5 [BQ_TS_BIAS]
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(111.7349 mm, 109.1070 mm): 走线 [I2C_SDA] (F.Cu), 长度: 0.6651 mm
+    @(109.7250 mm, 116.4000 mm): 走线 [I2C_SDA] (F.Cu), 长度: 0.7356 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(112.4000 mm, 108.7070 mm): F.Cu 上 U2 的焊盘 13 [I2C_SCL]
+    @(108.5575 mm, 113.5892 mm): 走线 [I2C_SCL] (F.Cu), 长度: 2.9172 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(116.5200 mm, 106.0000 mm): F.Cu 上 C18 的焊盘 1 [TPS63070_VAUX]
+    @(114.9500 mm, 109.3500 mm): F.Cu 上 U3 的焊盘 3 [TPS63070_VAUX]
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(109.6125 mm, 109.5070 mm): F.Cu 上 U2 的焊盘 4 [BQ_ILIM]
+    @(116.5000 mm, 104.8100 mm): 走线 [BQ_ILIM] (F.Cu), 长度: 0.7553 mm
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

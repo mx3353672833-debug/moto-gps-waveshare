@@ -1,0 +1,43 @@
+ERC report (2026-09-03T10:20:10, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(58.42 mm, 185.42 mm): Symbol U5 引脚 1 [SDO/SA0, 双向, 图线]
+    @(382.27 mm, 289.56 mm): Symbol #FLG03 引脚 1 [PWR_FLAG, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(58.42 mm, 187.96 mm): Symbol U5 引脚 3 [SCx, 双向, 图线]
+    @(382.27 mm, 289.56 mm): Symbol #FLG03 引脚 1 [PWR_FLAG, 电源输出, 图线]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(73.66 mm, 193.04 mm): 符号 U5 [MOTO_GPS_QMI8658C]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(88.90 mm, 185.42 mm): Symbol U5 引脚 2 [SDx, 双向, 图线]
+    @(382.27 mm, 289.56 mm): Symbol #FLG03 引脚 1 [PWR_FLAG, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(88.90 mm, 195.58 mm): Symbol U5 引脚 10 [RESV, 双向, 图线]
+    @(342.90 mm, 114.30 mm): Symbol U3 引脚 7 [VOUT, 电源输出, 图线]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(269.24 mm, 114.30 mm): 符号 U2 [MOTO_GPS_BQ25628E]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(299.72 mm, 35.56 mm): 符号 U11 [MOTO_GPS_USB_ESD]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(358.14 mm, 115.57 mm): 符号 U3 [MOTO_GPS_TPS63070]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(358.14 mm, 193.04 mm): 符号 U10 [MOTO_GPS_LC76GABMD]
+
+ ** ERC messages: 9  Errors 0  Warnings 9
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters

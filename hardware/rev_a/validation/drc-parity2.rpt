@@ -1,0 +1,267 @@
+** Drc report for moto-gps-rev-a.kicad_pcb **
+** Created on 2026-09-03T12:14:09 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 33 DRC violations **
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1330 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(107.8010 mm, 108.8677 mm): 过孔 [/CHARGER_PG_N] (F.Cu - B.Cu)
+    @(107.9802 mm, 108.4347 mm): 走线 [/BQ_REGN] (F.Cu), 长度: 0.9310 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1329 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(107.8010 mm, 108.8677 mm): 过孔 [/CHARGER_PG_N] (F.Cu - B.Cu)
+    @(108.2525 mm, 108.7070 mm): 走线 [/BQ_REGN] (F.Cu), 长度: 0.3851 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(109.1078 mm, 104.2283 mm): 过孔 [/CHARGER_PG_N] (F.Cu - B.Cu)
+    @(125.5500 mm, 100.0000 mm): 填充区[/GND]在 B.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(107.8010 mm, 108.8677 mm): 过孔 [/CHARGER_PG_N] (F.Cu - B.Cu)
+    @(125.5500 mm, 100.0000 mm): 填充区[/GND]在 B.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(109.1078 mm, 104.2283 mm): 过孔 [/CHARGER_PG_N] (F.Cu - B.Cu)
+    @(125.6500 mm, 100.0000 mm): 填充区[/GND]在 In1.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(107.8010 mm, 108.8677 mm): 过孔 [/CHARGER_PG_N] (F.Cu - B.Cu)
+    @(125.6500 mm, 100.0000 mm): 填充区[/GND]在 In1.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1338 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(109.2600 mm, 122.2000 mm): F.Cu 上 R12 的焊盘 2 [/GND]
+    @(108.7812 mm, 122.3167 mm): 走线 [/USB_VBUS] (F.Cu), 长度: 0.0441 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1338 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(108.7812 mm, 122.6788 mm): 走线 [/USB_VBUS] (F.Cu), 长度: 0.3621 mm
+    @(109.2600 mm, 122.2000 mm): F.Cu 上 R12 的焊盘 2 [/GND]
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(113.1689 mm, 104.0626 mm): 走线 [/USB_VBUS] (B.Cu), 长度: 0.8779 mm
+    @(125.5500 mm, 100.0000 mm): 填充区[/GND]在 B.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(117.2315 mm, 100.0000 mm): 走线 [/USB_VBUS] (B.Cu), 长度: 5.7454 mm
+    @(125.5500 mm, 100.0000 mm): 填充区[/GND]在 B.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(108.3403 mm, 107.3115 mm): 过孔 [/USB_VBUS] (F.Cu - B.Cu)
+    @(125.5500 mm, 100.0000 mm): 填充区[/GND]在 B.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(109.0877 mm, 120.7745 mm): 过孔 [/USB_VBUS] (F.Cu - B.Cu)
+    @(125.5500 mm, 100.0000 mm): 填充区[/GND]在 B.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(122.0000 mm, 100.0000 mm): 走线 [/USB_VBUS] (B.Cu), 长度: 4.7685 mm
+    @(125.5500 mm, 100.0000 mm): 填充区[/GND]在 B.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(108.3403 mm, 107.3115 mm): 过孔 [/USB_VBUS] (F.Cu - B.Cu)
+    @(125.6500 mm, 100.0000 mm): 填充区[/GND]在 In1.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(112.2910 mm, 104.0626 mm): 过孔 [/USB_VBUS] (F.Cu - B.Cu)
+    @(125.5500 mm, 100.0000 mm): 填充区[/GND]在 B.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(109.0877 mm, 120.7745 mm): 过孔 [/USB_VBUS] (F.Cu - B.Cu)
+    @(125.6500 mm, 100.0000 mm): 填充区[/GND]在 In1.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(112.2910 mm, 104.0626 mm): 过孔 [/USB_VBUS] (F.Cu - B.Cu)
+    @(125.6500 mm, 100.0000 mm): 填充区[/GND]在 In1.Cu 上, 优先级 0
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1305 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(122.0000 mm, 100.0000 mm): B.Cu 上 TP1 的焊盘 1 [/USB_VBUS]
+    @(125.5500 mm, 100.0000 mm): 填充区[/GND]在 B.Cu 上, 优先级 0
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(100.0000 mm, 111.5000 mm): 封装 J3
+[lib_footprint_mismatch]: 封装 'USB_C_Receptacle_XKB_U262-16XN-4BVC11' 与库 'Connector_USB' 中的副本不匹配
+    Local override; warning
+    @(100.0000 mm, 122.0000 mm): 封装 J1
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(112.2000 mm, 95.0000 mm): 封装 U10
+[lib_footprint_mismatch]: 封装 'SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG' 与库 'Button_Switch_SMD' 中的副本不匹配
+    Local override; warning
+    @(123.0000 mm, 104.0000 mm): 封装 SW4
+[lib_footprint_mismatch]: 封装 'JST_SH_SM03B-SRSS-TB_1x03-1MP_P1.00mm_Horizontal' 与库 'Connector_JST' 中的副本不匹配
+    Local override; warning
+    @(84.0000 mm, 118.0000 mm): 封装 J2
+[lib_footprint_mismatch]: 封装 'ESP32-S3-WROOM-1U' 与库 'RF_Module' 中的副本不匹配
+    Local override; warning
+    @(86.6000 mm, 98.3000 mm): 封装 U1
+[lib_footprint_mismatch]: 封装 'VSSOP-8_2.3x2mm_P0.5mm' 与库 'Package_SO' 中的副本不匹配
+    Local override; warning
+    @(112.5000 mm, 81.5000 mm): 封装 U8
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(100.3000 mm, 96.0000 mm): 封装 U5
+[lib_footprint_mismatch]: 封装 'SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG' 与库 'Button_Switch_SMD' 中的副本不匹配
+    Local override; warning
+    @(83.5000 mm, 85.5000 mm): 封装 SW2
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(118.3000 mm, 108.9000 mm): 封装 U3
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(110.0000 mm, 109.1000 mm): 封装 U2
+[lib_footprint_mismatch]: 封装 'SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG' 与库 'Button_Switch_SMD' 中的副本不匹配
+    Local override; warning
+    @(89.0000 mm, 82.0000 mm): 封装 SW3
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(105.2000 mm, 116.4000 mm): 封装 U11
+[lib_footprint_mismatch]: 封装 'SOT-23-5' 与库 'Package_TO_SOT_SMD' 中的副本不匹配
+    Local override; warning
+    @(115.0000 mm, 84.5000 mm): 封装 U9
+[lib_footprint_mismatch]: 封装 'SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG' 与库 'Button_Switch_SMD' 中的副本不匹配
+    Local override; warning
+    @(113.8000 mm, 117.0000 mm): 封装 SW1
+
+** Found 0 unconnected pads **
+
+** Found 44 Footprint errors **
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(101.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A8 [/unconnected-(J1-SBU1-PadA8)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(98.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B8 [/unconnected-(J1-SBU2-PadB8)]
+[net_conflict]: 未找到原理图中引脚 S1 (/USB_SHIELD) 对应的焊盘
+    Local override; warning
+    @(100.0000 mm, 122.0000 mm): 封装 J1
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(95.8000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 2 [/unconnected-(J3-FPC_2-Pad2)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [/unconnected-(J3-FPC_3-Pad3)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(96.7000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 5 [/unconnected-(J3-FPC_5-Pad5)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(97.0000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 6 [/unconnected-(J3-FPC_6-Pad6)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(97.6000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 8 [/unconnected-(J3-FPC_8-Pad8)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(97.9000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 9 [/unconnected-(J3-FPC_9-Pad9)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(100.9000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 19 [/unconnected-(J3-FPC_19-Pad19)]
+[net_conflict]: 未找到原理图中引脚 3 (/GND) 对应的焊盘
+    Local override; warning
+    @(123.1000 mm, 95.0000 mm): 封装 J4
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(77.8500 mm, 100.0500 mm): F.Cu 上 U1 的焊盘 9 [/unconnected-(U1-IO16-Pad9)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(77.8500 mm, 103.8600 mm): F.Cu 上 U1 的焊盘 12 [/unconnected-(U1-IO8-Pad12)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(79.6150 mm, 107.6500 mm): F.Cu 上 U1 的焊盘 15 [/unconnected-(U1-IO3-Pad15)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(80.8850 mm, 107.6500 mm): F.Cu 上 U1 的焊盘 16 [/unconnected-(U1-IO46-Pad16)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(82.1550 mm, 107.6500 mm): F.Cu 上 U1 的焊盘 17 [/unconnected-(U1-IO9-Pad17)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(93.5850 mm, 107.6500 mm): F.Cu 上 U1 的焊盘 26 [/unconnected-(U1-IO45-Pad26)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(95.3500 mm, 105.1300 mm): F.Cu 上 U1 的焊盘 28 [/unconnected-(U1-IO35-Pad28)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(95.3500 mm, 103.8600 mm): F.Cu 上 U1 的焊盘 29 [/unconnected-(U1-IO36-Pad29)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(95.3500 mm, 102.5900 mm): F.Cu 上 U1 的焊盘 30 [/unconnected-(U1-IO37-Pad30)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(118.0750 mm, 110.3000 mm): F.Cu 上 U3 的焊盘 6 [/unconnected-(U3-FB2-Pad6)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(111.1000 mm, 115.3750 mm): F.Cu 上 U4 的焊盘 9 [/unconnected-(U4-ID-Pad9)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(100.0500 mm, 97.1625 mm): F.Cu 上 U5 的焊盘 2 [/unconnected-(U5-SDx-Pad2)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(100.5500 mm, 97.1625 mm): F.Cu 上 U5 的焊盘 3 [/unconnected-(U5-SCx-Pad3)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(99.5500 mm, 94.8375 mm): F.Cu 上 U5 的焊盘 11 [/unconnected-(U5-RESV-NC-Pad11)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(99.2375 mm, 78.9500 mm): F.Cu 上 U6 的焊盘 2 [/unconnected-(U6-NC-Pad2)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(100.2500 mm, 78.4375 mm): F.Cu 上 U6 的焊盘 11 [/unconnected-(U6-NC-Pad11)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(99.7500 mm, 78.4375 mm): F.Cu 上 U6 的焊盘 12 [/unconnected-(U6-NC-Pad12)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(108.5375 mm, 80.7500 mm): F.Cu 上 U7 的焊盘 4 [/unconnected-(U7-NC-Pad4)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(113.8625 mm, 83.5500 mm): F.Cu 上 U9 的焊盘 1 [/unconnected-(U9-NC-Pad1)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(108.2500 mm, 95.0000 mm): F.Cu 上 U10 的焊盘 5 [/unconnected-(U10-RESERVED-Pad5)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(108.2500 mm, 97.2000 mm): F.Cu 上 U10 的焊盘 7 [/unconnected-(U10-RESERVED-Pad7)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(116.1500 mm, 93.9000 mm): F.Cu 上 U10 的焊盘 15 [/unconnected-(U10-RESERVED-Pad15)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(116.1500 mm, 92.8000 mm): F.Cu 上 U10 的焊盘 16 [/unconnected-(U10-I2C_SDA-Pad16)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(116.1500 mm, 91.7000 mm): F.Cu 上 U10 的焊盘 17 [/unconnected-(U10-I2C_SCL-Pad17)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(116.1500 mm, 90.6000 mm): F.Cu 上 U10 的焊盘 18 [/unconnected-(U10-RESERVED-Pad18)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(114.4000 mm, 91.0000 mm): F.Cu 上 U10 的焊盘 19 [/unconnected-(U10-RESERVED-Pad19)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(113.3000 mm, 91.0000 mm): F.Cu 上 U10 的焊盘 20 [/unconnected-(U10-SPI_CS-Pad20)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(112.2000 mm, 91.0000 mm): F.Cu 上 U10 的焊盘 21 [/unconnected-(U10-GEOFENCE-Pad21)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(111.1000 mm, 91.0000 mm): F.Cu 上 U10 的焊盘 22 [/unconnected-(U10-JAM_IND-Pad22)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(110.0000 mm, 91.0000 mm): F.Cu 上 U10 的焊盘 23 [/unconnected-(U10-3D_FIX-Pad23)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(111.1000 mm, 99.0000 mm): F.Cu 上 U10 的焊盘 25 [/unconnected-(U10-SPI_CLK-Pad25)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(112.2000 mm, 99.0000 mm): F.Cu 上 U10 的焊盘 26 [/unconnected-(U10-SPI_MISO-Pad26)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(113.3000 mm, 99.0000 mm): F.Cu 上 U10 的焊盘 27 [/unconnected-(U10-SPI_MOSI-Pad27)]
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

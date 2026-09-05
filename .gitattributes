@@ -4,3 +4,9 @@ LICENSES/** -whitespace
 shared/nav_ui/assets/moto_font_nav_16.c -whitespace
 *.sqlite binary
 *.png binary
+*.pdf binary
+*.docx binary
+*.zip binary
+# Preserve archived CAD exports and reports byte-for-byte for SHA-256 checks.
+hardware/** -text -whitespace
+docs/technical-proposal/** -text -whitespace

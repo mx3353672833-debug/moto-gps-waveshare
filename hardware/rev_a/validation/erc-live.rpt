@@ -1,0 +1,433 @@
+ERC report (2026-09-03T10:15:42, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(245.11 mm, 35.56 mm): Symbol J1 引脚 A1 [GND, 电源输出, 图线]
+    @(245.11 mm, 45.72 mm): Symbol J1 引脚 B1 [GND, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(245.11 mm, 43.18 mm): Symbol J1 引脚 A9 [VBUS, 电源输出, 图线]
+    @(245.11 mm, 53.34 mm): Symbol J1 引脚 B9 [VBUS, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(245.11 mm, 45.72 mm): Symbol J1 引脚 B1 [GND, 电源输出, 图线]
+    @(278.13 mm, 53.34 mm): Symbol J1 引脚 B12 [GND, 电源输出, 图线]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(254.00 mm, 104.14 mm): Symbol U2 引脚 1 [BTST, 电源输入, 图线]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(254.00 mm, 124.46 mm): Symbol U2 引脚 17 [PMID, 电源输入, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(278.13 mm, 35.56 mm): Symbol J1 引脚 A4 [VBUS, 电源输出, 图线]
+    @(278.13 mm, 45.72 mm): Symbol J1 引脚 B4 [VBUS, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(278.13 mm, 43.18 mm): Symbol J1 引脚 A12 [GND, 电源输出, 图线]
+    @(278.13 mm, 53.34 mm): Symbol J1 引脚 B12 [GND, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(278.13 mm, 45.72 mm): Symbol J1 引脚 B4 [VBUS, 电源输出, 图线]
+    @(245.11 mm, 53.34 mm): Symbol J1 引脚 B9 [VBUS, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(278.13 mm, 53.34 mm): Symbol J1 引脚 B12 [GND, 电源输出, 图线]
+    @(299.72 mm, 118.11 mm): Symbol J2 引脚 3 [BAT-, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(342.90 mm, 114.30 mm): Symbol U3 引脚 7 [VOUT, 电源输出, 图线]
+    @(373.38 mm, 114.30 mm): Symbol U3 引脚 8 [VOUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 输出 和 电源输出 的引脚已连接
+    ; error
+    @(373.38 mm, 111.76 mm): Symbol U3 引脚 6 [FB2, 输出, 图线]
+    @(299.72 mm, 118.11 mm): Symbol J2 引脚 3 [BAT-, 电源输出, 图线]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(17.78 mm, 236.22 mm): 符号 R27 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(17.78 mm, 246.38 mm): 符号 C22 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(17.78 mm, 256.54 mm): 符号 C34 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(25.40 mm, 269.24 mm): 符号 TP1 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(25.40 mm, 280.67 mm): 符号 TP10 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(38.10 mm, 236.22 mm): 符号 R28 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(38.10 mm, 246.38 mm): 符号 C23 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(38.10 mm, 256.54 mm): 符号 C35 [MOTO_GPS_CAPACITOR]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(58.42 mm, 185.42 mm): Symbol U5 引脚 1 [SDO/SA0, 双向, 图线]
+    @(245.11 mm, 45.72 mm): Symbol J1 引脚 B1 [GND, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(58.42 mm, 187.96 mm): Symbol U5 引脚 3 [SCx, 双向, 图线]
+    @(245.11 mm, 45.72 mm): Symbol J1 引脚 B1 [GND, 电源输出, 图线]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(58.42 mm, 236.22 mm): 符号 C19 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(58.42 mm, 246.38 mm): 符号 C24 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(58.42 mm, 256.54 mm): 符号 C36 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(67.31 mm, 269.24 mm): 符号 TP2 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(67.31 mm, 280.67 mm): 符号 TP11 [MOTO_GPS_TESTPOINT]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(73.66 mm, 193.04 mm): 符号 U5 [MOTO_GPS_QMI8658C]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(73.66 mm, 193.04 mm): 符号 U5 [MOTO_GPS_QMI8658C]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(78.74 mm, 236.22 mm): 符号 C20 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(78.74 mm, 246.38 mm): 符号 C25 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(81.28 mm, 83.82 mm): 符号 U1 [MOTO_GPS_ESP32_S3_WROOM_1U]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(88.90 mm, 185.42 mm): Symbol U5 引脚 2 [SDx, 双向, 图线]
+    @(245.11 mm, 45.72 mm): Symbol J1 引脚 B1 [GND, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(88.90 mm, 195.58 mm): Symbol U5 引脚 10 [RESV, 双向, 图线]
+    @(342.90 mm, 114.30 mm): Symbol U3 引脚 7 [VOUT, 电源输出, 图线]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(99.06 mm, 236.22 mm): 符号 R29 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(99.06 mm, 246.38 mm): 符号 C26 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(109.22 mm, 269.24 mm): 符号 TP3 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(109.22 mm, 280.67 mm): 符号 TP12 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(119.38 mm, 236.22 mm): 符号 C21 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(119.38 mm, 246.38 mm): 符号 C27 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(137.16 mm, 193.04 mm): 符号 U6 [MOTO_GPS_LIS2MDL]
+[footprint_link_issues]: 在库 'Button_Switch_SMD' 中找不到封装 'SW_SPST_TL3301AN'
+    ; warning
+    @(139.70 mm, 236.22 mm): 符号 SW2 [MOTO_GPS_SWITCH]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(139.70 mm, 236.22 mm): 符号 SW2 [MOTO_GPS_SWITCH]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(139.70 mm, 246.38 mm): 符号 C28 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(142.24 mm, 129.54 mm): 符号 R1 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(151.13 mm, 269.24 mm): 符号 TP4 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(151.13 mm, 280.67 mm): 符号 TP13 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(160.02 mm, 236.22 mm): 符号 R30 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(160.02 mm, 246.38 mm): 符号 C29 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(162.56 mm, 129.54 mm): 符号 R2 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(165.10 mm, 78.74 mm): 符号 J3 [MOTO_GPS_DISPLAY_FPC_31]
+[footprint_link_issues]: 在库 'Button_Switch_SMD' 中找不到封装 'SW_SPST_TL3301AN'
+    ; warning
+    @(180.34 mm, 236.22 mm): 符号 SW3 [MOTO_GPS_SWITCH]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(180.34 mm, 236.22 mm): 符号 SW3 [MOTO_GPS_SWITCH]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(180.34 mm, 246.38 mm): 符号 C30 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(182.88 mm, 129.54 mm): 符号 R3 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(182.88 mm, 142.24 mm): 符号 FB1 [MOTO_GPS_FERRITE]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(182.88 mm, 152.40 mm): 符号 C1 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(193.04 mm, 269.24 mm): 符号 TP5 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(193.04 mm, 280.67 mm): 符号 TP14 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(195.58 mm, 187.96 mm): 符号 U7 [MOTO_GPS_TPS7A2030]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(200.66 mm, 236.22 mm): 符号 R31 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(200.66 mm, 246.38 mm): 符号 R32 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(203.20 mm, 129.54 mm): 符号 R4 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(203.20 mm, 142.24 mm): 符号 R7 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(203.20 mm, 152.40 mm): 符号 C2 [MOTO_GPS_CAPACITOR]
+[footprint_link_issues]: 在库 'Button_Switch_SMD' 中找不到封装 'SW_SPST_TL3301AN'
+    ; warning
+    @(220.98 mm, 236.22 mm): 符号 SW4 [MOTO_GPS_SWITCH]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(220.98 mm, 236.22 mm): 符号 SW4 [MOTO_GPS_SWITCH]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(223.52 mm, 129.54 mm): 符号 R5 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(223.52 mm, 142.24 mm): 符号 R8 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(231.14 mm, 251.46 mm): 符号 J4 [MOTO_GPS_UFL]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(234.95 mm, 269.24 mm): 符号 TP6 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(234.95 mm, 280.67 mm): 符号 TP15 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(236.22 mm, 187.96 mm): 符号 U8 [MOTO_GPS_TXU0202]
+[footprint_link_issues]: 在库 'Button_Switch_SMD' 中找不到封装 'SW_SPST_TL3301AN'
+    ; warning
+    @(241.30 mm, 236.22 mm): 符号 SW1 [MOTO_GPS_SWITCH]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(241.30 mm, 236.22 mm): 符号 SW1 [MOTO_GPS_SWITCH]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(243.84 mm, 129.54 mm): 符号 R6 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(243.84 mm, 142.24 mm): 符号 R9 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(254.00 mm, 251.46 mm): 符号 D2 [MOTO_GPS_TVS]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(256.54 mm, 148.59 mm): 符号 C7 [MOTO_GPS_CAPACITOR]
+[footprint_link_issues]: 在库 'Inductor_SMD' 中找不到封装 'L_2520_2016Metric'
+    ; warning
+    @(256.54 mm, 158.75 mm): 符号 L1 [MOTO_GPS_INDUCTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(256.54 mm, 158.75 mm): 符号 L1 [MOTO_GPS_INDUCTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(261.62 mm, 45.72 mm): 符号 J1 [MOTO_GPS_USB_C_16P]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(261.62 mm, 82.55 mm): 符号 R13 [MOTO_GPS_RESISTOR]
+[footprint_link_issues]: 在库 'Inductor_SMD' 中找不到封装 'L_2520_2016Metric'
+    ; warning
+    @(261.62 mm, 231.14 mm): 符号 L2 [MOTO_GPS_INDUCTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(261.62 mm, 231.14 mm): 符号 L2 [MOTO_GPS_INDUCTOR]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(269.24 mm, 114.30 mm): 符号 U2 [MOTO_GPS_BQ25628E]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(269.24 mm, 114.30 mm): 符号 U2 [MOTO_GPS_BQ25628E]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(271.78 mm, 187.96 mm): 符号 U9 [MOTO_GPS_SN74LVC1G17]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(274.32 mm, 251.46 mm): 符号 L3 [MOTO_GPS_INDUCTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(276.86 mm, 148.59 mm): 符号 C8 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(276.86 mm, 158.75 mm): 符号 C10 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(276.86 mm, 269.24 mm): 符号 TP7 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(276.86 mm, 280.67 mm): 符号 TP16 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(281.94 mm, 82.55 mm): 符号 R14 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(281.94 mm, 231.14 mm): 符号 C14 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(294.64 mm, 251.46 mm): 符号 C31 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(297.18 mm, 148.59 mm): 符号 R17 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(297.18 mm, 158.75 mm): 符号 C11 [MOTO_GPS_CAPACITOR]
+[footprint_link_issues]: 在库 'Package_SON' 中找不到封装 'Texas_DRT0003A_SON-3_1x1mm_P0.65mm'
+    ; warning
+    @(299.72 mm, 35.56 mm): 符号 U11 [MOTO_GPS_USB_ESD]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(299.72 mm, 35.56 mm): 符号 U11 [MOTO_GPS_USB_ESD]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(302.26 mm, 72.39 mm): 符号 R12 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(302.26 mm, 82.55 mm): 符号 R15 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(302.26 mm, 187.96 mm): 符号 Q1 [MOTO_GPS_2N7002]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(302.26 mm, 231.14 mm): 符号 C15 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(309.88 mm, 116.84 mm): 符号 J2 [MOTO_GPS_BATTERY_3P]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(314.96 mm, 251.46 mm): 符号 C32 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(317.50 mm, 148.59 mm): 符号 R18 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(317.50 mm, 158.75 mm): 符号 C12 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(318.77 mm, 269.24 mm): 符号 TP8 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(318.77 mm, 280.67 mm): 符号 TP17 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(322.58 mm, 72.39 mm): 符号 C3 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(322.58 mm, 82.55 mm): 符号 R16 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(322.58 mm, 231.14 mm): 符号 C16 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(335.28 mm, 251.46 mm): 符号 R33 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(337.82 mm, 148.59 mm): 符号 R19 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(337.82 mm, 158.75 mm): 符号 C13 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(342.90 mm, 82.55 mm): 符号 D1 [MOTO_GPS_TVS]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(342.90 mm, 231.14 mm): 符号 C17 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(350.52 mm, 48.26 mm): 符号 U4 [MOTO_GPS_TUSB320LAI]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(355.60 mm, 251.46 mm): 符号 C33 [MOTO_GPS_CAPACITOR]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(358.14 mm, 115.57 mm): 符号 U3 [MOTO_GPS_TPS63070]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(358.14 mm, 115.57 mm): 符号 U3 [MOTO_GPS_TPS63070]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(358.14 mm, 148.59 mm): 符号 R20 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(358.14 mm, 158.75 mm): 符号 R21 [MOTO_GPS_RESISTOR]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(358.14 mm, 193.04 mm): 符号 U10 [MOTO_GPS_LC76GABMD]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(358.14 mm, 193.04 mm): 符号 U10 [MOTO_GPS_LC76GABMD]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(360.68 mm, 269.24 mm): 符号 TP9 [MOTO_GPS_TESTPOINT]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(363.22 mm, 82.55 mm): 符号 C4 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(363.22 mm, 231.14 mm): 符号 C18 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(378.46 mm, 148.59 mm): 符号 C9 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(378.46 mm, 158.75 mm): 符号 R22 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(383.54 mm, 71.12 mm): 符号 C6 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(383.54 mm, 82.55 mm): 符号 C5 [MOTO_GPS_CAPACITOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(383.54 mm, 231.14 mm): 符号 R24 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(383.54 mm, 241.30 mm): 符号 R26 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(398.78 mm, 158.75 mm): 符号 R23 [MOTO_GPS_RESISTOR]
+[lib_symbol_issues]: 当前配置不包含符号库 ''
+    ; warning
+    @(403.86 mm, 231.14 mm): 符号 R25 [MOTO_GPS_RESISTOR]
+
+ ** ERC messages: 136  Errors 11  Warnings 125
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters

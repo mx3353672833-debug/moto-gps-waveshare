@@ -1,0 +1,54 @@
+** Drc report for moto-gps-rev-a-routed-10.kicad_pcb **
+** Created on 2026-09-03T13:16:10 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 12 DRC violations **
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(100.0000 mm, 111.5000 mm): 封装 J3
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(100.0000 mm, 122.0000 mm): 封装 J1
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(112.2000 mm, 95.0000 mm): 封装 U10
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(123.1000 mm, 95.0000 mm): 封装 J4
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(84.0000 mm, 118.0000 mm): 封装 J2
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(86.6000 mm, 98.3000 mm): 封装 U1
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(112.5000 mm, 81.5000 mm): 封装 U8
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(100.3000 mm, 96.0000 mm): 封装 U5
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(118.3000 mm, 108.9000 mm): 封装 U3
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(110.0000 mm, 109.1000 mm): 封装 U2
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(105.2000 mm, 116.4000 mm): 封装 U11
+[lib_footprint_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    Local override; warning
+    @(115.0000 mm, 84.5000 mm): 封装 U9
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

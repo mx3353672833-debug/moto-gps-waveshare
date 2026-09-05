@@ -1,0 +1,1303 @@
+** Drc report for moto-gps-rev-a.kicad_pcb **
+** Created on 2026-09-03T12:16:01 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 4 DRC violations **
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1330 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(107.8010 mm, 108.8677 mm): 过孔 [CHARGER_PG_N] (F.Cu - B.Cu)
+    @(107.9802 mm, 108.4347 mm): 走线 [BQ_REGN] (F.Cu), 长度: 0.9310 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1329 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(107.8010 mm, 108.8677 mm): 过孔 [CHARGER_PG_N] (F.Cu - B.Cu)
+    @(108.2525 mm, 108.7070 mm): 走线 [BQ_REGN] (F.Cu), 长度: 0.3851 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1338 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(109.2600 mm, 122.2000 mm): F.Cu 上 R12 的焊盘 2 [GND]
+    @(108.7812 mm, 122.3167 mm): 走线 [USB_VBUS] (F.Cu), 长度: 0.0441 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1338 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(108.7812 mm, 122.6788 mm): 走线 [USB_VBUS] (F.Cu), 长度: 0.3621 mm
+    @(109.2600 mm, 122.2000 mm): F.Cu 上 R12 的焊盘 2 [GND]
+
+** Found 0 unconnected pads **
+
+** Found 423 Footprint errors **
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(101.5000 mm, 105.2000 mm): 封装 C1
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(101.5000 mm, 105.2000 mm): 封装 C1
+[net_conflict]: 焊盘网络 (3V3_DISPLAY) 与原理图 (/3V3_DISPLAY) 指定的网络不匹配
+    Local override; warning
+    @(100.7250 mm, 105.2000 mm): F.Cu 上 C1 的焊盘 1 [3V3_DISPLAY]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(102.2750 mm, 105.2000 mm): F.Cu 上 C1 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(101.5000 mm, 103.5500 mm): 封装 C2
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(101.5000 mm, 103.5500 mm): 封装 C2
+[net_conflict]: 焊盘网络 (3V3_DISPLAY) 与原理图 (/3V3_DISPLAY) 指定的网络不匹配
+    Local override; warning
+    @(101.0200 mm, 103.5500 mm): F.Cu 上 C2 的焊盘 1 [3V3_DISPLAY]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(101.9800 mm, 103.5500 mm): F.Cu 上 C2 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(106.5500 mm, 120.0000 mm): 封装 C3
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(106.5500 mm, 120.0000 mm): 封装 C3
+[net_conflict]: 焊盘网络 (USB_SHIELD) 与原理图 (/USB_SHIELD) 指定的网络不匹配
+    Local override; warning
+    @(106.5500 mm, 120.7750 mm): F.Cu 上 C3 的焊盘 1 [USB_SHIELD]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(106.5500 mm, 119.2250 mm): F.Cu 上 C3 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(108.2000 mm, 120.0000 mm): 封装 C4
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(108.2000 mm, 120.0000 mm): 封装 C4
+[net_conflict]: 焊盘网络 (USB_VBUS) 与原理图 (/USB_VBUS) 指定的网络不匹配
+    Local override; warning
+    @(108.2000 mm, 120.7750 mm): F.Cu 上 C4 的焊盘 1 [USB_VBUS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(108.2000 mm, 119.2250 mm): F.Cu 上 C4 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(106.5500 mm, 122.2000 mm): 封装 C5
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(106.5500 mm, 122.2000 mm): 封装 C5
+[net_conflict]: 焊盘网络 (USB_VBUS) 与原理图 (/USB_VBUS) 指定的网络不匹配
+    Local override; warning
+    @(106.0700 mm, 122.2000 mm): F.Cu 上 C5 的焊盘 1 [USB_VBUS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(107.0300 mm, 122.2000 mm): F.Cu 上 C5 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(106.5500 mm, 123.3000 mm): 封装 C6
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(106.5500 mm, 123.3000 mm): 封装 C6
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(106.0700 mm, 123.3000 mm): F.Cu 上 C6 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(107.0300 mm, 123.3000 mm): F.Cu 上 C6 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(109.8000 mm, 106.4000 mm): 封装 C7
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(109.8000 mm, 106.4000 mm): 封装 C7
+[net_conflict]: 焊盘网络 (BQ_BTST) 与原理图 (/BQ_BTST) 指定的网络不匹配
+    Local override; warning
+    @(109.3200 mm, 106.4000 mm): B.Cu 上 C7 的焊盘 1 [BQ_BTST]
+[net_conflict]: 焊盘网络 (BQ_SW) 与原理图 (/BQ_SW) 指定的网络不匹配
+    Local override; warning
+    @(110.2800 mm, 106.4000 mm): B.Cu 上 C7 的焊盘 2 [BQ_SW]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(106.2000 mm, 107.9000 mm): 封装 C8
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(106.2000 mm, 107.9000 mm): 封装 C8
+[net_conflict]: 焊盘网络 (BQ_REGN) 与原理图 (/BQ_REGN) 指定的网络不匹配
+    Local override; warning
+    @(106.9750 mm, 107.9000 mm): F.Cu 上 C8 的焊盘 1 [BQ_REGN]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(105.4250 mm, 107.9000 mm): F.Cu 上 C8 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(107.0000 mm, 112.8000 mm): 封装 C9
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(107.0000 mm, 112.8000 mm): 封装 C9
+[net_conflict]: 焊盘网络 (BAT) 与原理图 (/BAT) 指定的网络不匹配
+    Local override; warning
+    @(107.0000 mm, 113.5750 mm): F.Cu 上 C9 的焊盘 1 [BAT]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(107.0000 mm, 112.0250 mm): F.Cu 上 C9 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0805_2012Metric 与符号 (Capacitor_SMD:C_0805_2012Metric) 指定的封装不匹配
+    Local override; warning
+    @(113.1000 mm, 112.4000 mm): 封装 C10
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(113.1000 mm, 112.4000 mm): 封装 C10
+[net_conflict]: 焊盘网络 (SYS) 与原理图 (/SYS) 指定的网络不匹配
+    Local override; warning
+    @(112.1500 mm, 112.4000 mm): F.Cu 上 C10 的焊盘 1 [SYS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(114.0500 mm, 112.4000 mm): F.Cu 上 C10 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0805_2012Metric 与符号 (Capacitor_SMD:C_0805_2012Metric) 指定的封装不匹配
+    Local override; warning
+    @(109.4500 mm, 112.4000 mm): 封装 C11
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(109.4500 mm, 112.4000 mm): 封装 C11
+[net_conflict]: 焊盘网络 (SYS) 与原理图 (/SYS) 指定的网络不匹配
+    Local override; warning
+    @(108.5000 mm, 112.4000 mm): F.Cu 上 C11 的焊盘 1 [SYS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(110.4000 mm, 112.4000 mm): F.Cu 上 C11 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(107.5000 mm, 105.4000 mm): 封装 C12
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(107.5000 mm, 105.4000 mm): 封装 C12
+[net_conflict]: 焊盘网络 (BQ_PMID) 与原理图 (/BQ_PMID) 指定的网络不匹配
+    Local override; warning
+    @(107.5000 mm, 104.6250 mm): F.Cu 上 C12 的焊盘 1 [BQ_PMID]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(107.5000 mm, 106.1750 mm): F.Cu 上 C12 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(111.7000 mm, 105.7000 mm): 封装 C13
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(111.7000 mm, 105.7000 mm): 封装 C13
+[net_conflict]: 焊盘网络 (USB_VBUS) 与原理图 (/USB_VBUS) 指定的网络不匹配
+    Local override; warning
+    @(111.7000 mm, 104.9250 mm): F.Cu 上 C13 的焊盘 1 [USB_VBUS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(111.7000 mm, 106.4750 mm): F.Cu 上 C13 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0805_2012Metric 与符号 (Capacitor_SMD:C_0805_2012Metric) 指定的封装不匹配
+    Local override; warning
+    @(117.0000 mm, 104.9500 mm): 封装 C14
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(117.0000 mm, 104.9500 mm): 封装 C14
+[net_conflict]: 焊盘网络 (SYS) 与原理图 (/SYS) 指定的网络不匹配
+    Local override; warning
+    @(117.0000 mm, 105.9000 mm): F.Cu 上 C14 的焊盘 1 [SYS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(117.0000 mm, 104.0000 mm): F.Cu 上 C14 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0805_2012Metric 与符号 (Capacitor_SMD:C_0805_2012Metric) 指定的封装不匹配
+    Local override; warning
+    @(119.2000 mm, 104.9500 mm): 封装 C15
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(119.2000 mm, 104.9500 mm): 封装 C15
+[net_conflict]: 焊盘网络 (SYS) 与原理图 (/SYS) 指定的网络不匹配
+    Local override; warning
+    @(119.2000 mm, 105.9000 mm): F.Cu 上 C15 的焊盘 1 [SYS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(119.2000 mm, 104.0000 mm): F.Cu 上 C15 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0805_2012Metric 与符号 (Capacitor_SMD:C_0805_2012Metric) 指定的封装不匹配
+    Local override; warning
+    @(117.2000 mm, 113.0000 mm): 封装 C16
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(117.2000 mm, 113.0000 mm): 封装 C16
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(117.2000 mm, 113.9500 mm): F.Cu 上 C16 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(117.2000 mm, 112.0500 mm): F.Cu 上 C16 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0805_2012Metric 与符号 (Capacitor_SMD:C_0805_2012Metric) 指定的封装不匹配
+    Local override; warning
+    @(119.5000 mm, 113.0000 mm): 封装 C17
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(119.5000 mm, 113.0000 mm): 封装 C17
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(119.5000 mm, 113.9500 mm): F.Cu 上 C17 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(119.5000 mm, 112.0500 mm): F.Cu 上 C17 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(114.9000 mm, 106.4000 mm): 封装 C18
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(114.9000 mm, 106.4000 mm): 封装 C18
+[net_conflict]: 焊盘网络 (TPS63070_VAUX) 与原理图 (/TPS63070_VAUX) 指定的网络不匹配
+    Local override; warning
+    @(114.9000 mm, 106.8800 mm): F.Cu 上 C18 的焊盘 1 [TPS63070_VAUX]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(114.9000 mm, 105.9200 mm): F.Cu 上 C18 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(99.0000 mm, 91.0000 mm): 封装 C19
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(99.0000 mm, 91.0000 mm): 封装 C19
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(99.0000 mm, 91.7750 mm): F.Cu 上 C19 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(99.0000 mm, 90.2250 mm): F.Cu 上 C19 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(97.3500 mm, 91.0000 mm): 封装 C20
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(97.3500 mm, 91.0000 mm): 封装 C20
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(97.3500 mm, 91.4800 mm): F.Cu 上 C20 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(97.3500 mm, 90.5200 mm): F.Cu 上 C20 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(100.6500 mm, 91.5500 mm): 封装 C21
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(100.6500 mm, 91.5500 mm): 封装 C21
+[net_conflict]: 焊盘网络 (MCU_EN) 与原理图 (/MCU_EN) 指定的网络不匹配
+    Local override; warning
+    @(100.6500 mm, 92.0300 mm): F.Cu 上 C21 的焊盘 1 [MCU_EN]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(100.6500 mm, 91.0700 mm): F.Cu 上 C21 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(101.8500 mm, 92.5000 mm): 封装 C22
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(101.8500 mm, 92.5000 mm): 封装 C22
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(101.8500 mm, 92.9800 mm): F.Cu 上 C22 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(101.8500 mm, 92.0200 mm): F.Cu 上 C22 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(97.4500 mm, 94.1500 mm): 封装 C23
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(97.4500 mm, 94.1500 mm): 封装 C23
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(97.4500 mm, 94.9250 mm): F.Cu 上 C23 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(97.4500 mm, 93.3750 mm): F.Cu 上 C23 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(102.9500 mm, 92.5000 mm): 封装 C24
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(102.9500 mm, 92.5000 mm): 封装 C24
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(102.9500 mm, 92.9800 mm): F.Cu 上 C24 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(102.9500 mm, 92.0200 mm): F.Cu 上 C24 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(100.0000 mm, 82.0000 mm): 封装 C25
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(100.0000 mm, 82.0000 mm): 封装 C25
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(99.2250 mm, 82.0000 mm): F.Cu 上 C25 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(100.7750 mm, 82.0000 mm): F.Cu 上 C25 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(100.0000 mm, 83.6500 mm): 封装 C26
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(100.0000 mm, 83.6500 mm): 封装 C26
+[net_conflict]: 焊盘网络 (LIS2MDL_C1) 与原理图 (/LIS2MDL_C1) 指定的网络不匹配
+    Local override; warning
+    @(99.5200 mm, 83.6500 mm): F.Cu 上 C26 的焊盘 1 [LIS2MDL_C1]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(100.4800 mm, 83.6500 mm): F.Cu 上 C26 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(106.6000 mm, 85.9000 mm): 封装 C27
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(106.6000 mm, 85.9000 mm): 封装 C27
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(106.6000 mm, 86.3800 mm): F.Cu 上 C27 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(106.6000 mm, 85.4200 mm): F.Cu 上 C27 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(108.2500 mm, 85.3500 mm): 封装 C28
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(108.2500 mm, 85.3500 mm): 封装 C28
+[net_conflict]: 焊盘网络 (GNSS_3V0) 与原理图 (/GNSS_3V0) 指定的网络不匹配
+    Local override; warning
+    @(108.2500 mm, 86.1250 mm): F.Cu 上 C28 的焊盘 1 [GNSS_3V0]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(108.2500 mm, 84.5750 mm): F.Cu 上 C28 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(106.6000 mm, 83.7000 mm): 封装 C29
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(106.6000 mm, 83.7000 mm): 封装 C29
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(106.6000 mm, 84.1800 mm): F.Cu 上 C29 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(106.6000 mm, 83.2200 mm): F.Cu 上 C29 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(109.9000 mm, 85.9000 mm): 封装 C30
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(109.9000 mm, 85.9000 mm): 封装 C30
+[net_conflict]: 焊盘网络 (GNSS_3V0) 与原理图 (/GNSS_3V0) 指定的网络不匹配
+    Local override; warning
+    @(109.9000 mm, 86.3800 mm): F.Cu 上 C30 的焊盘 1 [GNSS_3V0]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(109.9000 mm, 85.4200 mm): F.Cu 上 C30 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(120.3000 mm, 97.8000 mm): 封装 C31
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(120.3000 mm, 97.8000 mm): 封装 C31
+[net_conflict]: 焊盘网络 (GNSS_ANT_BIASED) 与原理图 (/GNSS_ANT_BIASED) 指定的网络不匹配
+    Local override; warning
+    @(120.3000 mm, 98.2800 mm): F.Cu 上 C31 的焊盘 1 [GNSS_ANT_BIASED]
+[net_conflict]: 焊盘网络 (GNSS_RF_MATCH_IN) 与原理图 (/GNSS_RF_MATCH_IN) 指定的网络不匹配
+    Local override; warning
+    @(120.3000 mm, 97.3200 mm): F.Cu 上 C31 的焊盘 2 [GNSS_RF_MATCH_IN]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(120.3000 mm, 99.7000 mm): 封装 C32
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(120.3000 mm, 99.7000 mm): 封装 C32
+[net_conflict]: 焊盘网络 (GNSS_RF_MATCH_IN) 与原理图 (/GNSS_RF_MATCH_IN) 指定的网络不匹配
+    Local override; warning
+    @(120.3000 mm, 99.2200 mm): F.Cu 上 C32 的焊盘 1 [GNSS_RF_MATCH_IN]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(120.3000 mm, 100.1800 mm): F.Cu 上 C32 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(118.6500 mm, 99.8000 mm): 封装 C33
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(118.6500 mm, 99.8000 mm): 封装 C33
+[net_conflict]: 焊盘网络 (GNSS_RF_IN) 与原理图 (/GNSS_RF_IN) 指定的网络不匹配
+    Local override; warning
+    @(118.1700 mm, 99.8000 mm): F.Cu 上 C33 的焊盘 1 [GNSS_RF_IN]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(119.1300 mm, 99.8000 mm): F.Cu 上 C33 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0603_1608Metric 与符号 (Capacitor_SMD:C_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(111.5500 mm, 85.3500 mm): 封装 C34
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(111.5500 mm, 85.3500 mm): 封装 C34
+[net_conflict]: 焊盘网络 (GNSS_3V0) 与原理图 (/GNSS_3V0) 指定的网络不匹配
+    Local override; warning
+    @(111.5500 mm, 86.1250 mm): F.Cu 上 C34 的焊盘 1 [GNSS_3V0]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(111.5500 mm, 84.5750 mm): F.Cu 上 C34 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(108.2500 mm, 83.1500 mm): 封装 C35
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(108.2500 mm, 83.1500 mm): 封装 C35
+[net_conflict]: 焊盘网络 (GNSS_3V0) 与原理图 (/GNSS_3V0) 指定的网络不匹配
+    Local override; warning
+    @(107.7700 mm, 83.1500 mm): F.Cu 上 C35 的焊盘 1 [GNSS_3V0]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(108.7300 mm, 83.1500 mm): F.Cu 上 C35 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(99.4500 mm, 88.1000 mm): 封装 C36
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(99.4500 mm, 88.1000 mm): 封装 C36
+[net_conflict]: 焊盘网络 (GNSS_3V0) 与原理图 (/GNSS_3V0) 指定的网络不匹配
+    Local override; warning
+    @(99.4500 mm, 88.5800 mm): F.Cu 上 C36 的焊盘 1 [GNSS_3V0]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(99.4500 mm, 87.6200 mm): F.Cu 上 C36 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: C_0402_1005Metric 与符号 (Capacitor_SMD:C_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(99.5500 mm, 93.2000 mm): 封装 C37
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(99.5500 mm, 93.2000 mm): 封装 C37
+[net_conflict]: 焊盘网络 (GNSS_3V0) 与原理图 (/GNSS_3V0) 指定的网络不匹配
+    Local override; warning
+    @(99.0700 mm, 93.2000 mm): F.Cu 上 C37 的焊盘 1 [GNSS_3V0]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(100.0300 mm, 93.2000 mm): F.Cu 上 C37 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: D_SOD-523 与符号 (Diode_SMD:D_SOD-523) 指定的封装不匹配
+    Local override; warning
+    @(109.8500 mm, 120.0000 mm): 封装 D1
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(109.8500 mm, 120.0000 mm): 封装 D1
+[net_conflict]: 焊盘网络 (USB_VBUS) 与原理图 (/USB_VBUS) 指定的网络不匹配
+    Local override; warning
+    @(109.8500 mm, 120.7000 mm): F.Cu 上 D1 的焊盘 1 [USB_VBUS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(109.8500 mm, 119.3000 mm): F.Cu 上 D1 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: D_SOD-882 与符号 (Diode_SMD:D_SOD-882) 指定的封装不匹配
+    Local override; warning
+    @(121.7000 mm, 99.7000 mm): 封装 D2
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(121.7000 mm, 99.7000 mm): 封装 D2
+[net_conflict]: 焊盘网络 (GNSS_ANT_BIASED) 与原理图 (/GNSS_ANT_BIASED) 指定的网络不匹配
+    Local override; warning
+    @(121.7000 mm, 100.0500 mm): F.Cu 上 D2 的焊盘 1 [GNSS_ANT_BIASED]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(121.7000 mm, 99.3500 mm): F.Cu 上 D2 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: L_0603_1608Metric 与符号 (Inductor_SMD:L_0603_1608Metric) 指定的封装不匹配
+    Local override; warning
+    @(98.2000 mm, 105.7000 mm): 封装 FB1
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(98.2000 mm, 105.7000 mm): 封装 FB1
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(98.2000 mm, 106.4875 mm): F.Cu 上 FB1 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (3V3_DISPLAY) 与原理图 (/3V3_DISPLAY) 指定的网络不匹配
+    Local override; warning
+    @(98.2000 mm, 104.9125 mm): F.Cu 上 FB1 的焊盘 2 [3V3_DISPLAY]
+[footprint_symbol_mismatch]: USB_C_Receptacle_XKB_U262-16XN-4BVC11 与符号 (Connector_USB:USB_C_Receptacle_XKB_U262-16XN-4BVC11) 指定的封装不匹配
+    Local override; warning
+    @(100.0000 mm, 122.0000 mm): 封装 J1
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(100.0000 mm, 122.0000 mm): 封装 J1
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(96.8000 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A1 [GND]
+[net_conflict]: 焊盘网络 (USB_VBUS) 与原理图 (/USB_VBUS) 指定的网络不匹配
+    Local override; warning
+    @(97.6000 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A4 [USB_VBUS]
+[net_conflict]: 焊盘网络 (USB_CC1) 与原理图 (/USB_CC1) 指定的网络不匹配
+    Local override; warning
+    @(98.7500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A5 [USB_CC1]
+[net_conflict]: 焊盘网络 (USB_D_P_CONN) 与原理图 (/USB_D_P_CONN) 指定的网络不匹配
+    Local override; warning
+    @(99.7500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A6 [USB_D_P_CONN]
+[net_conflict]: 焊盘网络 (USB_D_N_CONN) 与原理图 (/USB_D_N_CONN) 指定的网络不匹配
+    Local override; warning
+    @(100.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A7 [USB_D_N_CONN]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(101.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A8 [unconnected-(J1-SBU1-PadA8)]
+[net_conflict]: 焊盘网络 (USB_VBUS) 与原理图 (/USB_VBUS) 指定的网络不匹配
+    Local override; warning
+    @(102.4000 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A9 [USB_VBUS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(103.2000 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 A12 [GND]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(103.2000 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B1 [GND]
+[net_conflict]: 焊盘网络 (USB_VBUS) 与原理图 (/USB_VBUS) 指定的网络不匹配
+    Local override; warning
+    @(102.4000 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B4 [USB_VBUS]
+[net_conflict]: 焊盘网络 (USB_CC2) 与原理图 (/USB_CC2) 指定的网络不匹配
+    Local override; warning
+    @(101.7500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B5 [USB_CC2]
+[net_conflict]: 焊盘网络 (USB_D_P_CONN) 与原理图 (/USB_D_P_CONN) 指定的网络不匹配
+    Local override; warning
+    @(100.7500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B6 [USB_D_P_CONN]
+[net_conflict]: 焊盘网络 (USB_D_N_CONN) 与原理图 (/USB_D_N_CONN) 指定的网络不匹配
+    Local override; warning
+    @(99.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B7 [USB_D_N_CONN]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(98.2500 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B8 [unconnected-(J1-SBU2-PadB8)]
+[net_conflict]: 焊盘网络 (USB_VBUS) 与原理图 (/USB_VBUS) 指定的网络不匹配
+    Local override; warning
+    @(97.6000 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B9 [USB_VBUS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(96.8000 mm, 118.3300 mm): F.Cu 上 J1 的焊盘 B12 [GND]
+[net_conflict]: 未找到原理图中引脚 S1 (/USB_SHIELD) 对应的焊盘
+    Local override; warning
+    @(100.0000 mm, 122.0000 mm): 封装 J1
+[footprint_symbol_mismatch]: JST_SH_SM03B-SRSS-TB_1x03-1MP_P1.00mm_Horizontal 与符号 (Connector_JST:JST_SH_SM03B-SRSS-TB_1x03-1MP_P1.00mm_Horizontal) 指定的封装不匹配
+    Local override; warning
+    @(84.0000 mm, 118.0000 mm): 封装 J2
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(84.0000 mm, 118.0000 mm): 封装 J2
+[net_conflict]: 焊盘网络 (BAT) 与原理图 (/BAT) 指定的网络不匹配
+    Local override; warning
+    @(83.0000 mm, 116.0000 mm): F.Cu 上 J2 的焊盘 1 [BAT]
+[net_conflict]: 焊盘网络 (BAT_TS) 与原理图 (/BAT_TS) 指定的网络不匹配
+    Local override; warning
+    @(84.0000 mm, 116.0000 mm): F.Cu 上 J2 的焊盘 2 [BAT_TS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(85.0000 mm, 116.0000 mm): F.Cu 上 J2 的焊盘 3 [GND]
+[footprint_symbol_mismatch]: XUNPU_FPC-0.3FX-31PWBH10 与符号 (MOTO_GPS:XUNPU_FPC-0.3FX-31PWBH10) 指定的封装不匹配
+    Local override; warning
+    @(100.0000 mm, 111.5000 mm): 封装 J3
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(100.0000 mm, 111.5000 mm): 封装 J3
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(95.5000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 1 [GND]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(95.8000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 2 [unconnected-(J3-FPC_2-Pad2)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(96.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 3 [unconnected-(J3-FPC_3-Pad3)]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(96.4000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 4 [GND]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(96.7000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 5 [unconnected-(J3-FPC_5-Pad5)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(97.0000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 6 [unconnected-(J3-FPC_6-Pad6)]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(97.3000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 7 [GND]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(97.6000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 8 [unconnected-(J3-FPC_8-Pad8)]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(97.9000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 9 [unconnected-(J3-FPC_9-Pad9)]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(98.2000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 10 [GND]
+[net_conflict]: 焊盘网络 (LCD_TE) 与原理图 (/LCD_TE) 指定的网络不匹配
+    Local override; warning
+    @(98.5000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 11 [LCD_TE]
+[net_conflict]: 焊盘网络 (LCD_SIO2) 与原理图 (/LCD_SIO2) 指定的网络不匹配
+    Local override; warning
+    @(98.8000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 12 [LCD_SIO2]
+[net_conflict]: 焊盘网络 (LCD_SIO3) 与原理图 (/LCD_SIO3) 指定的网络不匹配
+    Local override; warning
+    @(99.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 13 [LCD_SIO3]
+[net_conflict]: 焊盘网络 (LCD_CLK) 与原理图 (/LCD_CLK) 指定的网络不匹配
+    Local override; warning
+    @(99.4000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 14 [LCD_CLK]
+[net_conflict]: 焊盘网络 (LCD_SIO1) 与原理图 (/LCD_SIO1) 指定的网络不匹配
+    Local override; warning
+    @(99.7000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 15 [LCD_SIO1]
+[net_conflict]: 焊盘网络 (LCD_SIO0) 与原理图 (/LCD_SIO0) 指定的网络不匹配
+    Local override; warning
+    @(100.0000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 16 [LCD_SIO0]
+[net_conflict]: 焊盘网络 (LCD_CS_N) 与原理图 (/LCD_CS_N) 指定的网络不匹配
+    Local override; warning
+    @(100.3000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 17 [LCD_CS_N]
+[net_conflict]: 焊盘网络 (LCD_RESET_N) 与原理图 (/LCD_RESET_N) 指定的网络不匹配
+    Local override; warning
+    @(100.6000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 18 [LCD_RESET_N]
+[net_conflict]: 在原理图中未找到对应的引脚
+    Local override; warning
+    @(100.9000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 19 [unconnected-(J3-FPC_19-Pad19)]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(101.2000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 20 [GND]
+[net_conflict]: 焊盘网络 (3V3_DISPLAY) 与原理图 (/3V3_DISPLAY) 指定的网络不匹配
+    Local override; warning
+    @(101.5000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 21 [3V3_DISPLAY]
+[net_conflict]: 焊盘网络 (3V3_DISPLAY) 与原理图 (/3V3_DISPLAY) 指定的网络不匹配
+    Local override; warning
+    @(101.8000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 22 [3V3_DISPLAY]
+[net_conflict]: 焊盘网络 (3V3_DISPLAY) 与原理图 (/3V3_DISPLAY) 指定的网络不匹配
+    Local override; warning
+    @(102.1000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 23 [3V3_DISPLAY]
+[net_conflict]: 焊盘网络 (3V3_DISPLAY) 与原理图 (/3V3_DISPLAY) 指定的网络不匹配
+    Local override; warning
+    @(102.4000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 24 [3V3_DISPLAY]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(102.7000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 25 [GND]
+[net_conflict]: 焊盘网络 (3V3_DISPLAY) 与原理图 (/3V3_DISPLAY) 指定的网络不匹配
+    Local override; warning
+    @(103.0000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 26 [3V3_DISPLAY]
+[net_conflict]: 焊盘网络 (I2C_SCL) 与原理图 (/I2C_SCL) 指定的网络不匹配
+    Local override; warning
+    @(103.3000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 27 [I2C_SCL]
+[net_conflict]: 焊盘网络 (I2C_SDA) 与原理图 (/I2C_SDA) 指定的网络不匹配
+    Local override; warning
+    @(103.6000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 28 [I2C_SDA]
+[net_conflict]: 焊盘网络 (TP_RESET_N) 与原理图 (/TP_RESET_N) 指定的网络不匹配
+    Local override; warning
+    @(103.9000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 29 [TP_RESET_N]
+[net_conflict]: 焊盘网络 (TP_INT_N) 与原理图 (/TP_INT_N) 指定的网络不匹配
+    Local override; warning
+    @(104.2000 mm, 109.7250 mm): F.Cu 上 J3 的焊盘 30 [TP_INT_N]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(104.5000 mm, 112.6025 mm): F.Cu 上 J3 的焊盘 31 [GND]
+[footprint_symbol_mismatch]: U.FL_Hirose_U.FL-R-SMT-1_Vertical 与符号 (Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical) 指定的封装不匹配
+    Local override; warning
+    @(123.1000 mm, 95.0000 mm): 封装 J4
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(123.1000 mm, 95.0000 mm): 封装 J4
+[net_conflict]: 焊盘网络 (GNSS_ANT_BIASED) 与原理图 (/GNSS_ANT_BIASED) 指定的网络不匹配
+    Local override; warning
+    @(121.5750 mm, 95.0000 mm): F.Cu 上 J4 的焊盘 1 [GNSS_ANT_BIASED]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(123.1000 mm, 93.5250 mm): F.Cu 上 J4 的焊盘 2 [GND]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(123.1000 mm, 96.4750 mm): F.Cu 上 J4 的焊盘 2 [GND]
+[net_conflict]: 未找到原理图中引脚 3 (/GND) 对应的焊盘
+    Local override; warning
+    @(123.1000 mm, 95.0000 mm): 封装 J4
+[footprint_symbol_mismatch]: L_Changjiang_FTC252012S 与符号 (Inductor_SMD:L_Changjiang_FTC252012S) 指定的封装不匹配
+    Local override; warning
+    @(113.8000 mm, 109.1000 mm): 封装 L1
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(113.8000 mm, 109.1000 mm): 封装 L1
+[net_conflict]: 焊盘网络 (BQ_SW) 与原理图 (/BQ_SW) 指定的网络不匹配
+    Local override; warning
+    @(113.8000 mm, 108.2750 mm): F.Cu 上 L1 的焊盘 1 [BQ_SW]
+[net_conflict]: 焊盘网络 (SYS) 与原理图 (/SYS) 指定的网络不匹配
+    Local override; warning
+    @(113.8000 mm, 109.9250 mm): F.Cu 上 L1 的焊盘 2 [SYS]
+[footprint_symbol_mismatch]: L_Changjiang_FTC252012S 与符号 (Inductor_SMD:L_Changjiang_FTC252012S) 指定的封装不匹配
+    Local override; warning
+    @(122.0000 mm, 108.9000 mm): 封装 L2
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(122.0000 mm, 108.9000 mm): 封装 L2
+[net_conflict]: 焊盘网络 (TPS63070_L1) 与原理图 (/TPS63070_L1) 指定的网络不匹配
+    Local override; warning
+    @(122.0000 mm, 108.0750 mm): F.Cu 上 L2 的焊盘 1 [TPS63070_L1]
+[net_conflict]: 焊盘网络 (TPS63070_L2) 与原理图 (/TPS63070_L2) 指定的网络不匹配
+    Local override; warning
+    @(122.0000 mm, 109.7250 mm): F.Cu 上 L2 的焊盘 2 [TPS63070_L2]
+[footprint_symbol_mismatch]: L_0402_1005Metric 与符号 (Inductor_SMD:L_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(118.5000 mm, 95.0000 mm): 封装 L3
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(118.5000 mm, 95.0000 mm): 封装 L3
+[net_conflict]: 焊盘网络 (GNSS_VDD_RF) 与原理图 (/GNSS_VDD_RF) 指定的网络不匹配
+    Local override; warning
+    @(118.0150 mm, 95.0000 mm): F.Cu 上 L3 的焊盘 1 [GNSS_VDD_RF]
+[net_conflict]: 焊盘网络 (GNSS_ANT_BIASED) 与原理图 (/GNSS_ANT_BIASED) 指定的网络不匹配
+    Local override; warning
+    @(118.9850 mm, 95.0000 mm): F.Cu 上 L3 的焊盘 2 [GNSS_ANT_BIASED]
+[footprint_symbol_mismatch]: SOT-23 与符号 (Package_TO_SOT_SMD:SOT-23) 指定的封装不匹配
+    Local override; warning
+    @(102.2000 mm, 88.3000 mm): 封装 Q1
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(102.2000 mm, 88.3000 mm): 封装 Q1
+[net_conflict]: 焊盘网络 (GNSS_RESET_DRV) 与原理图 (/GNSS_RESET_DRV) 指定的网络不匹配
+    Local override; warning
+    @(101.2500 mm, 89.2375 mm): F.Cu 上 Q1 的焊盘 1 [GNSS_RESET_DRV]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(103.1500 mm, 89.2375 mm): F.Cu 上 Q1 的焊盘 2 [GND]
+[net_conflict]: 焊盘网络 (GNSS_RESET_N_1V8) 与原理图 (/GNSS_RESET_N_1V8) 指定的网络不匹配
+    Local override; warning
+    @(102.2000 mm, 87.3625 mm): F.Cu 上 Q1 的焊盘 3 [GNSS_RESET_N_1V8]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(101.5000 mm, 106.8500 mm): 封装 R1
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(101.5000 mm, 106.8500 mm): 封装 R1
+[net_conflict]: 焊盘网络 (LCD_SIO0_MCU) 与原理图 (/LCD_SIO0_MCU) 指定的网络不匹配
+    Local override; warning
+    @(100.9900 mm, 106.8500 mm): F.Cu 上 R1 的焊盘 1 [LCD_SIO0_MCU]
+[net_conflict]: 焊盘网络 (LCD_SIO0) 与原理图 (/LCD_SIO0) 指定的网络不匹配
+    Local override; warning
+    @(102.0100 mm, 106.8500 mm): F.Cu 上 R1 的焊盘 2 [LCD_SIO0]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(103.7000 mm, 105.2000 mm): 封装 R2
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(103.7000 mm, 105.2000 mm): 封装 R2
+[net_conflict]: 焊盘网络 (LCD_SIO1_MCU) 与原理图 (/LCD_SIO1_MCU) 指定的网络不匹配
+    Local override; warning
+    @(103.7000 mm, 105.7100 mm): F.Cu 上 R2 的焊盘 1 [LCD_SIO1_MCU]
+[net_conflict]: 焊盘网络 (LCD_SIO1) 与原理图 (/LCD_SIO1) 指定的网络不匹配
+    Local override; warning
+    @(103.7000 mm, 104.6900 mm): F.Cu 上 R2 的焊盘 2 [LCD_SIO1]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(101.5000 mm, 102.4500 mm): 封装 R3
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(101.5000 mm, 102.4500 mm): 封装 R3
+[net_conflict]: 焊盘网络 (LCD_SIO2_MCU) 与原理图 (/LCD_SIO2_MCU) 指定的网络不匹配
+    Local override; warning
+    @(100.9900 mm, 102.4500 mm): F.Cu 上 R3 的焊盘 1 [LCD_SIO2_MCU]
+[net_conflict]: 焊盘网络 (LCD_SIO2) 与原理图 (/LCD_SIO2) 指定的网络不匹配
+    Local override; warning
+    @(102.0100 mm, 102.4500 mm): F.Cu 上 R3 的焊盘 2 [LCD_SIO2]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(101.5000 mm, 107.9500 mm): 封装 R4
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(101.5000 mm, 107.9500 mm): 封装 R4
+[net_conflict]: 焊盘网络 (LCD_SIO3_MCU) 与原理图 (/LCD_SIO3_MCU) 指定的网络不匹配
+    Local override; warning
+    @(100.9900 mm, 107.9500 mm): F.Cu 上 R4 的焊盘 1 [LCD_SIO3_MCU]
+[net_conflict]: 焊盘网络 (LCD_SIO3) 与原理图 (/LCD_SIO3) 指定的网络不匹配
+    Local override; warning
+    @(102.0100 mm, 107.9500 mm): F.Cu 上 R4 的焊盘 2 [LCD_SIO3]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(104.8000 mm, 105.2000 mm): 封装 R5
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(104.8000 mm, 105.2000 mm): 封装 R5
+[net_conflict]: 焊盘网络 (LCD_CLK_MCU) 与原理图 (/LCD_CLK_MCU) 指定的网络不匹配
+    Local override; warning
+    @(104.8000 mm, 105.7100 mm): F.Cu 上 R5 的焊盘 1 [LCD_CLK_MCU]
+[net_conflict]: 焊盘网络 (LCD_CLK) 与原理图 (/LCD_CLK) 指定的网络不匹配
+    Local override; warning
+    @(104.8000 mm, 104.6900 mm): F.Cu 上 R5 的焊盘 2 [LCD_CLK]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(99.8500 mm, 103.0000 mm): 封装 R6
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(99.8500 mm, 103.0000 mm): 封装 R6
+[net_conflict]: 焊盘网络 (LCD_CS_N_MCU) 与原理图 (/LCD_CS_N_MCU) 指定的网络不匹配
+    Local override; warning
+    @(99.8500 mm, 103.5100 mm): F.Cu 上 R6 的焊盘 1 [LCD_CS_N_MCU]
+[net_conflict]: 焊盘网络 (LCD_CS_N) 与原理图 (/LCD_CS_N) 指定的网络不匹配
+    Local override; warning
+    @(99.8500 mm, 102.4900 mm): F.Cu 上 R6 的焊盘 2 [LCD_CS_N]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(103.1500 mm, 103.0000 mm): 封装 R7
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(103.1500 mm, 103.0000 mm): 封装 R7
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(103.1500 mm, 103.5100 mm): F.Cu 上 R7 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (LCD_RESET_N) 与原理图 (/LCD_RESET_N) 指定的网络不匹配
+    Local override; warning
+    @(103.1500 mm, 102.4900 mm): F.Cu 上 R7 的焊盘 2 [LCD_RESET_N]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(103.1500 mm, 107.4000 mm): 封装 R8
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(103.1500 mm, 107.4000 mm): 封装 R8
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(103.1500 mm, 107.9100 mm): F.Cu 上 R8 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (TP_RESET_N) 与原理图 (/TP_RESET_N) 指定的网络不匹配
+    Local override; warning
+    @(103.1500 mm, 106.8900 mm): F.Cu 上 R8 的焊盘 2 [TP_RESET_N]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(99.8500 mm, 107.4000 mm): 封装 R9
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(99.8500 mm, 107.4000 mm): 封装 R9
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(99.8500 mm, 107.9100 mm): F.Cu 上 R9 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (TP_INT_N) 与原理图 (/TP_INT_N) 指定的网络不匹配
+    Local override; warning
+    @(99.8500 mm, 106.8900 mm): F.Cu 上 R9 的焊盘 2 [TP_INT_N]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(108.7500 mm, 122.2000 mm): 封装 R12
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(108.7500 mm, 122.2000 mm): 封装 R12
+[net_conflict]: 焊盘网络 (USB_SHIELD) 与原理图 (/USB_SHIELD) 指定的网络不匹配
+    Local override; warning
+    @(108.2400 mm, 122.2000 mm): F.Cu 上 R12 的焊盘 1 [USB_SHIELD]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(109.2600 mm, 122.2000 mm): F.Cu 上 R12 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(107.0000 mm, 117.0000 mm): 封装 R13
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(107.0000 mm, 117.0000 mm): 封装 R13
+[net_conflict]: 焊盘网络 (USB_D_P_CONN) 与原理图 (/USB_D_P_CONN) 指定的网络不匹配
+    Local override; warning
+    @(106.4900 mm, 117.0000 mm): F.Cu 上 R13 的焊盘 1 [USB_D_P_CONN]
+[net_conflict]: 焊盘网络 (USB_D_P_MCU) 与原理图 (/USB_D_P_MCU) 指定的网络不匹配
+    Local override; warning
+    @(107.5100 mm, 117.0000 mm): F.Cu 上 R13 的焊盘 2 [USB_D_P_MCU]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(107.0000 mm, 115.6000 mm): 封装 R14
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(107.0000 mm, 115.6000 mm): 封装 R14
+[net_conflict]: 焊盘网络 (USB_D_N_CONN) 与原理图 (/USB_D_N_CONN) 指定的网络不匹配
+    Local override; warning
+    @(106.4900 mm, 115.6000 mm): F.Cu 上 R14 的焊盘 1 [USB_D_N_CONN]
+[net_conflict]: 焊盘网络 (USB_D_N_MCU) 与原理图 (/USB_D_N_MCU) 指定的网络不匹配
+    Local override; warning
+    @(107.5100 mm, 115.6000 mm): F.Cu 上 R14 的焊盘 2 [USB_D_N_MCU]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(108.7500 mm, 123.3000 mm): 封装 R15
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(108.7500 mm, 123.3000 mm): 封装 R15
+[net_conflict]: 焊盘网络 (USB_VBUS) 与原理图 (/USB_VBUS) 指定的网络不匹配
+    Local override; warning
+    @(108.2400 mm, 123.3000 mm): F.Cu 上 R15 的焊盘 1 [USB_VBUS]
+[net_conflict]: 焊盘网络 (TYPEC_VBUS_DET) 与原理图 (/TYPEC_VBUS_DET) 指定的网络不匹配
+    Local override; warning
+    @(109.2600 mm, 123.3000 mm): F.Cu 上 R15 的焊盘 2 [TYPEC_VBUS_DET]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(102.0000 mm, 114.5000 mm): 封装 R16
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(102.0000 mm, 114.5000 mm): 封装 R16
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(101.4900 mm, 114.5000 mm): F.Cu 上 R16 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (TYPEC_INT_N) 与原理图 (/TYPEC_INT_N) 指定的网络不匹配
+    Local override; warning
+    @(102.5100 mm, 114.5000 mm): F.Cu 上 R16 的焊盘 2 [TYPEC_INT_N]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(108.8000 mm, 103.0000 mm): 封装 R17
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(108.8000 mm, 103.0000 mm): 封装 R17
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(108.2900 mm, 103.0000 mm): F.Cu 上 R17 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (CHARGER_PG_N) 与原理图 (/CHARGER_PG_N) 指定的网络不匹配
+    Local override; warning
+    @(109.3100 mm, 103.0000 mm): F.Cu 上 R17 的焊盘 2 [CHARGER_PG_N]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(113.2000 mm, 105.9500 mm): 封装 R18
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(113.2000 mm, 105.9500 mm): 封装 R18
+[net_conflict]: 焊盘网络 (BQ_ILIM) 与原理图 (/BQ_ILIM) 指定的网络不匹配
+    Local override; warning
+    @(113.2000 mm, 106.4600 mm): F.Cu 上 R18 的焊盘 1 [BQ_ILIM]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(113.2000 mm, 105.4400 mm): F.Cu 上 R18 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(113.7500 mm, 104.3000 mm): 封装 R19
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(113.7500 mm, 104.3000 mm): 封装 R19
+[net_conflict]: 焊盘网络 (BQ_TS_BIAS) 与原理图 (/BQ_TS_BIAS) 指定的网络不匹配
+    Local override; warning
+    @(113.2400 mm, 104.3000 mm): F.Cu 上 R19 的焊盘 1 [BQ_TS_BIAS]
+[net_conflict]: 焊盘网络 (BAT_TS) 与原理图 (/BAT_TS) 指定的网络不匹配
+    Local override; warning
+    @(114.2600 mm, 104.3000 mm): F.Cu 上 R19 的焊盘 2 [BAT_TS]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(113.2000 mm, 114.2000 mm): 封装 R20
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(113.2000 mm, 114.2000 mm): 封装 R20
+[net_conflict]: 焊盘网络 (BAT_TS) 与原理图 (/BAT_TS) 指定的网络不匹配
+    Local override; warning
+    @(112.6900 mm, 114.2000 mm): F.Cu 上 R20 的焊盘 1 [BAT_TS]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(113.7100 mm, 114.2000 mm): F.Cu 上 R20 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(112.2000 mm, 120.2000 mm): 封装 R21
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(112.2000 mm, 120.2000 mm): 封装 R21
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(111.6900 mm, 120.2000 mm): F.Cu 上 R21 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (CHARGER_STAT_N) 与原理图 (/CHARGER_STAT_N) 指定的网络不匹配
+    Local override; warning
+    @(112.7100 mm, 120.2000 mm): F.Cu 上 R21 的焊盘 2 [CHARGER_STAT_N]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(112.0000 mm, 102.3000 mm): 封装 R22
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(112.0000 mm, 102.3000 mm): 封装 R22
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(111.4900 mm, 102.3000 mm): F.Cu 上 R22 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (CHARGER_INT_N) 与原理图 (/CHARGER_INT_N) 指定的网络不匹配
+    Local override; warning
+    @(112.5100 mm, 102.3000 mm): F.Cu 上 R22 的焊盘 2 [CHARGER_INT_N]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(114.2000 mm, 102.3000 mm): 封装 R23
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(114.2000 mm, 102.3000 mm): 封装 R23
+[net_conflict]: 焊盘网络 (BQ_CE_N) 与原理图 (/BQ_CE_N) 指定的网络不匹配
+    Local override; warning
+    @(113.6900 mm, 102.3000 mm): F.Cu 上 R23 的焊盘 1 [BQ_CE_N]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(114.7100 mm, 102.3000 mm): F.Cu 上 R23 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(115.5000 mm, 111.8000 mm): 封装 R24
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(115.5000 mm, 111.8000 mm): 封装 R24
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(115.5000 mm, 112.3100 mm): F.Cu 上 R24 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (TPS63070_FB) 与原理图 (/TPS63070_FB) 指定的网络不匹配
+    Local override; warning
+    @(115.5000 mm, 111.2900 mm): F.Cu 上 R24 的焊盘 2 [TPS63070_FB]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(115.5000 mm, 114.0000 mm): 封装 R25
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(115.5000 mm, 114.0000 mm): 封装 R25
+[net_conflict]: 焊盘网络 (TPS63070_FB) 与原理图 (/TPS63070_FB) 指定的网络不匹配
+    Local override; warning
+    @(115.5000 mm, 113.4900 mm): F.Cu 上 R25 的焊盘 1 [TPS63070_FB]
+[net_conflict]: 焊盘网络 (GND) 与原理图 (/GND) 指定的网络不匹配
+    Local override; warning
+    @(115.5000 mm, 114.5100 mm): F.Cu 上 R25 的焊盘 2 [GND]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(117.0000 mm, 102.3000 mm): 封装 R26
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(117.0000 mm, 102.3000 mm): 封装 R26
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(116.4900 mm, 102.3000 mm): F.Cu 上 R26 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (3V3_PG_N) 与原理图 (/3V3_PG_N) 指定的网络不匹配
+    Local override; warning
+    @(117.5100 mm, 102.3000 mm): F.Cu 上 R26 的焊盘 2 [3V3_PG_N]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(97.9000 mm, 88.8000 mm): 封装 R27
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(97.9000 mm, 88.8000 mm): 封装 R27
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(97.3900 mm, 88.8000 mm): F.Cu 上 R27 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (I2C_SCL) 与原理图 (/I2C_SCL) 指定的网络不匹配
+    Local override; warning
+    @(98.4100 mm, 88.8000 mm): F.Cu 上 R27 的焊盘 2 [I2C_SCL]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(97.9000 mm, 87.7000 mm): 封装 R28
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(97.9000 mm, 87.7000 mm): 封装 R28
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(97.3900 mm, 87.7000 mm): F.Cu 上 R28 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (I2C_SDA) 与原理图 (/I2C_SDA) 指定的网络不匹配
+    Local override; warning
+    @(98.4100 mm, 87.7000 mm): F.Cu 上 R28 的焊盘 2 [I2C_SDA]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(95.7000 mm, 87.7000 mm): 封装 R29
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(95.7000 mm, 87.7000 mm): 封装 R29
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(95.1900 mm, 87.7000 mm): F.Cu 上 R29 的焊盘 1 [3V3]
+[net_conflict]: 焊盘网络 (MCU_EN) 与原理图 (/MCU_EN) 指定的网络不匹配
+    Local override; warning
+    @(96.2100 mm, 87.7000 mm): F.Cu 上 R29 的焊盘 2 [MCU_EN]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(97.9000 mm, 97.0500 mm): 封装 R30
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(97.9000 mm, 97.0500 mm): 封装 R30
+[net_conflict]: 焊盘网络 (3V3) 与原理图 (/3V3) 指定的网络不匹配
+    Local override; warning
+    @(97.9000 mm, 97.5600 mm): F.Cu 上 R30 的焊盘 1 [3V3]
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(102.8500 mm, 94.8500 mm): 封装 R31
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(102.8500 mm, 94.8500 mm): 封装 R31
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(107.1500 mm, 77.1000 mm): 封装 R32
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(107.1500 mm, 77.1000 mm): 封装 R32
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(118.6500 mm, 98.3000 mm): 封装 R33
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(118.6500 mm, 98.3000 mm): 封装 R33
+[footprint_symbol_mismatch]: R_0402_1005Metric 与符号 (Resistor_SMD:R_0402_1005Metric) 指定的封装不匹配
+    Local override; warning
+    @(109.8500 mm, 104.9000 mm): 封装 R34
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(109.8500 mm, 104.9000 mm): 封装 R34
+[footprint_symbol_mismatch]: SW_SPST_EVQP7C 与符号 (Button_Switch_SMD:SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG) 指定的封装不匹配
+    Local override; warning
+    @(113.8000 mm, 117.0000 mm): 封装 SW1
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(113.8000 mm, 117.0000 mm): 封装 SW1
+[footprint_symbol_mismatch]: SW_SPST_EVQP7C 与符号 (Button_Switch_SMD:SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG) 指定的封装不匹配
+    Local override; warning
+    @(83.5000 mm, 85.5000 mm): 封装 SW2
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(83.5000 mm, 85.5000 mm): 封装 SW2
+[footprint_symbol_mismatch]: SW_SPST_EVQP7C 与符号 (Button_Switch_SMD:SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG) 指定的封装不匹配
+    Local override; warning
+    @(89.0000 mm, 82.0000 mm): 封装 SW3
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(89.0000 mm, 82.0000 mm): 封装 SW3
+[footprint_symbol_mismatch]: SW_SPST_EVQP7C 与符号 (Button_Switch_SMD:SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG) 指定的封装不匹配
+    Local override; warning
+    @(123.0000 mm, 104.0000 mm): 封装 SW4
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(123.0000 mm, 104.0000 mm): 封装 SW4
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(122.0000 mm, 100.0000 mm): 封装 TP1
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(122.0000 mm, 100.0000 mm): 封装 TP1
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(119.0526 mm, 111.0000 mm): 封装 TP2
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(119.0526 mm, 111.0000 mm): 封装 TP2
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(105.6940 mm, 121.2504 mm): 封装 TP3
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(105.6940 mm, 121.2504 mm): 封装 TP3
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(100.0000 mm, 122.0000 mm): 封装 TP4
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(100.0000 mm, 122.0000 mm): 封装 TP4
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(94.3060 mm, 121.2504 mm): 封装 TP5
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(94.3060 mm, 121.2504 mm): 封装 TP5
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(89.0000 mm, 119.0526 mm): 封装 TP6
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(89.0000 mm, 119.0526 mm): 封装 TP6
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(84.4437 mm, 115.5563 mm): 封装 TP7
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(84.4437 mm, 115.5563 mm): 封装 TP7
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(80.9474 mm, 111.0000 mm): 封装 TP8
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(80.9474 mm, 111.0000 mm): 封装 TP8
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(78.7496 mm, 105.6940 mm): 封装 TP9
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(78.7496 mm, 105.6940 mm): 封装 TP9
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(78.0000 mm, 100.0000 mm): 封装 TP10
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(78.0000 mm, 100.0000 mm): 封装 TP10
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(78.7496 mm, 94.3060 mm): 封装 TP11
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(78.7496 mm, 94.3060 mm): 封装 TP11
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(94.3060 mm, 78.7496 mm): 封装 TP12
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(94.3060 mm, 78.7496 mm): 封装 TP12
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(100.0000 mm, 78.0000 mm): 封装 TP13
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(100.0000 mm, 78.0000 mm): 封装 TP13
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(105.6940 mm, 78.7496 mm): 封装 TP14
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(105.6940 mm, 78.7496 mm): 封装 TP14
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(111.0000 mm, 80.9474 mm): 封装 TP15
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(111.0000 mm, 80.9474 mm): 封装 TP15
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(115.5563 mm, 84.4436 mm): 封装 TP16
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(115.5563 mm, 84.4436 mm): 封装 TP16
+[footprint_symbol_mismatch]: TestPoint_Pad_D1.0mm 与符号 (TestPoint:TestPoint_Pad_D1.0mm) 指定的封装不匹配
+    Local override; warning
+    @(121.2504 mm, 94.3060 mm): 封装 TP17
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(121.2504 mm, 94.3060 mm): 封装 TP17
+[footprint_symbol_mismatch]: ESP32-S3-WROOM-1U 与符号 (RF_Module:ESP32-S3-WROOM-1U) 指定的封装不匹配
+    Local override; warning
+    @(86.6000 mm, 98.3000 mm): 封装 U1
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(86.6000 mm, 98.3000 mm): 封装 U1
+[footprint_symbol_mismatch]: BQ25628E_RYK0018A 与符号 (MOTO_GPS:BQ25628E_RYK0018A) 指定的封装不匹配
+    Local override; warning
+    @(110.0000 mm, 109.1000 mm): 封装 U2
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(110.0000 mm, 109.1000 mm): 封装 U2
+[footprint_symbol_mismatch]: TI_RNM0015A_VQFN-15 与符号 (MOTO_GPS:TI_RNM0015A_VQFN-15) 指定的封装不匹配
+    Local override; warning
+    @(118.3000 mm, 108.9000 mm): 封装 U3
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(118.3000 mm, 108.9000 mm): 封装 U3
+[footprint_symbol_mismatch]: Texas_X2QFN-12_1.6x1.6mm_P0.4mm 与符号 (Package_DFN_QFN:Texas_X2QFN-12_1.6x1.6mm_P0.4mm) 指定的封装不匹配
+    Local override; warning
+    @(110.5000 mm, 116.2000 mm): 封装 U4
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(110.5000 mm, 116.2000 mm): 封装 U4
+[footprint_symbol_mismatch]: QMI8658C_LGA-14_2.5x3.0mm 与符号 (MOTO_GPS:QMI8658C_LGA-14_2.5x3.0mm) 指定的封装不匹配
+    Local override; warning
+    @(100.3000 mm, 96.0000 mm): 封装 U5
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(100.3000 mm, 96.0000 mm): 封装 U5
+[footprint_symbol_mismatch]: LGA-12_2x2mm_P0.5mm 与符号 (Package_LGA:LGA-12_2x2mm_P0.5mm) 指定的封装不匹配
+    Local override; warning
+    @(100.0000 mm, 79.2000 mm): 封装 U6
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(100.0000 mm, 79.2000 mm): 封装 U6
+[footprint_symbol_mismatch]: SOT-23-5 与符号 (Package_TO_SOT_SMD:SOT-23-5) 指定的封装不匹配
+    Local override; warning
+    @(107.4000 mm, 79.8000 mm): 封装 U7
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(107.4000 mm, 79.8000 mm): 封装 U7
+[footprint_symbol_mismatch]: VSSOP-8_2.3x2mm_P0.5mm 与符号 (Package_SO:VSSOP-8_2.3x2mm_P0.5mm) 指定的封装不匹配
+    Local override; warning
+    @(112.5000 mm, 81.5000 mm): 封装 U8
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(112.5000 mm, 81.5000 mm): 封装 U8
+[footprint_symbol_mismatch]: SOT-23-5 与符号 (Package_TO_SOT_SMD:SOT-23-5) 指定的封装不匹配
+    Local override; warning
+    @(115.0000 mm, 84.5000 mm): 封装 U9
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(115.0000 mm, 84.5000 mm): 封装 U9
+[footprint_symbol_mismatch]: Quectel_LC76GABMD_LCC18_LGA10 与符号 (MOTO_GPS:Quectel_LC76GABMD_LCC18_LGA10) 指定的封装不匹配
+    Local override; warning
+    @(112.2000 mm, 95.0000 mm): 封装 U10
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(112.2000 mm, 95.0000 mm): 封装 U10
+[footprint_symbol_mismatch]: Texas_DRT0003A_SON-3_1x1mm_P0.65mm 与符号 (MOTO_GPS:Texas_DRT0003A_SON-3_1x1mm_P0.65mm) 指定的封装不匹配
+    Local override; warning
+    @(105.2000 mm, 116.4000 mm): 封装 U11
+[footprint_symbol_field_mismatch]: 字段 'Description' 不一致: (PCB: '', 原理图: 'MOTO GPS Rev A pin-accurate engineering symbol')
+    Local override; warning
+    @(105.2000 mm, 116.4000 mm): 封装 U11
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

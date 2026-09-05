@@ -1,0 +1,199 @@
+** Drc report for moto-gps-rev-a-routed-2.kicad_pcb **
+** Created on 2026-09-03T11:52:34 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 46 DRC violations **
+[shorting_items]: 短路了两个不同网络的项目 (网络 CHARGER_PG_N 和 BQ_ILIM)
+    Local override; error
+    @(108.3500 mm, 109.5500 mm): 走线 [CHARGER_PG_N] (F.Cu), 长度: 0.8000 mm
+    @(108.6125 mm, 109.5070 mm): F.Cu 上 U2 的焊盘 4 [BQ_ILIM]
+[shorting_items]: 短路了两个不同网络的项目 (网络 BQ_ILIM 和 CHARGER_PG_N)
+    Local override; error
+    @(108.6125 mm, 109.5070 mm): F.Cu 上 U2 的焊盘 4 [BQ_ILIM]
+    @(108.6125 mm, 109.1070 mm): 走线 [CHARGER_PG_N] (F.Cu), 长度: 0.5149 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 CHARGER_PG_N 和 BQ_ILIM)
+    Local override; error
+    @(107.5500 mm, 109.5500 mm): 过孔 [CHARGER_PG_N] (F.Cu - B.Cu)
+    @(106.9135 mm, 109.7890 mm): 走线 [BQ_ILIM] (In2.Cu), 长度: 0.6162 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 BQ_ILIM 和 CHARGER_PG_N)
+    Local override; error
+    @(107.3492 mm, 109.3533 mm): 走线 [BQ_ILIM] (In2.Cu), 长度: 4.0275 mm
+    @(107.5500 mm, 109.5500 mm): 过孔 [CHARGER_PG_N] (F.Cu - B.Cu)
+[shorting_items]: 短路了两个不同网络的项目 (网络 BQ_ILIM 和 CHARGER_PG_N)
+    Local override; error
+    @(108.6125 mm, 109.5070 mm): 走线 [BQ_ILIM] (F.Cu), 长度: 1.4170 mm
+    @(108.3500 mm, 109.5500 mm): 走线 [CHARGER_PG_N] (F.Cu), 长度: 0.8000 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0571 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(107.5500 mm, 109.5500 mm): 过孔 [CHARGER_PG_N] (F.Cu - B.Cu)
+    @(107.1955 mm, 109.5070 mm): 走线 [BQ_ILIM] (F.Cu), 长度: 0.3988 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(96.5500 mm, 94.1000 mm): 走线 [UART0_TX] (In2.Cu), 长度: 8.3500 mm
+    @(96.9269 mm, 95.8842 mm): 走线 [BOOT_N] (In2.Cu), 长度: 3.9005 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(89.6169 mm, 107.0036 mm): 走线 [GNSS_RESET_DRV] (In2.Cu), 长度: 0.4760 mm
+    @(92.0000 mm, 107.0000 mm): 走线 [UART0_TX] (In2.Cu), 长度: 7.5000 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(98.6031 mm, 97.4908 mm): 走线 [QMI_INT1] (In2.Cu), 长度: 12.4848 mm
+    @(96.5500 mm, 94.1000 mm): 走线 [UART0_TX] (In2.Cu), 长度: 8.3500 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 UART0_TX 和 GNSS_RESET_DRV)
+    Local override; error
+    @(96.5500 mm, 102.4500 mm): 走线 [UART0_TX] (In2.Cu), 长度: 6.4347 mm
+    @(93.1996 mm, 107.0036 mm): 走线 [GNSS_RESET_DRV] (In2.Cu), 长度: 3.5827 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(84.5000 mm, 107.0000 mm): 走线 [UART0_TX] (In2.Cu), 长度: 4.4732 mm
+    @(89.0000 mm, 113.5000 mm): 走线 [USB_D_N_MCU] (In2.Cu), 长度: 11.5783 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 LCD_CLK_MCU 和 UART0_TX)
+    Local override; error
+    @(96.7407 mm, 101.4178 mm): 过孔 [LCD_CLK_MCU] (F.Cu - B.Cu)
+    @(96.5500 mm, 94.1000 mm): 走线 [UART0_TX] (In2.Cu), 长度: 8.3500 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(96.3577 mm, 100.3980 mm): 走线 [FUNC_KEY_N] (In2.Cu), 长度: 0.7561 mm
+    @(96.5500 mm, 94.1000 mm): 走线 [UART0_TX] (In2.Cu), 长度: 8.3500 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0423 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(92.1695 mm, 104.5862 mm): 走线 [FUNC_KEY_N] (In2.Cu), 长度: 5.9230 mm
+    @(96.5500 mm, 94.1000 mm): 走线 [UART0_TX] (In2.Cu), 长度: 8.3500 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(78.9693 mm, 95.6182 mm): 走线 [LCD_SIO1_MCU] (B.Cu), 长度: 2.0461 mm
+    @(79.6500 mm, 94.6500 mm): 走线 [GNSS_TX_3V0] (B.Cu), 长度: 4.5300 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 GNSS_TX_3V0 和 GNSS_UART_RX_3V3)
+    Local override; error
+    @(84.1800 mm, 94.6500 mm): 走线 [GNSS_TX_3V0] (B.Cu), 长度: 0.8074 mm
+    @(84.4234 mm, 94.6409 mm): 过孔 [GNSS_UART_RX_3V3] (F.Cu - B.Cu)
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(79.6500 mm, 96.2300 mm): 走线 [GNSS_TX_3V0] (B.Cu), 长度: 1.5800 mm
+    @(78.9693 mm, 95.6182 mm): 走线 [LCD_SIO1_MCU] (B.Cu), 长度: 2.0461 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(84.5000 mm, 107.0000 mm): 走线 [UART0_TX] (In2.Cu), 长度: 4.4732 mm
+    @(89.0000 mm, 114.1000 mm): 走线 [USB_D_P_MCU] (In2.Cu), 长度: 11.1036 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 CHARGER_PG_N 和 BAT_TS)
+    Local override; error
+    @(107.5500 mm, 109.5500 mm): 过孔 [CHARGER_PG_N] (F.Cu - B.Cu)
+    @(109.1180 mm, 109.3373 mm): 走线 [BAT_TS] (B.Cu), 长度: 3.3744 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0477 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(107.5500 mm, 109.5500 mm): 过孔 [CHARGER_PG_N] (F.Cu - B.Cu)
+    @(107.8977 mm, 114.3472 mm): 走线 [USB_VBUS] (In2.Cu), 长度: 4.9374 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0749 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(107.5500 mm, 109.5500 mm): 过孔 [CHARGER_PG_N] (F.Cu - B.Cu)
+    @(107.8977 mm, 109.4098 mm): 走线 [USB_VBUS] (In2.Cu), 长度: 0.6259 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.1300 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(108.2400 mm, 122.2000 mm): F.Cu 上 R12 的焊盘 1 [USB_SHIELD]
+    @(107.7500 mm, 122.7300 mm): 走线 [USB_VBUS] (F.Cu), 长度: 1.3300 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0542 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(108.2400 mm, 122.2000 mm): 走线 [USB_SHIELD] (F.Cu), 长度: 2.0153 mm
+    @(107.7500 mm, 121.4000 mm): 走线 [USB_VBUS] (F.Cu), 长度: 0.6364 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(78.6200 mm, 102.9000 mm): 走线 [LCD_SIO3_MCU] (In2.Cu), 长度: 7.6300 mm
+    @(78.8270 mm, 108.4832 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 9.5422 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0570 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(78.6200 mm, 97.9000 mm): 走线 [LCD_SIO3_MCU] (In2.Cu), 长度: 5.0000 mm
+    @(78.8270 mm, 108.4832 mm): 走线 [I2C_SDA] (In2.Cu), 长度: 9.5422 mm
+[clearance]: 间距违规 (规则 'MOTO GPS minimum track and spacing' 间距 0.1500 mm; 实际 0.0571 mm)
+    Rule: MOTO GPS minimum track and spacing; error
+    @(87.0360 mm, 100.9676 mm): 过孔 [LCD_SIO3_MCU] (F.Cu - B.Cu)
+    @(82.0130 mm, 105.4856 mm): 走线 [UART0_RX] (F.Cu), 长度: 14.8713 mm
+[tracks_crossing]: Tracks crossing
+    Rule: MOTO GPS minimum track and spacing; error
+    @(79.1654 mm, 96.9701 mm): 走线 [LCD_SIO2_MCU] (In2.Cu), 长度: 5.1384 mm
+    @(80.5500 mm, 100.1500 mm): 走线 [LCD_SIO0_MCU] (In2.Cu), 长度: 3.1315 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 GNSS_TX_3V0 和 LCD_SIO2_MCU)
+    Local override; error
+    @(78.8455 mm, 97.0378 mm): 走线 [GNSS_TX_3V0] (B.Cu), 长度: 1.1401 mm
+    @(79.1654 mm, 96.5654 mm): 过孔 [LCD_SIO2_MCU] (F.Cu - B.Cu)
+[shorting_items]: 短路了两个不同网络的项目 (网络 I2C_SCL 和 3V3)
+    Local override; error
+    @(99.2375 mm, 78.4500 mm): 走线 [I2C_SCL] (F.Cu), 长度: 0.4142 mm
+    @(98.7200 mm, 79.4500 mm): 走线 [3V3] (F.Cu), 长度: 1.3000 mm
+[solder_mask_bridge]: 顶层阻焊开窗区域与不同网络的项目相连
+    Rule: <电路板配置> 中的 "阻焊层最小宽度"; error
+    @(108.3500 mm, 109.5500 mm): 走线 [CHARGER_PG_N] (F.Cu), 长度: 0.8000 mm
+    @(108.6125 mm, 109.5070 mm): F.Cu 上 U2 的焊盘 4 [BQ_ILIM]
+[solder_mask_bridge]: 顶层阻焊开窗区域与不同网络的项目相连
+    Rule: <电路板配置> 中的 "阻焊层最小宽度"; error
+    @(108.6125 mm, 109.1070 mm): 走线 [CHARGER_PG_N] (F.Cu), 长度: 0.5149 mm
+    @(108.6125 mm, 109.5070 mm): F.Cu 上 U2 的焊盘 4 [BQ_ILIM]
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(102.8973 mm, 120.5121 mm): 走线 [GND] (F.Cu), 长度: 0.2645 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(101.7527 mm, 120.5121 mm): 走线 [GND] (In2.Cu), 长度: 0.8801 mm
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(95.4851 mm, 125.6050 mm): Edge.Cuts 上的 线段
+    @(95.4200 mm, 125.7850 mm): J1 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(104.9610 mm, 125.5223 mm): Edge.Cuts 上的 线段
+    @(104.5800 mm, 124.0800 mm): J1 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(96.3815 mm, 125.7470 mm): Edge.Cuts 上的 线段
+    @(104.5800 mm, 125.7850 mm): J1 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(81.5191 mm, 116.6403 mm): Edge.Cuts 上的 线段
+    @(81.3900 mm, 118.7150 mm): J2 的 线段, 位于 F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(84.3528 mm, 120.7645 mm): Edge.Cuts 上的 线段
+    @(82.5600 mm, 120.6850 mm): J2 的 线段, 位于 F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(113.5500 mm, 82.9900 mm): U9 的 多边形, 位于 F.Silkscreen
+    @(113.7600 mm, 82.6850 mm): U8 的 线段, 位于 F.Silkscreen
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(86.5000 mm, 85.0000 mm): F.Silkscreen 上的 PCB 文本 'MOTO GPS REV A EVT'
+    @(81.7000 mm, 84.7800 mm): F.Cu 上 SW2 的焊盘 1 [MCU_EN]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(86.5000 mm, 85.0000 mm): F.Silkscreen 上的 PCB 文本 'MOTO GPS REV A EVT'
+    @(83.5000 mm, 84.6000 mm): SW2 的 NPTH 焊盘
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(86.5000 mm, 85.0000 mm): F.Silkscreen 上的 PCB 文本 'MOTO GPS REV A EVT'
+    @(85.3000 mm, 84.7800 mm): F.Cu 上 SW2 的焊盘 1 [MCU_EN]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.6000 mm, 115.8000 mm): U11 的 线段, 位于 F.Silkscreen
+    @(105.2000 mm, 115.9750 mm): F.Cu 上 U11 的焊盘 3 [USB_D_N_CONN]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.6000 mm, 117.0000 mm): U11 的 线段, 位于 F.Silkscreen
+    @(104.8500 mm, 116.8250 mm): F.Cu 上 U11 的焊盘 1 [USB_D_P_CONN]
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.6000 mm, 117.0000 mm): U11 的 线段, 位于 F.Silkscreen
+    @(105.5500 mm, 116.8250 mm): F.Cu 上 U11 的焊盘 2 [GND]
+[nonmirrored_text_on_back_layer]: Non-Mirrored text on back layer
+    Local override; warning
+    @(100.0000 mm, 116.2000 mm): B.Silkscreen 上的 PCB 文本 'ENGINEERING - NOT FOR FABRICATION'
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

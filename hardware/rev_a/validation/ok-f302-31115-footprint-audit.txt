@@ -1,0 +1,75 @@
+OCN OK-F302-31115 FOOTPRINT GEOMETRY AUDIT
+=============================================
+
+Scope: connector package geometry only; no schematic or PCB placement was changed.
+Coordinate convention: PCB top view, FPC tail/actuator edge at +Y.
+
+SOURCE INTEGRITY
+PASS  OCN-OK-F302-xx115-Rev-A1.pdf: ebc73a00c6a5649198b732a27986f3c60f22b84de33d67a612e1c79863c5a069
+PASS  C9900051647-OK-F302-31115-linked-drawing.pdf: a006c7f310b231c97f78e5726d07750cf82076295b7341efc0cb54bd4c0efb24
+PASS  C9900051647-OK-F302-31115-easyeda.json: 45e28e2aa8746ee3f21f9ac96261faa5e129370198a7f117186618200d4f765f
+
+SOURCE IDENTIFICATION
+Retrieved: 2026-09-03
+OCN drawing URL: https://285624.selcdn.ru/syms1/iblock/f03/f036397a40a02fbcf3fa79b5388254dd/Spec_Draw_OK_F302.pdf
+EasyEDA API URL: https://easyeda.com/api/products/C9900051647/components?version=6.5.22.1
+EasyEDA title: OK-F302-31115_C9900051647
+EasyEDA package: FPC-SMD_31P-P0.30_OK-F302-31115
+EasyEDA package UUID: 86887cdb698b4c0896a7b7b7864e8a85
+LCSC/JLC part: C9900051647
+Drawing URL recorded by EasyEDA: https://image.lceda.cn/SmtPdfFiles/2024/11/7/iH4hjZvlYKxYP8Dy8l0yuOfiFGO0obgKLlnbkRgp.pdf
+
+MANUFACTURER DRAWING FACTS (OK-F302-xx115 Rev A1)
+PASS  code 302 = 0.30 mm pitch
+PASS  31 = 31 contacts
+PASS  first suffix 1 = bottom contacts
+PASS  second suffix 1 = front flip
+PASS  connector height = 1.00 +/-0.10 mm
+PASS  applicable FPC thickness = 0.20 +0.03/-0.00 mm
+PASS  31-contact dimensions A/B/C/D = 10.80/8.40/9.00/9.63 mm
+PASS  body depth = REF 3.22 mm
+PASS  recommended stencil thickness = 0.10 mm
+
+EASYEDA NORMALIZED LAND GEOMETRY
+Pads: 31 signal pads, 0 mechanical solder pads
+Consecutive pin pitch: 0.299974 mm
+Pin 1-to-31 centre span: 8.999982 mm
+Odd/front row: y=1.375029 mm, pad=0.200000 x 0.750011 mm
+Even/rear row: y=-1.375029 mm, pad=0.200000 x 0.550012 mm
+Row centre separation: 2.750058 mm
+Layer-99 body bounds: x=-5.400015..5.399964 mm, y=-1.375004..1.844980 mm
+Layer-99 body size: 10.799978 x 3.219983 mm
+Source pin-1 marker centre: x=-5.400015 mm, y=1.844980 mm
+
+KICAD FOOTPRINT COMPARISON
+Footprint: /Users/xm/Documents/ChatGPT/MOTO GPS/hardware/rev_a/board/MOTO_GPS.pretty/OCN_OK-F302-31115.kicad_mod
+Pads: 31
+Maximum pad-centre residual (absolute source coordinates): 0.000133 mm
+Maximum pad-size residual: 0.000012 mm
+F.Fab bounds: (-5.4, -1.375, 5.4, 1.845)
+F.CrtYd bounds: (-5.65, -1.9, 5.65, 2.1)
+Courtyard margins L/T/R/B: 0.250/0.250/0.250/0.255 mm
+
+PAD NUMBERING / CONTACT ORIENTATION
+Pin 1 = (-4.50, +1.375) mm, left/front row in PCB top view.
+Pin 31 = (+4.50, +1.375) mm, right/front row in PCB top view.
+Pin numbers advance in +X; odd pins are front/+Y and even pins are rear/-Y.
+The source package's pin-1 circle is at the left/front body corner and is reproduced on F.SilkS.
+With the connector on F.Cu and the flex tail extending toward +Y, the bottom-contact FPC's exposed copper faces the PCB.
+A loose flex viewed from its exposed-copper side can look mirrored; align the screen vendor's pin-1 callout, not a photo alone.
+
+DIFFERENCE FROM CURRENT XUNPU FPC-0.3FX-31PWBH10 FOOTPRINT
+Pitch: XUNPU 0.3000 mm; OCN 0.3000 mm (same pitch only).
+Signal-pad width: XUNPU 0.3000 mm; OCN 0.2000 mm.
+Odd/front pad length: XUNPU 0.8000 mm; OCN 0.7500 mm.
+Even/rear pad length: XUNPU 0.6500 mm; OCN 0.5500 mm.
+Row separation: XUNPU 2.8775 mm; OCN 2.7501 mm.
+Mechanical solder pads: XUNPU 2; OCN 0.
+F.Fab body: XUNPU 10.3000 x 3.2000 mm; OCN 10.8000 x 3.2200 mm.
+Pad-number progression is +X in both library footprints, but the land patterns and retention structures are not interchangeable.
+
+VERDICT
+RESULT: PASS
+The standalone OCN footprint matches the JLC/EasyEDA package and OCN drawing within 0.002 mm.
+It is ready for schematic/PCB assignment after the display FPC's electrical pin-1 orientation is independently confirmed.
+No schematic or PCB main file was modified by this audit.

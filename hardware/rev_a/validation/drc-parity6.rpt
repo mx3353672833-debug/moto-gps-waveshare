@@ -1,0 +1,55 @@
+** Drc report for moto-gps-rev-a.kicad_pcb **
+** Created on 2026-09-03T12:16:56 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 11 DRC violations **
+[lib_footprint_mismatch]: 封装 'USB_C_Receptacle_XKB_U262-16XN-4BVC11' 与库 'Connector_USB' 中的副本不匹配
+    Local override; warning
+    @(100.0000 mm, 122.0000 mm): 封装 J1
+[lib_footprint_mismatch]: 封装 'U.FL_Hirose_U.FL-R-SMT-1_Vertical' 与库 'Connector_Coaxial' 中的副本不匹配
+    Local override; warning
+    @(123.1000 mm, 95.0000 mm): 封装 J4
+[lib_footprint_mismatch]: 封装 'SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG' 与库 'Button_Switch_SMD' 中的副本不匹配
+    Local override; warning
+    @(123.0000 mm, 104.0000 mm): 封装 SW4
+[lib_footprint_mismatch]: 封装 'JST_SH_SM03B-SRSS-TB_1x03-1MP_P1.00mm_Horizontal' 与库 'Connector_JST' 中的副本不匹配
+    Local override; warning
+    @(84.0000 mm, 118.0000 mm): 封装 J2
+[lib_footprint_mismatch]: 封装 'ESP32-S3-WROOM-1U' 与库 'RF_Module' 中的副本不匹配
+    Local override; warning
+    @(86.6000 mm, 98.3000 mm): 封装 U1
+[lib_footprint_mismatch]: 封装 'VSSOP-8_2.3x2mm_P0.5mm' 与库 'Package_SO' 中的副本不匹配
+    Local override; warning
+    @(112.5000 mm, 81.5000 mm): 封装 U8
+[lib_footprint_mismatch]: 封装 'SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG' 与库 'Button_Switch_SMD' 中的副本不匹配
+    Local override; warning
+    @(83.5000 mm, 85.5000 mm): 封装 SW2
+[lib_footprint_mismatch]: 封装 'SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG' 与库 'Button_Switch_SMD' 中的副本不匹配
+    Local override; warning
+    @(89.0000 mm, 82.0000 mm): 封装 SW3
+[lib_footprint_mismatch]: 封装 'Texas_DRT0003A_SON-3_1x1mm_P0.65mm' 与库 'MOTO_GPS' 中的副本不匹配
+    Local override; warning
+    @(105.2000 mm, 116.4000 mm): 封装 U11
+[lib_footprint_mismatch]: 封装 'SOT-23-5' 与库 'Package_TO_SOT_SMD' 中的副本不匹配
+    Local override; warning
+    @(115.0000 mm, 84.5000 mm): 封装 U9
+[lib_footprint_mismatch]: 封装 'SW_Push_1P1T_NO_E-Switch_TL3301NxxxxxG' 与库 'Button_Switch_SMD' 中的副本不匹配
+    Local override; warning
+    @(113.8000 mm, 117.0000 mm): 封装 SW1
+
+** Found 1 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(106.8150 mm, 120.7750 mm): 走线 [/USB_SHIELD] (F.Cu), 长度: 0.2650 mm
+    @(104.3200 mm, 118.8950 mm): J1 的PTH 焊盘 S1 [/USB_SHIELD]
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

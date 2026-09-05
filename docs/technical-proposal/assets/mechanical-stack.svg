@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#708995"/></marker><style>.t{font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif;fill:#17232a}.h{font-size:34px;font-weight:700}.s{font-size:19px;fill:#50636c}.k{font-size:22px;font-weight:700}.n{font-size:17px;fill:#465b65}.l{stroke:#708995;stroke-width:2;fill:none;marker-end:url(#a)}.dash{stroke:#9babb2;stroke-width:2;stroke-dasharray:8 7;fill:none}</style></defs>
+  <rect width="1400" height="760" rx="34" fill="#f5f8f9"/><text x="70" y="72" class="t h">V3 结构堆叠与佳明直装卡口</text><text x="70" y="108" class="t s">连续铝前框 + 塑料 RF 后壳 + 可更换 Garmin Edge 公卡榫</text>
+  <g transform="translate(440 130)">
+    <ellipse cx="260" cy="45" rx="220" ry="40" fill="#17242b" stroke="#071013" stroke-width="3"/><ellipse cx="260" cy="45" rx="178" ry="31" fill="#050708" stroke="#798a91"/>
+    <ellipse cx="260" cy="130" rx="220" ry="40" fill="#8c989d" stroke="#35464e" stroke-width="3"/><ellipse cx="260" cy="130" rx="180" ry="30" fill="#1a262c"/>
+    <ellipse cx="260" cy="220" rx="190" ry="34" fill="#4b9b70" fill-opacity=".75" stroke="#2d6c4a" stroke-width="3"/>
+    <rect x="170" y="283" width="180" height="70" rx="18" fill="#e2c35a" fill-opacity=".75" stroke="#9e812c" stroke-width="3"/>
+    <ellipse cx="260" cy="420" rx="220" ry="55" fill="#48555b" stroke="#18232a" stroke-width="3"/><ellipse cx="260" cy="420" rx="165" ry="35" fill="#f5f8f9"/>
+    <ellipse cx="260" cy="515" rx="90" ry="26" fill="#68777e" stroke="#17232a" stroke-width="3"/>
+    <path d="M170 515h180" stroke="#17232a" stroke-width="18" stroke-linecap="round"/><ellipse cx="260" cy="515" rx="72" ry="22" fill="#68777e" stroke="#17232a" stroke-width="3"/>
+    <path d="M260 85V95M260 170V182M260 254V270M260 360V382M260 470V489" class="dash"/>
+  </g>
+  <path d="M505 163L260 150" class="l"/><text x="80" y="150" class="t k">圆形触摸玻璃</text><text x="80" y="181" class="t n">466 x 466 AMOLED / 连续屏幕胶环</text>
+  <path d="M500 260L280 260" class="l"/><text x="80" y="251" class="t k">6061-T6 铝前框</text><text x="80" y="282" class="t n">四颗外露 M1.6 TC4 功能螺钉</text>
+  <path d="M510 350L300 374" class="l"/><text x="80" y="358" class="t k">DIA 52 四层自研 PCB</text><text x="80" y="389" class="t n">主控 · 电源 · GNSS · IMU · 罗盘</text>
+  <path d="M610 447L350 470" class="l"/><text x="80" y="457" class="t k">PCB 后方叠放电池</text><text x="80" y="488" class="t n">702530 包络 / 绝缘与 Poron 缓冲</text>
+  <path d="M490 557L320 570" class="l"/><text x="80" y="557" class="t k">RF 透明塑料后壳</text><text x="80" y="588" class="t n">独立壳体密封圈 · 12 点无金属区</text>
+  <path d="M610 650L360 665" class="l"/><text x="80" y="650" class="t k">Garmin Edge 公卡榫</text><text x="80" y="681" class="t n">可替换 · 90 deg 锁止 · 直接装原有佳明底座</text>
+  <rect x="1020" y="180" width="300" height="380" rx="24" fill="#e7eef1" stroke="#849aa4" stroke-width="2"/><text x="1060" y="230" class="t k">Rev A1 关键尺寸</text><text x="1060" y="282" class="t n">主体：DIA 61 x 16</text><text x="1060" y="320" class="t n">含卡口：总厚 19</text><text x="1060" y="358" class="t n">卡榫 Hub：DIA 24.9 x 3</text><text x="1060" y="396" class="t n">Tab 回转：DIA 28.6</text><text x="1060" y="434" class="t n">Tab 宽 / 厚：11 / 1.5</text><text x="1060" y="486" class="t n">量规：原装 010-11430-00</text><text x="1060" y="527" class="t n" fill="#bd4b30">NOT FOR FAB</text>
+</svg>

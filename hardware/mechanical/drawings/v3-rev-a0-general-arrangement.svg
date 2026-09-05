@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#263238"/>
+    </marker>
+    <style>
+      .outline{fill:none;stroke:#111820;stroke-width:2}.thin{fill:none;stroke:#54626c;stroke-width:1.2}
+      .hidden{fill:none;stroke:#7a8790;stroke-width:1.1;stroke-dasharray:7 5}.center{fill:none;stroke:#5596ad;stroke-width:1;stroke-dasharray:12 4 2 4}
+      .dim{fill:none;stroke:#263238;stroke-width:1.2;marker-start:url(#arrow);marker-end:url(#arrow)}.ext{fill:none;stroke:#74818a;stroke-width:1}
+      .txt{font-family:"PingFang SC","Heiti SC",Arial,sans-serif;font-size:16px;fill:#1e2a31}.small{font-family:"PingFang SC","Heiti SC",Arial,sans-serif;font-size:13px;fill:#34444e}
+      .red{font-family:"PingFang SC","Heiti SC",Arial,sans-serif;font-size:13px;fill:#c62828;font-weight:bold}.title{font-family:"PingFang SC","Heiti SC",Arial,sans-serif;font-size:25px;fill:#111820;font-weight:bold}
+      .subtitle{font-family:"PingFang SC","Heiti SC",Arial,sans-serif;font-size:17px;fill:#31424b;font-weight:bold}.metal{fill:#d7dde0;stroke:#111820;stroke-width:2}
+      .plastic{fill:#4a545a;stroke:#111820;stroke-width:2}.glass{fill:#15252d;stroke:#111820;stroke-width:2}.pcb{fill:#5f9a76;fill-opacity:.45;stroke:#397252;stroke-width:1.4;stroke-dasharray:6 4}
+      .battery{fill:#d5b958;fill-opacity:.52;stroke:#997f27;stroke-width:1.4}.rf{fill:#4fa7bd;fill-opacity:.38;stroke:#267f96;stroke-width:1.4;stroke-dasharray:5 4}
+    </style>
+  </defs>
+  <rect x="10" y="10" width="1180" height="880" fill="#fff" stroke="#111820" stroke-width="2"/>
+  <text x="35" y="48" class="title">MOTO GPS — V3 GENERAL ARRANGEMENT / REV A1</text>
+  <text x="35" y="76" class="small">单位 mm · 仅作包络/DFM 沟通 · 禁止直接批量加工 · 红色标注待实物冻结</text>
+
+  <text x="70" y="120" class="subtitle">正视图 / FRONT</text>
+  <g transform="translate(285 330)">
+    <circle r="183" class="metal"/><circle r="146.88" class="glass"/><circle r="132.48" class="thin" stroke="#8aa5b0"/><circle r="166.2" class="center"/>
+    <line x1="-205" y1="0" x2="205" y2="0" class="center"/><line x1="0" y1="-205" x2="0" y2="205" class="center"/>
+    <g fill="#1b2024" stroke="#050708" stroke-width="2">
+      <circle cx="117.52" cy="-117.52" r="9.9"/><circle cx="-117.52" cy="-117.52" r="9.9"/><circle cx="-117.52" cy="117.52" r="9.9"/><circle cx="117.52" cy="117.52" r="9.9"/>
+    </g>
+    <g class="thin" stroke="#aab4b8">
+      <path d="M108,-119 l7,-5 l7,5 l-2,8 l-8,0 z"/><path d="M-121,-119 l7,-5 l7,5 l-2,8 l-8,0 z"/><path d="M-121,110 l7,-5 l7,5 l-2,8 l-8,0 z"/><path d="M108,110 l7,-5 l7,5 l-2,8 l-8,0 z"/>
+    </g>
+    <path d="M-4 144 L4 144 L7 168 L-7 168 Z" fill="#e89b35"/>
+    <line x1="-183" y1="-230" x2="183" y2="-230" class="dim"/><line x1="-183" y1="-183" x2="-183" y2="-245" class="ext"/><line x1="183" y1="-183" x2="183" y2="-245" class="ext"/>
+    <text x="-38" y="-240" class="txt">DIA 61.0</text>
+    <line x1="-146.88" y1="222" x2="146.88" y2="222" class="dim"/><line x1="-146.88" y1="140" x2="-146.88" y2="233" class="ext"/><line x1="146.88" y1="140" x2="146.88" y2="233" class="ext"/>
+    <text x="-73" y="216" class="red">盖板 DIA 48.96*</text>
+    <path d="M-114,-114 L-120,-132" class="ext"/><text x="-125" y="-145" text-anchor="end" class="small">M1.6x6 TC4 x4</text><text x="-125" y="-125" text-anchor="end" class="small">D1.80 / CB D3.30x1.50</text>
+    <path d="M117.52,-117.52 A166.2,166.2 0 0,1 166.2,0" class="center"/><text x="180" y="-52" class="txt">PCD 55.40</text><text x="180" y="-30" class="small">45deg + n x 90deg</text>
+  </g>
+
+  <text x="610" y="120" class="subtitle">侧视图 / SIDE</text>
+  <g transform="translate(620 175)">
+    <rect x="0" y="0" width="360" height="18" rx="7" class="metal"/><rect x="0" y="18" width="360" height="78" rx="18" class="plastic"/><rect x="42" y="7" width="276" height="7" rx="3" class="glass"/>
+    <rect x="94" y="96" width="172" height="18" rx="4" class="plastic"/><rect x="345" y="43" width="8" height="28" rx="4" fill="#20282d" stroke="#111820" stroke-width="1.5"/>
+    <line x1="0" y1="-24" x2="366" y2="-24" class="dim"/><line x1="0" y1="0" x2="0" y2="-36" class="ext"/><line x1="366" y1="0" x2="366" y2="-36" class="ext"/><text x="145" y="-32" class="txt">DIA 61.0</text>
+    <line x1="390" y1="0" x2="390" y2="96" class="dim"/><line x1="360" y1="0" x2="402" y2="0" class="ext"/><line x1="360" y1="96" x2="402" y2="96" class="ext"/><text x="402" y="44" class="txt">16.0 主体</text>
+    <line x1="445" y1="0" x2="445" y2="114" class="dim"/><line x1="258" y1="114" x2="457" y2="114" class="ext"/><text x="457" y="58" class="txt">19.0 含接口</text>
+    <text x="370" y="67" class="small">右侧防水按键*</text><text x="94" y="139" class="small">Garmin Edge 公卡榫 / 90deg LOCK*</text>
+  </g>
+
+  <text x="610" y="345" class="subtitle">A-A 概念剖面 / STACK</text>
+  <g transform="translate(625 382)">
+    <path d="M0 0 H360 V18 H0 Z" class="metal"/><rect x="36" y="4" width="288" height="8" class="glass"/><rect x="53" y="18" width="254" height="9" fill="#26363f" stroke="#111820"/>
+    <rect x="24" y="27" width="312" height="6" class="pcb"/><rect x="99" y="33" width="162" height="42" class="battery"/><path d="M0 18 H24 V84 H336 V18 H360 V96 H0 Z" class="plastic" fill-rule="evenodd"/>
+    <rect x="125" y="96" width="110" height="18" class="plastic"/><rect x="278" y="41" width="48" height="36" class="rf"/>
+    <path d="M299,58 L389,43" class="ext"/><text x="394" y="47" class="red">GNSS 10x10x6*</text><path d="M243,55 L389,79" class="ext"/><text x="394" y="83" class="red">电池 27x32x7*</text>
+    <path d="M220,29 L389,111" class="ext"/><text x="394" y="115" class="small">PCB DIA 52x1.0</text><path d="M120,22 L10,135" class="ext"/><text x="-4" y="157" class="red">显示总成厚度/FPC*</text>
+    <text x="90" y="138" class="small">Z=0 前后壳结合面</text>
+  </g>
+
+  <text x="70" y="635" class="subtitle">后视/佳明卡口 / GARMIN EDGE MOUNT</text>
+  <g transform="translate(225 760)">
+    <circle r="102" class="plastic"/>
+    <path d="M-45.3,-18.7 H45.3 A49,49 0 0,1 45.3,18.7 H-45.3 A49,49 0 0,1 -45.3,-18.7 Z" fill="#8b989e" stroke="#111820" stroke-width="2"/>
+    <circle r="42.3" fill="#6b777d" stroke="#111820" stroke-width="2"/><circle r="31" class="center"/>
+    <path d="M-65 8 A68 68 0 0 1 -8 -65" class="thin" marker-end="url(#arrow)"/><text x="-89" y="16" class="small">90deg</text>
+    <line x1="-49" y1="-72" x2="49" y2="-72" class="dim"/><line x1="-49" y1="0" x2="-49" y2="-82" class="ext"/><line x1="49" y1="0" x2="49" y2="-82" class="ext"/>
+    <text x="-56" y="-81" class="red">TAB DIA 28.6*</text><text x="-67" y="76" class="red">HUB DIA 24.9 / 锁止槽待量规冻结*</text>
+  </g>
+
+  <g transform="translate(430 630)">
+    <rect x="0" y="0" width="720" height="205" fill="#f6f8f9" stroke="#87959d"/><text x="18" y="29" class="subtitle">关键制造与冻结说明</text>
+    <text x="18" y="58" class="small">1. 前框：6061-T6 CNC；后壳：未填充 PA12 原型 / PC-ABS 量产；RF 区无金属涂层。</text>
+    <text x="18" y="82" class="small">2. 四螺钉必须承力；M1.6 黄铜盲底嵌件；对角两轮拧紧 0.12–0.16 N·m。</text>
+    <text x="18" y="106" class="small">3. 两级屏幕口 DIA 45.00/49.26；壳体密封槽 R25.50，1.20x0.75；两条密封独立。</text>
+    <text x="18" y="130" class="small">4. DIA 61 内的密封筋仍紧；若实物 DFM 后最小筋厚 &lt;0.60，主体继续放大。</text>
+    <text x="18" y="154" class="small">5. 后部为 Garmin Edge 设备侧公卡榫；以原装 010-11430-00 底座作为锁止/松旷主量规。</text>
+    <text x="18" y="178" class="red">* 必须用屏幕、电池、天线、USB、螺钉/嵌件和原装佳明底座实测后才能签发生产图。</text>
+  </g>
+  <g transform="translate(810 842)">
+    <rect x="0" y="0" width="340" height="34" fill="#fff" stroke="#111820"/><line x1="140" y1="0" x2="140" y2="34" class="thin"/><line x1="240" y1="0" x2="240" y2="34" class="thin"/>
+    <text x="10" y="22" class="small">V3-GA-A1 / NTS</text><text x="150" y="22" class="small">NOT FOR FAB</text><text x="250" y="22" class="small">2026-09-03</text>
+  </g>
+</svg>

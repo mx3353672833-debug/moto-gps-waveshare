@@ -1,0 +1,21 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "d27ad563-5324-4c81-8557-f08e35fb6282")
+	(paper "A4")
+	(title_block
+		(title "MOTO GPS integrated navigation board")
+		(date "2026-09-02")
+		(rev "Rev A0 - architecture draft")
+		(company "MOTO GPS")
+		(comment 1 "NOT FOR FABRICATION - screen, battery and antenna geometry not frozen")
+	)
+	(lib_symbols)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

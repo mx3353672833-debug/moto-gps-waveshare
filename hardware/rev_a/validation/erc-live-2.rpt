@@ -1,0 +1,187 @@
+ERC report (2026-09-03T10:17:48, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+    @(254.00 mm, 114.30 mm): Symbol U2 引脚 9 [SYS, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(254.00 mm, 109.22 mm): Symbol U2 引脚 5 [TS_BIAS, 电源输出, 图线]
+    @(254.00 mm, 114.30 mm): Symbol U2 引脚 9 [SYS, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(254.00 mm, 114.30 mm): Symbol U2 引脚 9 [SYS, 电源输出, 图线]
+    @(382.27 mm, 269.24 mm): Symbol #FLG01 引脚 1 [PWR_FLAG, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(284.48 mm, 104.14 mm): Symbol U2 引脚 2 [REGN, 电源输出, 图线]
+    @(284.48 mm, 121.92 mm): Symbol U2 引脚 16 [SW, 电源输出, 图线]
+[pin_to_pin]: 类型为 集电极开路 和 电源输出 的引脚已连接
+    ; error
+    @(284.48 mm, 114.30 mm): Symbol U2 引脚 10 [STAT, 集电极开路, 图线]
+    @(254.00 mm, 114.30 mm): Symbol U2 引脚 9 [SYS, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(342.90 mm, 109.22 mm): Symbol U3 引脚 3 [VAUX, 电源输出, 图线]
+    @(342.90 mm, 114.30 mm): Symbol U3 引脚 7 [VOUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(342.90 mm, 114.30 mm): Symbol U3 引脚 7 [VOUT, 电源输出, 图线]
+    @(342.90 mm, 116.84 mm): Symbol U3 引脚 9 [L2, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(342.90 mm, 116.84 mm): Symbol U3 引脚 9 [L2, 电源输出, 图线]
+    @(254.00 mm, 114.30 mm): Symbol U2 引脚 9 [SYS, 电源输出, 图线]
+[pin_to_pin]: 类型为 集电极开路 和 电源输出 的引脚已连接
+    ; error
+    @(365.76 mm, 46.99 mm): Symbol U4 引脚 6 [INT_N/OUT3, 集电极开路, 图线]
+    @(342.90 mm, 109.22 mm): Symbol U3 引脚 3 [VAUX, 电源输出, 图线]
+[pin_to_pin]: 类型为 集电极开路 和 电源输出 的引脚已连接
+    ; error
+    @(373.38 mm, 106.68 mm): Symbol U3 引脚 2 [PG, 集电极开路, 图线]
+    @(342.90 mm, 109.22 mm): Symbol U3 引脚 3 [VAUX, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(375.92 mm, 191.77 mm): Symbol U10 引脚 14 [VDD_RF, 电源输出, 图线]
+    @(382.27 mm, 269.24 mm): Symbol #FLG01 引脚 1 [PWR_FLAG, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(382.27 mm, 269.24 mm): Symbol #FLG01 引脚 1 [PWR_FLAG, 电源输出, 图线]
+    @(382.27 mm, 279.40 mm): Symbol #FLG02 引脚 1 [PWR_FLAG, 电源输出, 图线]
+[pin_to_pin]: 类型为 电源输出 和 电源输出 的引脚已连接
+    ; error
+    @(382.27 mm, 279.40 mm): Symbol #FLG02 引脚 1 [PWR_FLAG, 电源输出, 图线]
+    @(382.27 mm, 289.56 mm): Symbol #FLG03 引脚 1 [PWR_FLAG, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(58.42 mm, 185.42 mm): Symbol U5 引脚 1 [SDO/SA0, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(58.42 mm, 187.96 mm): Symbol U5 引脚 3 [SCx, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(58.42 mm, 200.66 mm): Symbol U5 引脚 13 [SCL, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[multiple_net_names]: LCD_SIO0 和 LCD_SIO1_MCU 都连接到同一项上; 将使用 LCD_SIO0 作为网表中的网络名称
+    ; warning
+    @(152.40 mm, 129.54 mm): 标签 'LCD_SIO0'
+    @(59.69 mm, 63.50 mm): 标签 'LCD_SIO1_MCU'
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(62.23 mm, 73.66 mm): Symbol U1 引脚 13 [USB_D-, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(62.23 mm, 88.90 mm): Symbol U1 引脚 25 [IO48, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(62.23 mm, 106.68 mm): Symbol U1 引脚 39 [IO1, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(73.66 mm, 193.04 mm): 符号 U5 [MOTO_GPS_QMI8658C]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(88.90 mm, 185.42 mm): Symbol U5 引脚 2 [SDx, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(88.90 mm, 195.58 mm): Symbol U5 引脚 10 [RESV, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(88.90 mm, 200.66 mm): Symbol U5 引脚 14 [SDA, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(100.33 mm, 66.04 mm): Symbol U1 引脚 8 [IO15, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(100.33 mm, 83.82 mm): Symbol U1 引脚 22 [IO14, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(100.33 mm, 86.36 mm): Symbol U1 引脚 24 [IO47, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(100.33 mm, 104.14 mm): Symbol U1 引脚 38 [IO2, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[multiple_net_names]: USB_D_N_CONN 和 USB_D_P_MCU 都连接到同一项上; 将使用 USB_D_N_CONN 作为网表中的网络名称
+    ; warning
+    @(287.02 mm, 36.83 mm): 标签 'USB_D_N_CONN'
+    @(102.87 mm, 73.66 mm): 标签 'USB_D_P_MCU'
+[multiple_net_names]: LCD_CLK 和 LCD_CS_N_MCU 都连接到同一项上; 将使用 LCD_CLK 作为网表中的网络名称
+    ; warning
+    @(233.68 mm, 129.54 mm): 标签 'LCD_CLK'
+    @(102.87 mm, 81.28 mm): 标签 'LCD_CS_N_MCU'
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(152.40 mm, 189.23 mm): Symbol U6 引脚 4 [SDA/SDI/SDO, 双向, 图线]
+    @(180.34 mm, 190.50 mm): Symbol U7 引脚 5 [OUT, 电源输出, 图线]
+[multiple_net_names]: LCD_SIO1 和 LCD_SIO2_MCU 都连接到同一项上; 将使用 LCD_SIO1 作为网表中的网络名称
+    ; warning
+    @(146.05 mm, 77.47 mm): 标签 'LCD_SIO1'
+    @(172.72 mm, 129.54 mm): 标签 'LCD_SIO2_MCU'
+[multiple_net_names]: BQ_CE_N 和 CHARGER_INT_N 都连接到同一项上; 将使用 BQ_CE_N 作为网表中的网络名称
+    ; warning
+    @(388.62 mm, 158.75 mm): 标签 'BQ_CE_N'
+    @(184.15 mm, 280.67 mm): 标签 'CHARGER_INT_N'
+[multiple_net_names]: LCD_SIO2 和 LCD_SIO3_MCU 都连接到同一项上; 将使用 LCD_SIO2 作为网表中的网络名称
+    ; warning
+    @(184.15 mm, 72.39 mm): 标签 'LCD_SIO2'
+    @(193.04 mm, 129.54 mm): 标签 'LCD_SIO3_MCU'
+[multiple_net_names]: LCD_CLK_MCU 和 LCD_SIO3 都连接到同一项上; 将使用 LCD_CLK_MCU 作为网表中的网络名称
+    ; warning
+    @(59.69 mm, 96.52 mm): 标签 'LCD_CLK_MCU'
+    @(213.36 mm, 129.54 mm): 标签 'LCD_SIO3'
+[multiple_net_names]: BQ_ILIM 和 CHARGER_PG_N 都连接到同一项上; 将使用 BQ_ILIM 作为网表中的网络名称
+    ; warning
+    @(287.02 mm, 106.68 mm): 标签 'BQ_ILIM'
+    @(251.46 mm, 106.68 mm): 标签 'CHARGER_PG_N'
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(269.24 mm, 114.30 mm): 符号 U2 [MOTO_GPS_BQ25628E]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(284.48 mm, 116.84 mm): Symbol U2 引脚 12 [SDA, 双向, 图线]
+    @(254.00 mm, 114.30 mm): Symbol U2 引脚 9 [SYS, 电源输出, 图线]
+[multiple_net_names]: BQ_REGN 和 BQ_SW 都连接到同一项上; 将使用 BQ_REGN 作为网表中的网络名称
+    ; warning
+    @(266.70 mm, 148.59 mm): 标签 'BQ_REGN'
+    @(287.02 mm, 121.92 mm): 标签 'BQ_SW'
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(299.72 mm, 35.56 mm): 符号 U11 [MOTO_GPS_USB_ESD]
+[multiple_net_names]: 3V3 和 GNSS_RF_MATCH_IN 都连接到同一项上; 将使用 3V3 作为网表中的网络名称
+    ; warning
+    @(109.22 mm, 246.38 mm): 标签 '3V3'
+    @(304.80 mm, 251.46 mm): 标签 'GNSS_RF_MATCH_IN'
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(335.28 mm, 49.53 mm): Symbol U4 引脚 7 [SDA/OUT1, 双向, 图线]
+    @(342.90 mm, 109.22 mm): Symbol U3 引脚 3 [VAUX, 电源输出, 图线]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(358.14 mm, 115.57 mm): 符号 U3 [MOTO_GPS_TPS63070]
+[footprint_link_issues]: 当前配置中不包含封装库 'MOTO_GPS'
+    ; warning
+    @(358.14 mm, 193.04 mm): 符号 U10 [MOTO_GPS_LC76GABMD]
+[pin_to_pin]: 类型为 双向 和 电源输出 的引脚已连接
+    ; warning
+    @(365.76 mm, 49.53 mm): Symbol U4 引脚 8 [SCL/OUT2, 双向, 图线]
+    @(342.90 mm, 109.22 mm): Symbol U3 引脚 3 [VAUX, 电源输出, 图线]
+
+ ** ERC messages: 45  Errors 13  Warnings 32
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters

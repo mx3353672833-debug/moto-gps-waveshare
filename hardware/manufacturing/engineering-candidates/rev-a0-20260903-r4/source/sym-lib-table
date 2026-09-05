@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "MOTO_GPS")(type "KiCad")(uri "${KIPRJMOD}/moto-gps-rev-a.kicad_sym")(options "")(descr "MOTO GPS Rev A project-local pin-accurate symbols"))
+)

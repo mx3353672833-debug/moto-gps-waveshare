@@ -1,0 +1,21 @@
+** Drc report for moto-gps-rev-a.kicad_pcb **
+** Created on 2026-09-03T12:24:03 **
+** Report includes: Errors, Warnings, Exclusions **
+
+** Found 0 DRC violations **
+
+** Found 0 unconnected pads **
+
+** Found 1 Footprint errors **
+[footprint_symbol_mismatch]: Package_TO_SOT_SMD:SOT-23-5 与符号 (MOTO_GPS:SOT-23-5_NoSilk) 指定的封装不匹配
+    Local override; warning
+    @(107.4000 mm, 79.8000 mm): 封装 U7
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **
