@@ -1,5 +1,8 @@
 # Waveshare ESP32-S3-Touch-AMOLED-1.75C 固件
 
+第一次烧录请看[微雪版 DIY 完整教程](../../docs/WAVESHARE_DIY_GUIDE.md)，
+已安装后的操作见[功能说明书](../../docs/USER_MANUAL.md)。
+
 只适用于 **1.75C**：CO5300 QSPI、CST9217、466×466、32 MB Flash、8 MB PSRAM。
 使用 ESP-IDF **5.5.5**、BSP **3.0.0** 和根目录 LVGL 固定子模块。
 

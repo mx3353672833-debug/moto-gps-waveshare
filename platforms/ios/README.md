@@ -1,5 +1,8 @@
 # iPhone 伴侣 App
 
+面向首次安装的逐步图形界面操作见[DIY 教程：安装到 iPhone](../../docs/WAVESHARE_DIY_GUIDE.md#4-把-app-安装到-iphone)。
+日常功能见[使用说明书](../../docs/USER_MANUAL.md)，自建服务见[网关教程](../../docs/GATEWAY_SETUP.md)。
+
 iOS 17+；源码工程由 XcodeGen 生成。Swift Package 使用 tools-version 6.0，
 需要能提供 Swift 6 工具链的 Xcode（建议 Xcode 16 或更新）。
 本仓库不包含作者的 Apple Team、证书、设备标识或可直接安装的签名 IPA。

@@ -2,6 +2,13 @@
 
 ![MOTO GPS 圆屏摩托车导航终端](assets/brand/moto-gps-cover.png)
 
+**想自己做一台微雪版？从 [购买、固件烧录与 iPhone 安装教程](docs/WAVESHARE_DIY_GUIDE.md)开始。**
+
+[功能与使用说明书](docs/USER_MANUAL.md) · [真实导航网关配置](docs/GATEWAY_SETUP.md)
+
+当前提供源码自行编译安装；尚无仓库发布的预编译固件、App Store / TestFlight 下载入口。
+教程包含设备选型、原厂备份、Xcode 个人签名、配对、演示与常见问题。
+
 **作者：Maler X · 署名 / 非商业使用 · 实验性样机**
 
 一块装在车把上的圆屏，一个放在包里的 iPhone。手机负责定位、搜索与路线计算，
