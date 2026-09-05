@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#070909" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="MOTO GPS 手机前台实时导航：高德路线、偏航重算、路况刷新和共享 LVGL 圆屏界面。" />
+    <link rel="manifest" href="./manifest.webmanifest?v=20260902-live1" />
+    <link rel="stylesheet" href="./styles.css?v=20260905-realmap1" />
+    <title>MOTO GPS · 手机导航</title>
+    <script src="./map-scene-overlay.js?v=20260905-realmap1" defer></script>
+    <script src="./app.js?v=20260905-realmap1" defer></script>
+    <script src="./wasm-loader.js?v=20260904-realroute3" defer></script>
+  </head>
+  <body data-view="setup">
+    <div class="app-shell">
+      <header class="app-bar">
+        <button class="brand" id="home-button" type="button" aria-label="返回目的地搜索">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span><b>MOTO GPS</b><small>PHONE NAV / 01</small></span>
+        </button>
+        <button class="system-state" id="system-state" type="button" aria-label="查看运行状态">
+          <i aria-hidden="true"></i>
+          <span><b id="system-state-label">正在检查</b><small id="system-state-detail">服务与定位</small></span>
+        </button>
+      </header>
+
+      <main>
+        <section class="view setup-view" id="setup-view" aria-labelledby="setup-title">
+          <div class="setup-heading">
+            <p class="eyebrow">REAL-TIME ROUTING</p>
+            <h1 id="setup-title">去哪儿？</h1>
+            <p>打开定位，搜索目的地。导航时让这个页面保持在前台。</p>
+          </div>
+
+          <section class="location-card" id="location-card" aria-labelledby="location-title">
+            <span class="location-radar" aria-hidden="true"><i></i></span>
+            <div>
+              <h2 id="location-title">先获取你的位置</h2>
+              <p id="location-copy">路线、偏航和车头方向都从手机实时定位计算。</p>
+            </div>
+            <button id="location-button" type="button">启用定位</button>
+          </section>
+
+          <form class="search-form" id="search-form" role="search">
+            <label for="destination-query">目的地</label>
+            <div class="search-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+              <input id="destination-query" name="keywords" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" placeholder="输入城市和地点，例如：济南奥体中心" minlength="2" maxlength="80" disabled />
+              <button id="clear-search" class="clear-search" type="button" aria-label="清空搜索" hidden>×</button>
+            </div>
+          </form>
+
+          <div class="search-feedback" id="search-feedback" aria-live="polite">
+            <span>定位后即可搜索全国地点</span>
+          </div>
+          <ol class="place-results" id="place-results" aria-label="目的地搜索结果"></ol>
+
+          <div class="usage-note">
+            <span>使用条件</span>
+            <p>前台亮屏可持续定位；网页进入后台或锁屏后，iPhone 会暂停定位。</p>
+          </div>
+        </section>
+
+        <section class="view route-view" id="route-view" aria-labelledby="route-title" hidden>
+          <button class="back-button" id="route-back" type="button"><span aria-hidden="true">←</span> 更换目的地</button>
+          <div class="route-heading">
+            <p class="eyebrow">ROUTE READY</p>
+            <h1 id="route-title">路线确认</h1>
+            <p id="route-destination">正在读取目的地</p>
+          </div>
+
+          <div class="instrument instrument--preview">
+            <div class="screen-ring">
+              <canvas id="canvas" width="466" height="466" aria-label="实时圆形导航画面；左右滑动可切换导航、马表、指南针和音乐"></canvas>
+            </div>
+          </div>
+
+          <section class="route-summary" aria-label="路线概览">
+            <div><strong id="route-duration">--</strong><span>预计用时</span></div>
+            <div><strong id="route-distance">--</strong><span>全程</span></div>
+            <div><strong id="route-traffic">--</strong><span>当前路况</span></div>
+          </section>
+
+          <p class="route-status" id="route-status" aria-live="polite">正在规划实时路线…</p>
+          <button class="start-button" id="start-navigation" type="button" disabled>
+            <span>开始导航</span><small>保持屏幕常亮</small>
+          </button>
+        </section>
+
+        <section class="view navigation-view" id="navigation-view" aria-labelledby="navigation-title" hidden>
+          <div class="ride-bar">
+            <div><p id="navigation-title">导航中</p><strong id="ride-destination">目的地</strong></div>
+            <button id="end-navigation" type="button">结束</button>
+          </div>
+
+          <div class="ride-alert" id="ride-alert" aria-live="assertive" hidden></div>
+          <div class="instrument instrument--ride" id="ride-instrument"></div>
+
+          <div class="gesture-note" aria-hidden="true"><span>←</span><b>左右滑动圆屏切换页面</b><span>→</span></div>
+
+          <section class="ride-stats" aria-label="导航状态">
+            <div><span>剩余</span><strong id="remaining-distance">--</strong></div>
+            <div><span>到达</span><strong id="arrival-time">--:--</strong></div>
+            <div><span>连接</span><strong id="ride-connection">在线</strong></div>
+          </section>
+
+          <div class="ride-footer">
+            <span id="wake-state"><i></i> 屏幕常亮</span>
+            <span id="location-accuracy">GPS -- m</span>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="status-dialog" id="status-dialog">
+      <form method="dialog">
+        <div class="dialog-heading"><b>运行状态</b><button value="close" aria-label="关闭">×</button></div>
+        <dl>
+          <div><dt>高德服务</dt><dd id="dialog-backend">检查中</dd></div>
+          <div><dt>共享画面</dt><dd id="dialog-runtime">加载中</dd></div>
+          <div><dt>手机定位</dt><dd id="dialog-location">未授权</dd></div>
+          <div><dt>网络</dt><dd id="dialog-network">在线</dd></div>
+        </dl>
+        <p>真实导航要求 HTTPS、位置权限和前台亮屏。网页锁屏后不能继续可靠定位。</p>
+        <p>MOTO GPS · 作者 <a href="https://github.com/mx3353672833-debug/moto-gps-waveshare">Maler X</a> · <a href="https://github.com/mx3353672833-debug/moto-gps-waveshare/blob/main/LICENSE.md">仅限非商业使用</a></p>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

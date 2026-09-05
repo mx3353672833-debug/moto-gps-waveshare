@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#000000"/>
+  <path d="M142 159h740v28H142zm0 678h740v28H142z" fill="#FFFFFF"/>
+  <text x="512" y="500" text-anchor="middle" fill="#FFFFFF"
+        font-family="Arial Black, Helvetica Neue, sans-serif" font-size="270"
+        font-weight="900" letter-spacing="-24">MOTO</text>
+  <text x="470" y="766" text-anchor="middle" fill="#FFFFFF"
+        font-family="Arial Black, Helvetica Neue, sans-serif" font-size="244"
+        font-weight="900" letter-spacing="-11">GPS</text>
+  <path d="M761 621h85l96 96-96 96h-85l96-96z" fill="#FFFFFF"/>
+</svg>

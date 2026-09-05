@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/moto-gps/schema/map-scene.v1.schema.json",
+  "title": "MOTO GPS offline map scene v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "coordinate_system",
+    "scene_revision",
+    "view_origin_e6",
+    "radius_m",
+    "roads",
+    "buildings",
+    "source"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "coordinate_system": { "const": "GCJ-02" },
+    "scene_revision": { "type": "integer", "minimum": 1, "maximum": 4294967295 },
+    "view_origin_e6": { "$ref": "#/$defs/point" },
+    "radius_m": { "type": "integer", "minimum": 100, "maximum": 1500 },
+    "roads": {
+      "type": "array",
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["class", "points_e6"],
+        "properties": {
+          "osm_way_id": { "type": "integer", "minimum": 1 },
+          "class": {
+            "enum": ["motorway", "primary", "secondary", "residential", "service", "other"]
+          },
+          "points_e6": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 192,
+            "items": { "$ref": "#/$defs/point" }
+          }
+        }
+      }
+    },
+    "buildings": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["class", "points_e6"],
+        "properties": {
+          "osm_way_id": { "type": "integer", "minimum": 1 },
+          "name": { "type": "string", "maxLength": 80 },
+          "class": { "enum": ["generic", "landmark", "parking"] },
+          "points_e6": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 128,
+            "items": { "$ref": "#/$defs/point" }
+          }
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "licence", "attribution_url", "retrieved_at"],
+      "properties": {
+        "provider": { "const": "OpenStreetMap" },
+        "licence": { "const": "ODbL-1.0" },
+        "attribution_url": { "type": "string", "format": "uri" },
+        "retrieved_at": { "type": "string", "format": "date-time" },
+        "bbox_wgs84": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": { "type": "number" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "point": {
+      "type": "array",
+      "prefixItems": [
+        { "type": "integer", "minimum": -90000000, "maximum": 90000000 },
+        { "type": "integer", "minimum": -180000000, "maximum": 180000000 }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    }
+  }
+}

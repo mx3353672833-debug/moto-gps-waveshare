@@ -1,0 +1,52 @@
+# Waveshare ESP32-S3-Touch-AMOLED-1.75C: 32 MB QIO flash and 8 MB octal PSRAM.
+# These values match the official ESP-IDF example for this exact board.
+CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+CONFIG_ESPTOOLPY_FLASHSIZE_32MB=y
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_USE_MALLOC=y
+CONFIG_SPIRAM_FETCH_INSTRUCTIONS=y
+CONFIG_SPIRAM_RODATA=y
+
+# The Waveshare BSP keeps its 466x50 RGB565 LVGL draw buffers in PSRAM. The
+# QSPI IO does not opt into direct PSRAM DMA, so ESP-IDF creates one ~46.6 KiB
+# internal DMA bounce buffer per queued color transfer. A queue depth of ten
+# can exhaust/fragment internal RAM during continuous heading-up animation.
+# Serialize transfers so that only one bounded bounce buffer exists at once.
+CONFIG_BSP_LCD_TRANS_QUEUE_DEPTH=1
+CONFIG_ESP32S3_INSTRUCTION_CACHE_32KB=y
+CONFIG_ESP32S3_DATA_CACHE_64KB=y
+CONFIG_ESP32S3_DATA_CACHE_LINE_64B=y
+
+# LVGL timing and the official BSP worker both use millisecond-scale scheduling.
+CONFIG_FREERTOS_HZ=1000
+CONFIG_LV_DEF_REFR_PERIOD=25
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+CONFIG_COMPILER_OPTIMIZATION_PERF=y
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+
+# Creating the complete four-page LVGL instrument UI calls deeply into LVGL
+# after the vendor BSP has initialized the display. The ESP-IDF default 3584
+# byte app_main stack overflows during that one-time startup on real hardware.
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=16384
+
+# NimBLE is the phone transport. Bluetooth Classic is intentionally disabled
+# on ESP32-S3 and not required by the navigation link.
+CONFIG_BT_ENABLED=y
+CONFIG_BT_NIMBLE_ENABLED=y
+CONFIG_BT_NIMBLE_ROLE_PERIPHERAL=y
+CONFIG_BT_NIMBLE_ROLE_CENTRAL=n
+CONFIG_BT_NIMBLE_ROLE_BROADCASTER=y
+CONFIG_BT_NIMBLE_ROLE_OBSERVER=n
+CONFIG_BT_NIMBLE_MAX_CONNECTIONS=1
+CONFIG_BT_NIMBLE_GAP_SERVICE=y
+CONFIG_BT_NIMBLE_GATT_SERVER=y
+CONFIG_BT_NIMBLE_GATT_CLIENT=n
+CONFIG_BT_NIMBLE_SECURITY_ENABLE=y
+CONFIG_BT_NIMBLE_NVS_PERSIST=y
+CONFIG_BT_NIMBLE_MAX_BONDS=3
+# 185 is the practical iOS ATT MTU and fits NimBLE's standard mbuf pools.
+CONFIG_BT_NIMBLE_ATT_PREFERRED_MTU=185

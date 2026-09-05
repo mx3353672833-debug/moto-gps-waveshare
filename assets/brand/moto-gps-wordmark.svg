@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480">
+  <rect width="1200" height="480" fill="#000000"/>
+  <path d="M56 82h1088v22H56zm0 294h1088v22H56z" fill="#FFFFFF"/>
+  <text x="550" y="316" text-anchor="middle" fill="#FFFFFF"
+        font-family="Arial Black, Helvetica Neue, sans-serif" font-size="226"
+        font-weight="900" letter-spacing="-19">MOTO GPS</text>
+  <path d="M1083 173l77 77-77 77h-65l77-77-77-77z" fill="#FFFFFF"/>
+</svg>

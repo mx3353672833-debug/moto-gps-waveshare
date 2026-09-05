@@ -1,0 +1,43 @@
+{
+  "input": "tmp/offline_map_source/jinan-roads-buildings.geojsonseq",
+  "output": "shared/offline_map/jinan-v1.sqlite",
+  "byteSize": 10199040,
+  "mebibytes": 9.73,
+  "sha256": "d4ce2ebb0a9be68b060964e063858bc2b9a127d68b9796412feec6dc5b9fa2c3",
+  "source": {
+    "source_url": "https://download.geofabrik.de/asia/china/shandong.html",
+    "source_timestamp": "2026-09-03T20:21:51Z",
+    "source_sha256": "46360293b1d070b82f59a0ab73726f223f08c278867004be5d25185bb11f251a",
+    "boundary_relation": "3486449"
+  },
+  "coverageGcj02E6": {
+    "min_lat_e6": 36003954,
+    "max_lat_e6": 37545693,
+    "min_lon_e6": 116224718,
+    "max_lon_e6": 117994706
+  },
+  "classCounts": {
+    "roads": {
+      "0": 7144,
+      "1": 5323,
+      "2": 5565,
+      "3": 12857,
+      "4": 6486,
+      "5": 10093
+    },
+    "buildings": {
+      "0": 26655,
+      "1": 36,
+      "2": 11
+    }
+  },
+  "inputFeatures": 101062,
+  "roads": 47468,
+  "roadPointsBefore": 367125,
+  "roadPointsAfter": 266985,
+  "buildings": 26702,
+  "buildingPointsBefore": 181097,
+  "buildingPointsAfter": 148140,
+  "excludedPrivateRoads": 220,
+  "invalidFeatures": 0
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moto-gps.local/schema/route-request.v1.schema.json",
+  "title": "RouteRequestEnvelopeV1",
+  "description": "A provider-neutral route request. GNSS-facing clients always send WGS84 coordinates.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "request_id",
+    "route_mode",
+    "origin",
+    "destination",
+    "is_reroute"
+  ],
+  "properties": {
+    "protocol_version": {
+      "const": 1
+    },
+    "request_id": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4294967295,
+      "description": "Client-generated monotonic request identifier. Responses echo this value so stale results can be discarded."
+    },
+    "route_mode": {
+      "const": "driving"
+    },
+    "origin": {
+      "$ref": "#/$defs/wgs84Point"
+    },
+    "destination": {
+      "$ref": "#/$defs/wgs84Point"
+    },
+    "is_reroute": {
+      "type": "boolean"
+    },
+    "previous_route_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "description": "Present during rerouting for observability only; it never changes request_id ordering semantics."
+    },
+    "destination_poi_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Optional provider POI identifier selected by the user. The backend may use it to improve destination entrance routing."
+    }
+  },
+  "$defs": {
+    "wgs84Point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["coordinate_system", "longitude_deg", "latitude_deg"],
+      "properties": {
+        "coordinate_system": {
+          "const": "WGS84"
+        },
+        "longitude_deg": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "latitude_deg": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        }
+      }
+    }
+  }
+}

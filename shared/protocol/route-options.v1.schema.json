@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moto-gps.local/schema/route-options.v1.schema.json",
+  "title": "RouteOptionsEnvelopeV1",
+  "description": "Up to three provider-neutral routes shown on the phone before one route is selected for navigation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol_version", "request_id", "routes"],
+  "properties": {
+    "protocol_version": { "const": 1 },
+    "request_id": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4294967295
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "$ref": "route-bundle.v1.schema.json#/$defs/routeBundle"
+      }
+    }
+  }
+}

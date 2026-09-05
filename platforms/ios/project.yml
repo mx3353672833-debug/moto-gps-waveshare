@@ -1,0 +1,132 @@
+name: MotoGPS
+
+options:
+  bundleIdPrefix: org.example
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+
+packages:
+  MotoNavigationCore:
+    path: .
+
+targets:
+  MotoGPS:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+        excludes:
+          - Info.plist
+          - MotoGPS.entitlements
+      - path: ../../shared/ble_protocol/src/ble_protocol.cpp
+      - path: ../../shared/coordinates/coordinates.cpp
+      - path: ../../shared/nav_core/nav_core.cpp
+      - path: ../../shared/nav_app/nav_app.cpp
+      - path: ../../shared/protocol/fixtures/ble-navigation-v1.golden.txt
+        buildPhase: resources
+      - path: ../../shared/demo_fixture/jinan_map_scene_sample.json
+        buildPhase: resources
+      - path: ../../shared/offline_map/jinan-v1.sqlite
+        buildPhase: resources
+      - path: ../../NOTICE
+        buildPhase: resources
+      - path: ../../LICENSE.md
+        buildPhase: resources
+      - path: ../../THIRD_PARTY_NOTICES.md
+        buildPhase: resources
+    dependencies:
+      - package: MotoNavigationCore
+        product: MotoNavigationCore
+      - sdk: libsqlite3.tbd
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: MOTO GPS
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+          UIImageName: LaunchLogo
+          UIImageRespectsSafeAreaInsets: true
+        NSLocationWhenInUseUsageDescription: MOTO GPS 需要定位来规划路线并更新骑行位置。
+        NSLocationAlwaysAndWhenInUseUsageDescription: 导航开始后，MOTO GPS 需要在锁屏或切换应用时继续更新骑行位置。
+        NSBluetoothAlwaysUsageDescription: MOTO GPS 使用蓝牙连接车把上的 ESP32-S3 圆屏设备。
+        NSAppleMusicUsageDescription: MOTO GPS 需要读取并控制 Apple Music 播放，以便在车把圆屏上切歌和暂停。
+        UIBackgroundModes:
+          - location
+          - bluetooth-central
+        MOTOGPSGatewayBaseURL: https://example.invalid/moto-gps/api/
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+    entitlements:
+      path: App/MotoGPS.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.example.motogps
+        PRODUCT_NAME: MOTO GPS
+        MARKETING_VERSION: 0.2.0
+        CURRENT_PROJECT_VERSION: 2
+        SWIFT_VERSION: 5.0
+        SWIFT_STRICT_CONCURRENCY: targeted
+        SWIFT_OBJC_BRIDGING_HEADER: App/MotoGPS-Bridging-Header.h
+        HEADER_SEARCH_PATHS:
+          - $(SRCROOT)/../../shared/ble_protocol/include
+          - $(SRCROOT)/../../shared/coordinates/include
+          - $(SRCROOT)/../../shared
+          - $(SRCROOT)/../../shared/nav_app/include
+        CLANG_CXX_LANGUAGE_STANDARD: c++17
+        CLANG_CXX_LIBRARY: libc++
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        TARGETED_DEVICE_FAMILY: "1"
+
+  MotoGPSUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: UITests
+    dependencies:
+      - target: MotoGPS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.example.motogps.uitests
+        SWIFT_VERSION: 5.0
+        TEST_TARGET_NAME: MotoGPS
+        GENERATE_INFOPLIST_FILE: YES
+
+  MotoGPSUnitTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: AppTests
+      - path: ../../shared/demo_fixture/jinan_map_scene_sample.json
+        buildPhase: resources
+    dependencies:
+      - target: MotoGPS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.example.motogps.unittests
+        SWIFT_VERSION: 5.0
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/MOTO GPS.app/MOTO GPS
+        BUNDLE_LOADER: $(TEST_HOST)
+
+schemes:
+  MotoGPS:
+    build:
+      targets:
+        MotoGPS: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - MotoGPSUnitTests
+        - MotoGPSUITests

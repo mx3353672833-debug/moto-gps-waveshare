@@ -1,0 +1,12 @@
+{
+  "name": "MOTO GPS 手机导航",
+  "short_name": "MOTO GPS",
+  "description": "摩托车圆屏导航的手机前台版本",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#070909",
+  "theme_color": "#070909",
+  "orientation": "portrait-primary",
+  "icons": []
+}

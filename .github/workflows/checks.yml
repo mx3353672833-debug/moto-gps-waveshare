@@ -1,0 +1,44 @@
+name: Source checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  native-and-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - name: Build shared core and host tests
+        run: |
+          cmake -S . -B build/native -DMOTO_BUILD_WEB=OFF -DMOTO_BUILD_TESTS=ON
+          cmake --build build/native --parallel 4
+          ctest --test-dir build/native --output-on-failure
+      - name: Backend tests (no live API)
+        run: npm --prefix backend test
+      - name: Verify public map fixtures
+        run: |
+          node scripts/generate_jinan_demo_fixture.mjs --check
+          node scripts/offline_map/validate_jinan_sqlite.mjs
+
+  swift-core:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Swift core tests (no signing or device)
+        run: swift test --package-path platforms/ios

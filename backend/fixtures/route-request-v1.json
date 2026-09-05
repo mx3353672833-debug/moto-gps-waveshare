@@ -1,0 +1,16 @@
+{
+  "protocol_version": 1,
+  "request_id": 41,
+  "route_mode": "driving",
+  "origin": {
+    "coordinate_system": "WGS84",
+    "longitude_deg": 116.397389,
+    "latitude_deg": 39.908722
+  },
+  "destination": {
+    "coordinate_system": "WGS84",
+    "longitude_deg": 116.410886,
+    "latitude_deg": 39.92015
+  },
+  "is_reroute": false
+}

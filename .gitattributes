@@ -1,0 +1,6 @@
+# Preserve third-party license text exactly as supplied.
+LICENSES/** -whitespace
+# Retain the font converter's generated formatting.
+shared/nav_ui/assets/moto_font_nav_16.c -whitespace
+*.sqlite binary
+*.png binary

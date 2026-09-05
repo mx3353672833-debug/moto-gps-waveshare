@@ -1,0 +1,12 @@
+MOTO GPS Jinan Offline Map
+
+Map data © OpenStreetMap contributors
+https://www.openstreetmap.org/copyright
+
+Open Database License (ODbL) 1.0
+https://opendatacommons.org/licenses/odbl/1-0/
+
+Source extract: Geofabrik Shandong
+https://download.geofabrik.de/asia/china/shandong.html
+
+No online raster tiles are included in this package.

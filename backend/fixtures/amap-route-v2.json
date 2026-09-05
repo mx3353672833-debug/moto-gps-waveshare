@@ -1,0 +1,87 @@
+{
+  "status": "1",
+  "info": "OK",
+  "infocode": "10000",
+  "count": "1",
+  "route": {
+    "origin": "116.403632,39.910125",
+    "destination": "116.41713,39.921553",
+    "paths": [
+      {
+        "path_id": "fixture-beijing-001",
+        "distance": "2150",
+        "cost": {
+          "duration": "420",
+          "tolls": "0"
+        },
+        "steps": [
+          {
+            "instruction": "沿东长安街向东行驶800米",
+            "road_name": "东长安街",
+            "step_distance": "800",
+            "cost": {
+              "duration": "120"
+            },
+            "polyline": "116.403632,39.910125;116.406100,39.910220;116.409000,39.910500;116.412000,39.910900",
+            "navi": {
+              "action": "直行",
+              "assistant_action": ""
+            },
+            "tmcs": [
+              {
+                "tmc_distance": "400",
+                "tmc_status": "畅通",
+                "tmc_polyline": "116.403632,39.910125;116.409000,39.910500"
+              },
+              {
+                "tmc_distance": "400",
+                "tmc_status": "缓行",
+                "tmc_polyline": "116.409000,39.910500;116.412000,39.910900"
+              }
+            ]
+          },
+          {
+            "instruction": "右转进入建国门北大街，行驶900米",
+            "road_name": "建国门北大街",
+            "step_distance": "900",
+            "cost": {
+              "duration": "180"
+            },
+            "polyline": "116.412000,39.910900;116.413100,39.913500;116.414200,39.916000;116.415300,39.918200",
+            "action": "右转",
+            "assistant_action": "",
+            "tmcs": [
+              {
+                "distance": "500",
+                "status": "拥堵"
+              },
+              {
+                "distance": "400",
+                "status": "严重拥堵"
+              }
+            ]
+          },
+          {
+            "instruction": "继续行驶450米到达终点",
+            "road_name": "朝阳门南大街",
+            "step_distance": "450",
+            "cost": {
+              "duration": "120"
+            },
+            "polyline": "116.415300,39.918200;116.416200,39.920000;116.417130,39.921553",
+            "navi": {
+              "action": "直行",
+              "assistant_action": "到达目的地"
+            },
+            "tmcs": [
+              {
+                "tmc_distance": "450",
+                "tmc_status": "未知"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
