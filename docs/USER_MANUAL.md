@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](USER_MANUAL.en.md)
+
 # MOTO GPS 微雪版功能与使用说明书
 
 本说明对应仓库当前 Waveshare 1.75C 固件和 iOS App。首次制作请先看

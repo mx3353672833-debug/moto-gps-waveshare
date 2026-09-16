@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](PROTOTYPE_VERIFICATION_2026-09-04.en.md)
+
 # 微雪 + iPhone 样机交付与验证记录（2026-09-04）
 
 ## 交付结论

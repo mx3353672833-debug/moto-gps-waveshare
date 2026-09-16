@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](PORTABILITY.en.md)
+
 # 可移植性契约
 
 ## 目标

@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](README.en.md)
+
 # 产品技术方案：阅读与下载
 
 本目录保存两版完整方案，分别提供 Markdown、PDF 和可编辑 Word。

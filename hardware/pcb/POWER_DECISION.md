@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](POWER_DECISION.en.md)
+
 # Rev A 电源架构：BQ25628E + TPS63070
 
 当前状态：`SELECTED / COUPON NOT YET PASSED`。主方案已选定，但在独立电源测试券完成前，完整主板仍不得投产。

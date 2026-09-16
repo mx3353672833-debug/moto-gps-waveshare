@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](CONTRIBUTING.en.md)
+
 # 参与开发
 
 欢迎提交非商业用途的 bug 复现、文档修正和代码改进。提交贡献前请阅读 LICENSE.md

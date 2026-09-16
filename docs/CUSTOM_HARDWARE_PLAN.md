@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](CUSTOM_HARDWARE_PLAN.en.md)
+
 # 自研一体硬件与外壳执行方案
 
 版本：H0175 EVT A1 电气工程候选（由冻结 R4 路由基线派生），2026-09-03。

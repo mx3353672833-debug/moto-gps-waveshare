@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](PRODUCT_SPECIFICATIONS.en.md)
+
 # MOTO GPS 产品说明与技术参数
 
 MOTO GPS 在圆屏上显示路线、下一个路口的动作和距离，也提供马表、航向与音乐控制。

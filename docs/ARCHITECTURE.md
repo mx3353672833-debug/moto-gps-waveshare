@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](ARCHITECTURE.en.md)
+
 # 架构与数据边界
 
 ```text

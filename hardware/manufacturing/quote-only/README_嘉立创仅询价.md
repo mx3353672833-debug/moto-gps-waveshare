@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](README_JLCPCB_quote_only.en.md)
+
 # 嘉立创仅询价说明
 
 上传文件：`MOTO_GPS_RevA0_R4_仅询价_DO_NOT_ORDER_Gerber.zip`

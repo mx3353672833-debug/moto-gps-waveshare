@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](WAVESHARE_IOS_PROTOTYPE.en.md)
+
 # 微雪 1.75C + iPhone 导航样机实施基线
 
 ## 1. 当前样机边界

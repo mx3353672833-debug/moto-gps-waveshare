@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](KNOWN_ISSUES.en.md)
+
 # 已知问题与发布边界
 
 本次公开的是 Waveshare 成品验证线的开发快照，不是验证通过的量产版本。

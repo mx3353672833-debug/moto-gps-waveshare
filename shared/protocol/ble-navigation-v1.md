@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](ble-navigation-v1.en.md)
+
 # Moto BLE Navigation Protocol v1
 
 状态：实现基线。规范中的常量、编码器、解码器和重组器位于

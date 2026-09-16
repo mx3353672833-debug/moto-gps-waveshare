@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](README.en.md)
+
 # Web 调试外壳
 
 这是仅属于网页平台的场景控制台。圆屏界面由共享 LVGL 代码编译为 WebAssembly 后接管画布；本目录只实现浏览器平台外壳，不是 iPhone 后台 BLE 伴侣。

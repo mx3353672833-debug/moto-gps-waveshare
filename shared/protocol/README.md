@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](README.en.md)
+
 # RouteBundle 协议
 
 手机与 ESP32 之间的低功耗蓝牙契约使用版本化二进制帧，见

@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](README.en.md)
+
 # iPhone 伴侣 App
 
 面向首次安装的逐步图形界面操作见[DIY 教程：安装到 iPhone](../../docs/WAVESHARE_DIY_GUIDE.md#4-把-app-安装到-iphone)。

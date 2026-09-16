@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](MOBILE_WEB_NAVIGATION_PLAN.en.md)
+
 # 手机网页版真实导航验证方案（非正式 App）
 
 > 这条线只保留为前台网页和共享 UI 的开发验证工具。正式产品使用原生 iOS App

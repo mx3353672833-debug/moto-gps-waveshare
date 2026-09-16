@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](PROJECT_DOCUMENTATION.en.md)
+
 # MOTO GPS 资料总目录
 
 第一次制作微雪版，请按顺序阅读：

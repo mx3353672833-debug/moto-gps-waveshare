@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](DISPLAY_INTERFACE.en.md)
+
 # H0175Y003AMT003 V1 display interface
 
 状态：**Rev A1 EVT 设计基准 / 连接器实物方向待到货签核**  

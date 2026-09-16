@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](REV_A_PIN_BUDGET.en.md)
+
 # Rev A GPIO / interface budget
 
 状态：A0 已由 `hardware/rev_a/ARCHITECTURE_FREEZE.md` 取代。下表同步保留供旧文档引用；新设计以 Rev A freeze 为准。

@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](GATEWAY_SETUP.en.md)
+
 # 微雪版真实导航：路线网关配置
 
 本页是[DIY 教程](WAVESHARE_DIY_GUIDE.md)的配套步骤。只看 App 演示可以稍后配置；

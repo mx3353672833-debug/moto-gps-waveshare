@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](README.en.md)
+
 # Shared BLE protocol
 
 `moto_ble_protocol` 是手机与 ESP32 共用的 v1 二进制 codec。公共入口是

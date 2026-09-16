@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](README.en.md)
+
 # Waveshare ESP32-S3-Touch-AMOLED-1.75C 固件
 
 第一次烧录请看[微雪版 DIY 完整教程](../../docs/WAVESHARE_DIY_GUIDE.md)，

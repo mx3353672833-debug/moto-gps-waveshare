@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](MOTO_GPS_Portable_Navigation_Terminal_Technical_Proposal_H0175_EVT_A1.en.md)
+
 # MOTO GPS 摩托车便携导航终端技术方案（H0175 EVT A1）
 
 版本：2026-09-03  ·  状态：功能原型 / H0175 EVT A1 电气工程候选  ·  NOT FOR FABRICATION

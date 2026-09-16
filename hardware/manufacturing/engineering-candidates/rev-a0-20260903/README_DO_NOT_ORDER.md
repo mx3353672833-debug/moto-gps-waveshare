@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](README_DO_NOT_ORDER.en.md)
+
 # DO NOT ORDER / 禁止直接下单
 
 这是 MOTO GPS Rev A 的工程审查包，用于确认真实铜线、钻孔、贴装坐标和结构密度，不是嘉立创投板放行包。ERC、DRC、未连接及原理图/PCB 一致性可以为零，但以下物理项尚未完成：

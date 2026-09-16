@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](H0175_EVT_A1_STATUS.en.md)
+
 # MOTO GPS H0175 EVT A1 状态单
 
 日期：2026-09-03  

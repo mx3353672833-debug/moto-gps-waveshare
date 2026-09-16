@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](V3_MECHANICAL_SPEC.en.md)
+
 # MOTO GPS V3 机械规格（Rev A0）
 
 状态：**外观方向已选定，机械包络草案，禁止直接批量加工**  

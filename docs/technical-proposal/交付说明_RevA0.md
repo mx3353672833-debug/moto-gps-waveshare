@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](DELIVERY_NOTES_RevA0.en.md)
+
 # MOTO GPS H0175 EVT A1 阶段交付说明
 
 交付日期：2026-09-03  

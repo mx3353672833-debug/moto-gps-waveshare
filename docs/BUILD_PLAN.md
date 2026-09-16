@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](BUILD_PLAN.en.md)
+
 # 构建方案
 
 ## 产品目标

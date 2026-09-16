@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](README.en.md)
+
 # MOTO GPS · Waveshare Edition
 
 ![MOTO GPS 圆屏摩托车导航终端](assets/brand/moto-gps-cover.png)

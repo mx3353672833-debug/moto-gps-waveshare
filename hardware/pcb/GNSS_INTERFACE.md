@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](GNSS_INTERFACE.en.md)
+
 # LC76G GNSS interface
 
 状态：Rev A0 原理图约束，目标器件为裸片模块 `Quectel LC76GABMD`（约 10.1 × 9.7 × 2.4 mm），不是带天线的开发板。封装焊盘编号必须逐项对照采购批次对应的 Quectel 最新硬件设计文档和 land pattern，不能从商品图片推断。

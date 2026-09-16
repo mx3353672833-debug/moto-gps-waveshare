@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](WAVESHARE_DIY_GUIDE.en.md)
+
 # 微雪版 DIY 教程：购买、烧录、iPhone 安装与首次使用
 
 适用型号：**Waveshare ESP32-S3-Touch-AMOLED-1.75C**。本文按 Mac + iPhone 的完整流程编写，

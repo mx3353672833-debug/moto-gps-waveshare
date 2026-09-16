@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](COMPONENT_PACKAGE_AUDIT.en.md)
+
 # Rev A 元件、封装与贴装审计
 
 状态：**工程审计稿，不是投板放行单**  

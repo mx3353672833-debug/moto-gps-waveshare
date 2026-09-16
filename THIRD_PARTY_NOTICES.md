@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](THIRD_PARTY_NOTICES.en.md)
+
 # Third-party notices / 第三方材料
 
 根目录 PolyForm Noncommercial 许可仅覆盖本项目原创部分。下列材料保持原许可，

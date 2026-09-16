@@ -1,3 +1,5 @@
+> **语言 / Language:** 中文 · [English](README.en.md)
+
 # 路线网关
 
 Node.js 20+，无第三方运行依赖；建议使用支持 `--env-file` 的 Node.js 24+。
