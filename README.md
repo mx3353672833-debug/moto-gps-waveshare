@@ -2,7 +2,7 @@
 
 # MOTO GPS · Waveshare Edition
 
-[项目官网](https://maler.top/moto-gps/) · [2026-09-16 近期更新](docs/UPDATES_2026-09-16.md) · [Web 调试入口](https://maler.top/moto-gps/ride.html)
+[Glimpse 官网](https://maler.top/) · [2026-09-16 近期更新](docs/UPDATES_2026-09-16.md) · [Web 调试入口](https://maler.top/moto-gps/ride.html)
 
 ![MOTO GPS 圆屏摩托车导航终端](assets/brand/moto-gps-cover.png)
 
@@ -391,7 +391,7 @@ http://127.0.0.1:4173/platforms/web/shell/index.html?demo=1
 
 查看和调试界面可用 [Web 调试工具](platforms/web/shell/README.md)，使用时保持网页前台亮屏。
 线上调试入口是 [/moto-gps/ride.html](https://maler.top/moto-gps/ride.html)；
-[/moto-gps/](https://maler.top/moto-gps/) 是项目官网，源码和部署说明见 [website](website/README.md)。
+[Glimpse 官网](https://maler.top/) 位于域名首页，源码和部署说明见 [website](website/README.md)。
 手机后台定位和 BLE 连接由 iOS App 负责，当前验证进度见[已知问题](docs/KNOWN_ISSUES.md)。
 
 ## 实现方式
@@ -448,7 +448,7 @@ backend            Node.js 高德服务与 Protomaps 地图网关、缓存（Key
 platforms/esp32     Waveshare 板级适配、BLE、QMI8658、显示与电源
 shared             共享导航核心、协议、LVGL UI、OSM 演示及地图数据
 platforms/web      LVGL / Wasm 调试外壳
-website            项目官网源码与部署说明
+website            Glimpse 官网源码与部署说明
 tests              C++ 原生测试
 scripts            Web 构建、字体与 OSM 地图工具
 ```

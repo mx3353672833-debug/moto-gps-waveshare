@@ -35,6 +35,12 @@ jobs:
         run: |
           node scripts/generate_jinan_demo_fixture.mjs --check
           node scripts/offline_map/validate_jinan_sqlite.mjs
+      - name: Website scripts and contact service (no email sent)
+        run: |
+          node --check website/site.js
+          node --check website/demos.js
+          npm ci --prefix website/server
+          npm --prefix website/server test
 
   swift-core:
     runs-on: macos-latest

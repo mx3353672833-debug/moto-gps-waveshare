@@ -2,34 +2,106 @@
 
 > The Chinese document is authoritative if the two differ.
 
-# MOTO GPS project website
+# Glimpse website
 
-Live URL: <https://maler.top/moto-gps/>.
+Website: <https://maler.top/>. The public website uses Glimpse; MOTO GPS technical names in the
+repository, App project and firmware remain unchanged.
 
-Static HTML, CSS and a small amount of vanilla JavaScript. No package installation, analytics scripts or remote fonts. The page includes a project overview, native app screenshots, round-display views, online/offline map guidance, three setup steps, development status and 13 searchable questions. All content and native disclosure controls remain available without JavaScript.
+The frontend uses static HTML, CSS and vanilla JavaScript, with no frontend package installation,
+analytics scripts or remote fonts. It covers the display and App, an animated usage walkthrough, map
+downloads, the B1 custom board, 9 searchable questions and an email contact form. Text and native FAQ
+disclosures work without JavaScript; demos, search and form submission require it. Email submission
+uses a separate Node.js service and is not a static-only feature; see the [service notes](server/README.md).
+
+## Local preview
 
 ```sh
 python3 -m http.server 4187 --directory website
 ```
 
-Open `http://127.0.0.1:4187/`. Publish only `index.html`, `site.css`, `site.js` and `assets/`; the README files do not need to be deployed.
+Open `http://127.0.0.1:4187/` to inspect static content. This command does not start the email service
+and cannot validate delivery. Publish only `index.html`, `site.css`, `site.js`, `demos.css`, `demos.js`
+and `assets/`. Never copy `server/`, environment files, README files or installed dependencies into
+the public static directory.
 
-## Keeping the browser debugging tool
+## Domain migration and legacy tools
 
-The website uses the existing `/moto-gps/` static path. Before its first deployment, preserve the original navigation tool's `index.html` unchanged as `ride.html`, together with `app.js`, `styles.css`, `wasm-loader.js`, `manifest.webmanifest` and `runtime/`. Relative assets and the `./api/` endpoint still resolve from the same directory. The new homepage uses separate `site.css` and `site.js` files.
+Use an independent `site-current/` static release directory for the new website and point the domain
+root at it. Manage it separately from the navigation tool; do not use deletion-based synchronisation
+against the whole domain directory.
 
-For a fresh installation, build and deploy the debugging tool using `platforms/web/shell/README.md` first, then preserve `ride.html` and add this website. A standalone local preview of this directory does not include that tool; its link requires the complete deployment.
+| Path | Deployment behaviour |
+| --- | --- |
+| `/` | Glimpse website; canonical is `https://maler.top/` |
+| `/moto-gps/` homepage | HTTP 301 to `/` for existing links |
+| `/glimpse`, `/glimpse/` and descendants | Retire the old site and return HTTP 410 |
+| `/moto-gps/ride.html` | Existing browser debugging tool, linked in technical docs only, not on the website |
+| `/moto-gps/api/` | Existing navigation gateway proxy, unchanged |
+| Legacy scripts, styles, WASM, runtime and other debugging assets under `/moto-gps/` | Keep their paths and contents |
+| `/api/contact` | Separate email API, proxied unchanged to loopback `127.0.0.1:3024` for this deployment |
 
-Legacy `?demo=...`, `?deviceState=...` and `?api=...` links are redirected to `ride.html` with their parameters intact. This preserves entry points without adding features to the old tool. The browser tool needs to remain in the foreground and does not replace native background location or BLE display support. Keep the separate `/moto-gps/api/` reverse proxy unchanged.
+The old tool's `app.js`, `styles.css`, `wasm-loader.js`, `manifest.webmanifest` and `runtime/` still load
+from their existing paths. Website `site.js` preserves old `demo`, `deviceState` or `api` query links,
+redirecting their query and hash to the absolute `/moto-gps/ride.html` path. This adds no capabilities
+to the old tool: it still needs the foreground and cannot replace native background positioning or BLE.
 
-Back up the current site before deployment. Upload assets and styles first, then replace the homepage. Verify the homepage, `ride.html`, legacy scripts, WASM and API health. Do not use synchronization options that delete the existing tool's files.
+For a fresh tool installation, follow the [web tool guide](../platforms/web/shell/README.en.md)
+separately. The website directory does not include that tool or provide a free public navigation gateway.
 
-## Content and images
+## Email contact service
 
-- Existing project artwork is explicitly labelled as a concept; its speed-limit sign does not represent a connected feature.
-- App images come from development checks; round-display numbers are demonstrations. Keep data-provider attribution.
-- Do not add App Store or TestFlight buttons until valid public links exist.
-- Keep private signing data, device records, test logs, personal screenshots and incomplete privacy-policy drafts out of the public directory.
-- This page does not replace the app's formal privacy policy. Publisher identity, contact details and supplier processing arrangements still need to be completed for distribution.
+The form posts JSON to same-origin `/api/contact`. The service binds only to loopback, independently
+of the navigation gateway. Its source default is port 8788; this deployment sets `CONTACT_PORT=3024`,
+so the proxy target must also use 3024. See its [README](server/README.md) for dependencies, tests,
+environment fields, TLS and proxy requirements. Keep real SMTP credentials and deployment settings
+on the server, out of web assets, source control and public logs.
 
-Check JavaScript with `node --check website/site.js`. This update checked local assets, anchors, desktop and 390px mobile layouts, FAQ search/empty/reset states and legacy-query redirection.
+The API reports success only after SMTP accepts the message; the frontend then clears the form.
+Failures preserve its contents. HTTP success means handoff to the email service, not guaranteed
+inbox delivery. A static preview or health response does not replace one authorised delivery test;
+do not repeatedly send messages to poll for a result. A visitor's reply email is optional.
+
+## Images and animated demos
+
+- `assets/glimpse-device.png`: edited from the existing `assets/concept.png` using built-in
+  `imagegen`, with a transparent background and the old logo and speed-limit sign removed. It is a
+  design concept, not a photograph of production hardware.
+- `assets/videos/`: reuses 9 display recordings and 9 posters from the former site, 18 files totalling
+  927,742 bytes (about 906 KiB). Recording contents are retained; routes and values are demonstration data.
+- `demos.js` / `demos.css`: present page switching and the connection/route-selection/navigation
+  walkthrough. Only the visible selected mode loads video; playback pauses offscreen or in hidden
+  tabs. Controls support play/pause, reduced motion and data-saving preferences, with poster fallback
+  on playback failure. All 9 videos need not download together.
+- `assets/board-b1.svg`: the top-layer routing view exported directly from the actual B1 PCB project.
+  It depicts an engineering candidate, not a fabricated, powered-on or production-accepted board.
+  Custom-board, enclosure and mounting work remain paused.
+- App images come from development checks. Keep OpenStreetMap, Protomaps and other provider attribution.
+
+The website replaces old slogans and removes the browser debugging link and questions about trying
+without a display, countdown/speed-limit/congestion progress and TestFlight fees. The product-availability
+question retains the real release status and links to the GitHub DIY guide. Public source uses PolyForm
+Noncommercial 1.0.0; do not describe it as unrestricted open source or grant additional commercial rights.
+
+Do not add nonexistent App Store / TestFlight download buttons or publish private signing details,
+device records, test logs or incomplete policy drafts. This website does not replace the App's formal
+privacy policy.
+
+## Deployment checks
+
+1. Back up existing static files and proxy configuration, upload the new release directory and deploy
+   the email service separately.
+2. Validate proxy configuration before switching the root homepage. Configure the old-homepage 301,
+   old `/glimpse` 410 and the two independent API routes.
+3. Check the homepage, assets, demos, FAQ search and form success/failure states; review mobile layout,
+   keyboard interaction and reduced motion. Use one explicitly marked authorised email delivery test.
+4. Verify legacy `ride.html`, scripts, WASM and navigation API, then check redirects and 410 responses.
+
+Local syntax checks:
+
+```sh
+node --check website/site.js
+node --check website/demos.js
+```
+
+These are deployment steps. Files existing or passing syntax checks do not establish successful
+production migration or email delivery.

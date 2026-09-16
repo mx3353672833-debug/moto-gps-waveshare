@@ -12,6 +12,7 @@
 | Source Han Sans SC 字体子集 | `shared/nav_ui/assets/moto_font_nav_16.c`，生成自 LVGL 工具目录的字体 | SIL OFL 1.1；见 `LICENSES/SourceHanSansSC-OFL.txt` |
 | Montserrat 内置字体 | LVGL 的内置字体资源 | SIL OFL 1.1；见 `LICENSES/Montserrat-OFL.txt` |
 | OpenStreetMap 数据 / 派生数据库 | `shared/offline_map/jinan-v1.sqlite`、其 SQL/manifest；`shared/demo_fixture` 中的路线/道路/建筑几何；生成 C++ / Swift 常量中的地图数据 | ODbL 1.0，© OpenStreetMap contributors |
+| Nodemailer | `website/server` 邮件服务依赖，锁定于 `package-lock.json`；[上游](https://nodemailer.com/) | MIT-0；许可证随依赖包提供 |
 
 OSM 署名与许可：<https://www.openstreetmap.org/copyright>。
 ODbL 正文：<https://opendatacommons.org/licenses/odbl/1-0/>。

@@ -1,0 +1,154 @@
+/* Screen-only defaults. Opt into the stationary front bezel with
+   data-round-shell="metal"; a separate product image can provide its own shell. */
+[data-round-demo] {
+  --round-ink: #0a0d11;
+  --round-metal-light: #eef1f3;
+  --round-metal-mid: #aeb5bc;
+  --round-metal-dark: #626c76;
+  --round-focus: #0071e3;
+}
+
+[data-round-demo] [data-round-screen] {
+  --round-screen-inset: 0%;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--round-ink);
+}
+
+[data-round-demo][data-round-shell="metal"] [data-round-screen] {
+  --round-screen-inset: 6.5%;
+  background: linear-gradient(145deg, var(--round-metal-light) 0%, #d3d8dd 26%, var(--round-metal-mid) 51%, var(--round-metal-dark) 77%, #cdd3d8 100%);
+  box-shadow: 0 30px 60px -28px #17212b66, 0 9px 20px -12px #17212b5c, inset 0 2px 2px #ffffffd9, inset 0 -2px 5px #1b222b42;
+}
+
+[data-round-demo][data-round-shell="metal"] [data-round-screen]::before {
+  content: "";
+  position: absolute;
+  inset: 3.4%;
+  z-index: -1;
+  border-radius: 50%;
+  background: linear-gradient(150deg, #41484f, #11161b 43%, #050709);
+  box-shadow: inset 0 2px 5px #000b, inset 0 -1px 1px #ffffff30;
+}
+
+[data-round-demo] .round-demo-poster,
+[data-round-demo] .round-demo-video {
+  position: absolute;
+  inset: var(--round-screen-inset);
+  display: block;
+  width: calc(100% - 2 * var(--round-screen-inset));
+  height: calc(100% - 2 * var(--round-screen-inset));
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--round-ink);
+  object-fit: cover;
+}
+
+[data-round-demo] .round-demo-poster { z-index: 1; }
+[data-round-demo] .round-demo-video {
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+[data-round-demo] [data-video-ready="true"] .round-demo-video { opacity: 1; }
+
+[data-round-demo] [data-round-screen]::after {
+  content: "";
+  position: absolute;
+  inset: var(--round-screen-inset);
+  z-index: 3;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: inset 0 0 18px #0004, 0 0 0 1px #ffffff0d;
+  background: linear-gradient(135deg, #ffffff0d, transparent 38%);
+}
+
+[data-round-demo] .round-demo-fallback {
+  position: absolute;
+  z-index: 4;
+  inset: auto 19% 17%;
+  margin: 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: #0a0d11e8;
+  color: #f4f7fa;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.55;
+  text-align: center;
+}
+[data-round-demo] .round-demo-fallback[hidden] { display: none; }
+
+[data-round-demo] .screen-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+[data-round-demo] .screen-tabs [data-round-tab] {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 9px 19px;
+  background: transparent;
+  color: #566472;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+[data-round-demo] .screen-tabs [aria-selected="true"] {
+  background: #fff;
+  color: #18222c;
+  border-color: #d5dde5;
+  box-shadow: 0 2px 6px #17212b08;
+}
+
+[data-round-demo] [data-round-play] {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: #566472;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+[data-round-demo] [data-round-play]::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-block: 4px solid transparent;
+  border-left: 6px solid currentColor;
+}
+[data-round-demo][data-demo-playing="true"] [data-round-play]::before {
+  width: 3px;
+  height: 8px;
+  border-block: 0;
+  border-inline: 2px solid currentColor;
+}
+
+[data-round-demo] [data-round-tab]:focus-visible,
+[data-round-demo] [data-round-play]:focus-visible,
+[data-round-demo] [data-round-screen]:focus-visible {
+  outline: 3px solid var(--round-focus);
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-round-demo] .round-demo-video { transition: none; }
+}

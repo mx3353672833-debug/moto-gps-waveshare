@@ -1,0 +1,12 @@
+{
+  "name": "glimpse-contact-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.0.0" },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "dependencies": { "nodemailer": "10.0.10" }
+}

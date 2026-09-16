@@ -4,7 +4,7 @@
 
 # MOTO GPS · Waveshare Edition
 
-[Project website](https://maler.top/moto-gps/) · [2026-09-16 update](docs/UPDATES_2026-09-16.en.md) · [Web debugging entry](https://maler.top/moto-gps/ride.html)
+[Glimpse website](https://maler.top/) · [2026-09-16 update](docs/UPDATES_2026-09-16.en.md) · [Web debugging entry](https://maler.top/moto-gps/ride.html)
 
 ![MOTO GPS round-display motorcycle navigation terminal](assets/brand/moto-gps-cover.png)
 
@@ -467,7 +467,7 @@ layout during development.
 The [web debugging tool](platforms/web/shell/README.en.md) is available for viewing and debugging
 the UI; keep the page in the foreground with the screen on while using it.
 The hosted debugging entry is [/moto-gps/ride.html](https://maler.top/moto-gps/ride.html);
-[/moto-gps/](https://maler.top/moto-gps/) is the project website. Its source and deployment notes are in [website](website/README.md).
+The [Glimpse website](https://maler.top/) is at the domain root. Its source and deployment notes are in [website](website/README.en.md).
 Background positioning and the BLE connection on the phone are handled by the iOS app, and the
 current verification progress is in [Known issues](docs/KNOWN_ISSUES.en.md).
 
@@ -539,7 +539,7 @@ backend            Node.js AMap and Protomaps gateway, cache (the key stays on t
 platforms/esp32    Waveshare board support, BLE, QMI8658, display and power
 shared             shared navigation core, protocol, LVGL UI, OSM demo and map data
 platforms/web      LVGL / Wasm debugging shell
-website            project website source and deployment notes
+website            Glimpse website source and deployment notes
 tests              native C++ tests
 scripts            web build, font and OSM map tools
 ```
