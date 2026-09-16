@@ -12,6 +12,8 @@
 
 [Features and user manual](docs/USER_MANUAL.en.md) · [Live navigation gateway configuration](docs/GATEWAY_SETUP.en.md)
 
+**Using an Android phone?** [Build an Android version with AI](docs/ANDROID_AI_GUIDE.en.md): a copyable development prompt, BLE and navigation adaptation, testing and GitHub release steps. There is no ready-to-install Android app yet.
+
 The source is provided for you to compile and install yourself; there is no prebuilt firmware or
 App Store / TestFlight download published from this repository yet.
 **iOS 0.3.0 (5) includes release preparation changes and is not yet distributed through TestFlight.**

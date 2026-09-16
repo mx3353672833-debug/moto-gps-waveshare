@@ -10,6 +10,8 @@
 
 [功能与使用说明书](docs/USER_MANUAL.md) · [真实导航网关配置](docs/GATEWAY_SETUP.md)
 
+**用安卓手机？** [用 AI 开发安卓版本](docs/ANDROID_AI_GUIDE.md)：可复制的开发提示词、蓝牙与导航适配、测试及 GitHub 发布步骤。目前尚无现成的 Android App。
+
 当前提供源码自行编译安装；尚无仓库发布的预编译固件、App Store / TestFlight 下载入口。
 **iOS 0.3.0（5）已加入发布准备改动，尚未通过 TestFlight 分发。**
 教程包含设备选型、原厂备份、Xcode 个人签名、配对、演示与常见问题。

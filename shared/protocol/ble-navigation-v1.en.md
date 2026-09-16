@@ -95,9 +95,13 @@ back-pressure.
 3. The ESP32 validates the version range, takes the capability intersection and the smaller
    `max_frame_size` of the two sides, and returns
    `ConnectionStatus(role=Device, state=Ready)` on TX with the same `session_id`.
-4. The phone sends `ConnectionStatus(role=Phone, state=Ready)`; only after that may it send
-   display data.
-5. When either end receives a different `session_id` it must clear the old route window, the
+4. The phone sends `ConnectionStatus(role=Phone, state=Ready)` and keeps waiting for final
+   confirmation.
+5. The ESP32 replies again with `ConnectionStatus(role=Device, state=Ready)` for the same
+   `session_id`. The phone enters the protocol-ready state and sends display data only after
+   confirming that the version, capabilities, frame size and heartbeat interval match the first
+   Ready. Neither a successful GATT write nor the first Device Ready completes the handshake.
+6. When either end receives a different `session_id` it must clear the old route window, the
    command deduplication table, unfinished fragments and the sequence base, and then handshake
    again.
 
@@ -371,9 +375,10 @@ device hides LIKE instead of a local fake success.
 ### 6.8 MapScene (`0x14`)
 
 `MapScene` is an optional, fully replacing local mini-map scene, not a city-wide database. The
-iPhone queries 500–800 m around the current position in the offline package and sends it after
-clipping and simplification; the ESP32 keeps only the latest frame. Coordinates are fixed to
-GCJ-02, aligned with the AMap planned route.
+current iPhone implementation prefers online surrounding tiles and falls back to existing cache,
+downloaded packages and bundled data. It selects a 500 m window around the current position,
+clips and simplifies it, then sends it to the ESP32, which keeps only the latest scene.
+Coordinates are fixed to GCJ-02, aligned with the AMap planned route.
 
 ```text
 u8  revision
@@ -411,9 +416,11 @@ revision, a partial packet and a CRC error all leave the screen unchanged.
 This encoding is usually about 1.3–2.2 KiB for 192 road points + 128 building points; under a
 185-byte GATT value that is about 8–14 protocol fragments. It must not be sent at the
 positioning frame rate: refreshing once after about 100 m of travel, when approaching the window
-edge or when crossing a 500 m offline tile is enough. The current shared C++ codec already
-implements this message, but the iOS offline-package query layer, the ESP32 staging/commit and
-the building LVGL layer are still later wiring work.
+edge or when crossing a 500 m offline tile is enough. The current data path is connected:
+the iOS `SurroundingMapStore` selects a window, which `ESP32BLECentral` sends through the shared
+C++ codec; the ESP32 `PhoneNavBridge` validates and atomically commits it, then passes it through
+`NavPresenter` to the road and building LVGL layers. Implementing this path does not establish
+that map coverage in every region, weak-network behavior or road testing has been accepted.
 
 ### 6.9 DeviceCommand (`0x20`, fixed 13 bytes)
 

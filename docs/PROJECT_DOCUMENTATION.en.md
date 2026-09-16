@@ -47,6 +47,7 @@ Renders express appearance only; the silver product render in the first image an
 
 ## Software and verification
 
+- [Build an Android version with AI](ANDROID_AI_GUIDE.en.md): a copyable prompt, code reuse, hardware verification and GitHub release steps; there is no ready-to-install Android app yet.
 - [iOS app](../platforms/ios/README.en.md), [ESP32 firmware](../platforms/esp32/README.en.md), [route gateway](../backend/README.en.md).
 - [Public-edition architecture](ARCHITECTURE.en.md), [test notes](TESTING.en.md), [known issues](KNOWN_ISSUES.en.md).
 - [Hardware export and release checks](../scripts/hardware/README.md).

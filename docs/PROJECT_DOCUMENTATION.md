@@ -45,6 +45,7 @@ STEP 适合 CAD 编辑和装配检查，STL 用于原型打印，二维图用于
 
 ## 软件与验证
 
+- [用 AI 开发安卓版本](ANDROID_AI_GUIDE.md)：可复制的提示词、现有代码复用、真机验证与 GitHub 发布步骤；目前尚无现成的安卓 App。
 - [iOS App](../platforms/ios/README.md)、[ESP32 固件](../platforms/esp32/README.md)、[路线网关](../backend/README.md)。
 - [公开版本架构](ARCHITECTURE.md)、[测试说明](TESTING.md)、[已知问题](KNOWN_ISSUES.md)。
 - [硬件导出与发布检查](../scripts/hardware/README.md)。

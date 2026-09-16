@@ -5,7 +5,7 @@
 官网地址：<https://maler.top/>。官网品牌使用 Glimpse；仓库、App 工程和固件中的 MOTO GPS 技术名称保持不变。
 
 前端为静态 HTML、CSS 和原生 JavaScript，无前端安装依赖、分析脚本或远程字体。页面包含
-圆屏与 App、动态使用流程、地图下载、自研 B1 主板、9 个可搜索问答和邮件提问表单。
+圆屏与 App、动态使用流程、地图下载、自研 B1 主板、10 个可搜索问答和邮件提问表单。
 文字与问答展开不依赖 JavaScript；动态演示、问题搜索和表单发送需要 JavaScript。
 邮件提问使用独立 Node.js 服务，不是纯静态功能，见[服务说明](server/README.md)。
 
@@ -68,6 +68,7 @@ HTTP 成功表示已交给邮件服务，不保证收件箱最终投递。单纯
 
 官网使用简洁项目说明，已移除旧口号、网页调试入口，以及“没有圆屏也能体验”、读秒／
 限速／拥堵进度和 TestFlight 收费相关问答。成品问答保留真实发布状态，并链接 GitHub DIY 教程。
+安卓问答链接到 [AI 开发指南](../docs/ANDROID_AI_GUIDE.md)，提供移植提示词和 GitHub 发布步骤，明确尚无现成的 Android App。
 公开源码采用 PolyForm Noncommercial 1.0.0，不标成无限制开源或提供额外商用授权。
 
 不添加尚不存在的 App Store / TestFlight 下载按钮，不发布私人签名、设备记录、测试日志

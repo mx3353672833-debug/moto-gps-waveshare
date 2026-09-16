@@ -82,8 +82,11 @@ Write Without Response；握手或需要链路层确认的低频控制可使用 
    RX 发送 `ConnectionStatus(role=Phone, state=Starting)`。
 3. ESP32 验证版本区间，取能力交集及双方较小的 `max_frame_size`，在 TX 回送相同
    `session_id` 的 `ConnectionStatus(role=Device, state=Ready)`。
-4. 手机发送 `ConnectionStatus(role=Phone, state=Ready)`；之后才能发送显示数据。
-5. 任一端收到不同 `session_id`，都必须清除旧的路线窗口、命令去重表、未完成
+4. 手机发送 `ConnectionStatus(role=Phone, state=Ready)`，继续等待最终确认。
+5. ESP32 再次回复同一 `session_id` 的 `ConnectionStatus(role=Device, state=Ready)`。
+   手机确认版本、能力、帧大小和心跳间隔与首次 Ready 一致后，才进入协议就绪状态并
+   发送显示数据。不能把 GATT 写成功或首次 Device Ready 当作整个握手完成。
+6. 任一端收到不同 `session_id`，都必须清除旧的路线窗口、命令去重表、未完成
    分片及序号基准，再重新握手。
 
 没有 v1 版本交集时回 `state=Closing` 并断开。能力位只表示可使用的功能；发送方
@@ -334,9 +337,10 @@ system music player 暴露修改当前歌曲“喜欢”的公共接口，iOS �
 
 ### 6.8 MapScene (`0x14`)
 
-`MapScene` 是可选的、完整替换的本地小地图场景，不是全市数据库。iPhone 在离线包
-中查询当前位置周围 500–800 m，裁剪和简化以后发送；ESP32 只保留最新一帧。坐标
-固定使用 GCJ-02，与高德规划路线对齐。
+`MapScene` 是可选的、完整替换的本地小地图场景，不是全市数据库。当前 iPhone
+优先在线取得周边瓦片，并使用已有缓存、下载包和内置数据兜底；选出当前位置周围
+500 m 的窗口，裁剪和简化以后发送。ESP32 只保留最新场景。坐标固定使用 GCJ-02，
+与高德规划路线对齐。
 
 ```text
 u8  revision
@@ -371,8 +375,10 @@ repeat building_count:
 
 本编码对 192 个道路点 + 128 个建筑点通常约 1.3–2.2 KiB；在 185-byte GATT value
 下约 8–14 个协议分片。它不应按定位帧率发送：前进约 100 m、靠近窗口边缘或跨
-500 m 离线分块时刷新一次即可。当前共享 C++ codec 已实现本消息，但 iOS 离线包
-查询器、ESP32 staging/提交及建筑 LVGL 图层仍属于后续接线工作。
+500 m 离线分块时刷新一次即可。当前链路已接入：iOS 的 `SurroundingMapStore`
+选择窗口，经 `ESP32BLECentral` 和共享 C++ codec 下发；ESP32 的 `PhoneNavBridge`
+校验并原子提交后，经 `NavPresenter` 交给道路与建筑 LVGL 图层。代码接入不等于
+所有地区的地图覆盖、弱网或道路实测已经验收。
 
 ### 6.9 DeviceCommand (`0x20`, 固定 13 字节)
 

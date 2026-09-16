@@ -9,7 +9,7 @@ repository, App project and firmware remain unchanged.
 
 The frontend uses static HTML, CSS and vanilla JavaScript, with no frontend package installation,
 analytics scripts or remote fonts. It covers the display and App, an animated usage walkthrough, map
-downloads, the B1 custom board, 9 searchable questions and an email contact form. Text and native FAQ
+downloads, the B1 custom board, 10 searchable questions and an email contact form. Text and native FAQ
 disclosures work without JavaScript; demos, search and form submission require it. Email submission
 uses a separate Node.js service and is not a static-only feature; see the [service notes](server/README.md).
 
@@ -81,6 +81,8 @@ The website replaces old slogans and removes the browser debugging link and ques
 without a display, countdown/speed-limit/congestion progress and TestFlight fees. The product-availability
 question retains the real release status and links to the GitHub DIY guide. Public source uses PolyForm
 Noncommercial 1.0.0; do not describe it as unrestricted open source or grant additional commercial rights.
+The Android question links to the [AI development guide](../docs/ANDROID_AI_GUIDE.en.md), with a porting
+prompt and GitHub release steps, and states that no ready-to-install Android app is available yet.
 
 Do not add nonexistent App Store / TestFlight download buttons or publish private signing details,
 device records, test logs or incomplete policy drafts. This website does not replace the App's formal
