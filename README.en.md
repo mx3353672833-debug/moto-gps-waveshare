@@ -14,6 +14,13 @@
 
 **Using an Android phone?** [Build an Android version with AI](docs/ANDROID_AI_GUIDE.en.md): a copyable development prompt, BLE and navigation adaptation, testing and GitHub release steps. There is no ready-to-install Android app yet.
 
+**Help build Glimpse.** If you build an Android app from this project, we'd love you to share its source
+on GitHub so others can learn from it, use it and help maintain it. Start a conversation in
+[Issues](https://github.com/mx3353672833-debug/moto-gps-waveshare/issues), then contribute code, fixes or
+documentation through Pull Requests with build instructions and tested-device details. We'll retain
+contributor attribution, and the existing project licence still applies. See the
+[Android collaboration invitation](docs/ANDROID_AI_GUIDE.en.md#lets-build-the-android-version-together) for ways to join in.
+
 The source is provided for you to compile and install yourself; there is no prebuilt firmware or
 App Store / TestFlight download published from this repository yet.
 **iOS 0.3.0 (5) includes release preparation changes and is not yet distributed through TestFlight.**
