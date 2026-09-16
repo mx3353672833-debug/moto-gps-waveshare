@@ -37,5 +37,6 @@ if(NOT DEFINED IDF_TARGET)
     set(IDF_TARGET "esp32s3" CACHE STRING "ESP-IDF chip target")
 endif()
 
+set(PROJECT_VER "0.2.1")
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(moto_gps_esp32)

@@ -58,6 +58,43 @@ final class NavigationSessionReducerTests: XCTestCase {
         XCTAssertEqual(reducer.state, NavigationSessionState())
     }
 
+    func testRouteFailureInvalidatesRequestAndIgnoresLateSuccess() throws {
+        var reducer = NavigationSessionReducer()
+        _ = reducer.reduce(.start(destination: destination))
+        let effects = reducer.reduce(.location(firstFix))
+        guard case let .requestRoute(request) = try XCTUnwrap(effects.first) else {
+            return XCTFail("Expected a route request")
+        }
+
+        XCTAssertEqual(
+            reducer.reduce(.routeFailed(requestID: request.requestID, message: "网关超时")),
+            [.stopLocation]
+        )
+        XCTAssertNil(reducer.state.activeRequestID)
+        _ = reducer.reduce(
+            .routeLoaded(RouteEnvelope(requestID: request.requestID, route: samplePlan()))
+        )
+        XCTAssertEqual(reducer.state.phase, .failed)
+        XCTAssertNil(reducer.state.route)
+    }
+
+    func testLocationFailureInvalidatesInflightRoute() throws {
+        var reducer = NavigationSessionReducer()
+        _ = reducer.reduce(.start(destination: destination))
+        let effects = reducer.reduce(.location(firstFix))
+        guard case let .requestRoute(request) = try XCTUnwrap(effects.first) else {
+            return XCTFail("Expected a route request")
+        }
+
+        XCTAssertEqual(reducer.reduce(.locationFailed("定位失败")), [.stopLocation])
+        XCTAssertNil(reducer.state.activeRequestID)
+        _ = reducer.reduce(
+            .routeLoaded(RouteEnvelope(requestID: request.requestID, route: samplePlan()))
+        )
+        XCTAssertEqual(reducer.state.phase, .failed)
+        XCTAssertNil(reducer.state.route)
+    }
+
     private func samplePlan() -> RoutePlan {
         RoutePlan(
             routeID: "route-test",

@@ -2,22 +2,25 @@
 
 > English edition of the Chinese document. The Chinese file is authoritative if the two differ.
 
-# Waveshare edition live navigation: route gateway configuration
+# Waveshare live navigation and surrounding maps: gateway configuration
 
 This page is the companion step to the [DIY guide](WAVESHARE_DIY_GUIDE.en.md). If you only want the
 App demo you can configure this later; searching for real destinations, candidate routes, off-route
-rerouting and traffic conditions need the service on this page.
+rerouting, traffic, online surrounding maps and offline-map downloads need the service on this page.
+As of 2026-09-16, TestFlight is not open; source installations still need your own signing and service.
+Neither the repository nor the website provides a free public gateway. A website link does not grant
+authorisation to use a navigation service.
 
 ```text
-iPhone → your own HTTPS gateway → AMap Web Service
-              stores the key
+iPhone → your own HTTPS gateway → AMap Web Service (search, routes, city bounds)
+              stores the key   → Protomaps / OSM (roads, buildings; server cache)
 ```
 
 ## 1. Prepare the key and the service environment
 
 In the [AMap Open Platform Web Service key guide](https://lbs.amap.com/api/webservice/guide/create-project/get-key),
 create an application and a **Web Service** type key following the current console flow, and confirm
-the POI search and driving route permissions / quota. This is not the iOS SDK key, nor the web page
+the POI search, driving route and administrative-boundary query permissions / quota. This is not the iOS SDK key, nor the web page
 JavaScript key.
 
 You need a server that can run Node.js continuously and a domain of your own. The examples below are
@@ -28,8 +31,10 @@ Node gateway.
 
 On the server, install the tools following the [official Node.js download](https://nodejs.org/en/download)
 and the [official Caddy installation instructions](https://caddyserver.com/docs/install), and prepare
-Git. The server should be able to reach the AMap API. `nav.example.com` is used below as a placeholder
-domain and must be replaced with your own address.
+Git. The server must reach the AMap API. Online maps also need the chosen PMTiles HTTPS source and,
+in automatic mode, the official build manifest. Map decoding now depends on `pmtiles`,
+`@mapbox/vector-tile` and `pbf`, so dependency installation cannot be skipped. `nav.example.com` below
+is a placeholder domain and must be replaced with your own address.
 
 ## 2. Download the code and verify the backend
 
@@ -40,6 +45,7 @@ initialised:
 git clone https://github.com/mx3353672833-debug/moto-gps-waveshare.git
 cd moto-gps-waveshare
 node --version
+npm --prefix backend ci
 npm --prefix backend test
 cp backend/.env.example backend/.env
 chmod 600 backend/.env
@@ -52,7 +58,24 @@ MOTO_PROVIDER=amap
 AMAP_WEB_SERVICE_KEY=REPLACE_WITH_YOUR_WEB_SERVICE_KEY
 PORT=8787
 WEB_ORIGIN=https://nav.example.com
+MOTO_MAP_PMTILES_URL=auto
+MOTO_MAP_CACHE_DIR=/YOUR_WRITABLE_STATE_DIRECTORY/maps
+MOTO_MAP_CACHE_MAX_BYTES=1073741824
 ```
+
+Replace `MOTO_MAP_CACHE_DIR` with your own absolute path and create persistent storage writable by
+the ordinary user running Node. Do not use a temporary directory removed on each deployment. Defaults
+are at most 1 GiB of JSON and 100,000 tile files, with least-recently-used eviction; actual disk use
+may be larger. `npm ci --omit=dev` can be used for production installation.
+
+`amap` mode enables `auto` surrounding maps by default; fixture/disabled modes disable maps by default
+to keep tests offline. `auto` selects a compatible latest Protomaps v4 archive from the official
+manifest and reads it on demand. Public archives are transitional and do not guarantee permanent
+retention or availability. For stable deployment, host a compatible regional `.pmtiles` file yourself
+and set `MOTO_MAP_PMTILES_URL=https://YOUR-STORAGE/region-version.pmtiles`; storage must support HTTP Range.
+Changing the server source needs no App changes. Use `disabled` to turn surrounding tiles off.
+See the [backend README](../backend/README.en.md#map-source-and-persistent-cache) for sources, licences,
+cache refresh and request limits.
 
 `WEB_ORIGIN` is the browser origin allowed when you use the web tool, not user authentication. Even
 if you use only native iOS, you should know that the public gateway currently has no App login / token
@@ -75,8 +98,8 @@ curl --fail-with-body http://127.0.0.1:8787/healthz
 ```
 
 `provider: amap` and `ready_for_live_navigation: true` mean the configuration is enabled; they do not
-mean the actual key and the upstream network have been verified. A search and a route request are
-still needed later.
+mean the actual key and upstream network have been verified. Also check
+`capabilities.surrounding_map`, `capabilities.map_city_search` and `map_source`. Real requests are still needed.
 
 ## 3. Provide an HTTPS address to the phone
 
@@ -89,7 +112,9 @@ Caddyfile the way your installation expects (on a Linux service it is usually
 ```caddyfile
 nav.example.com {
     handle_path /moto-gps/api/* {
-        reverse_proxy 127.0.0.1:8787
+        reverse_proxy 127.0.0.1:8787 {
+            header_up X-Real-IP {remote_host}
+        }
     }
 }
 ```
@@ -99,6 +124,15 @@ nav.example.com {
 port and the storage conditions are met. Sources:
 [path handling](https://caddyserver.com/docs/caddyfile/directives/handle_path),
 [automatic HTTPS](https://caddyserver.com/docs/automatic-https).
+
+This example assumes Caddy receives requests directly from the phone. It overwrites `X-Real-IP` for
+the local Node rate limiter rather than passing through an arbitrary client-supplied address. See
+[request headers](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy#headers) and the
+[`remote_host` placeholder](https://caddyserver.com/docs/caddyfile/concepts#placeholders). If a CDN or
+another proxy sits in front, configure the trusted-proxy boundary separately. Review access
+logging: place URLs can contain keywords and precise positions; city keywords and tile paths also
+reveal areas. Configure log redaction, retention and backups, reflect actual practices in your privacy
+disclosures, and never log keys.
 
 With the Linux Caddy service, validate the configuration first, then load it:
 
@@ -145,7 +179,8 @@ WantedBy=multi-user.target
 ```
 
 Use an ordinary user that can read this code for `User`, and fill the Node path with the complete
-result of `command -v node`. First press Ctrl+C in the terminal running the foreground Node to release
+result of `command -v node`. That user must also be able to write `MOTO_MAP_CACHE_DIR`; if adding a
+systemd sandbox, allow writes there. First press Ctrl+C in the terminal running the foreground Node to release
 8787, then enable the service:
 
 ```sh
@@ -171,6 +206,20 @@ It should return place results or a service error with a clear reason; a lack of
 insufficient quota or a timeout must not be treated as fixed by using the fixture. `fixture` is only
 for protocol tests; `disabled` explicitly refuses online navigation.
 
+Next verify city bounds and a real surrounding tile:
+
+```sh
+curl --fail-with-body --get 'https://nav.example.com/moto-gps/api/v1/map/cities' \
+  --data-urlencode 'keywords=历下区'
+curl --fail-with-body 'https://nav.example.com/moto-gps/api/v1/map/tiles/15/27044/12791' \
+  --output /dev/null --write-out 'HTTP %{http_code}\n'
+```
+
+The city result needs valid `bounds_wgs84`, and the tile should return HTTP 200. Repeat the tile read
+to check caching, then inspect `map_source.last_success_at` and error fields. A true capability flag
+with persistently failing uncached tiles does not pass verification. Also test that old cached tiles
+remain readable when upstream is unavailable, not only the successful online path.
+
 Open `platforms/ios/project.yml` and set:
 
 ```yaml
@@ -181,6 +230,11 @@ Go back to [the DIY guide's iPhone installation steps](WAVESHARE_DIY_GUIDE.en.md
 regenerate the project and Run. Search for a nearby destination in the App, get at least one candidate
 route, then start and end one navigation. Only that confirms that the phone's location, the public
 gateway, the actual key, the route request and the App's address all work together.
+
+"Maps and offline downloads" on home supports city/district search; after choosing a route, its
+surroundings can also be downloaded. Keep the App running; interrupted downloads can resume. Offline
+use relies on downloads, cache and the retained bundled Jinan base map. These supply only road and
+building backgrounds, not offline search, rerouting, live traffic, speed limits or countdowns.
 
 Replacing the key later only requires updating the server-side environment and restarting the
 service; changing the domain / path the App uses requires updating the project configuration and

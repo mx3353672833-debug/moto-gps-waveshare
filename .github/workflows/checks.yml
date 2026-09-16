@@ -28,7 +28,9 @@ jobs:
           cmake --build build/native --parallel 4
           ctest --test-dir build/native --output-on-failure
       - name: Backend tests (no live API)
-        run: npm --prefix backend test
+        run: |
+          npm ci --prefix backend
+          npm --prefix backend test
       - name: Verify public map fixtures
         run: |
           node scripts/generate_jinan_demo_fixture.mjs --check

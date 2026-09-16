@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/moto-gps/schema/map-scene.v1.schema.json",
+  "$id": "https://maler.top/moto-gps/schema/map-scene.v1.schema.json",
   "title": "MOTO GPS offline map scene v1",
   "type": "object",
   "additionalProperties": false,

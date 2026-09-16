@@ -58,6 +58,18 @@ add_executable(nav_core_tests nav_core_tests.cpp)
 target_link_libraries(nav_core_tests PRIVATE moto_nav_core moto_coordinates)
 target_compile_features(nav_core_tests PRIVATE cxx_std_17)
 
+# The full LVGL target exists in the project build, but not when this test
+# directory is configured standalone with its lightweight UI stub.
+if(TARGET lvgl)
+  set(MOTO_NATIVE_LVGL_HEAP_BYTES "8388608" CACHE STRING
+      "LVGL internal heap for native render tests; use 65536 for board parity")
+  target_compile_definitions(lvgl PRIVATE
+    CONFIG_LV_MEM_SIZE=${MOTO_NATIVE_LVGL_HEAP_BYTES})
+  add_executable(nav_ui_render_tests nav_ui_render_tests.cpp)
+  target_link_libraries(nav_ui_render_tests PRIVATE moto_nav_ui lvgl)
+  target_compile_features(nav_ui_render_tests PRIVATE cxx_std_17)
+endif()
+
 add_executable(nav_core_fixture_demo nav_core_fixture_demo.cpp)
 target_link_libraries(nav_core_fixture_demo PRIVATE moto_nav_core moto_coordinates)
 target_compile_features(nav_core_fixture_demo PRIVATE cxx_std_17)
@@ -116,6 +128,9 @@ target_link_libraries(phone_nav_bridge_tests PRIVATE
 target_compile_features(phone_nav_bridge_tests PRIVATE cxx_std_17)
 
 add_test(NAME nav_core_tests COMMAND nav_core_tests)
+if(TARGET nav_ui_render_tests)
+  add_test(NAME nav_ui_render_tests COMMAND nav_ui_render_tests)
+endif()
 add_test(NAME nav_app_tests COMMAND nav_app_tests)
 add_test(NAME nav_presenter_tests COMMAND nav_presenter_tests)
 add_test(NAME ble_protocol_tests COMMAND ble_protocol_tests)

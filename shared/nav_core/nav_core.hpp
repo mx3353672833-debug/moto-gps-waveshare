@@ -5,6 +5,7 @@
 #include <array>
 #include <cstddef>
 #include <cstdint>
+#include <limits>
 #include <optional>
 #include <vector>
 
@@ -156,7 +157,8 @@ class NavCore {
   void request_route_if_possible(NavCommands& commands);
   void request_traffic_if_due(NavCommands& commands, bool force = false);
   void update_route_match(const Gcj02Point& position,
-                          NavCommands& commands);
+                          NavCommands& commands,
+                          double maximum_route_progress_m);
   void update_route_view(const Gcj02Point& position,
                          double route_progress_m);
   void update_derived_route_fields();
@@ -168,7 +170,9 @@ class NavCore {
   [[nodiscard]] bool valid_route(const RouteBundle& route) const;
   [[nodiscard]] Projection project_onto_route(
       const Gcj02Point& point,
-      double minimum_route_progress_m = 0.0) const;
+      double minimum_route_progress_m = 0.0,
+      double maximum_route_progress_m =
+          std::numeric_limits<double>::infinity()) const;
   [[nodiscard]] double distance_m(const Gcj02Point& a,
                                   const Gcj02Point& b) const;
 

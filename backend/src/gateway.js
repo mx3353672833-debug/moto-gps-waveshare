@@ -1,6 +1,8 @@
 import { createServer } from "node:http";
 
 import { validRequestId, validateRouteRequest } from "./validation.js";
+import { validateTileCoordinates } from "./map-tiles.js";
+import { validateCityKeywords } from "./amap-cities.js";
 
 const DEFAULT_MAX_BODY_BYTES = 8192;
 const RATE_WINDOW_MS = 60_000;
@@ -98,15 +100,27 @@ function validatePlaceQuery(requestUrl) {
   return { keywords, region, origin };
 }
 
-function requestAddress(request) {
-  const realIp = String(request.headers["x-real-ip"] ?? "").trim();
-  return realIp || request.socket.remoteAddress || "unknown";
+const MAXIMUM_RATE_BUCKETS = 4_096;
+
+function isLoopbackAddress(address) {
+  if (typeof address !== "string") return false;
+  return address === "::1" || address.startsWith("127.") ||
+    address.startsWith("::ffff:127.");
 }
 
-function createRateLimiter() {
+export function clientAddress(request) {
+  const remote = request.socket?.remoteAddress;
+  if (isLoopbackAddress(remote)) {
+    const realIp = String(request.headers["x-real-ip"] ?? "").trim();
+    if (realIp !== "") return realIp;
+  }
+  return remote ?? "unknown";
+}
+
+export function createRateLimiter() {
   const buckets = new Map();
-  return function rateLimit(request, category, maximumRequests, now = Date.now()) {
-    const key = `${category}:${requestAddress(request)}`;
+  function rateLimit(request, category, maximumRequests, now = Date.now()) {
+    const key = `${category}:${clientAddress(request)}`;
     let bucket = buckets.get(key);
     if (!bucket || now - bucket.startedAt >= RATE_WINDOW_MS) {
       bucket = { startedAt: now, count: 0 };
@@ -114,17 +128,24 @@ function createRateLimiter() {
     }
     bucket.count += 1;
 
-    if (buckets.size > 2048) {
+    if (buckets.size > MAXIMUM_RATE_BUCKETS) {
       for (const [bucketKey, value] of buckets) {
         if (now - value.startedAt >= RATE_WINDOW_MS) buckets.delete(bucketKey);
+        if (buckets.size <= MAXIMUM_RATE_BUCKETS) break;
+      }
+      while (buckets.size > MAXIMUM_RATE_BUCKETS) {
+        buckets.delete(buckets.keys().next().value);
       }
     }
     return bucket.count <= maximumRequests;
-  };
+  }
+  Object.defineProperty(rateLimit, "size", { get: () => buckets.size });
+  return rateLimit;
 }
 
 export function createGateway({
   provider,
+  mapProvider = null,
   allowedOrigin = "http://localhost:5173",
   maximumBodyBytes = DEFAULT_MAX_BODY_BYTES,
   providerMode = "fixture",
@@ -148,9 +169,62 @@ export function createGateway({
       sendJson(
         response,
         200,
-        { status: "ok", ready_for_live_navigation: providerMode === "amap", provider: providerMode },
+        {
+          status: "ok",
+          ready_for_live_navigation: providerMode === "amap",
+          provider: providerMode,
+          capabilities: {
+            route_planning: providerMode === "amap",
+            route_traffic: providerMode === "amap",
+            // Route Planning v2 exposes neither legal road speed limits nor
+            // live signal phases. API readiness must not imply those feeds.
+            road_speed_limits: false,
+            traffic_light_countdown: false,
+            surrounding_map: typeof mapProvider?.getTile === "function",
+            map_city_search: typeof provider.searchCities === "function",
+          },
+          map_source: mapProvider?.status?.() ?? { enabled: false },
+        },
         allowedOrigin,
       );
+      return;
+    }
+
+    const isMapTile = request.method === "GET" && requestUrl.pathname.startsWith("/v1/map/tiles/");
+    const isCitySearch = request.method === "GET" && requestUrl.pathname === "/v1/map/cities";
+    if (isMapTile || isCitySearch) {
+      if (!rateLimit(request, isMapTile ? "map-tiles" : "map-cities", isMapTile ? 600 : 30)) {
+        response.setHeader("Retry-After", "60");
+        sendJson(response, 429, { protocol_version: 1, error: {
+          code: "RATE_LIMITED", message: "too many map requests", retryable: true,
+        } }, allowedOrigin);
+        return;
+      }
+      try {
+        let result;
+        if (isMapTile) {
+          const match = /^\/v1\/map\/tiles\/(\d+)\/(\d+)\/(\d+)$/.exec(requestUrl.pathname);
+          if (!match || requestUrl.search) throw new BodyReadError("INVALID_REQUEST", "invalid map tile path or query");
+          const [z, x, y] = match.slice(1).map(Number);
+          validateTileCoordinates(z, x, y);
+          if (!mapProvider) throw new BodyReadError("MAP_DISABLED", "surrounding map source is disabled");
+          result = await mapProvider.getTile(z, x, y);
+        } else {
+          if ([...requestUrl.searchParams.keys()].some((key) => key !== "keywords") ||
+              requestUrl.searchParams.getAll("keywords").length !== 1) {
+            throw new BodyReadError("INVALID_REQUEST", "city search accepts only keywords");
+          }
+          const keywords = validateCityKeywords(requestUrl.searchParams.get("keywords"));
+          if (typeof provider.searchCities !== "function") throw new BodyReadError("SERVER_MISCONFIGURED", "city search is unavailable");
+          result = await provider.searchCities({ keywords });
+        }
+        sendJson(response, 200, result, allowedOrigin);
+      } catch (error) {
+        const publicError = safeError(error);
+        if (publicError.code === "MAP_BUSY") response.setHeader("Retry-After", "5");
+        sendJson(response, publicError.code === "INVALID_REQUEST" ? 400 : 503,
+          { protocol_version: 1, error: publicError }, allowedOrigin);
+      }
       return;
     }
 

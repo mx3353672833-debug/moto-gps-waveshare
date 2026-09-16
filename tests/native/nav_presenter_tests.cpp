@@ -237,6 +237,28 @@ void test_heading_up_route_projection_keeps_rider_fixed() {
   CHECK(state.route_points[1].y < state.route_points[0].y);
 }
 
+void test_non_finite_heading_keeps_map_projection_finite() {
+  NavPresenter presenter;
+  NavSnapshot snapshot;
+  snapshot.state = NavState::Navigating;
+  snapshot.heading_deg = std::numeric_limits<float>::quiet_NaN();
+  snapshot.has_route_view = true;
+  snapshot.route_view_origin = {31.2304, 121.4737};
+  snapshot.route_view_point_count = 2;
+  snapshot.route_view_points[0] = snapshot.route_view_origin;
+  snapshot.route_view_points[1] = {31.2314, 121.4737};
+  presenter.update(snapshot);
+
+  const moto_ui_state_t& state = presenter.ui_state();
+  CHECK(state.heading_deg == 0);
+  CHECK(state.route_point_count == 2);
+  constexpr int rider_x = MOTO_UI_CANVAS_WIDTH / 2;
+  constexpr int rider_y =
+      (196 * MOTO_UI_CANVAS_HEIGHT + 180) / 360;
+  CHECK(state.route_points[0].x == rider_x);
+  CHECK(state.route_points[0].y == rider_y);
+}
+
 void test_real_road_context_uses_the_same_heading_up_transform() {
   NavPresenter presenter;
   NavSnapshot snapshot;
@@ -465,6 +487,7 @@ int main() {
   test_all_traffic_levels();
   test_metrics_are_rounded_clamped_and_deterministic();
   test_heading_up_route_projection_keeps_rider_fixed();
+  test_non_finite_heading_keeps_map_projection_finite();
   test_real_road_context_uses_the_same_heading_up_transform();
   test_map_scene_classes_buildings_and_capacity_share_route_transform();
   test_map_scale_does_not_jump_at_maneuver_distance_thresholds();

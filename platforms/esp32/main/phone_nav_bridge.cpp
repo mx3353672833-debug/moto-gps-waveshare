@@ -369,7 +369,10 @@ void PhoneNavBridge::on_imu_sample(float heading_rate_dps,
     if (sample_ms - last_motion_present_ms_ >= 25 &&
         (snapshot_.has_route_view ||
          snapshot_.display_page == moto::nav::DisplayPage::Compass)) {
-      last_motion_present_ms_ = sample_ms;
+      // Preserve the 25 ms phase. Setting this to sample_ms quantizes every
+      // interval to four 8 ms samples (32 ms), silently reducing 40 to 31 Hz.
+      last_motion_present_ms_ +=
+          ((sample_ms - last_motion_present_ms_) / 25U) * 25U;
       should_present = true;
     }
   }
@@ -599,7 +602,8 @@ void PhoneNavBridge::consume_navigation(
     const bool has_usable_fix = has_flag(
         input.flags, moto::ble::NavigationHasFix);
     heading_fusion_.anchor(phone_heading_deg, phone_speed_mps,
-                           has_usable_fix);
+                           has_usable_fix && !has_flag(
+                               input.flags, moto::ble::NavigationGnssStale));
 
     phone_snapshot.state = map_state(input.state);
     phone_snapshot.network = map_network(input.network);

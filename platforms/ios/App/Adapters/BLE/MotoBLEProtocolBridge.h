@@ -101,6 +101,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) uint32_t sessionID;
 @end
 
+@interface MotoBLEAcknowledgement : NSObject
+@property(nonatomic, readonly) uint16_t acknowledgedSequence;
+@property(nonatomic, readonly) uint8_t status;
+@end
+
 /// One successfully decoded transport message, or one valid partial/duplicate
 /// frame. Sequence and ACK metadata stay attached to the shared decoder output.
 @interface MotoBLEInboundMessage : NSObject
@@ -110,12 +115,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) BOOL duplicate;
 @property(nonatomic, readonly, nullable) MotoBLEConnectionStatus *connectionStatus;
 @property(nonatomic, readonly, nullable) MotoBLEHeartbeat *heartbeat;
+@property(nonatomic, readonly, nullable) MotoBLEAcknowledgement *acknowledgement;
 @property(nonatomic, readonly, nullable) MotoBLEDeviceCommand *deviceCommand;
 @end
 
 /// Thin Objective-C++ bridge over shared/ble_protocol. No wire constants or
 /// binary payload layouts are reimplemented in Swift.
 @interface MotoBLEProtocolCodec : NSObject
+@property(nonatomic, readonly) uint16_t lastEncodedSequence;
 
 + (NSString *)serviceUUIDString;
 + (NSString *)phoneToDeviceUUIDString;

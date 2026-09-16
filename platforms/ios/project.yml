@@ -46,6 +46,7 @@ targets:
         CFBundleDisplayName: MOTO GPS
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        ITSAppUsesNonExemptEncryption: false
         UILaunchScreen:
           UIColorName: LaunchBackground
           UIImageName: LaunchLogo
@@ -68,8 +69,8 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.example.motogps
         PRODUCT_NAME: MOTO GPS
-        MARKETING_VERSION: 0.2.0
-        CURRENT_PROJECT_VERSION: 2
+        MARKETING_VERSION: 0.3.0
+        CURRENT_PROJECT_VERSION: 5
         SWIFT_VERSION: 5.0
         SWIFT_STRICT_CONCURRENCY: targeted
         SWIFT_OBJC_BRIDGING_HEADER: App/MotoGPS-Bridging-Header.h
@@ -125,6 +126,8 @@ schemes:
         MotoGPS: all
     run:
       config: Debug
+    archive:
+      config: Release
     test:
       config: Debug
       targets:

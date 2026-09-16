@@ -15,6 +15,9 @@ class MotionHeadingFusion {
  public:
   void reset() noexcept {
     initialized_ = false;
+    has_phone_reference_ = false;
+    has_moving_course_ = false;
+    stationary_ = false;
     heading_deg_ = 0.0F;
     filtered_rate_dps_ = 0.0F;
     last_sample_ms_ = 0;
@@ -25,16 +28,35 @@ class MotionHeadingFusion {
     if (!usable_fix || !std::isfinite(phone_heading_deg)) {
       return;
     }
+    // Hysteresis on the phone-reported speed decides whether the bike is
+    // parked.  While parked, gyro integration is frozen: the QMI8658 zero
+    // offset (a few dps before calibration, worsened by engine vibration)
+    // otherwise leaks through the deadband and spins the heading in circles.
+    if (std::isfinite(speed_mps)) {
+      if (speed_mps >= kCourseAnchorSpeedMps) {
+        stationary_ = false;
+      } else if (speed_mps < kStationarySpeedMps) {
+        stationary_ = true;
+      }
+    }
     const float phone = normalize(phone_heading_deg);
-    if (!initialized_) {
+    const bool moving_course =
+        std::isfinite(speed_mps) && speed_mps >= kCourseAnchorSpeedMps;
+    // Gyro integration may start seconds before BLE supplies the first fix.
+    // Its local zero must never be mistaken for an absolute phone reference.
+    // Likewise, the first course after pulling away replaces a stationary
+    // placeholder immediately, so an east/west route is not drawn behind us.
+    if (!has_phone_reference_ || (moving_course && !has_moving_course_)) {
       heading_deg_ = phone;
       initialized_ = true;
+      has_phone_reference_ = true;
+      has_moving_course_ = moving_course;
       return;
     }
 
     // A course is trustworthy only once the receiver is actually moving.
     // Correct drift progressively to avoid a visible snap during a bend.
-    if (std::isfinite(speed_mps) && speed_mps >= kCourseAnchorSpeedMps) {
+    if (moving_course) {
       const float error = shortest_delta(phone, heading_deg_);
       const float correction = std::abs(error) > 80.0F ? 0.65F : 0.28F;
       heading_deg_ = normalize(heading_deg_ + error * correction);
@@ -47,14 +69,22 @@ class MotionHeadingFusion {
     if (!std::isfinite(yaw_rate_dps)) {
       return false;
     }
+    if (stationary_) {
+      // Parked: hold the heading exactly. Keep last_sample_ms_ untouched so
+      // the first sample after pulling away only sees a normal-rate gap.
+      return false;
+    }
     if (!initialized_) {
       // Relative motion remains useful before the first trustworthy course;
       // zero degrees is explicitly just a temporary local reference.
       initialized_ = true;
       heading_deg_ = 0.0F;
     }
-    if (last_sample_ms_ == 0 || sample_ms <= last_sample_ms_) {
+    if (last_sample_ms_ == 0) {
       last_sample_ms_ = sample_ms;
+      return false;
+    }
+    if (sample_ms <= last_sample_ms_) {
       return false;
     }
 
@@ -85,6 +115,7 @@ class MotionHeadingFusion {
 
  private:
   static constexpr float kCourseAnchorSpeedMps = 1.5F;
+  static constexpr float kStationarySpeedMps = 0.6F;
   static constexpr float kDeadbandDps = 0.65F;
   static constexpr std::uint64_t kMaximumIntegrationGapMs = 160;
 
@@ -102,6 +133,9 @@ class MotionHeadingFusion {
   }
 
   bool initialized_ = false;
+  bool has_phone_reference_ = false;
+  bool has_moving_course_ = false;
+  bool stationary_ = false;
   float heading_deg_ = 0.0F;
   float filtered_rate_dps_ = 0.0F;
   std::uint64_t last_sample_ms_ = 0;

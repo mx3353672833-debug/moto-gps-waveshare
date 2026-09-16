@@ -4,7 +4,9 @@
 /* Keep this file shared by WebAssembly and ESP32 builds. Platform-specific
  * drivers belong outside LVGL and outside the shared UI. */
 #define LV_COLOR_DEPTH 16
-#define LV_DEF_REFR_PERIOD 33
+/* This definition overrides CONFIG_LV_DEF_REFR_PERIOD on ESP32 as well.
+ * Match the shared map-motion timer; do not silently cap a 40 Hz UI at 30 Hz. */
+#define LV_DEF_REFR_PERIOD 25
 #define LV_DPI_DEF 130
 
 #define LV_USE_LOG 1
@@ -12,6 +14,10 @@
 
 #define LV_USE_OS LV_OS_NONE
 #define LV_USE_STDLIB_MALLOC LV_STDLIB_BUILTIN
+/* Permit the board to attach a 2 MiB PSRAM pool without allocating that space
+ * in internal BSS. LVGL's TLSF maximum block size includes this expansion
+ * budget; leaving it at zero silently rejects a large lv_mem_add_pool(). */
+#define LV_MEM_POOL_EXPAND_SIZE (2U * 1024U * 1024U)
 #define LV_USE_STDLIB_STRING LV_STDLIB_BUILTIN
 #define LV_USE_STDLIB_SPRINTF LV_STDLIB_BUILTIN
 

@@ -411,6 +411,7 @@ final class OfflineMapSceneCoordinator {
 
     convenience init(bundle: Bundle = .main) throws {
         let databaseName = "jinan-v1"
+        var databaseURLs: [URL] = []
         if let supportRoot = FileManager.default.urls(
             for: .applicationSupportDirectory,
             in: .userDomainMask
@@ -418,21 +419,36 @@ final class OfflineMapSceneCoordinator {
             let downloadedURL = supportRoot
                 .appendingPathComponent("OfflineMaps", isDirectory: true)
                 .appendingPathComponent("\(databaseName).sqlite")
-            if FileManager.default.fileExists(atPath: downloadedURL.path) {
-                self.init(index: try SQLiteOfflineMapSceneIndex(url: downloadedURL))
-                return
-            }
+            databaseURLs.append(downloadedURL)
         }
         if let bundledDatabase = bundle.url(forResource: databaseName, withExtension: "sqlite") {
-            self.init(index: try SQLiteOfflineMapSceneIndex(url: bundledDatabase))
-            return
+            databaseURLs.append(bundledDatabase)
         }
-        guard let url = bundle.url(
+        self.init(index: try Self.loadIndex(databaseURLs: databaseURLs, sampleURL: bundle.url(
             forResource: "jinan_map_scene_sample",
             withExtension: "json"
-        ) else { throw OfflineMapSceneError.resourceMissing }
+        )))
+    }
+
+    static func loadIndex(databaseURLs: [URL], sampleURL: URL?) throws -> any OfflineMapSceneQuerying {
+        for url in databaseURLs where FileManager.default.fileExists(atPath: url.path) {
+            do {
+                let index = try SQLiteOfflineMapSceneIndex(url: url)
+                #if DEBUG
+                print("[MotoMap] loaded \(url.lastPathComponent)")
+                #endif
+                return index
+            } catch {
+                // An incomplete downloaded pack must not disable the intact
+                // city map shipped with the app.
+                #if DEBUG
+                print("[MotoMap] invalid map \(url.lastPathComponent): \(error)")
+                #endif
+            }
+        }
+        guard let url = sampleURL else { throw OfflineMapSceneError.resourceMissing }
         let document = try OfflineMapSceneDocument.decode(Data(contentsOf: url))
-        self.init(index: InMemoryOfflineMapSceneIndex(document: document))
+        return InMemoryOfflineMapSceneIndex(document: document)
     }
 
     func sceneIfNeeded(latitudeDeg: Double, longitudeDeg: Double) -> OfflineMapSceneWindow? {

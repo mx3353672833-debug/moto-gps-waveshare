@@ -1,12 +1,6 @@
-// SPDX-License-Identifier: Apache-2.0
-// CO5300 initialization sequence and board integration are derived from
-// Waveshare's esp32_s3_touch_amoled_1_75c BSP 3.0.0 (Apache-2.0).
-// Source: https://github.com/waveshareteam/Waveshare-ESP32-components
-// Modifications (2026): Maler X — hidden black startup, PSRAM DMA buffers,
-// TE edge synchronization and AXP2101 shutdown integration.
-// This file remains Apache-2.0; see LICENSES/Waveshare-Apache-2.0.txt.
 #include "board_port.h"
 
+#include <cstddef>
 #include <cstdint>
 
 #include "bsp/display.h"
@@ -18,6 +12,7 @@
 #include "esp_attr.h"
 #include "esp_check.h"
 #include "esp_err.h"
+#include "esp_heap_caps.h"
 #include "esp_intr_alloc.h"
 #include "esp_lcd_co5300.h"
 #include "esp_lcd_panel_io.h"
@@ -31,11 +26,14 @@
 
 namespace {
 constexpr char kTag[] = "board_waveshare";
-// 32 rows is deliberately aligned to the ESP32-S3 external-DMA cache line:
-// 466 * 32 * RGB565 = 29,824 bytes, an exact multiple of 128.  Two of these
-// PSRAM buffers let LVGL render the next strip while QSPI transmits the current
-// one, and reduce a 466-line refresh from 47 tiny transactions to 15.
-constexpr std::uint16_t kDrawBufferHeight = 32;
+// Keep internal SRAM available for BLE and heading task stacks. Two 320-row
+// PSRAM buffers reduce repeated map traversal and still overlap drawing with
+// QSPI DMA. A 32-row internal-buffer experiment exhausted BLE startup memory.
+constexpr std::uint16_t kDrawBufferHeight = 320;
+constexpr bool kDrawBuffersUsePsram = true;
+constexpr std::size_t kLvglExtraPoolBytes = 2U * 1024U * 1024U;
+static_assert(kLvglExtraPoolBytes <= LV_MEM_POOL_EXPAND_SIZE,
+              "LVGL TLSF must support the board's extra PSRAM pool");
 constexpr gpio_num_t kPowerButtonGpio = GPIO_NUM_3;
 // J3 pin 11 in Waveshare's public schematic connects the CO5300 TE output
 // directly to ESP32-S3 GPIO13.  DCS 0x35 (sent below) enables a short vertical
@@ -65,6 +63,7 @@ lv_display_t* display = nullptr;
 esp_lcd_panel_handle_t panel = nullptr;
 i2c_master_dev_handle_t pmic = nullptr;
 bool display_revealed = false;
+void* lvgl_extra_pool_storage = nullptr;
 
 struct TeSyncState {
   std::int64_t last_edge_us = 0;
@@ -92,6 +91,91 @@ struct TeSyncState {
 portMUX_TYPE te_sync_lock = portMUX_INITIALIZER_UNLOCKED;
 TeSyncState te_sync_state{};
 SemaphoreHandle_t te_active_edge_sem = nullptr;
+
+// All timing counters are owned by the LVGL worker, never touched in the TE
+// ISR. These measure frames actually rendered, not the configured timer rate.
+struct DisplayTiming {
+  std::int64_t window_start_us = 0;
+  std::int64_t render_start_us = 0;
+  std::int64_t flush_wait_start_us = 0;
+  std::int64_t flush_callback_start_us = 0;
+  std::uint64_t render_total_us = 0;
+  std::uint64_t te_wait_total_us = 0;
+  std::uint64_t dma_wait_total_us = 0;
+  std::uint64_t flush_callback_total_us = 0;
+  std::uint32_t render_max_us = 0;
+  std::uint32_t flush_callback_max_us = 0;
+  std::uint32_t frames = 0;
+  std::uint32_t flushes = 0;
+  std::uint32_t over_budget_frames = 0;
+} display_timing;
+
+void display_timing_event(lv_event_t* event) {
+  const lv_event_code_t code = lv_event_get_code(event);
+  const std::int64_t now_us = esp_timer_get_time();
+  auto& timing = display_timing;
+  if (timing.window_start_us == 0) timing.window_start_us = now_us;
+  if (code == LV_EVENT_RENDER_START) {
+    timing.render_start_us = now_us;
+  } else if (code == LV_EVENT_FLUSH_START) {
+    ++timing.flushes;
+    // This observer is registered after the TE gate, so this interval isolates
+    // flush_cb itself: byte swapping, cache work and panel/DMA submission.
+    timing.flush_callback_start_us = now_us;
+  } else if (code == LV_EVENT_FLUSH_FINISH && timing.flush_callback_start_us != 0) {
+    const auto duration = static_cast<std::uint32_t>(
+        now_us - timing.flush_callback_start_us);
+    timing.flush_callback_total_us += duration;
+    if (duration > timing.flush_callback_max_us)
+      timing.flush_callback_max_us = duration;
+    timing.flush_callback_start_us = 0;
+  } else if (code == LV_EVENT_FLUSH_WAIT_START) {
+    timing.flush_wait_start_us = now_us;
+  } else if (code == LV_EVENT_FLUSH_WAIT_FINISH && timing.flush_wait_start_us != 0) {
+    timing.dma_wait_total_us += now_us - timing.flush_wait_start_us;
+    timing.flush_wait_start_us = 0;
+  } else if (code == LV_EVENT_RENDER_READY && timing.render_start_us != 0) {
+    const auto duration = static_cast<std::uint32_t>(
+        now_us - timing.render_start_us);
+    timing.render_total_us += duration;
+    if (duration > timing.render_max_us) timing.render_max_us = duration;
+    if (duration > LV_DEF_REFR_PERIOD * 1'000U) ++timing.over_budget_frames;
+    ++timing.frames;
+    timing.render_start_us = 0;
+    const auto window_us = now_us - timing.window_start_us;
+    if (window_us >= 5'000'000) {
+      ESP_LOGI(kTag,
+               "display perf: %.1f fps, render %.1f/%.1f ms avg/max, "
+               "TE/DMA wait %.1f/%.1f ms/frame, %.1f flushes/frame, over-%dms %lu/%lu",
+               static_cast<double>(timing.frames) * 1'000'000.0 / window_us,
+               static_cast<double>(timing.render_total_us) / timing.frames / 1'000.0,
+               static_cast<double>(timing.render_max_us) / 1'000.0,
+               static_cast<double>(timing.te_wait_total_us) / timing.frames / 1'000.0,
+               static_cast<double>(timing.dma_wait_total_us) / timing.frames / 1'000.0,
+               static_cast<double>(timing.flushes) / timing.frames,
+               LV_DEF_REFR_PERIOD,
+               static_cast<unsigned long>(timing.over_budget_frames),
+               static_cast<unsigned long>(timing.frames));
+      ESP_LOGI(kTag,
+               "display flush cb: %.1f ms total, %.1f ms/flush avg, "
+               "%.1f ms max, %.1f ms/frame (excludes TE)",
+               static_cast<double>(timing.flush_callback_total_us) / 1'000.0,
+               timing.flushes == 0 ? 0.0 :
+                   static_cast<double>(timing.flush_callback_total_us) /
+                       timing.flushes / 1'000.0,
+               static_cast<double>(timing.flush_callback_max_us) / 1'000.0,
+               static_cast<double>(timing.flush_callback_total_us) /
+                   timing.frames / 1'000.0);
+      ESP_LOGI(kTag, "internal heap: free %lu KiB, minimum %lu KiB",
+               static_cast<unsigned long>(heap_caps_get_free_size(
+                   MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT) / 1024U),
+               static_cast<unsigned long>(heap_caps_get_minimum_free_size(
+                   MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT) / 1024U));
+      timing = {};
+      timing.window_start_us = now_us;
+    }
+  }
+}
 
 // Waveshare's public bsp_display_new() currently sends both 0x51=0xff and
 // DISPON as part of its private vendor sequence, then sends DISPON once more
@@ -540,7 +624,9 @@ void display_te_event(lv_event_t* event) {
     return;
   }
 
+  const std::int64_t wait_start_us = esp_timer_get_time();
   const bool synchronized = wait_for_fresh_te_active_edge();
+  display_timing.te_wait_total_us += esp_timer_get_time() - wait_start_us;
   std::uint8_t timeout_count = 0;
   bool gate_disabled = false;
   portENTER_CRITICAL(&te_sync_lock);
@@ -611,6 +697,18 @@ esp_err_t initialize_te_probe(lv_display_t* target_display) {
                           LV_EVENT_RENDER_START, nullptr);
   lv_display_add_event_cb(target_display, display_te_event,
                           LV_EVENT_FLUSH_START, nullptr);
+  lv_display_add_event_cb(target_display, display_timing_event,
+                          LV_EVENT_RENDER_START, nullptr);
+  lv_display_add_event_cb(target_display, display_timing_event,
+                          LV_EVENT_FLUSH_START, nullptr);
+  lv_display_add_event_cb(target_display, display_timing_event,
+                          LV_EVENT_FLUSH_FINISH, nullptr);
+  lv_display_add_event_cb(target_display, display_timing_event,
+                          LV_EVENT_RENDER_READY, nullptr);
+  lv_display_add_event_cb(target_display, display_timing_event,
+                          LV_EVENT_FLUSH_WAIT_START, nullptr);
+  lv_display_add_event_cb(target_display, display_timing_event,
+                          LV_EVENT_FLUSH_WAIT_FINISH, nullptr);
   ESP_LOGI(kTag,
            "CO5300 TE probe armed on GPIO%d (ANYEDGE; starts after reveal)",
            static_cast<int>(kLcdTeGpio));
@@ -638,7 +736,12 @@ esp_err_t initialize_power_control() {
   button_config.pin_bit_mask = 1ULL << kPowerButtonGpio;
   button_config.mode = GPIO_MODE_INPUT;
   button_config.pull_up_en = GPIO_PULLUP_DISABLE;
-  button_config.pull_down_en = GPIO_PULLDOWN_DISABLE;
+  // GPIO3 previously floated when neither the AXP2101 SYS_OUT driver nor the
+  // board's 10K pull-up had settled; a floating input can read high and arm
+  // the 3-second hold-to-shutdown detector spontaneously. The internal
+  // pull-down (~45K) keeps the line low in that window while the driven-high
+  // level (10K pull-up path) still reaches a clear logic high.
+  button_config.pull_down_en = GPIO_PULLDOWN_ENABLE;
   button_config.intr_type = GPIO_INTR_DISABLE;
   ESP_RETURN_ON_ERROR(gpio_config(&button_config), kTag,
                       "PWR SYS_OUT input configuration failed");
@@ -724,13 +827,31 @@ extern "C" esp_err_t board_port_init(void) {
 
   // Keep the official BSP's touch driver and pin map plus the supplier's
   // CO5300 command values. Panel creation itself uses the public esp_lcd APIs
-  // so DISPON can be deferred. The aligned 32-row buffers live in PSRAM and
-  // use ESP32-S3's direct external-memory GDMA path; this avoids the large
-  // internal bounce allocations that made the vendor's old setup unstable.
+  // so DISPON can be deferred. Explicit PSRAM draw buffers feed direct DMA
+  // without allocating a bounce buffer for each transaction.
   const esp_lv_adapter_config_t adapter_config =
       ESP_LV_ADAPTER_DEFAULT_CONFIG();
   ESP_RETURN_ON_ERROR(esp_lv_adapter_init(&adapter_config), kTag,
                       "LVGL adapter initialization failed");
+
+  // The built-in 64 KiB LVGL heap is separate from the adapter's PSRAM draw
+  // buffers. A map-sized strip lets the boot Logo's opacity/transform layer
+  // exceed that tiny heap: LVGL keeps retrying the blocked layer and starves
+  // IDLE0 before BLE can start. Keep the internal pool for small allocations
+  // and add a bounded PSRAM pool for complete intermediate layers.
+  static_assert(LV_USE_STDLIB_MALLOC == LV_STDLIB_BUILTIN,
+                "Review the LVGL pool setup after changing allocators");
+  lvgl_extra_pool_storage = heap_caps_malloc(
+      kLvglExtraPoolBytes, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+  if (lvgl_extra_pool_storage == nullptr ||
+      lv_mem_add_pool(lvgl_extra_pool_storage, kLvglExtraPoolBytes) == nullptr) {
+    heap_caps_free(lvgl_extra_pool_storage);
+    lvgl_extra_pool_storage = nullptr;
+    ESP_LOGE(kTag, "Could not reserve LVGL intermediate-layer PSRAM pool");
+    return ESP_ERR_NO_MEM;
+  }
+  ESP_LOGI(kTag, "LVGL intermediate-layer pool: %u KiB PSRAM",
+           static_cast<unsigned>(kLvglExtraPoolBytes / 1024U));
 
   esp_lcd_panel_io_handle_t panel_io = nullptr;
   ESP_RETURN_ON_ERROR(
@@ -744,6 +865,7 @@ extern "C" esp_err_t board_port_init(void) {
           panel, panel_io, MOTO_DISPLAY_WIDTH, MOTO_DISPLAY_HEIGHT,
           ESP_LV_ADAPTER_ROTATE_0);
   display_config.profile.buffer_height = kDrawBufferHeight;
+  display_config.profile.use_psram = kDrawBuffersUsePsram;
   display_config.profile.require_double_buffer = true;
   display = esp_lv_adapter_register_display(&display_config);
   if (display == nullptr) {
@@ -802,9 +924,10 @@ extern "C" esp_err_t board_port_init(void) {
 
   ESP_LOGI(
       kTag,
-      "CO5300 + CST9217 ready at %dx%d RGB565 (dual PSRAM %u-row buffers, "
+      "CO5300 + CST9217 ready at %dx%d RGB565 (dual %s %u-row buffers, "
       "direct DMA, QSPI queue depth %d)",
       MOTO_DISPLAY_WIDTH, MOTO_DISPLAY_HEIGHT,
+      kDrawBuffersUsePsram ? "PSRAM" : "internal SRAM",
       static_cast<unsigned>(kDrawBufferHeight),
       CONFIG_BSP_LCD_TRANS_QUEUE_DEPTH);
   return ESP_OK;

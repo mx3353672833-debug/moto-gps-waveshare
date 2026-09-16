@@ -46,16 +46,32 @@ void demo_tick_task(void* context) {
 
 void power_button_task(void*) {
   std::uint64_t pressed_since_ms = 0;
+  // The AXP2101 needs roughly a one-second press to power the board on, so
+  // the task usually starts while the user is still holding PWR. Arm the
+  // hold-to-shutdown detector only after the line has been seen low once;
+  // otherwise the tail of the power-on press is counted as a new 3-second
+  // hold and the freshly booted unit switches itself off.
+  bool released_once = false;
   while (true) {
     const std::uint64_t now_ms =
         static_cast<std::uint64_t>(esp_timer_get_time()) / 1'000U;
     if (!board_port_power_button_pressed()) {
+      if (!released_once) {
+        released_once = true;
+        ESP_LOGI(kTag, "PWR ready: button released, hold detection armed");
+      }
       pressed_since_ms = 0;
+      vTaskDelay(pdMS_TO_TICKS(20));
+      continue;
+    }
+    if (!released_once) {
+      // Startup press still in progress; do not start the hold timer.
       vTaskDelay(pdMS_TO_TICKS(20));
       continue;
     }
     if (pressed_since_ms == 0) {
       pressed_since_ms = now_ms;
+      ESP_LOGI(kTag, "PWR press started");
     } else if (now_ms - pressed_since_ms >= kPowerHoldMs) {
       ESP_LOGI(kTag, "PWR held for 3 seconds; requesting shutdown");
       if (board_port_lock(UINT32_MAX)) {

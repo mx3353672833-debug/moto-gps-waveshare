@@ -29,20 +29,26 @@ final class AppModel: ObservableObject {
     private let liveRouteProvider: AmapGatewayRouteProvider
     private let placeProvider: AmapGatewayPlaceProvider
     private let mediaController = AppleMusicRemoteController()
-    private let offlineMapCoordinator: OfflineMapSceneCoordinator?
+    let surroundingMap: SurroundingMapStore
+    let mapGatewayBaseURL: URL
     private var runtime: SharedNavigationRuntime?
     private var placeSearchTask: Task<Void, Never>?
     private var routePreviewTask: Task<Void, Never>?
     private var routePreviewRequestID: UInt32 = 1
     private var routePreviewGeneration: UInt64 = 0
 
-    private static let recentPlacesKey = "MotoGPS.RecentPlaces.v1" // gitleaks:allow — UserDefaults key name, not a credential.
+    private static let recentPlacesKey = "MotoGPS.RecentPlaces.v1"
 
     init(gatewayBaseURL: URL = AppConfiguration.gatewayBaseURL) {
         liveRouteProvider = AmapGatewayRouteProvider(baseURL: gatewayBaseURL)
         placeProvider = AmapGatewayPlaceProvider(baseURL: gatewayBaseURL)
-        offlineMapCoordinator = try? OfflineMapSceneCoordinator()
+        mapGatewayBaseURL = gatewayBaseURL
+        surroundingMap = SurroundingMapStore(baseURL: gatewayBaseURL)
         recentPlaces = Self.loadRecentPlaces()
+
+        surroundingMap.onScene = { [weak self] scene in
+            self?.bluetooth.sendMapScene(scene)
+        }
 
         bluetooth.onSnapshotChange = { [weak self] snapshot in
             self?.device = snapshot
@@ -129,6 +135,11 @@ final class AppModel: ObservableObject {
     var selectedRoutePreview: RoutePreviewCandidate? {
         guard let selectedRoutePreviewID else { return nil }
         return routePreviewCandidates.first { $0.id == selectedRoutePreviewID }
+    }
+
+    var mapDownloadRoute: [GCJ02Point] {
+        if isNavigationActive { return runtime?.activeRoutePolyline ?? [] }
+        return selectedRoutePreview?.route.polyline ?? []
     }
 
     var hasRoutePreview: Bool {
@@ -284,7 +295,7 @@ final class AppModel: ObservableObject {
 
         routePreviewTask?.cancel()
         routePreviewTask = nil
-        offlineMapCoordinator?.reset()
+        surroundingMap.reset()
         runtime?.stop()
         let runtime = SharedNavigationRuntime(
             locationSource: liveLocation,
@@ -310,7 +321,7 @@ final class AppModel: ObservableObject {
 
     func startDemoNavigation() {
         guard !isNavigationActive else { return }
-        offlineMapCoordinator?.reset()
+        surroundingMap.reset()
         runtime?.stop()
         let demoSession = DemoNavigationSession()
         let runtime = SharedNavigationRuntime(
@@ -341,7 +352,11 @@ final class AppModel: ObservableObject {
         isNavigationActive = false
         isDemoActive = false
         navigationFailure = nil
-        offlineMapCoordinator?.reset()
+        surroundingMap.reset()
+        // Ending navigation used to leave selectedPlace set, so the app stuck
+        // on route preview with no obvious way back to the home/search screen.
+        // Match the web shell: end → back to destination search.
+        clearDestination()
     }
 
     func selectRoutePreview(_ id: String) {
@@ -386,12 +401,11 @@ final class AppModel: ObservableObject {
                 self?.navigationFailure = nil
             }
             self?.bluetooth.sendNavigationSnapshot(snapshot)
-            if snapshot.hasRouteView,
-               let scene = self?.offlineMapCoordinator?.sceneIfNeeded(
-                   latitudeDeg: snapshot.routeViewOriginLatitudeDeg,
-                   longitudeDeg: snapshot.routeViewOriginLongitudeDeg
-               ) {
-                self?.bluetooth.sendMapScene(scene)
+            if snapshot.hasRouteView {
+                self?.surroundingMap.update(
+                    latitudeDeg: snapshot.routeViewOriginLatitudeDeg,
+                    longitudeDeg: snapshot.routeViewOriginLongitudeDeg
+                )
             }
         }
         runtime.onFailure = { [weak self] message in

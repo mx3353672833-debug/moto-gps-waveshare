@@ -13,9 +13,35 @@ needs an Xcode that provides a Swift 6 toolchain (Xcode 16 or newer recommended)
 This repository does not contain the author's Apple Team, certificates, device identifiers or a
 signed IPA you can install directly.
 
+## Current experience and release status
+
+As of 2026-09-16, the native interface uses `NavigationStack`, system lists and forms for the
+home → route → navigation flow. Home groups search, recent places, display connection, map downloads,
+demo and privacy. Preview up to three ordinary AMap driving routes, explicitly select one, then start.
+Ordinary driving routes do not guarantee avoidance of motorcycle restrictions. English labels in
+these docs describe the current Chinese interface; they do not imply an English App localisation.
+
+- Surrounding roads and buildings load online by default and travel over BLE to the compatible
+  Waveshare display. Changing cities requires no program changes.
+- "Maps and offline downloads" supports city/district search and a download-area preview. The route
+  page can download roughly one kilometre around the selected route; during navigation it uses the
+  active route, including an accepted reroute.
+- Offline use falls back to downloaded packages, cache and the bundled Jinan base map. Packages only
+  contain roads/buildings. Search, new routes, rerouting and live traffic still need a network;
+  completeness depends on local OSM coverage.
+- Trustworthy road speed limits and traffic-light countdowns are not connected. Complete
+  red/yellow/green colouring of individual route segments is still being developed.
+
+TestFlight preparation is underway, but **no build has been uploaded to Apple, submitted for external
+beta review or opened for invitations, and the App is not on the App Store**. A Release archive or
+passing tests do not mean public release or completed road validation. The B1 custom board is on hold
+while work focuses on the Waveshare edition.
+
 ## Configure and generate the project
 
 1. Deploy your own [HTTPS gateway](../../backend/README.en.md) first.
+   The new map endpoints need server dependencies and a map source. Neither the repository nor the
+   website provides a free public gateway.
 2. In `project.yml` change `MOTOGPSGatewayBaseURL` to your own HTTPS address, keeping the trailing `/`.
    The default `https://example.invalid/moto-gps/api/` is not usable, and you cannot use it to accept
    a real search/navigation.
@@ -46,13 +72,45 @@ On first run allow location, precise location and Bluetooth; background riding n
 location permission and system settings.
 After pairing the round display it should go from connecting to connected / ready to ride, and then
 you search, view the route, choose a candidate and start navigation.
-Screen lock and reconnection after a dropped link still have known issues; test in a safe, stationary
-environment first.
+Everyday communication uses BLE, without requiring the phone and display to share Wi-Fi. Screen lock
+and reconnection still need real-device validation; begin in a safe, stationary setting. Simulated
+movement in the demo is not a real-ride acceptance test.
 
 The Apple Music feature needs user authorisation and works according to the system player's state.
 Only previous track, play/pause and next track are supported; track availability depends on the
 account, the music source and the system state, and there is no "like" or NetEase Cloud Music support.
 The program does not download songs or distribute them with the repository.
+
+## Map storage and downloads
+
+`MapTilePlanner` uses WGS84 Web Mercator tile IDs. GCJ-02 route positions are inverse-transformed
+before selecting tiles; gateway `points_e6` are already GCJ-02 and must not be transformed again.
+`SurroundingMapStore` manages online requests, disk cache and download packages. Existing BLE window
+selection still applies, so the display does not show every road or building.
+
+Automatic cache is limited to 128 MiB and manual downloads to 512 MiB in total, sharing tiles between
+cities and routes. City downloads use administrative bounding rectangles and may include neighbouring
+areas; choose a district if a region is too large. Keep the App running during downloads. They can be
+paused, resumed after restart and deleted; continuous background downloading is not guaranteed.
+"Clear automatic cache" preserves manual packages, and the bundled Jinan base map stays with the App.
+See the [user manual](../../docs/USER_MANUAL.en.md#10-online-surrounding-maps-and-offline-downloads).
+
+## Privacy and pre-distribution checks
+
+`App/PrivacyInfo.xcprivacy` declares current required-reason APIs and data categories. `DataUseView`
+provides an offline-readable "Privacy and data" page from home. The downloaded-map directory is
+excluded from system backup; settings such as recent places and the saved peripheral identifier may
+be backed up. "Disconnect" does not delete the saved peripheral record.
+
+Location and searches pass through the gateway to AMap; online tile requests reveal areas. Proxy
+logs may retain IP addresses, queries and position parameters. Phone previews use MapKit, music uses
+the system player, and surrounding backgrounds use OSM / Protomaps. No ads or login does not mean
+zero collection. After changing the gateway, update service descriptions in `DataUseView`, verify
+actual logging and retention, and review the privacy manifest and App Store Connect privacy answers.
+
+Public distribution still requires valid distribution signing, publisher/contact details, final HTTPS
+privacy/support pages, applicable service authorisation and real-device validation. Repository notes
+and archive preparation do not prove those external steps are complete; do not publish placeholder details.
 
 ## Development and testing
 
@@ -75,5 +133,7 @@ The simulator cannot accept a real BLE peripheral, continuous positioning with t
 the music authorisation chain.
 `UITests` contains demo/network-related flows and must be configured for the test environment;
 ordinary offline CI does not run these on-site flows.
-The app bundles the OSM Jinan database; for the map data attribution and the complete licence see the
-third-party notices in the repository root.
+New map tests cover tile planning, persistent downloads, cache, coordinate boundaries and map-to-BLE
+encoding. They do not replace continuous road riding, long screen-lock sessions, weak-network tests
+or complete cross-city downloads. The App retains the Jinan OSM base map and uses online OSM / Protomaps
+data. See the root third-party notices for attribution and complete licences.

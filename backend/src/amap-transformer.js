@@ -76,6 +76,27 @@ function appendPolyline(target, points) {
   }
 }
 
+function stepGeometry(step, stepDistanceM) {
+  const polyline = parsePolyline(step.polyline);
+  if (polyline.length >= 2 || stepDistanceM === 0) return polyline;
+
+  // Some responses omit the step-level geometry but still include it in every
+  // TMC. Recover only complete coverage: concatenating the available fragments
+  // would turn missing roads into a straight line or truncate the route.
+  const tmcs = Array.isArray(step.tmcs) ? step.tmcs : [];
+  const recovered = [];
+  let coveredDistanceM = 0;
+  for (const tmc of tmcs) {
+    const distanceM = nonNegativeNumber(tmc.tmc_distance ?? tmc.distance);
+    if (distanceM === 0) continue;
+    const points = parsePolyline(tmc.tmc_polyline ?? tmc.polyline);
+    if (points.length < 2) return [];
+    appendPolyline(recovered, points);
+    coveredDistanceM += distanceM;
+  }
+  return coveredDistanceM + 1 >= stepDistanceM ? recovered : [];
+}
+
 export function mapAmapManeuver(action, assistantAction = "") {
   const primary = compactText(action, 96);
   const assistant = compactText(assistantAction, 96);
@@ -177,15 +198,17 @@ export function transformAmapRouteV2(payload, { generatedAtMs = Date.now(), path
   const maneuvers = [];
   const traffic = [];
   let routeOffsetM = 0;
+  let missingStepGeometry = false;
 
   for (const [index, step] of steps.entries()) {
-    const stepPolyline = parsePolyline(step.polyline);
+    const stepDistanceM = nonNegativeNumber(step.step_distance ?? step.distance);
+    const stepPolyline = stepGeometry(step, stepDistanceM);
+    if (stepDistanceM > 0 && stepPolyline.length < 2) missingStepGeometry = true;
     appendPolyline(polyline, stepPolyline);
 
     const navi = step.navi && typeof step.navi === "object" ? step.navi : {};
     const action = navi.action ?? step.action ?? "";
     const assistantAction = navi.assistant_action ?? step.assistant_action ?? "";
-    const stepDistanceM = nonNegativeNumber(step.step_distance ?? step.distance);
 
     // AMap describes a step as "travel this step, then perform action".
     // The maneuver therefore happens at the end of the step, not at its
@@ -217,8 +240,19 @@ export function transformAmapRouteV2(payload, { generatedAtMs = Date.now(), path
     routeOffsetM += stepDistanceM;
   }
 
-  if (polyline.length < 2) {
-    appendPolyline(polyline, parsePolyline(path.polyline));
+  if (missingStepGeometry || polyline.length < 2) {
+    const completePathPolyline = parsePolyline(path.polyline);
+    if (completePathPolyline.length < 2 && missingStepGeometry) {
+      throw new AmapTransformError(
+        "INVALID_POLYLINE",
+        "AMap route is missing geometry for a road segment",
+        { retryable: true },
+      );
+    }
+    // A complete path replaces the incomplete steps; appending it creates a
+    // jump from the last surviving fragment back to the route origin.
+    polyline.length = 0;
+    appendPolyline(polyline, completePathPolyline);
   }
   if (polyline.length < 2) {
     throw new AmapTransformError("INVALID_POLYLINE", "AMap route has fewer than two points");

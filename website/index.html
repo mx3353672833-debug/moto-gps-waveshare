@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f9">
+  <meta name="description" content="MOTO GPS：iPhone 规划路线，蓝牙圆屏显示骑行指引。了解原生 App、在线周边地图、城市与沿途离线下载、开发进展及常见问题。">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://maler.top/moto-gps/">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./site.css?v=20260916">
+  <script src="./site.js?v=20260916" defer></script>
+  <title>MOTO GPS · 导航在眼前，手机在口袋</title>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+<header class="site-header">
+  <nav class="nav wrap" aria-label="主导航">
+    <a class="brand" href="#" aria-label="MOTO GPS 首页"><img src="./assets/icon.svg" width="30" height="30" alt=""><span>MOTO GPS</span></a>
+    <div class="nav-links"><a href="#experience">使用体验</a><a href="#maps">地图</a><a href="#updates">进展</a><a href="#faq">常见问题</a></div>
+    <a class="nav-source" href="https://github.com/mx3353672833-debug/moto-gps-waveshare">GitHub <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> 微雪 + iPhone · 开发测试中</p>
+      <h1 id="hero-title">导航在眼前。<br><span>手机在口袋。</span></h1>
+      <p class="hero-description">在 iPhone 上选好路线，把转向、距离和周边道路交给车把上的小圆屏。每次出发，少一点翻找。</p>
+      <div class="actions"><a class="button" href="#experience">认识 MOTO GPS <span aria-hidden="true">↓</span></a><a class="text-link" href="#updates">看看最近的变化 <span aria-hidden="true">↗</span></a></div>
+      <p class="hero-note">原生 iOS App · 蓝牙连接 · 在线地图与离线兜底</p>
+    </div>
+    <figure class="hero-visual"><img src="./assets/concept.png" width="1536" height="1024" fetchpriority="high" alt="MOTO GPS 圆屏外观概念图，显示示意路线。当前使用微雪开发板样机，非图中量产外壳。"><figcaption>外观概念示意 · 当前样机使用微雪开发板<br>图中限速为示意，当前版本尚未接入真实道路限速。</figcaption></figure>
+  </section>
+  <div class="release-strip"><div class="wrap strip-inner"><span class="new-label">近期更新</span><p>App 更简洁了。周边地图默认在线加载，常用城市和跨市沿途也能提前保存。</p><a href="#maps">了解地图更新 <span aria-hidden="true">→</span></a></div></div>
+
+  <section id="experience" class="section wrap">
+    <div class="section-heading"><p class="eyebrow">一次出发，两个搭档</p><h2>复杂的事，交给手机。<br><span>眼前只留骑行指引。</span></h2><p>iPhone 负责定位、搜索和路线规划；圆屏通过蓝牙接收显示内容。当前围绕微雪 1.75 英寸 AMOLED 开发板与原生 iOS App 持续验证。</p></div>
+    <div class="experience-grid">
+      <article class="phone-feature"><div class="feature-copy"><span class="small-label">在 iPhone 上</span><h3>选好目的地。<br>选一条想走的路。</h3><p>搜索地点，比较最多三条候选路线的时间和距离，再点击开始。界面采用熟悉的原生列表、地图和系统导航。</p></div><figure class="phone-shot"><img src="./assets/app-routes.png" width="1206" height="2622" loading="lazy" alt="iPhone 路线预览与候选路线选择的开发测试截图"><figcaption>App 开发测试截图 · 路线与路况为当次示例</figcaption></figure></article>
+      <article class="screen-feature"><div class="feature-copy"><span class="small-label">在圆屏上</span><h3>四个页面。<br>轻轻一滑。</h3><p>转向指引、当前速度、行进航向与 Apple Music 控制。在同一块小屏幕里，按需要切换。</p></div><div class="screen-gallery"><figure><img src="./assets/screen-navigation.png" width="536" height="534" loading="lazy" alt="导航界面演示"><figcaption>导航</figcaption></figure><figure><img src="./assets/screen-speed.png" width="536" height="534" loading="lazy" alt="速度界面演示"><figcaption>速度</figcaption></figure><figure><img src="./assets/screen-compass.png" width="536" height="534" loading="lazy" alt="行进航向界面演示"><figcaption>航向</figcaption></figure><figure><img src="./assets/screen-music.png" width="536" height="534" loading="lazy" alt="音乐控制界面演示"><figcaption>音乐</figcaption></figure></div><p class="image-note">圆屏界面演示，数字为示例。限速尚未接通；停车时的绝对北向仍待标定验证。</p></article>
+    </div>
+  </section>
+
+  <section id="maps" class="section map-section">
+    <div class="wrap map-layout">
+      <div class="map-copy"><p class="eyebrow">地图，跟着旅程走</p><h2>从常骑的城市，<br>到下一个目的地。</h2><p class="section-intro">周边道路和建筑，不再只为济南准备。默认在线加载，也可以在出发前把需要的范围存下来。</p>
+        <div class="map-modes">
+          <article><span class="mode-icon" aria-hidden="true">↗</span><div><h3>日常骑行，自动加载</h3><p>导航中按位置获取周边底图，并保留已加载内容。网络不可用时，使用已有缓存或下载地图。</p></div></article>
+          <article><span class="mode-icon" aria-hidden="true">⌂</span><div><h3>常用城市，自己选择</h3><p>在 App 搜索城市或区县，查看范围后下载。换城市不需要修改程序；范围过大时可改选区县。</p></div></article>
+          <article><span class="mode-icon" aria-hidden="true">⇢</span><div><h3>跨市出发，保存沿途</h3><p>先选好路线，再下载路线周边的地图。下载支持暂停与继续，共用的地图内容只保存一份。</p></div></article>
+        </div>
+        <p class="map-boundary">离线保存的是道路与建筑底图。地点搜索、新路线规划、偏航重算和实时路况仍需要网络；覆盖完整程度取决于当地地图数据。</p>
+      </div>
+      <figure class="map-shot"><img src="./assets/app-maps.png" width="1206" height="2622" loading="lazy" alt="App 的地图与离线下载页面，提供城市下载、缓存清理与数据来源说明"><figcaption>当前 App 地图管理页面</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="start" class="section wrap">
+    <div class="section-heading compact"><p class="eyebrow">开始使用</p><h2>出发前，做三件小事。</h2><p>当前仍为开发测试版，尚无公开 App Store 或 TestFlight 下载链接。开发者可从 GitHub 获取源码与构建说明。</p></div>
+    <ol class="steps"><li><span class="step-number">1</span><h3>准备手机和圆屏</h3><p>iPhone 安装测试 App，微雪开发板使用匹配的 MOTO GPS 固件。允许蓝牙，保持圆屏开机并靠近手机。</p></li><li><span class="step-number">2</span><h3>选路，也备好地图</h3><p>允许定位，搜索并选择目的地。跨市或前往信号较弱的区域前，提前保存沿途底图。</p></li><li><span class="step-number">3</span><h3>静止确认，再出发</h3><p>检查连接与定位，或先用“演示导航”熟悉流程。确认圆屏同步正常后开始，途中停车再操作手机。</p></li></ol>
+    <div class="start-links"><a class="text-link" href="https://github.com/mx3353672833-debug/moto-gps-waveshare#readme">查看源码与构建说明 <span aria-hidden="true">↗</span></a><a class="text-link" href="./ride.html">打开网页调试版 <span aria-hidden="true">↗</span></a><span>网页调试版需要前台亮屏，不能代替原生 App 后台导航。</span></div>
+  </section>
+
+  <section id="updates" class="section updates-section"><div class="wrap updates-layout"><div class="updates-title"><p class="eyebrow">持续开发</p><h2>每次更新，<br>离好用近一点。</h2><p>按实际进度记录。<br>最近整理于 2026 年 9 月 16 日。</p><a class="text-link" href="https://github.com/mx3353672833-debug/moto-gps-waveshare/commits/main/">查看 GitHub 更新 <span aria-hidden="true">↗</span></a></div>
+    <div class="update-list"><article><span class="update-state ready">已实现</span><h3>更熟悉的原生 App</h3><p>重整目的地搜索、路线选择、设备管理和地图下载入口，支持系统深色模式与动态字体。</p></article><article><span class="update-state ready">已实现</span><h3>在线周边地图 + 离线下载</h3><p>默认在线加载，新增城市／区县与沿途下载、暂停续传、共享缓存和存储清理。</p></article><article><span class="update-state progress">准备中</span><h3>TestFlight 分发</h3><p>发布构建、隐私清单和测试说明已经准备；尚未上传并开放测试，也没有可用的邀请链接。</p></article><article><span class="update-state pending">继续完善</span><h3>道路验证与更多信息</h3><p>持续验证后台定位、反复断连、弱网和耗电。红绿灯读秒、真实道路限速、圆屏分段拥堵配色仍待完善。</p></article></div>
+  </div></section>
+
+  <section id="faq" class="section wrap faq-section">
+    <div class="section-heading compact"><p class="eyebrow">你可能也想知道</p><h2>出发之前，先聊清楚。</h2><p>从怎样连接，到地图能做什么，把容易困惑的地方放在这里。</p></div>
+    <div class="faq-tools" hidden><label class="faq-search"><span aria-hidden="true">⌕</span><input id="faq-search" type="search" placeholder="搜索问题，例如：离线、蓝牙、下载" aria-label="搜索常见问题" maxlength="80"></label><p id="faq-count" role="status" aria-live="polite"></p></div>
+    <div class="faq-list">
+      <details><summary>现在可以下载 App 或购买成品吗？</summary><div class="faq-answer"><p>目前是开发测试项目，尚未公开销售成品，也没有 App Store 或 TestFlight 邀请链接。可以从 GitHub 查看源码、硬件需求和构建说明；这里的外观图是概念示意。</p></div></details>
+      <details><summary>没有圆屏，也可以先体验吗？</summary><div class="faq-answer"><p>可以。App 的搜索、路线预览、地图管理和“演示导航”可以在没有圆屏时使用。演示中的位置和行驶过程是模拟的；它先尝试在线获取固定路线，失败后使用内置路线。圆屏的实际显示与触摸需要对应硬件验证。</p></div></details>
+      <details><summary>手机和圆屏必须连同一个 Wi-Fi 吗？</summary><div class="faq-answer"><p>不需要。手机与圆屏通过蓝牙通信，手机自己用 Wi-Fi 或蜂窝网络获取在线服务。给 App 安装更新时使用的电脑连接，与日常骑行的蓝牙连接是两回事。</p></div></details>
+      <details><summary>换一个城市，需要修改程序吗？</summary><div class="faq-answer"><p>不需要。周边地图默认在线获取；也可以进入“地图与离线下载”，搜索常用城市或区县并保存。跨市时先规划路线，再下载“这条路线周边”。范围太大时可选择较小区县。道路和建筑覆盖取决于当地数据。</p></div></details>
+      <details><summary>下载了地图，就能完全断网导航吗？</summary><div class="faq-answer"><p>下载包保存的是周边道路和建筑，方便断网时显示已有底图。地点搜索、规划新路线、偏航重算及实时路况仍需要网络。它目前不是完整的离线路线引擎。</p></div></details>
+      <details><summary>下载中断了怎么办，会不会一直占空间？</summary><div class="faq-answer"><p>回到地图页面，在未完成的下载包上选择继续，已有有效内容会复用。可以删除下载包或清理自动缓存。自动缓存和手动下载均有容量限制；多个区域共用的地图只保存一份。</p></div></details>
+      <details><summary>红绿灯读秒、限速和拥堵显示，现在做到哪了？</summary><div class="faq-answer"><p>目前没有接入红绿灯实时倒计时和可信的当前道路限速。路线服务能返回部分路况信息，但未知或过期状态的处理、圆屏按路段显示拥堵颜色仍在完善。请以实际道路标志和现场交通情况为准，演示数字不代表实时道路数据。</p></div></details>
+      <details><summary>规划的路线一定允许摩托车通行吗？</summary><div class="faq-answer"><p>不能保证。当前使用高德普通驾车路线，不能保证覆盖各地的摩托车禁限行规则。选择路线时需要结合当地规定与道路标志判断。</p></div></details>
+      <details><summary>锁屏后还能用吗？圆屏一直连接不上怎么办？</summary><div class="faq-answer"><p>原生 App 使用后台定位和蓝牙支持已开始的导航；需要相应系统权限，长时间与复杂场景仍在验证。连接异常时，检查圆屏固件、电源与蓝牙权限，靠近手机并仅开启一台测试圆屏，再在设备页尝试重新连接。网页调试版不能可靠地在锁屏后继续定位。</p></div></details>
+      <details><summary>支持 Android、网易云音乐和停车指南针吗？</summary><div class="faq-answer"><p>当前优先支持 iPhone，尚无 Android App。音乐控制针对系统 Apple Music，支持上一首、播放／暂停和下一首，不是所有音乐 App 的通用遥控器。指南针当前以行进航向为主，停车绝对北向仍需后续传感器与标定验证。</p></div></details>
+      <details><summary>自研主板还做吗？</summary><div class="faq-answer"><p>自研 B1 主板保留为工程候选，目前优先完善微雪配套 App，外壳与安装结构也暂缓。后续根据微雪版本的实际限制，再评估是否继续。</p></div></details>
+      <details><summary>哪些数据会离开手机？</summary><div class="faq-answer"><p>联网搜索和路线请求会经项目服务交给高德；请求地图也会透露查看区域。服务器访问日志可能记录 IP、搜索词和位置参数。最近地点、配对记录和地图下载保存在手机；音乐信息通过蓝牙发往圆屏。App 的“隐私与数据”说明了这些用途与清理方式。</p></div></details>
+      <details><summary>TestFlight 免费，为什么还没有测试链接？</summary><div class="faq-answer"><p>测试者安装 TestFlight 和参与测试免费，但开发者分发 App 需要 Apple Developer Program 会员与相应审核。当前项目尚未开放 TestFlight 测试，公开入口准备好后会在这里更新。</p></div></details>
+    </div>
+    <p class="faq-empty" hidden>没有找到匹配的问题。试试“地图”“连接”或“下载”，也可以在 GitHub 提问。</p>
+    <div class="faq-footer"><p>还有问题，或发现了值得改进的地方？</p><a class="text-link" href="https://github.com/mx3353672833-debug/moto-gps-waveshare/issues">在 GitHub 交流 <span aria-hidden="true">↗</span></a><small>反馈截图前，请遮住不想公开的地址、位置和个人信息。</small></div>
+  </section>
+
+  <section class="closing wrap"><p class="eyebrow">MOTO GPS</p><h2>把下一次出发，<br>做得更顺手。</h2><p>这是一个仍在成长的项目。欢迎阅读源码、复现问题，<br class="desktop-break">和我们一起把圆屏骑行导航做得更好用。</p><a class="button" href="https://github.com/mx3353672833-debug/moto-gps-waveshare">前往 GitHub <span aria-hidden="true">↗</span></a></section>
+</main>
+<footer class="site-footer"><div class="wrap footer-main"><a class="brand" href="#">MOTO GPS</a><p>iPhone + 微雪圆屏 · 工程测试项目 · <a href="https://github.com/mx3353672833-debug/moto-gps-waveshare/blob/main/LICENSE.md">署名 / 非商业使用</a></p><a href="#main">回到顶部 ↑</a></div><div class="wrap footer-notes"><p>周边道路与建筑数据：<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors · ODbL</a> / <a href="https://protomaps.com">Protomaps</a>。手机地图预览使用 Apple MapKit，路线与地点服务来自高德。</p><p>页面中的产品外观为概念图，界面为开发测试截图。相关品牌名称归各自权利人所有。最后更新：2026.09.16</p></div></footer>
+</body>
+</html>

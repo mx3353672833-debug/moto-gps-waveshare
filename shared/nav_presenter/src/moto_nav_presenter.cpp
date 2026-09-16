@@ -149,39 +149,46 @@ std::uint32_t route_identity(const std::string& route_id) {
 struct MapTransform {
   double origin_latitude_deg = 0.0;
   double origin_longitude_deg = 0.0;
-  double cos_reference_latitude = 1.0;
-  double sin_heading = 0.0;
-  double cos_heading = 1.0;
+  double longitude_pixels_per_degree = 1.0;
+  float sin_heading = 0.0F;
+  float cos_heading = 1.0F;
 };
 
 MapTransform map_transform(const NavSnapshot& snapshot) {
-  const double heading = radians(snapshot.heading_deg);
+  const double finite_heading =
+      std::isfinite(snapshot.heading_deg) ? snapshot.heading_deg : 0.0;
+  const double heading = radians(finite_heading);
   return {
       snapshot.route_view_origin.latitude_deg,
       snapshot.route_view_origin.longitude_deg,
-      std::cos(radians(snapshot.route_view_origin.latitude_deg)),
-      std::sin(heading),
-      std::cos(heading),
+      std::cos(radians(snapshot.route_view_origin.latitude_deg)) *
+          (kPi / 180.0 * kEarthRadiusM * kMapPixelsPerMeter),
+      static_cast<float>(std::sin(heading)),
+      static_cast<float>(std::cos(heading)),
   };
 }
 
 moto_ui_point_t project_map_point(const Gcj02Point& point,
                                   const MapTransform& transform) {
-  const double east =
-      radians(point.longitude_deg - transform.origin_longitude_deg) *
-      transform.cos_reference_latitude * kEarthRadiusM;
-  const double north =
-      radians(point.latitude_deg - transform.origin_latitude_deg) *
-      kEarthRadiusM;
+  // Subtract geographic doubles before converting to screen-space floats.
+  // Casting lat/lon first would lose metres of precision; after subtraction,
+  // float is precise well below one pixel and avoids software-double rotation
+  // for hundreds of points on the ESP32-S3's single-precision FPU.
+  const float east = static_cast<float>(
+      (point.longitude_deg - transform.origin_longitude_deg) *
+      transform.longitude_pixels_per_degree);
+  const float north = static_cast<float>(
+      (point.latitude_deg - transform.origin_latitude_deg) *
+      (kPi / 180.0 * kEarthRadiusM * kMapPixelsPerMeter));
 
   // Heading-up transform: the rider remains fixed and every real street
   // translates/rotates together under it, as on an automotive minimap.
-  const double right = east * transform.cos_heading -
+  const float right = east * transform.cos_heading -
                        north * transform.sin_heading;
-  const double forward = east * transform.sin_heading +
+  const float forward = east * transform.sin_heading +
                          north * transform.cos_heading;
-  const double x = kVehicleX + right * kMapPixelsPerMeter;
-  const double y = kVehicleY - forward * kMapPixelsPerMeter;
+  const float x = static_cast<float>(kVehicleX) + right;
+  const float y = static_cast<float>(kVehicleY) - forward;
   return {
       static_cast<std::int16_t>(
           std::clamp(std::lround(x), -2'000L, 2'000L)),

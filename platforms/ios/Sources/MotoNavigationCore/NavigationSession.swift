@@ -89,12 +89,14 @@ public struct NavigationSessionReducer: Sendable {
 
         case let .routeFailed(requestID, message):
             guard state.activeRequestID == requestID else { return [] }
+            state.activeRequestID = nil
             state.phase = .failed
             state.failureMessage = message
             return [.stopLocation]
 
         case let .locationFailed(message):
             guard state.isRunning else { return [] }
+            state.activeRequestID = nil
             state.phase = .failed
             state.failureMessage = message
             return [.stopLocation]

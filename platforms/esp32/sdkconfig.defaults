@@ -11,11 +11,10 @@ CONFIG_SPIRAM_USE_MALLOC=y
 CONFIG_SPIRAM_FETCH_INSTRUCTIONS=y
 CONFIG_SPIRAM_RODATA=y
 
-# The Waveshare BSP keeps its 466x50 RGB565 LVGL draw buffers in PSRAM. The
-# QSPI IO does not opt into direct PSRAM DMA, so ESP-IDF creates one ~46.6 KiB
-# internal DMA bounce buffer per queued color transfer. A queue depth of ten
-# can exhaust/fragment internal RAM during continuous heading-up animation.
-# Serialize transfers so that only one bounded bounce buffer exists at once.
+# The board port supplies its own PSRAM draw buffers and explicitly opts into
+# direct PSRAM DMA. Keep a single outstanding QSPI transaction so old display
+# frames cannot accumulate; the original BSP's default bounce buffers are not
+# used by this board port.
 CONFIG_BSP_LCD_TRANS_QUEUE_DEPTH=1
 CONFIG_ESP32S3_INSTRUCTION_CACHE_32KB=y
 CONFIG_ESP32S3_DATA_CACHE_64KB=y

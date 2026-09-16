@@ -48,6 +48,52 @@ enum BLEWritePumpPolicy {
     }
 }
 
+/// Only elapsed time between app events may leave the phone. Keep the system
+/// uptime used for local watchdogs out of the BLE heartbeat payload.
+struct BLESessionHeartbeatClock {
+    private var session: (id: UInt32, startedAtMs: UInt64)?
+
+    mutating func begin(sessionID: UInt32, nowMs: UInt64) {
+        session = (sessionID, nowMs)
+    }
+
+    mutating func reset() { session = nil }
+
+    func elapsedMs(sessionID: UInt32, nowMs: UInt64) -> UInt32? {
+        guard let session, session.id == sessionID else { return nil }
+        let elapsed = nowMs >= session.startedAtMs ? nowMs - session.startedAtMs : 0
+        return UInt32(truncatingIfNeeded: elapsed)
+    }
+}
+
+/// Cancellation acknowledgements are not guaranteed for a restored link whose
+/// physical device has gone away. Each teardown gets one bounded deadline;
+/// cancelling it also invalidates a timeout already queued on the main actor.
+struct BLETransportTeardown {
+    static let timeoutMs: UInt64 = 2_000
+    private var generation: UInt64 = 0
+    private(set) var pendingGeneration: UInt64?
+
+    var isWaiting: Bool { pendingGeneration != nil }
+
+    mutating func begin() -> UInt64? {
+        guard !isWaiting else { return nil }
+        generation &+= 1
+        pendingGeneration = generation
+        return generation
+    }
+
+    mutating func cancel() {
+        pendingGeneration = nil
+    }
+
+    mutating func consumeTimeout(generation: UInt64) -> Bool {
+        guard pendingGeneration == generation else { return false }
+        pendingGeneration = nil
+        return true
+    }
+}
+
 enum BLEOutboundBatch {
     /// Invokes the stateful protocol codec in the same order the frames will
     /// be written. Encoding order matters because each call allocates the next
@@ -75,6 +121,56 @@ enum BLEOutboundBatch {
         hasGeometry && (
             geometryChanged || pendingFrameCount + snapshotFrameCount > queueCapacity
         )
+    }
+}
+
+/// A queued map is not delivered until the terminal acknowledges its complete
+/// logical message. Retries are freshly encoded to preserve wire sequence order.
+struct BLEMapSceneDelivery {
+    private(set) var acknowledgedRevision: UInt32?
+    private(set) var pending: (revision: UInt32, sequence: UInt16, sentAtMs: UInt64?)?
+    private(set) var timeoutCount = 0
+
+    func shouldSend(revision: UInt32, queuedFrames: Int) -> Bool {
+        pending == nil && acknowledgedRevision != revision && queuedFrames <= 32 && timeoutCount < 3
+    }
+
+    mutating func sent(revision: UInt32, sequence: UInt16, nowMs: UInt64) {
+        pending = (revision, sequence, nowMs)
+    }
+
+    mutating func queued(revision: UInt32, sequence: UInt16) {
+        pending = (revision, sequence, nil)
+    }
+
+    mutating func lastFragmentWritten(nowMs: UInt64) {
+        guard let pending else { return }
+        self.pending = (pending.revision, pending.sequence, nowMs)
+    }
+
+    @discardableResult
+    mutating func acknowledge(sequence: UInt16, status: UInt8) -> Bool {
+        guard let pending, pending.sequence == sequence else { return false }
+        self.pending = nil
+        if status == 0 || status == 4 {
+            acknowledgedRevision = pending.revision
+            timeoutCount = 0
+        } else {
+            timeoutCount += 1
+        }
+        return true
+    }
+
+    mutating func expire(nowMs: UInt64) {
+        guard let pending, let sentAtMs = pending.sentAtMs, nowMs >= sentAtMs,
+              nowMs - sentAtMs >= 3_000 else { return }
+        self.pending = nil
+        timeoutCount += 1
+    }
+
+    mutating func queueWasDiscarded() {
+        pending = nil
+        acknowledgedRevision = nil
     }
 }
 
@@ -132,16 +228,23 @@ final class ESP32BLECentral: NSObject {
     private var pendingNavigationState: MotoNavCoreSnapshot?
     private var pendingMediaState: PhoneMediaState?
     private var pendingMapScene: OfflineMapSceneWindow?
+    private var mapSceneDelivery = BLEMapSceneDelivery()
+    private var mapSceneFinalFrame: Data?
     private var shouldMaintainConnection = false
     private var protocolReady = false
     private var peerCapabilities: UInt32 = 0
-    private var transportTeardownInProgress = false
+    private var transportTeardown = BLETransportTeardown()
+    private var transportTeardownInProgress: Bool { transportTeardown.isWaiting }
+    private var transportTeardownTask: Task<Void, Never>?
+    private var requiresFreshDiscovery = false
+    private var allowsStateRestoration = true
     private var reconnectAttempt = 0
     private var reconnectTask: Task<Void, Never>?
     private var connectionTimeoutTask: Task<Void, Never>?
     private var gattSetupTimeoutTask: Task<Void, Never>?
     private var handshakeTask: Task<Void, Never>?
     private var heartbeatTask: Task<Void, Never>?
+    private var heartbeatClock = BLESessionHeartbeatClock()
     private var navigationTransmitTask: Task<Void, Never>?
     private var writePumpTask: Task<Void, Never>?
     private var lastNavigationTransmitAtMs: UInt64 = 0
@@ -174,6 +277,7 @@ final class ESP32BLECentral: NSObject {
         trace("connect requested; central=\(central.state.rawValue)")
         shouldMaintainConnection = true
         reconnectTask?.cancel()
+        reconnectTask = nil
         switch central.state {
         case .poweredOn:
             connectKnownPeripheralOrScan()
@@ -186,13 +290,17 @@ final class ESP32BLECentral: NSObject {
 
     func disconnect() {
         shouldMaintainConnection = false
+        allowsStateRestoration = false
         reconnectTask?.cancel()
         reconnectTask = nil
-        transportTeardownInProgress = false
+        cancelTransportTeardown()
         connectionTimeoutTask?.cancel()
         connectionTimeoutTask = nil
         central.stopScan()
-        if let peripheral { central.cancelPeripheralConnection(peripheral) }
+        if let peripheral {
+            peripheral.delegate = nil
+            central.cancelPeripheralConnection(peripheral)
+        }
         self.peripheral = nil
         clearProtocolState()
         snapshot = BLEDeviceSnapshot(connection: .idle)
@@ -227,7 +335,7 @@ final class ESP32BLECentral: NSObject {
     }
 
     private func connectKnownPeripheralOrScan() {
-        guard !transportTeardownInProgress else { return }
+        guard shouldMaintainConnection, !transportTeardownInProgress else { return }
         if let peripheral {
             if peripheral.state == .connecting {
                 if connectionTimeoutTask == nil {
@@ -239,6 +347,10 @@ final class ESP32BLECentral: NSObject {
                 beginGattSetup(for: peripheral)
                 return
             }
+        }
+        if requiresFreshDiscovery {
+            startScan()
+            return
         }
         if let rawIdentifier = UserDefaults.standard.string(forKey: Self.knownPeripheralKey),
            let identifier = UUID(uuidString: rawIdentifier),
@@ -255,7 +367,8 @@ final class ESP32BLECentral: NSObject {
     }
 
     private func attachAndConnect(_ peripheral: CBPeripheral) {
-        guard shouldMaintainConnection else { return }
+        guard shouldMaintainConnection, !transportTeardownInProgress else { return }
+        requiresFreshDiscovery = false
         central.stopScan()
         connectionTimeoutTask?.cancel()
         connectionTimeoutTask = nil
@@ -297,6 +410,7 @@ final class ESP32BLECentral: NSObject {
     /// and can also resume from CoreBluetooth's restored GATT cache.
     private func beginGattSetup(for candidate: CBPeripheral) {
         guard shouldMaintainConnection,
+              !transportTeardownInProgress,
               central.state == .poweredOn,
               candidate === peripheral,
               candidate.state == .connected,
@@ -396,6 +510,7 @@ final class ESP32BLECentral: NSObject {
         )
         self.codec = codec
         sessionID = Self.makeSessionID()
+        heartbeatClock.begin(sessionID: sessionID, nowMs: Self.monotonicMs())
         trace("starting v1 handshake; session=\(sessionID) frame=\(localMaximumFrameSize) notify=\(deviceToPhoneCharacteristic?.isNotifying == true)")
         do {
             #if DEBUG
@@ -542,6 +657,7 @@ final class ESP32BLECentral: NSObject {
         handshakeTask = nil
         heartbeatTask?.cancel()
         heartbeatTask = nil
+        heartbeatClock.reset()
         navigationTransmitTask?.cancel()
         navigationTransmitTask = nil
         writePumpTask?.cancel()
@@ -549,6 +665,8 @@ final class ESP32BLECentral: NSObject {
         lastNavigationTransmitAtMs = 0
         lastWriteWithoutResponseAtMs = 0
         lastRouteGeometrySignature = nil
+        mapSceneDelivery = BLEMapSceneDelivery()
+        mapSceneFinalFrame = nil
         phoneToDeviceCharacteristic = nil
         deviceToPhoneCharacteristic = nil
         codec = nil
@@ -570,13 +688,14 @@ final class ESP32BLECentral: NSObject {
     /// GATT discovery, subscription and write failures cannot recover while the
     /// peripheral remains connected. Keep the failed object until CoreBluetooth
     /// confirms teardown, then didDisconnect/didFail enters the backoff path.
-    /// This prevents the same CBPeripheral instance from being reattached while
-    /// callbacks from its old physical connection are still queued.
+    /// A bounded fallback replaces the manager if that callback never arrives.
     private func recoverFromTransportError(_ message: String) {
         guard !transportTeardownInProgress else { return }
         trace("transport recovery: \(message)")
         let failedPeripheral = peripheral
         central.stopScan()
+        reconnectTask?.cancel()
+        reconnectTask = nil
         connectionTimeoutTask?.cancel()
         connectionTimeoutTask = nil
         clearProtocolState()
@@ -584,7 +703,8 @@ final class ESP32BLECentral: NSObject {
         // A late delegate callback can arrive after a user-requested disconnect.
         // It must not replace Idle with Failed or restart the connection loop.
         guard shouldMaintainConnection else {
-            transportTeardownInProgress = false
+            cancelTransportTeardown()
+            failedPeripheral?.delegate = nil
             peripheral = nil
             snapshot.connection = .idle
             return
@@ -594,13 +714,47 @@ final class ESP32BLECentral: NSObject {
         if let failedPeripheral,
            failedPeripheral.state != .disconnected
         {
-            transportTeardownInProgress = true
+            startTransportTeardownTimeout()
             central.cancelPeripheralConnection(failedPeripheral)
             return
         }
-        transportTeardownInProgress = false
+        cancelTransportTeardown()
+        failedPeripheral?.delegate = nil
         peripheral = nil
         scheduleReconnect()
+    }
+
+    private func cancelTransportTeardown() {
+        transportTeardownTask?.cancel()
+        transportTeardownTask = nil
+        transportTeardown.cancel()
+    }
+
+    private func startTransportTeardownTimeout() {
+        guard let generation = transportTeardown.begin() else { return }
+        transportTeardownTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .milliseconds(BLETransportTeardown.timeoutMs))
+            guard !Task.isCancelled, let self,
+                  self.shouldMaintainConnection,
+                  self.transportTeardown.consumeTimeout(generation: generation)
+            else { return }
+            self.transportTeardownTask = nil
+            self.trace("transport teardown timed out; replacing central and scanning afresh")
+            // Reattaching the same cached peripheral would let a delayed old
+            // disconnect callback tear down its new link. A new manager and
+            // identity checks on its delegates isolate those old callbacks.
+            self.peripheral?.delegate = nil
+            self.peripheral = nil
+            self.central.delegate = nil
+            self.requiresFreshDiscovery = true
+            self.allowsStateRestoration = false
+            self.central = CBCentralManager(
+                delegate: self,
+                queue: .main,
+                options: [CBCentralManagerOptionRestoreIdentifierKey: Self.restorationID]
+            )
+            self.scheduleReconnect()
+        }
     }
 
     @discardableResult
@@ -615,6 +769,8 @@ final class ESP32BLECentral: NSObject {
             // coalesced navigation send to restore a complete route before we
             // resume snapshot-only updates.
             lastRouteGeometrySignature = nil
+            mapSceneDelivery.queueWasDiscarded()
+            mapSceneFinalFrame = nil
             resetQueuedFrames = true
         }
         outboundFrames.append(contentsOf: frames)
@@ -685,6 +841,7 @@ final class ESP32BLECentral: NSObject {
                 lastRouteGeometrySignature = nil
             }
             lastNavigationTransmitAtMs = Self.monotonicMs()
+            flushPendingMapScene()
         } catch {
             // Preserve the newest state for the next protocol-ready session.
             if pendingNavigationState == nil {
@@ -717,11 +874,18 @@ final class ESP32BLECentral: NSObject {
         guard protocolReady,
               peerCapabilities & Self.mapSceneCapability != 0,
               let codec,
-              let scene = pendingMapScene
+              let scene = pendingMapScene,
+              mapSceneDelivery.shouldSend(revision: scene.revision,
+                                          queuedFrames: outboundFrames.count)
         else { return }
 
         do {
-            try send(codec.encodeMapScene(scene.makeBLEInput()))
+            let frames = try codec.encodeMapScene(scene.makeBLEInput())
+            let sequence = codec.lastEncodedSequence
+            mapSceneDelivery.queued(revision: scene.revision, sequence: sequence)
+            mapSceneFinalFrame = frames.last
+            try send(frames)
+            trace("map queued revision=\(scene.revision) roads=\(scene.roads.count) buildings=\(scene.buildings.count) frames=\(frames.count)")
             // Keep the latest complete scene so a later BLE reconnection can
             // restore the map even when the motorcycle has not moved 100 m.
         } catch {
@@ -783,11 +947,13 @@ final class ESP32BLECentral: NSObject {
                 // Exactly one frame per pump tick. `canSend...` does not expose
                 // how quickly the terminal drains its application RX queue, so
                 // a while loop can still overrun it when iOS reports space.
+                let frame = outboundFrames.removeFirst()
                 peripheral.writeValue(
-                    outboundFrames.removeFirst(),
+                    frame,
                     for: characteristic,
                     type: .withoutResponse
                 )
+                markMapFragmentWritten(frame)
                 lastWriteWithoutResponseAtMs = now
                 if !outboundFrames.isEmpty {
                     scheduleWritePump(afterMs: Self.writeWithoutResponsePacingMs)
@@ -800,11 +966,19 @@ final class ESP32BLECentral: NSObject {
               !writeWithResponseInFlight
         else { return }
         writeWithResponseInFlight = true
+        let frame = outboundFrames.removeFirst()
         peripheral.writeValue(
-            outboundFrames.removeFirst(),
+            frame,
             for: characteristic,
             type: .withResponse
         )
+        markMapFragmentWritten(frame)
+    }
+
+    private func markMapFragmentWritten(_ frame: Data) {
+        guard frame == mapSceneFinalFrame else { return }
+        mapSceneFinalFrame = nil
+        mapSceneDelivery.lastFragmentWritten(nowMs: Self.monotonicMs())
     }
 
     private func scheduleWritePump(afterMs delayMs: UInt64) {
@@ -825,9 +999,9 @@ final class ESP32BLECentral: NSObject {
         reconnectAttempt = min(reconnectAttempt + 1, delays.count - 1)
         reconnectTask = Task { @MainActor [weak self] in
             try? await Task.sleep(for: .seconds(delay))
-            guard !Task.isCancelled,
-                  let self,
-                  self.shouldMaintainConnection,
+            guard !Task.isCancelled, let self else { return }
+            self.reconnectTask = nil
+            guard self.shouldMaintainConnection,
                   self.central.state == .poweredOn
             else { return }
             self.connectKnownPeripheralOrScan()
@@ -847,6 +1021,8 @@ final class ESP32BLECentral: NSObject {
                 else { return }
 
                 let now = Self.monotonicMs()
+                guard let sessionElapsed = self.heartbeatClock.elapsedMs(sessionID: self.sessionID, nowMs: now)
+                else { return }
                 if self.lastValidDeviceFrameAtMs > 0,
                    now > self.lastValidDeviceFrameAtMs + self.deviceHeartbeatTimeoutMs
                 {
@@ -855,12 +1031,18 @@ final class ESP32BLECentral: NSObject {
                 }
 
                 do {
+                    self.mapSceneDelivery.expire(nowMs: now)
+                    if self.mapSceneDelivery.timeoutCount >= 3 {
+                        self.recoverFromTransportError("周边地图传输未确认，正在重新连接")
+                        return
+                    }
                     try self.send(
                         codec.encodeHeartbeat(
                             withSessionID: self.sessionID,
-                            monotonicMs: UInt32(truncatingIfNeeded: now)
+                            monotonicMs: sessionElapsed
                         )
                     )
+                    self.flushPendingMapScene()
                 } catch {
                     self.recoverFromTransportError(error.localizedDescription)
                     return
@@ -977,19 +1159,23 @@ final class ESP32BLECentral: NSObject {
 
 extension ESP32BLECentral: @preconcurrency CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        guard central === self.central else { return }
         trace("central state changed to \(central.state.rawValue)")
         if central.state == .poweredOn, shouldMaintainConnection {
-            connectKnownPeripheralOrScan()
+            if reconnectTask == nil { connectKnownPeripheralOrScan() }
         } else if central.state != .poweredOn {
+            reconnectTask?.cancel()
+            reconnectTask = nil
             connectionTimeoutTask?.cancel()
             connectionTimeoutTask = nil
             if let peripheral, peripheral.state != .disconnected {
                 central.cancelPeripheralConnection(peripheral)
             }
-            transportTeardownInProgress = false
+            cancelTransportTeardown()
+            peripheral?.delegate = nil
             peripheral = nil
             clearProtocolState()
-            snapshot.connection = .bluetoothUnavailable
+            snapshot.connection = shouldMaintainConnection ? .bluetoothUnavailable : .idle
         }
     }
 
@@ -997,12 +1183,14 @@ extension ESP32BLECentral: @preconcurrency CBCentralManagerDelegate {
         _ central: CBCentralManager,
         willRestoreState dict: [String: Any]
     ) {
-        guard let restored = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral],
+        guard central === self.central, allowsStateRestoration,
+              !transportTeardownInProgress,
+              let restored = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral],
               let peripheral = restored.first
         else { return }
         shouldMaintainConnection = true
         trace("restored peripheral \(peripheral.identifier); state=\(peripheral.state.rawValue) services=\(peripheral.services?.count ?? 0)")
-        transportTeardownInProgress = false
+        cancelTransportTeardown()
         self.peripheral = peripheral
         peripheral.delegate = self
         snapshot.connection = .connecting(name: peripheral.name ?? "MOTO GPS")
@@ -1025,19 +1213,23 @@ extension ESP32BLECentral: @preconcurrency CBCentralManagerDelegate {
     ) {
         // stopScan is asynchronous; accept only the first callback already
         // queued on the main actor.
-        guard shouldMaintainConnection, self.peripheral == nil else { return }
+        guard central === self.central, shouldMaintainConnection,
+              !transportTeardownInProgress, self.peripheral == nil else { return }
         attachAndConnect(peripheral)
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        guard shouldMaintainConnection, peripheral === self.peripheral else {
+        guard central === self.central else { return }
+        guard shouldMaintainConnection, !transportTeardownInProgress,
+              peripheral === self.peripheral else {
             central.cancelPeripheralConnection(peripheral)
             return
         }
         reconnectTask?.cancel()
+        reconnectTask = nil
         connectionTimeoutTask?.cancel()
         connectionTimeoutTask = nil
-        transportTeardownInProgress = false
+        cancelTransportTeardown()
         trace("physical link connected; peripheral=\(peripheral.identifier)")
         clearProtocolState()
         UserDefaults.standard.set(
@@ -1056,14 +1248,17 @@ extension ESP32BLECentral: @preconcurrency CBCentralManagerDelegate {
         didFailToConnect peripheral: CBPeripheral,
         error: Error?
     ) {
-        guard peripheral === self.peripheral else { return }
+        guard central === self.central, peripheral === self.peripheral else { return }
         trace("physical link disconnected; error=\(error?.localizedDescription ?? "none")")
         connectionTimeoutTask?.cancel()
         connectionTimeoutTask = nil
         clearProtocolState()
-        transportTeardownInProgress = false
+        cancelTransportTeardown()
+        peripheral.delegate = nil
         self.peripheral = nil
-        snapshot.connection = .failed(message: error?.localizedDescription ?? "无法连接设备")
+        snapshot.connection = shouldMaintainConnection
+            ? .failed(message: error?.localizedDescription ?? "无法连接设备")
+            : .idle
         scheduleReconnect()
     }
 
@@ -1072,11 +1267,12 @@ extension ESP32BLECentral: @preconcurrency CBCentralManagerDelegate {
         didDisconnectPeripheral peripheral: CBPeripheral,
         error: Error?
     ) {
-        guard peripheral === self.peripheral else { return }
+        guard central === self.central, peripheral === self.peripheral else { return }
         connectionTimeoutTask?.cancel()
         connectionTimeoutTask = nil
         clearProtocolState()
-        transportTeardownInProgress = false
+        cancelTransportTeardown()
+        peripheral.delegate = nil
         self.peripheral = nil
         snapshot.connection = shouldMaintainConnection
             ? .failed(message: error?.localizedDescription ?? "设备连接已断开，等待重连")
@@ -1087,7 +1283,8 @@ extension ESP32BLECentral: @preconcurrency CBCentralManagerDelegate {
 
 extension ESP32BLECentral: @preconcurrency CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        guard shouldMaintainConnection, peripheral === self.peripheral else { return }
+        guard shouldMaintainConnection, !transportTeardownInProgress,
+              peripheral === self.peripheral else { return }
         if let error {
             recoverFromTransportError(error.localizedDescription)
             return
@@ -1108,7 +1305,8 @@ extension ESP32BLECentral: @preconcurrency CBPeripheralDelegate {
         didDiscoverCharacteristicsFor service: CBService,
         error: Error?
     ) {
-        guard shouldMaintainConnection, peripheral === self.peripheral else { return }
+        guard shouldMaintainConnection, !transportTeardownInProgress,
+              peripheral === self.peripheral else { return }
         if let error {
             recoverFromTransportError(error.localizedDescription)
             return
@@ -1121,7 +1319,8 @@ extension ESP32BLECentral: @preconcurrency CBPeripheralDelegate {
         didUpdateNotificationStateFor characteristic: CBCharacteristic,
         error: Error?
     ) {
-        guard shouldMaintainConnection, peripheral === self.peripheral else { return }
+        guard shouldMaintainConnection, !transportTeardownInProgress,
+              peripheral === self.peripheral else { return }
         // CoreBluetooth may recreate equivalent CBCharacteristic objects
         // across restoration/reconnection. Object identity is not stable; the
         // delegate's current peripheral plus canonical UUIDs are the safe
@@ -1146,7 +1345,8 @@ extension ESP32BLECentral: @preconcurrency CBPeripheralDelegate {
         didUpdateValueFor characteristic: CBCharacteristic,
         error: Error?
     ) {
-        guard shouldMaintainConnection, peripheral === self.peripheral else { return }
+        guard shouldMaintainConnection, !transportTeardownInProgress,
+              peripheral === self.peripheral else { return }
         guard characteristic.uuid == Self.deviceToPhoneUUID,
               characteristic.service?.uuid == Self.serviceUUID
         else { return }
@@ -1212,6 +1412,18 @@ extension ESP32BLECentral: @preconcurrency CBPeripheralDelegate {
                 codec.resetInboundState()
                 return
             }
+            if let ack = inbound.acknowledgement {
+                if mapSceneDelivery.acknowledge(sequence: ack.acknowledgedSequence,
+                                                status: ack.status) {
+                    trace("map acknowledged sequence=\(ack.acknowledgedSequence) status=\(ack.status)")
+                    if mapSceneDelivery.timeoutCount >= 3 {
+                        recoverFromTransportError("周边地图连续接收失败，正在重新连接")
+                        return
+                    }
+                    flushPendingMapScene()
+                }
+                return
+            }
             guard let command = inbound.deviceCommand else { return }
             snapshot.lastCommandID = command.commandID
 
@@ -1240,7 +1452,8 @@ extension ESP32BLECentral: @preconcurrency CBPeripheralDelegate {
     }
 
     func peripheralIsReady(toSendWriteWithoutResponse peripheral: CBPeripheral) {
-        guard shouldMaintainConnection, peripheral === self.peripheral else { return }
+        guard shouldMaintainConnection, !transportTeardownInProgress,
+              peripheral === self.peripheral else { return }
         flushWrites()
     }
 
@@ -1249,7 +1462,8 @@ extension ESP32BLECentral: @preconcurrency CBPeripheralDelegate {
         didWriteValueFor characteristic: CBCharacteristic,
         error: Error?
     ) {
-        guard shouldMaintainConnection, peripheral === self.peripheral else { return }
+        guard shouldMaintainConnection, !transportTeardownInProgress,
+              peripheral === self.peripheral else { return }
         guard characteristic.uuid == Self.phoneToDeviceUUID,
               characteristic.service?.uuid == Self.serviceUUID
         else { return }

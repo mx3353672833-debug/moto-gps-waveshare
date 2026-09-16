@@ -5,6 +5,38 @@ import XCTest
 
 @MainActor
 final class OfflineMapSceneTests: XCTestCase {
+    func testJinrunGardenHasRealRoadsAndBuildingsInBundledCityPack() throws {
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "jinan-v1", withExtension: "sqlite"))
+        let repository = try SQLiteOfflineMapSceneIndex(url: url)
+        // GCJ-02, converted once from the Jinrun Garden WGS84 entrance fix.
+        let window = repository.query(
+            around: OfflineMapPointE6(latitudeE6: 36_632_524, longitudeE6: 116_949_089),
+            radiusM: 500, revision: 1
+        )
+        XCTAssertFalse(window.roads.isEmpty)
+        XCTAssertFalse(window.buildings.isEmpty)
+        XCTAssertTrue(window.roads.allSatisfy { $0.osmWayID != nil })
+        XCTAssertTrue(window.buildings.allSatisfy { $0.osmWayID != nil })
+        let frames = try MotoBLEProtocolCodec(maximumFrameSize: 182).encodeMapScene(window.makeBLEInput())
+        XCTAssertTrue(frames.allSatisfy { $0.count <= 182 })
+    }
+
+    func testInvalidDownloadedPackFallsBackToBundledCityPack() throws {
+        let invalid = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: invalid) }
+        try Data("incomplete download".utf8).write(to: invalid)
+        let bundled = try XCTUnwrap(Bundle.main.url(forResource: "jinan-v1", withExtension: "sqlite"))
+        let index = try OfflineMapSceneCoordinator.loadIndex(
+            databaseURLs: [invalid, bundled], sampleURL: nil
+        )
+        let window = index.query(
+            around: OfflineMapPointE6(latitudeE6: 36_632_524, longitudeE6: 116_949_089),
+            radiusM: 500, revision: 1
+        )
+        XCTAssertFalse(window.roads.isEmpty)
+        XCTAssertFalse(window.buildings.isEmpty)
+    }
+
     func testFullJinanSQLitePackIsBundledAndQueryable() throws {
         guard let url = Bundle.main.url(forResource: "jinan-v1", withExtension: "sqlite") else {
             XCTFail("jinan-v1.sqlite is missing from the application bundle")

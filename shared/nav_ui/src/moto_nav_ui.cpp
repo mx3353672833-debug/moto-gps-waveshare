@@ -39,6 +39,8 @@ constexpr std::uint32_t kPageDotsVisibleMs = 5'000;
 // 40 Hz cadence. The previous 40/33 ms mismatch periodically produced a
 // 66 ms visual gap even when both tasks were otherwise keeping up.
 constexpr std::uint32_t kRouteMotionFrameMs = 25;
+static_assert(LV_DEF_REFR_PERIOD == kRouteMotionFrameMs,
+              "LVGL refresh and map motion must use the same cadence");
 constexpr std::uint32_t kConnectionSuccessHoldMs = 920;
 
 enum class LifecycleVisual : std::uint8_t {
@@ -63,6 +65,11 @@ constexpr double px(double value) {
            static_cast<double>(kDesignWidth);
 }
 
+struct MapPolyline {
+    const lv_point_precise_t *points = nullptr;
+    std::uint16_t count = 0;
+};
+
 struct Ui {
     lv_obj_t *screen = nullptr;
     lv_obj_t *pages[MOTO_UI_PAGE_COUNT]{};
@@ -73,24 +80,26 @@ struct Ui {
 
     lv_obj_t *nav_map = nullptr;
     lv_obj_t *nav_buildings[MOTO_UI_BUILDING_FOOTPRINT_CAPACITY]{};
+    MapPolyline nav_building_lines[MOTO_UI_BUILDING_FOOTPRINT_CAPACITY]{};
     lv_point_precise_t nav_building_points[
         MOTO_UI_BUILDING_POINT_CAPACITY +
         MOTO_UI_BUILDING_FOOTPRINT_CAPACITY]{};
-    double nav_building_x[MOTO_UI_BUILDING_POINT_CAPACITY]{};
-    double nav_building_y[MOTO_UI_BUILDING_POINT_CAPACITY]{};
-    double nav_building_target_x[MOTO_UI_BUILDING_POINT_CAPACITY]{};
-    double nav_building_target_y[MOTO_UI_BUILDING_POINT_CAPACITY]{};
+    float nav_building_x[MOTO_UI_BUILDING_POINT_CAPACITY]{};
+    float nav_building_y[MOTO_UI_BUILDING_POINT_CAPACITY]{};
+    float nav_building_target_x[MOTO_UI_BUILDING_POINT_CAPACITY]{};
+    float nav_building_target_y[MOTO_UI_BUILDING_POINT_CAPACITY]{};
     moto_ui_building_span_t
         nav_building_spans[MOTO_UI_BUILDING_FOOTPRINT_CAPACITY]{};
     std::uint8_t nav_building_point_count = 0;
     std::uint8_t nav_building_footprint_count = 0;
     std::uint32_t nav_building_scene_revision = 0;
     lv_obj_t *nav_roads[MOTO_UI_ROAD_POLYLINE_CAPACITY]{};
+    MapPolyline nav_road_lines[MOTO_UI_ROAD_POLYLINE_CAPACITY]{};
     lv_point_precise_t nav_road_points[MOTO_UI_ROAD_POINT_CAPACITY]{};
-    double nav_road_x[MOTO_UI_ROAD_POINT_CAPACITY]{};
-    double nav_road_y[MOTO_UI_ROAD_POINT_CAPACITY]{};
-    double nav_road_target_x[MOTO_UI_ROAD_POINT_CAPACITY]{};
-    double nav_road_target_y[MOTO_UI_ROAD_POINT_CAPACITY]{};
+    float nav_road_x[MOTO_UI_ROAD_POINT_CAPACITY]{};
+    float nav_road_y[MOTO_UI_ROAD_POINT_CAPACITY]{};
+    float nav_road_target_x[MOTO_UI_ROAD_POINT_CAPACITY]{};
+    float nav_road_target_y[MOTO_UI_ROAD_POINT_CAPACITY]{};
     moto_ui_polyline_span_t
         nav_road_spans[MOTO_UI_ROAD_POLYLINE_CAPACITY]{};
     std::uint8_t nav_road_point_count = 0;
@@ -98,11 +107,13 @@ struct Ui {
     std::uint32_t nav_road_scene_revision = 0;
     lv_obj_t *nav_route_shadow = nullptr;
     lv_obj_t *nav_route = nullptr;
+    MapPolyline nav_route_shadow_line{};
+    MapPolyline nav_route_line{};
     lv_point_precise_t nav_route_points[MOTO_UI_ROUTE_POINT_CAPACITY]{};
-    double nav_route_x[MOTO_UI_ROUTE_POINT_CAPACITY]{};
-    double nav_route_y[MOTO_UI_ROUTE_POINT_CAPACITY]{};
-    double nav_route_target_x[MOTO_UI_ROUTE_POINT_CAPACITY]{};
-    double nav_route_target_y[MOTO_UI_ROUTE_POINT_CAPACITY]{};
+    float nav_route_x[MOTO_UI_ROUTE_POINT_CAPACITY]{};
+    float nav_route_y[MOTO_UI_ROUTE_POINT_CAPACITY]{};
+    float nav_route_target_x[MOTO_UI_ROUTE_POINT_CAPACITY]{};
+    float nav_route_target_y[MOTO_UI_ROUTE_POINT_CAPACITY]{};
     std::uint8_t nav_route_point_count = 0;
     std::uint8_t nav_route_target_count = 0;
     std::uint32_t nav_route_identity = 0;
@@ -356,6 +367,107 @@ void gesture_event(lv_event_t *) {
     lv_indev_wait_release(indev);
 }
 
+void draw_map_line(lv_layer_t *layer, const lv_draw_line_dsc_t &line) {
+    const lv_area_t original_clip = layer->_clip_area;
+    lv_area_t visible{
+        std::max(original_clip.x1, static_cast<int32_t>(
+            std::min(line.p1.x, line.p2.x) - line.width)),
+        std::max(original_clip.y1, static_cast<int32_t>(
+            std::min(line.p1.y, line.p2.y) - line.width)),
+        std::min(original_clip.x2, static_cast<int32_t>(
+            std::max(line.p1.x, line.p2.x) + line.width)),
+        std::min(original_clip.y2, static_cast<int32_t>(
+            std::max(line.p1.y, line.p2.y) + line.width)),
+    };
+    if(visible.x1 > visible.x2 || visible.y1 > visible.y2) return;
+    const float dx = static_cast<float>(line.p2.x - line.p1.x);
+    const float dy = static_cast<float>(line.p2.y - line.p1.y);
+    constexpr int32_t band_height = 32;
+    if(std::abs(dy) <= band_height || std::abs(dx) <= 64.0F ||
+       visible.y2 - visible.y1 < band_height) {
+        lv_draw_line(layer, &line);
+        return;
+    }
+
+    // LVGL masks every pixel in a diagonal's bounding rectangle, including
+    // the empty space beside a long thin street. Narrow that rectangle per
+    // non-overlapping band. Keep the original endpoints so antialiasing and
+    // round caps remain identical, including where adjacent bands meet.
+    const float slope = dx / dy;
+    const float padding = static_cast<float>(line.width) + 2.0F;
+    const float minimum_y = static_cast<float>(std::min(line.p1.y, line.p2.y));
+    const float maximum_y = static_cast<float>(std::max(line.p1.y, line.p2.y));
+    for(int32_t y = visible.y1; y <= visible.y2; y += band_height) {
+        lv_area_t band = visible;
+        band.y1 = y;
+        band.y2 = std::min(y + band_height - 1, visible.y2);
+        const float low = std::clamp(static_cast<float>(band.y1) - padding,
+                                     minimum_y, maximum_y);
+        const float high = std::clamp(static_cast<float>(band.y2) + padding,
+                                      minimum_y, maximum_y);
+        const float a = line.p1.x + slope * (low - line.p1.y);
+        const float b = line.p1.x + slope * (high - line.p1.y);
+        band.x1 = std::max(band.x1, static_cast<int32_t>(
+            std::floor(std::min(a, b) - padding)));
+        band.x2 = std::min(band.x2, static_cast<int32_t>(
+            std::ceil(std::max(a, b) + padding)));
+        if(band.x1 > band.x2) continue;
+        // lv_draw_line copies this clip into its task before dispatching.
+        layer->_clip_area = band;
+        lv_draw_line(layer, &line);
+    }
+    layer->_clip_area = original_clip;
+}
+
+void draw_map_polyline(lv_event_t *event) {
+    lv_obj_t *object = lv_event_get_target_obj(event);
+    const auto code = lv_event_get_code(event);
+    if(code == LV_EVENT_REFR_EXT_DRAW_SIZE) {
+        auto *size = static_cast<int32_t *>(lv_event_get_param(event));
+        *size = std::max(*size, lv_obj_get_style_line_width(object, LV_PART_MAIN));
+        return;
+    }
+    if(code != LV_EVENT_DRAW_MAIN) return;
+    const auto *polyline = static_cast<const MapPolyline *>(
+        lv_event_get_user_data(event));
+    if(polyline->points == nullptr || polyline->count < 2) return;
+    lv_layer_t *layer = lv_event_get_layer(event);
+    lv_area_t object_area;
+    lv_obj_get_coords(object, &object_area);
+    lv_draw_line_dsc_t line;
+    lv_draw_line_dsc_init(&line);
+    line.base.layer = layer;
+    lv_obj_init_draw_line_dsc(object, LV_PART_MAIN, &line);
+    for(std::uint16_t index = 1; index < polyline->count; ++index) {
+        line.p1 = polyline->points[index - 1];
+        line.p2 = polyline->points[index];
+        line.p1.x += object_area.x1;
+        line.p2.x += object_area.x1;
+        line.p1.y += object_area.y1;
+        line.p2.y += object_area.y1;
+        draw_map_line(layer, line);
+        line.round_start = 0;
+    }
+}
+
+lv_obj_t *create_map_polyline(lv_obj_t *parent, MapPolyline &polyline) {
+    lv_obj_t *object = lv_obj_create(parent);
+    lv_obj_remove_style_all(object);
+    lv_obj_remove_flag(object, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_remove_flag(object, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_set_user_data(object, &polyline);
+    lv_obj_add_event_cb(object, draw_map_polyline, LV_EVENT_ALL, &polyline);
+    return object;
+}
+
+void set_map_polyline_points(lv_obj_t *object, const lv_point_precise_t *points,
+                            std::uint16_t count) {
+    auto *polyline = static_cast<MapPolyline *>(lv_obj_get_user_data(object));
+    polyline->points = points;
+    polyline->count = count;
+    lv_obj_invalidate(object);
+}
+
 bool apply_route_geometry_frame(bool rebind_lines = true) {
     if(ui.nav_route_point_count < 2) return false;
     bool pixels_changed = false;
@@ -369,9 +481,9 @@ bool apply_route_geometry_frame(bool rebind_lines = true) {
         ui.nav_route_points[i] = {x, y};
     }
     if(rebind_lines) {
-        lv_line_set_points_mutable(ui.nav_route_shadow, ui.nav_route_points,
+        set_map_polyline_points(ui.nav_route_shadow, ui.nav_route_points,
                                    ui.nav_route_point_count);
-        lv_line_set_points_mutable(ui.nav_route, ui.nav_route_points,
+        set_map_polyline_points(ui.nav_route, ui.nav_route_points,
                                    ui.nav_route_point_count);
     }
     return pixels_changed || rebind_lines;
@@ -394,7 +506,7 @@ bool apply_road_geometry_frame(bool rebind_lines = true) {
     if(rebind_lines) {
         for(std::uint8_t i = 0; i < ui.nav_road_polyline_count; ++i) {
             const moto_ui_polyline_span_t span = ui.nav_road_spans[i];
-            lv_line_set_points_mutable(
+            set_map_polyline_points(
                 ui.nav_roads[i],
                 &ui.nav_road_points[span.first_point_index],
                 span.point_count);
@@ -433,7 +545,7 @@ bool apply_building_geometry_frame(bool rebind_lines = true) {
             ui.nav_building_points[packed_index].y != closing.y;
         ui.nav_building_points[packed_index] = closing;
         if(rebind_lines) {
-            lv_line_set_points_mutable(
+            set_map_polyline_points(
                 ui.nav_buildings[footprint_index],
                 &ui.nav_building_points[packed_index - span.point_count],
                 span.point_count + 1U);
@@ -447,12 +559,14 @@ void route_motion_tick(lv_timer_t *) {
     if(ui.nav_route_target_count < 2 || ui.nav_route_point_count < 2) return;
     // 0.39 at 25 ms has approximately the same smoothing time constant as
     // the old 0.56 at 40 ms, but supplies smaller and more frequent steps.
-    const double blend = ui.reduce_motion ? 1.0 : 0.39;
+    // Screen coordinates need subpixel precision, not geographic doubles.
+    // Float uses the ESP32-S3 FPU for every point in this 40 Hz hot loop.
+    const float blend = ui.reduce_motion ? 1.0F : 0.39F;
     bool route_moved = false;
     for(std::uint8_t i = 0; i < ui.nav_route_point_count; ++i) {
-        const double dx = ui.nav_route_target_x[i] - ui.nav_route_x[i];
-        const double dy = ui.nav_route_target_y[i] - ui.nav_route_y[i];
-        if(std::abs(dx) < 0.08 && std::abs(dy) < 0.08) {
+        const float dx = ui.nav_route_target_x[i] - ui.nav_route_x[i];
+        const float dy = ui.nav_route_target_y[i] - ui.nav_route_y[i];
+        if(std::abs(dx) < 0.08F && std::abs(dy) < 0.08F) {
             ui.nav_route_x[i] = ui.nav_route_target_x[i];
             ui.nav_route_y[i] = ui.nav_route_target_y[i];
             continue;
@@ -463,9 +577,9 @@ void route_motion_tick(lv_timer_t *) {
     }
     bool roads_moved = false;
     for(std::uint8_t i = 0; i < ui.nav_road_point_count; ++i) {
-        const double dx = ui.nav_road_target_x[i] - ui.nav_road_x[i];
-        const double dy = ui.nav_road_target_y[i] - ui.nav_road_y[i];
-        if(std::abs(dx) < 0.08 && std::abs(dy) < 0.08) {
+        const float dx = ui.nav_road_target_x[i] - ui.nav_road_x[i];
+        const float dy = ui.nav_road_target_y[i] - ui.nav_road_y[i];
+        if(std::abs(dx) < 0.08F && std::abs(dy) < 0.08F) {
             ui.nav_road_x[i] = ui.nav_road_target_x[i];
             ui.nav_road_y[i] = ui.nav_road_target_y[i];
             continue;
@@ -476,9 +590,9 @@ void route_motion_tick(lv_timer_t *) {
     }
     bool buildings_moved = false;
     for(std::uint8_t i = 0; i < ui.nav_building_point_count; ++i) {
-        const double dx = ui.nav_building_target_x[i] - ui.nav_building_x[i];
-        const double dy = ui.nav_building_target_y[i] - ui.nav_building_y[i];
-        if(std::abs(dx) < 0.08 && std::abs(dy) < 0.08) {
+        const float dx = ui.nav_building_target_x[i] - ui.nav_building_x[i];
+        const float dy = ui.nav_building_target_y[i] - ui.nav_building_y[i];
+        if(std::abs(dx) < 0.08F && std::abs(dy) < 0.08F) {
             ui.nav_building_x[i] = ui.nav_building_target_x[i];
             ui.nav_building_y[i] = ui.nav_building_target_y[i];
             continue;
@@ -1424,7 +1538,8 @@ void create_navigation_page() {
     // generated on-device.
     for(std::uint8_t i = 0;
         i < MOTO_UI_BUILDING_FOOTPRINT_CAPACITY; ++i) {
-        ui.nav_buildings[i] = lv_line_create(ui.nav_map);
+        ui.nav_buildings[i] = create_map_polyline(ui.nav_map,
+                                                  ui.nav_building_lines[i]);
         lv_obj_set_size(ui.nav_buildings[i], MOTO_UI_CANVAS_WIDTH, px(232));
         lv_obj_set_style_line_width(ui.nav_buildings[i], px(1), 0);
         lv_obj_set_style_line_color(ui.nav_buildings[i], kBuildingGray, 0);
@@ -1438,7 +1553,7 @@ void create_navigation_page() {
     // diagonal. The bundled Jinan fixture uses all eight bounded slots; a
     // future online provider must simplify its response to the same limit.
     for(std::uint8_t i = 0; i < MOTO_UI_ROAD_POLYLINE_CAPACITY; ++i) {
-        ui.nav_roads[i] = lv_line_create(ui.nav_map);
+        ui.nav_roads[i] = create_map_polyline(ui.nav_map, ui.nav_road_lines[i]);
         lv_obj_set_size(ui.nav_roads[i], MOTO_UI_CANVAS_WIDTH, px(232));
         lv_obj_set_style_line_width(ui.nav_roads[i], px(3), 0);
         lv_obj_set_style_line_color(ui.nav_roads[i], kRoadGray, 0);
@@ -1447,12 +1562,12 @@ void create_navigation_page() {
         lv_obj_add_flag(ui.nav_roads[i], LV_OBJ_FLAG_HIDDEN);
     }
 
-    ui.nav_route_shadow = lv_line_create(ui.nav_map);
+    ui.nav_route_shadow = create_map_polyline(ui.nav_map, ui.nav_route_shadow_line);
     lv_obj_set_size(ui.nav_route_shadow, MOTO_UI_CANVAS_WIDTH, px(232));
     lv_obj_set_style_line_width(ui.nav_route_shadow, px(13), 0);
     lv_obj_set_style_line_color(ui.nav_route_shadow, kGraphite, 0);
     lv_obj_set_style_line_rounded(ui.nav_route_shadow, true, 0);
-    ui.nav_route = lv_line_create(ui.nav_map);
+    ui.nav_route = create_map_polyline(ui.nav_map, ui.nav_route_line);
     lv_obj_set_size(ui.nav_route, MOTO_UI_CANVAS_WIDTH, px(232));
     lv_obj_set_style_line_width(ui.nav_route, px(6), 0);
     lv_obj_set_style_line_color(ui.nav_route, kWhite, 0);
@@ -1693,6 +1808,25 @@ void create_music_page() {
         lv_obj_set_style_bg_opa(ui.music_buttons[i], LV_OPA_COVER, 0);
         lv_obj_set_style_shadow_width(ui.music_buttons[i], 0, 0);
         lv_obj_set_style_border_width(ui.music_buttons[i], 0, 0);
+        // Pin the pressed appearance to the idle appearance. The LVGL default
+        // theme darkens and grows pressed buttons (recolor 35% + 3 px grow);
+        // on the ESP32 PPA render path that pre-composited recolor painted as
+        // a hard-edged yellow-green block over the round button. Identical
+        // pressed styles remove the visual state difference by construction.
+        lv_obj_set_style_bg_color(ui.music_buttons[i], i == 1 ? kWhite : kGraphite,
+                                  LV_STATE_PRESSED);
+        lv_obj_set_style_bg_opa(ui.music_buttons[i], LV_OPA_COVER,
+                                LV_STATE_PRESSED);
+        lv_obj_set_style_radius(ui.music_buttons[i], LV_RADIUS_CIRCLE,
+                                LV_STATE_PRESSED);
+        lv_obj_set_style_shadow_width(ui.music_buttons[i], 0, LV_STATE_PRESSED);
+        lv_obj_set_style_border_width(ui.music_buttons[i], 0, LV_STATE_PRESSED);
+        lv_obj_set_style_recolor_opa(ui.music_buttons[i], LV_OPA_TRANSP,
+                                     LV_STATE_PRESSED);
+        lv_obj_set_style_transform_width(ui.music_buttons[i], 0,
+                                         LV_STATE_PRESSED);
+        lv_obj_set_style_transform_height(ui.music_buttons[i], 0,
+                                          LV_STATE_PRESSED);
         lv_obj_add_flag(ui.music_buttons[i], LV_OBJ_FLAG_GESTURE_BUBBLE);
         lv_obj_add_event_cb(
             ui.music_buttons[i], music_button_event, LV_EVENT_CLICKED,
@@ -1711,6 +1845,25 @@ void set_boot_content_opacity(void *object, int32_t opacity) {
 }  // namespace
 
 extern "C" void moto_nav_ui_show_boot_screen(void) {
+    /* This entry point is also used while the full UI is live. Delete every
+       timer that retains widget pointers before reset_ui_state() and
+       lv_obj_clean() invalidate the tree. */
+    if(ui.page_dots_timer != nullptr) {
+        lv_timer_delete(ui.page_dots_timer);
+        ui.page_dots_timer = nullptr;
+    }
+    if(ui.nav_route_motion_timer != nullptr) {
+        lv_timer_delete(ui.nav_route_motion_timer);
+        ui.nav_route_motion_timer = nullptr;
+    }
+    if(ui.nav_lifecycle_timer != nullptr) {
+        lv_timer_delete(ui.nav_lifecycle_timer);
+        ui.nav_lifecycle_timer = nullptr;
+    }
+    if(ui.nav_success_timer != nullptr) {
+        lv_timer_delete(ui.nav_success_timer);
+        ui.nav_success_timer = nullptr;
+    }
     reset_ui_state();
     ui.screen = lv_screen_active();
     lv_obj_clean(ui.screen);

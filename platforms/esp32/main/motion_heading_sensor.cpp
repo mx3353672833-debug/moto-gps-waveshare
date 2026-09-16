@@ -1,4 +1,5 @@
 #include "motion_heading_sensor.h"
+#include "motion_heading_axis.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -60,27 +61,13 @@ bool update_gravity(GravityEstimate& gravity, const qmi8658_data_t& sample,
 }
 
 // Project angular velocity onto the board's gravity axis so a moderately
-// tilted handlebar mount still responds to a turn around vertical. Normalize
-// the axis toward the display face, then negate it because compass heading
-// increases clockwise while gyroscope right-hand rotation increases CCW.
+// tilted or forward-facing mount still responds to a turn around vertical.
 float clockwise_heading_rate(const GravityEstimate& gravity,
                              const qmi8658_data_t& sample) {
-  float gx = gravity.x;
-  float gy = gravity.y;
-  float gz = gravity.z;
-  const float length = magnitude(gx, gy, gz);
-  if (!gravity.initialized || length < 0.01F) {
-    return -sample.gyroZ;
-  }
-  gx /= length;
-  gy /= length;
-  gz /= length;
-  if (gz < 0.0F) {
-    gx = -gx;
-    gy = -gy;
-    gz = -gz;
-  }
-  return -(sample.gyroX * gx + sample.gyroY * gy + sample.gyroZ * gz);
+  if (!gravity.initialized) return 0.0F;
+  return clockwise_gravity_heading_rate(
+      gravity.x, gravity.y, gravity.z,
+      sample.gyroX, sample.gyroY, sample.gyroZ);
 }
 }  // namespace
 
@@ -132,6 +119,7 @@ void MotionHeadingSensor::run() {
   int stable_samples = 0;
   const std::uint64_t calibration_start = monotonic_ms();
   qmi8658_data_t data{};
+  TickType_t next_sample_tick = xTaskGetTickCount();
   while (stable_samples < kCalibrationSamples &&
          monotonic_ms() - calibration_start < kCalibrationDeadlineMs) {
     bool ready = false;
@@ -148,7 +136,7 @@ void MotionHeadingSensor::run() {
         stable_samples = 0;
       }
     }
-    vTaskDelay(kSampleDelay);
+    xTaskDelayUntil(&next_sample_tick, kSampleDelay);
   }
 
   float bias_dps = stable_samples > 0 ? bias_sum / stable_samples : 0.0F;
@@ -157,6 +145,7 @@ void MotionHeadingSensor::run() {
            static_cast<double>(bias_dps), stable_samples);
 
   int consecutive_failures = 0;
+  next_sample_tick = xTaskGetTickCount();
   while (true) {
     bool ready = false;
     esp_err_t result = qmi8658_is_data_ready(&device, &ready);
@@ -181,6 +170,6 @@ void MotionHeadingSensor::run() {
       ESP_LOGW(kTag, "QMI8658 read errors continue: %s",
                esp_err_to_name(result));
     }
-    vTaskDelay(kSampleDelay);
+    xTaskDelayUntil(&next_sample_tick, kSampleDelay);
   }
 }

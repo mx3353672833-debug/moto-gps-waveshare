@@ -1,0 +1,14 @@
+{
+  "source_url": "https://build.protomaps.com/20260915.pmtiles",
+  "schema_version": "4.15.2",
+  "osm_snapshot": "2026-09-15T04:00:00Z",
+  "retrieved_date": "2026-09-16",
+  "licence": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors; Protomaps",
+  "attribution_url": "https://www.openstreetmap.org/copyright",
+  "description": "Two decompressed MVT samples obtained by PMTiles byte-range requests; fixtures retain source geometries for deterministic conversion tests.",
+  "tiles": [
+    { "file": "protomaps-jinan-15-27044-12791.mvt", "z": 15, "x": 27044, "y": 12791, "bytes": 26273 },
+    { "file": "protomaps-shanghai-15-27440-13389.mvt", "z": 15, "x": 27440, "y": 13389, "bytes": 60974 }
+  ]
+}

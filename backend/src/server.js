@@ -2,6 +2,8 @@ import { readFile } from "node:fs/promises";
 
 import { createAmapProvider } from "./amap-provider.js";
 import { createAmapPlacesProvider } from "./amap-places.js";
+import { createAmapCitiesProvider } from "./amap-cities.js";
+import { createMapTileProvider } from "./map-tiles.js";
 import { transformAmapRouteOptionsV2, transformAmapRouteV2 } from "./amap-transformer.js";
 import { createGateway } from "./gateway.js";
 
@@ -56,6 +58,7 @@ async function main() {
     provider = {
       ...createAmapProvider({ key }),
       ...createAmapPlacesProvider({ key }),
+      ...createAmapCitiesProvider({ key }),
     };
   } else if (providerMode === "fixture") {
     provider = await createFixtureProvider();
@@ -66,13 +69,20 @@ async function main() {
   }
   const port = Number(process.env.PORT ?? 8787);
   const allowedOrigin = process.env.WEB_ORIGIN ?? "http://localhost:5173";
-  const server = createGateway({ provider, allowedOrigin, providerMode });
+  const mapProvider = createMapTileProvider({
+    url: process.env.MOTO_MAP_PMTILES_URL ?? (providerMode === "amap" ? "auto" : "disabled"),
+    cacheDirectory: process.env.MOTO_MAP_CACHE_DIR,
+    maximumCacheBytes: process.env.MOTO_MAP_CACHE_MAX_BYTES === undefined
+      ? undefined : Number(process.env.MOTO_MAP_CACHE_MAX_BYTES),
+  });
+  await mapProvider?.initialize();
+  const server = createGateway({ provider, mapProvider, allowedOrigin, providerMode });
 
   server.listen(port, "127.0.0.1", () => {
     console.log(`MOTO GPS gateway listening on http://127.0.0.1:${port} (${providerMode})`);
   });
 
-  const close = () => server.close();
+  const close = () => { mapProvider?.close(); server.close(); };
   process.once("SIGINT", close);
   process.once("SIGTERM", close);
 }

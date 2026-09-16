@@ -16,6 +16,10 @@ final class SharedNavigationRuntime {
     private var activeRoute: ActiveRoute?
     private var destinationPOIID: String?
 
+    /// The accepted route may change after a reroute. Offline downloads must
+    /// follow this geometry instead of the original route-preview candidate.
+    var activeRoutePolyline: [GCJ02Point] { activeRoute?.plan.polyline ?? [] }
+
     private struct ActiveRoute {
         let plan: RoutePlan
         let origin: WGS84Point
@@ -99,7 +103,7 @@ final class SharedNavigationRuntime {
             latitude: fix.coordinate.latitudeDeg,
             accuracyM: fix.horizontalAccuracyM,
             speedMPS: fix.speedMps ?? 0,
-            headingDeg: fix.courseDeg ?? 0,
+            headingDeg: fix.courseDeg ?? .nan,
             timestampMs: UInt64(max(0, fix.timestamp.timeIntervalSince1970 * 1_000))
         )
         publish(commands)

@@ -3,6 +3,8 @@ import MotoNavigationCore
 import SwiftUI
 
 struct RouteOverviewMap: UIViewRepresentable {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     let candidates: [RoutePreviewCandidate]
     let selectedID: String?
     let origin: WGS84Point?
@@ -15,7 +17,12 @@ struct RouteOverviewMap: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView(frame: .zero)
         mapView.delegate = context.coordinator
-        mapView.overrideUserInterfaceStyle = .dark
+        mapView.registerForTraitChanges([
+            UITraitUserInterfaceStyle.self,
+            UITraitAccessibilityContrast.self
+        ]) { [weak coordinator = context.coordinator] (mapView: MKMapView, _: UITraitCollection) in
+            coordinator?.refreshRouteAppearance(on: mapView)
+        }
         mapView.mapType = .mutedStandard
         mapView.pointOfInterestFilter = .excludingAll
         mapView.showsCompass = false
@@ -94,7 +101,7 @@ struct RouteOverviewMap: UIViewRepresentable {
         mapView.setVisibleMapRect(
             visibleRect,
             edgePadding: UIEdgeInsets(top: 38, left: 30, bottom: 42, right: 30),
-            animated: context.coordinator.hasPresentedRoute
+            animated: context.coordinator.hasPresentedRoute && !reduceMotion
         )
         context.coordinator.hasPresentedRoute = true
     }
@@ -109,14 +116,33 @@ struct RouteOverviewMap: UIViewRepresentable {
                 return MKOverlayRenderer(overlay: overlay)
             }
             let renderer = MKPolylineRenderer(polyline: polyline)
+            configure(renderer, for: polyline, traits: mapView.traitCollection)
+            return renderer
+        }
+
+        func refreshRouteAppearance(on mapView: MKMapView) {
+            // Overlay renderers draw resolved colors. Refresh their strokes when
+            // appearance changes even if the route IDs have stayed the same.
+            for overlay in mapView.overlays {
+                guard let polyline = overlay as? MKPolyline,
+                      let renderer = mapView.renderer(for: overlay) as? MKPolylineRenderer
+                else { continue }
+                configure(renderer, for: polyline, traits: mapView.traitCollection)
+                renderer.setNeedsDisplay()
+            }
+        }
+
+        private func configure(
+            _ renderer: MKPolylineRenderer,
+            for polyline: MKPolyline,
+            traits: UITraitCollection
+        ) {
             let isSelected = polyline.title == selectedID
-            renderer.strokeColor = isSelected
-                ? UIColor(red: 0.239, green: 0.731, blue: 0.973, alpha: 1)
-                : UIColor.white.withAlphaComponent(0.34)
-            renderer.lineWidth = isSelected ? 7 : 4
+            let color: UIColor = isSelected ? .systemBlue : .systemGray
+            renderer.strokeColor = color.resolvedColor(with: traits)
+            renderer.lineWidth = isSelected ? 7 : 5
             renderer.lineCap = .round
             renderer.lineJoin = .round
-            return renderer
         }
 
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -126,10 +152,10 @@ struct RouteOverviewMap: UIViewRepresentable {
                 ?? MKMarkerAnnotationView(annotation: point, reuseIdentifier: identifier)
             view.annotation = point
             let isStart = point.subtitle == "moto-start"
-            view.markerTintColor = isStart
-                ? UIColor(red: 0.337, green: 0.875, blue: 0.596, alpha: 1)
-                : UIColor(red: 0.969, green: 0.699, blue: 0.259, alpha: 1)
+            view.markerTintColor = isStart ? .systemBlue : .systemRed
             view.glyphImage = UIImage(systemName: isStart ? "location.fill" : "flag.fill")
+            view.glyphTintColor = .white
+            view.subtitleVisibility = .hidden
             view.displayPriority = .required
             return view
         }

@@ -45,6 +45,14 @@ test("exposes live readiness and provider-neutral place search", async (t) => {
   )).json();
   assert.equal(health.ready_for_live_navigation, true);
   assert.equal(health.provider, "amap");
+  assert.deepEqual(health.capabilities, {
+    route_planning: true,
+    route_traffic: true,
+    road_speed_limits: false,
+    traffic_light_countdown: false,
+    surrounding_map: false,
+    map_city_search: false,
+  });
   assert.equal(places.query, "北京站");
   assert.deepEqual(receivedPlaceQuery.origin, {
     coordinate_system: "WGS84",

@@ -91,3 +91,63 @@ test("rejects unsuccessful or geometry-free provider responses", () => {
     (error) => error instanceof AmapTransformError && error.code === "INVALID_POLYLINE",
   );
 });
+
+test("recovers a missing step polyline from complete TMC geometry", async () => {
+  const payload = await fixture();
+  const step = payload.route.paths[0].steps[0];
+  delete step.polyline;
+
+  const route = transformAmapRouteV2(payload);
+
+  assert.equal(route.polyline.length, 8);
+  assert.deepEqual(route.polyline[0], { longitude_deg: 116.403632, latitude_deg: 39.910125 });
+  assert.deepEqual(route.polyline.at(-1), { longitude_deg: 116.41713, latitude_deg: 39.921553 });
+  assert.equal(route.maneuvers.at(-1).route_offset_m, 2150);
+});
+
+test("uses the complete path when only a prefix of step geometry survives", async () => {
+  const payload = await fixture();
+  const path = payload.route.paths[0];
+  const expected = transformAmapRouteV2(payload).polyline;
+  path.polyline = expected.map((point) => `${point.longitude_deg},${point.latitude_deg}`).join(";");
+  delete path.steps[1].polyline;
+  delete path.steps[2].polyline;
+
+  assert.deepEqual(transformAmapRouteV2(payload).polyline, expected);
+});
+
+test("rejects a missing middle or final road instead of displaying a partial route", async () => {
+  for (const index of [1, 2]) {
+    const payload = await fixture();
+    delete payload.route.paths[0].steps[index].polyline;
+    assert.throws(
+      () => transformAmapRouteV2(payload),
+      (error) => error instanceof AmapTransformError &&
+        error.code === "INVALID_POLYLINE" && error.retryable,
+    );
+  }
+});
+
+test("does not treat partial TMC coverage as complete step geometry", async () => {
+  const payload = await fixture();
+  const step = payload.route.paths[0].steps[0];
+  delete step.polyline;
+  step.tmcs.pop();
+
+  assert.throws(
+    () => transformAmapRouteV2(payload),
+    (error) => error instanceof AmapTransformError && error.code === "INVALID_POLYLINE",
+  );
+});
+
+test("does not reinterpret traffic counts or average speeds as live driving guidance", async () => {
+  const payload = await fixture();
+  const path = payload.route.paths[0];
+  path.cost.traffic_lights = "12";
+  path.steps[0].tmcs[0].speed = "37";
+
+  const route = transformAmapRouteV2(payload);
+
+  assert.equal(route.speed_limit_kph, undefined);
+  assert.equal(route.traffic_light_countdown_s, undefined);
+});

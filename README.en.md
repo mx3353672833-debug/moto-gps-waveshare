@@ -4,6 +4,8 @@
 
 # MOTO GPS · Waveshare Edition
 
+[Project website](https://maler.top/moto-gps/) · [2026-09-16 update](docs/UPDATES_2026-09-16.en.md) · [Web debugging entry](https://maler.top/moto-gps/ride.html)
+
 ![MOTO GPS round-display motorcycle navigation terminal](assets/brand/moto-gps-cover.png)
 
 **Want to build the Waveshare edition yourself? Start with the [buying, firmware flashing and iPhone installation guide](docs/WAVESHARE_DIY_GUIDE.en.md).**
@@ -12,6 +14,7 @@
 
 The source is provided for you to compile and install yourself; there is no prebuilt firmware or
 App Store / TestFlight download published from this repository yet.
+**iOS 0.3.0 (5) includes release preparation changes and is not yet distributed through TestFlight.**
 The guide covers device selection, factory backup, Xcode personal signing, pairing, the demo and
 frequently asked questions.
 
@@ -29,6 +32,7 @@ material and the complete technical proposal.
 The version running today is still the Waveshare production board plus an iPhone; the in-house part
 is archived as historical engineering candidates, and the versions are listed at the entry points
 below.
+Work on the B1 phone companion board and V3 enclosure is paused; the current focus is improving the Waveshare edition.
 The first image is a product rendering; for physical and manufacturing dimensions rely on the
 engineering files of the matching version.
 
@@ -71,10 +75,10 @@ prototyping has resumed or production acceptance has been completed.
 
 | Module | What it does |
 | --- | --- |
-| Round-display navigation | White route line, next-manoeuvre icon and distance; a speed-limit sign appears when trustworthy speed-limit data is available |
-| iPhone | Location-biased search, search history, route preview and candidate selection |
+| Round-display navigation | White route line, next-manoeuvre icon and distance; live road speed limits and traffic-light countdown are not connected |
+| iPhone | Native navigation bars and grouped lists, light/dark appearance and large text, location-biased search, history, route preview and selection |
 | Navigation logic | Shared C++ core: route progress, off-route detection, online rerouting and periodic route / traffic refresh |
-| Grey roads / buildings | OSM Jinan offline vector database bundled in the iPhone app, clipped around the current position and sent to the round display |
+| Grey roads / buildings | Surrounding OSM / Protomaps maps load online by default; city, district and route-corridor downloads, with the bundled Jinan map retained as a fallback |
 | Speedometer / heading | Phone positioning provides speed and direction of travel; the on-board QMI8658 assists with relative turning |
 | Music | Apple Music previous track, play/pause, next track |
 | Animation / touch | Black-and-white logo fade in and out, connection-state transitions, swipe page changes, auto-hiding page dots, long-press PWR to power off |
@@ -95,7 +99,7 @@ screen. In the 466×466 round display area, every element has a definite meaning
 | Grey building blocks | Building outlines recorded in OSM, as a reference for blocks and campuses |
 | Manoeuvre icon at the lower left | The action at the next junction: straight on, turn left, turn right, U-turn and so on |
 | Large distance next to the action | How far it is to that action, switching between `m` / `km` by distance |
-| Speed-limit sign | Shows the corresponding speed value when the route data provides a trustworthy speed limit |
+| Speed-limit sign | Display support exists, but live road speed limits are not connected; hidden when data is missing |
 | Arc at the bottom | Route completion progress, its colour changing with the current traffic state |
 
 For example, a right-turn arrow and `300 m` on screen mean that you turn right after about 300
@@ -115,6 +119,7 @@ The iPhone app uses AMap place search and the standard driving route service. Se
 phone's current position and prefer nearby, more relevant places. In Jinan you can start a search
 with a keyword such as "Olympic Sports Center", and you can also enter a place elsewhere together
 with its city name.
+These are standard driving routes and do not guarantee avoidance of motorcycle-restricted roads.
 
 Search and route selection work like this:
 
@@ -152,6 +157,8 @@ the conditions are met the app replans and syncs the guidance to the round displ
 route arrives. Traffic conditions refresh on a periodic request; the core defaults to roughly one
 update every 60 seconds, and the actual request cadence also depends on network conditions, retries
 and service quota.
+The route is still drawn in white; per-segment colouring and the display of unknown or stale traffic data remain in progress.
+Traffic-light countdown and trustworthy current-road speed-limit data are not connected.
 
 Positioning quality, request IDs and route versions all take part in state updates. The phone keeps
 the current navigation state, and after the round display reconnects and completes the protocol
@@ -159,10 +166,21 @@ handshake the app tries to resend the latest route and display data.
 Progress on verifying background connections and cross-city routes is collected under
 [Development status](#development-status).
 
-### Jinan offline roads and buildings
+### Online surrounding maps and offline downloads
 
-The background mini-map uses OpenStreetMap vector data. The project bundles a SQLite map database
-clipped to the Jinan municipal boundary, holding road polylines and building outlines.
+The background mini-map uses OpenStreetMap / Protomaps roads and buildings. With a working gateway
+configured, navigation loads surrounding maps online by default and saves visited areas; local data
+is reused when the network is unavailable. Maps are no longer limited to the bundled Jinan data,
+but download availability and local road/building coverage depend on the source and the network.
+
+Open "地图与离线下载" (Maps and Offline Downloads) on the iPhone home screen:
+
+- "下载城市地图" (Download City Map) searches cities or districts and previews the area before downloading; start with a district for large areas.
+- After selecting a route, "下载这条路线周边" (Download This Route's Surroundings) saves a corridor of approximately one kilometre around it.
+- Downloads can be paused, resumed and removed; automatic cache is limited to 128 MB and manual downloads to 512 MB, with shared tiles stored once.
+- Offline background maps do not include live traffic; place search, new route planning and online rerouting still need a network connection.
+
+The original Jinan SQLite database remains bundled with the app as a local fallback within its coverage:
 
 | Currently bundled data set | Count |
 | --- | ---: |
@@ -172,10 +190,9 @@ clipped to the Jinan municipal boundary, holding road polylines and building out
 | Building outlines | 26,702 |
 | Building vertices | 148,140 |
 
-The map database is installed on the iPhone with the app. During navigation the phone uses SQLite
-R-tree queries to find features within roughly 500–800 metres around the vehicle, filters them by
-distance, road class and display capacity, and then sends them to the round display over BLE.
-The query window rolls with the position as the vehicle moves.
+During navigation the phone selects roads and buildings within roughly 500 metres of its position
+from online tiles, saved maps or the available Jinan fallback, then sends them to the display over
+BLE. The query window moves with the position; the display does not store the complete city map.
 
 A single display window currently holds at most 24 background roads with 192 road points, and 16
 buildings with 128 building points.
@@ -183,12 +200,13 @@ This division of labour lets the phone keep the complete area data while the rou
 current view. Map density depends on local OSM coverage, the feature-filtering strategy and window
 capacity; areas with more complete building coverage show richer block detail.
 
-Route planning and traffic conditions come from the online AMap service, while the grey context
-layer comes from the local OSM database.
-The background data currently covers Jinan; extending it to other cities can reuse the repository's
-extraction, generation and validation tools.
-For the data format, the generation commands and the attribution requirements see the
-[offline map notes](shared/offline_map/README.en.md).
+Route planning and traffic come from online AMap services, the display's grey context layer comes
+from OSM / Protomaps, and Apple Maps supplies the phone's whole-route preview background. These
+are separate data layers; downloading a background map does not provide offline navigation.
+Long-term deployments need stable data sources with appropriate usage permission, retaining OSM
+attribution and licence links. See the [recent update](docs/UPDATES_2026-09-16.en.md) for the new
+flow and the [offline map notes](shared/offline_map/README.en.md) for the original database format
+and rebuild tools.
 
 ### Speedometer and heading pages
 
@@ -202,8 +220,8 @@ provides short-term angular rate to compensate the displayed changes while turni
 
 With the phone in a bag, the direction of travel comes from `CLLocation.course` produced by
 movement; the relative rotation on the round display comes from the device's own gyroscope. At low
-speed or at rest the relative rotation is used as the reference, and the positioning heading
-gradually corrects it once you are moving again. An absolute north reference at rest is part of a
+speed or at rest, unreliable heading changes are frozen and residual speed is suppressed; the
+positioning heading gradually corrects it once you are moving again. An absolute north reference at rest is part of a
 later magnetometer extension.
 
 ### Apple Music control
@@ -345,6 +363,7 @@ The AMap key is held in a server-side environment variable.
 Run the backend's automated tests first, then create your own configuration file:
 
 ```sh
+npm ci --prefix backend
 npm --prefix backend test
 cp backend/.env.example backend/.env
 ```
@@ -357,6 +376,9 @@ Edit `backend/.env`:
 | `AMAP_WEB_SERVICE_KEY` | The AMap Web Service key you applied for yourself |
 | `PORT` | Port the backend listens on, `8787` by default |
 | `WEB_ORIGIN` | The web page's actual origin when you use the web tool |
+| `MOTO_MAP_PMTILES_URL` | `auto` selects a compatible Protomaps build; alternatively set your own HTTPS PMTiles URL, or `disabled` to turn online maps off |
+| `MOTO_MAP_CACHE_DIR` | Map cache directory, `.cache/map-tiles` by default |
+| `MOTO_MAP_CACHE_MAX_BYTES` | Server cache size limit in bytes, `1073741824` by default |
 
 Start it with Node.js 24+, loading the configuration explicitly:
 
@@ -444,19 +466,22 @@ layout during development.
 
 The [web debugging tool](platforms/web/shell/README.en.md) is available for viewing and debugging
 the UI; keep the page in the foreground with the screen on while using it.
+The hosted debugging entry is [/moto-gps/ride.html](https://maler.top/moto-gps/ride.html);
+[/moto-gps/](https://maler.top/moto-gps/) is the project website. Its source and deployment notes are in [website](website/README.md).
 Background positioning and the BLE connection on the phone are handled by the iOS app, and the
 current verification progress is in [Known issues](docs/KNOWN_ISSUES.en.md).
 
 ## How it works
 
-The iPhone holds the position, the complete route and the map database, while the ESP32 receives
+The iPhone holds the position, complete route, map downloads and cache, while the ESP32 receives
 display state, handles local motion input, draws the round display and returns touch commands. The
-backend handles AMap service calls and data format conversion.
+backend handles AMap service calls, Protomaps reads, format conversion and caching.
 
 ```text
-AMap Web Service ←→ HTTPS route gateway ←→ iPhone app
+AMap Web Service ────┐
+OSM / Protomaps ─────┴→ HTTPS gateway and cache ←→ iPhone app
                                        │
-            Core Location + shared navigation core + Jinan map queries
+            Core Location + shared navigation core + online / offline maps
                                        │ BLE
                                        ▼
                ESP32 receives state + QMI8658 relative turning
@@ -493,12 +518,13 @@ Navigation snapshots from the phone to the round display are scheduled at up to 
 terminal interpolates position and turning animation further.
 Pairing uses an encrypted BLE connection with bonding; connection recovery is still under continuous
 testing.
+Heartbeats send only the elapsed time of the current app session, not the phone's system uptime.
 GATT UUIDs, byte formats and golden fixtures are in the
 [BLE protocol](shared/protocol/ble-navigation-v1.en.md).
 
 ### Display and smoothness
 
-The firmware uses two 466×32 RGB565 PSRAM draw buffers, so that LVGL drawing and QSPI transfer
+The firmware uses PSRAM draw buffers and direct DMA, so that LVGL drawing and QSPI transfer
 follow on from each other.
 The CO5300's TE signal is used to synchronise the start of frames, and the map, interpolation and
 rendering tasks are coordinated on a 25 ms target tick.
@@ -508,11 +534,12 @@ measurement and observation on real hardware.
 ## Source layout
 
 ```text
-platforms/ios      iPhone positioning, route preview, BLE, Apple Music, offline scene queries
-backend            Node.js AMap Web Service gateway (the key lives only here)
+platforms/ios      iPhone positioning, route preview, BLE, Apple Music, online / offline maps
+backend            Node.js AMap and Protomaps gateway, cache (the key stays on the server)
 platforms/esp32    Waveshare board support, BLE, QMI8658, display and power
 shared             shared navigation core, protocol, LVGL UI, OSM demo and map data
 platforms/web      LVGL / Wasm debugging shell
+website            project website source and deployment notes
 tests              native C++ tests
 scripts            web build, font and OSM map tools
 ```
@@ -532,6 +559,7 @@ cmake -S . -B build/native -DMOTO_BUILD_WEB=OFF -DMOTO_BUILD_TESTS=ON
 cmake --build build/native --parallel 4
 ctest --test-dir build/native --output-on-failure
 
+npm ci --prefix backend
 npm --prefix backend test
 swift test --package-path platforms/ios
 
@@ -539,11 +567,13 @@ node scripts/generate_jinan_demo_fixture.mjs --check
 node scripts/offline_map/validate_jinan_sqlite.mjs
 ```
 
-The first public snapshot passed 8 native C++ test suites, 33 backend tests and 10 Swift core tests,
-as well as the demo fixture consistency and map database integrity checks. The ESP32, iOS app and
-web builds were also completed.
-For the environment and the results see the [release check record](docs/RELEASE_CHECKS.en.md), and
-the check results of later commits are on
+The 2026-09-16 round passed 9 native C++ test suites, 60 backend tests and 12 Swift core tests,
+with a recorded pass of 13 BLE policy tests. Demo fixture consistency and map database integrity
+checks also passed. These results verify code and data paths, not completed road, extended
+lock-screen or battery-life acceptance.
+See the [recent update](docs/UPDATES_2026-09-16.en.md) for this round's scope; the first public
+snapshot's historical results remain in the [release check record](docs/RELEASE_CHECKS.en.md), and
+checks after submission are on
 [GitHub Actions](https://github.com/mx3353672833-debug/moto-gps-waveshare/actions/workflows/checks.yml).
 
 ### Where to start making changes
@@ -574,11 +604,13 @@ focuses on:
   environment.
 - Cross-city candidate route generation, and agreement between the route selected on the phone and
   what the round display shows.
+- Online/offline map transitions, interrupted downloads, and per-segment traffic and stale-data display.
 - Refresh continuity during fast turns, TE synchronisation behaviour and sustained frame rate.
 - Power-off, wake, battery life and temperature rise on USB, battery and combined supply.
 
-The feature descriptions describe what the source currently implements; the real-hardware acceptance
-state and reproduction records are authoritative in [Known issues](docs/KNOWN_ISSUES.en.md).
+The feature descriptions describe what the source currently implements; see the
+[recent update](docs/UPDATES_2026-09-16.en.md) for the latest release and verification limits, and
+[Known issues](docs/KNOWN_ISSUES.en.md) for historical issues.
 When reporting a problem, include the board model, firmware version, iOS version, reproduction steps
 and redacted logs, so that positioning, gateway, protocol and display issues can be told apart.
 

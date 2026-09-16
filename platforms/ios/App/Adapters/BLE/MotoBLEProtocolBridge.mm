@@ -37,6 +37,7 @@ struct CodecStorage {
 
   std::size_t maximum_frame_size;
   moto::ble::SequenceGenerator sequence;
+  std::uint16_t last_encoded_sequence = 0;
   moto::ble::Reassembler reassembler;
 };
 
@@ -213,13 +214,15 @@ NSArray<NSData *> *EncodeMessage(CodecStorage *storage,
     if (error != nullptr) *error = ProtocolError(payload.error, payload.offset);
     return nil;
   }
+  const auto sequence = storage->sequence.next();
   auto frames = moto::ble::fragment_message(
-      moto::ble::message_type(message), storage->sequence.next(),
+      moto::ble::message_type(message), sequence,
       moto::ble::ByteView(payload.value), storage->maximum_frame_size, flags);
   if (!frames.ok()) {
     if (error != nullptr) *error = ProtocolError(frames.error, frames.offset);
     return nil;
   }
+  storage->last_encoded_sequence = sequence;
 
   NSMutableArray<NSData *> *result =
       [NSMutableArray arrayWithCapacity:frames.value.size()];
@@ -356,6 +359,14 @@ moto::ble::ConnectionStatus PhoneConnectionStatus(
 @implementation MotoBLEHeartbeat
 @end
 
+@interface MotoBLEAcknowledgement ()
+@property(nonatomic, readwrite) uint16_t acknowledgedSequence;
+@property(nonatomic, readwrite) uint8_t status;
+@end
+
+@implementation MotoBLEAcknowledgement
+@end
+
 @interface MotoBLEInboundMessage ()
 @property(nonatomic, readwrite) uint16_t sequence;
 @property(nonatomic, readwrite) BOOL ackRequested;
@@ -363,6 +374,7 @@ moto::ble::ConnectionStatus PhoneConnectionStatus(
 @property(nonatomic, readwrite) BOOL duplicate;
 @property(nonatomic, readwrite, nullable) MotoBLEConnectionStatus *connectionStatus;
 @property(nonatomic, readwrite, nullable) MotoBLEHeartbeat *heartbeat;
+@property(nonatomic, readwrite, nullable) MotoBLEAcknowledgement *acknowledgement;
 @property(nonatomic, readwrite, nullable) MotoBLEDeviceCommand *deviceCommand;
 @end
 
@@ -371,6 +383,10 @@ moto::ble::ConnectionStatus PhoneConnectionStatus(
 
 @implementation MotoBLEProtocolCodec {
   void *_storage;
+}
+
+- (uint16_t)lastEncodedSequence {
+  return static_cast<CodecStorage *>(_storage)->last_encoded_sequence;
 }
 
 + (NSString *)serviceUUIDString {
@@ -575,6 +591,14 @@ moto::ble::ConnectionStatus PhoneConnectionStatus(
     MotoBLEHeartbeat *value = [[MotoBLEHeartbeat alloc] init];
     value.sessionID = heartbeat->session_id;
     inbound.heartbeat = value;
+    return inbound;
+  }
+
+  if (const auto *ack = std::get_if<moto::ble::Ack>(&decoded.value)) {
+    MotoBLEAcknowledgement *value = [[MotoBLEAcknowledgement alloc] init];
+    value.acknowledgedSequence = ack->acknowledged_sequence;
+    value.status = static_cast<uint8_t>(ack->status);
+    inbound.acknowledgement = value;
     return inbound;
   }
 
