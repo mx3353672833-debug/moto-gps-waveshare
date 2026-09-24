@@ -5,6 +5,29 @@
     location.replace(new URL(`/moto-gps/ride.html${location.search}${location.hash}`, location.origin));
     return;
   }
+  // 滚动显现动效：AOS，尊重系统减弱动态设置
+  if (window.AOS) {
+    AOS.init({
+      duration: 700,
+      easing: "ease-out-cubic",
+      offset: 90,
+      once: true,
+      disable: () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    });
+  }
+  // GitHub Star 数：官方 API 直取，失败则只显示 Star 字样
+  const starCount = document.querySelector("[data-star-count]");
+  if (starCount) {
+    fetch("https://api.github.com/repos/mx3353672833-debug/moto-gps-waveshare", {headers: {Accept: "application/vnd.github+json"}})
+      .then(response => response.ok ? response.json() : Promise.reject(response.status))
+      .then(repo => {
+        const count = Number(repo.stargazers_count);
+        if (!Number.isFinite(count)) return;
+        starCount.textContent = count >= 1000 ? `${(count / 1000).toFixed(1)}k` : String(count);
+        starCount.hidden = false;
+      })
+      .catch(() => {});
+  }
   const input = document.querySelector("#faq-search");
   const entries = [...document.querySelectorAll(".faq-list details")];
   const count = document.querySelector("#faq-count");

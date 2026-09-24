@@ -26,3 +26,10 @@
 .github-repo{margin-top:29px;font:12px var(--data);color:#7d8a98;letter-spacing:.04em}
 @media(max-width:700px){.github-section{padding-block:65px}.github-mark{width:38px;height:38px;margin-bottom:20px}.github-section h2{font-size:29px}.github-desc{font-size:13px;margin-top:18px}.github-actions{gap:16px;margin-top:29px}.github-button{font-size:13px;padding:12px 19px}}
 @media(prefers-reduced-motion:reduce){.github-button{transition:none}.github-button:hover{transform:none}}
+
+/* Custom star button replacing the third-party iframe widget. */
+.github-star-btn{display:inline-flex;align-items:center;gap:9px;border:1px solid #46535f;color:#f4f7fa;padding:12px 20px;border-radius:999px;font-size:14px;font-weight:600;transition:border-color .2s,background .2s}
+.github-star-btn svg{color:#e8b93e}
+.github-star-btn:hover{border-color:#8fa0b3;background:#222c37}
+.github-star-count{font:12px/1.5 var(--data);background:#ffffff14;border-radius:999px;padding:3px 10px;color:#c9d4de}
+@media(max-width:700px){.github-star-btn{font-size:13px;padding:11px 17px}}
