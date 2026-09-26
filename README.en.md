@@ -476,7 +476,7 @@ layout during development.
 The [web debugging tool](platforms/web/shell/README.en.md) is available for viewing and debugging
 the UI; keep the page in the foreground with the screen on while using it.
 The hosted debugging entry is [/moto-gps/ride.html](https://maler.top/moto-gps/ride.html);
-The [Glimpse website](https://maler.top/) is at the domain root. Its source and deployment notes are in [website](website/README.en.md).
+The [Glimpse website](https://maler.top/) is at the domain root. The website itself is not open source.
 Background positioning and the BLE connection on the phone are handled by the iOS app, and the
 current verification progress is in [Known issues](docs/KNOWN_ISSUES.en.md).
 

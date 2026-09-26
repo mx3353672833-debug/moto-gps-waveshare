@@ -395,7 +395,7 @@ http://127.0.0.1:4173/platforms/web/shell/index.html?demo=1
 
 查看和调试界面可用 [Web 调试工具](platforms/web/shell/README.md)，使用时保持网页前台亮屏。
 线上调试入口是 [/moto-gps/ride.html](https://maler.top/moto-gps/ride.html)；
-[Glimpse 官网](https://maler.top/) 位于域名首页，源码和部署说明见 [website](website/README.md)。
+[Glimpse 官网](https://maler.top/) 位于域名首页，网站本身不开源。
 手机后台定位和 BLE 连接由 iOS App 负责，当前验证进度见[已知问题](docs/KNOWN_ISSUES.md)。
 
 ## 实现方式
