@@ -12,8 +12,6 @@ The resulting board is the input to the bounded general-routing pass.  Every
 item created here is locked so Specctra/Freerouting must route around it.
 """
 
-from __future__ import annotations
-
 import argparse
 from pathlib import Path
 import shutil
