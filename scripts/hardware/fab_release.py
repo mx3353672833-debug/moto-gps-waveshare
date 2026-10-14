@@ -5,8 +5,6 @@ This is deliberately stricter than ERC/DRC: an empty KiCad project can pass both
 checks, so source-level completeness checks run before KiCad is ever invoked.
 """
 
-from __future__ import annotations
-
 import argparse
 import csv
 import dataclasses
