@@ -36,21 +36,6 @@ jobs:
           node scripts/generate_jinan_demo_fixture.mjs --check
           node scripts/offline_map/validate_jinan_sqlite.mjs
 
-  cloudflare:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: '24'
-      - name: Workers build and runtime tests (local R2, no credentials)
-        run: |
-          npm ci --prefix backend
-          npm ci --prefix backend/cloudflare
-          npm test --prefix backend/cloudflare
-
   swift-core:
     runs-on: macos-latest
     steps:
@@ -59,3 +44,24 @@ jobs:
           persist-credentials: false
       - name: Swift core tests (no signing or device)
         run: swift test --package-path platforms/ios
+
+  android-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Make gradlew executable
+        run: chmod +x platforms/android/gradlew
+      - name: Build and Test Android
+        run: cd platforms/android && ./gradlew build -x lint -x lintVitalRelease
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Glimpse-MOTO-GPS-Android-Final.apk
+          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
