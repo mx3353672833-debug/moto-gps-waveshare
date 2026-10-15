@@ -61,7 +61,7 @@ jobs:
       - name: Build and Test Android
         run: cd platforms/android && ./gradlew build -x lint -x lintVitalRelease
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Glimpse-MOTO-GPS-Android-Final.apk
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
