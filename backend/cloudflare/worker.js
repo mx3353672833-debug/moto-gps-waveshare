@@ -76,7 +76,7 @@ function createApp(env) {
     },
     status: () => ({ enabled: true, mode: mapUrl === "auto" ? "auto" : "fixed", storage: "r2" }),
   };
-  const server = createGateway({ provider, mapProvider, allowedOrigin: origin, providerMode: mode });
+  const server = createGateway({ provider, mapProvider, allowedOrigin: origin, providerMode: mode, trustProxy: true });
   server.listen(8787); // Workers uses this as an internal routing key, not a TCP listener.
   return { basePath, origin, maps };
 }

@@ -108,19 +108,19 @@ function isLoopbackAddress(address) {
     address.startsWith("::ffff:127.");
 }
 
-export function clientAddress(request) {
+export function clientAddress(request, trustProxy = false) {
   const remote = request.socket?.remoteAddress;
-  if (isLoopbackAddress(remote)) {
+  if (trustProxy && isLoopbackAddress(remote)) {
     const realIp = String(request.headers["x-real-ip"] ?? "").trim();
     if (realIp !== "") return realIp;
   }
   return remote ?? "unknown";
 }
 
-export function createRateLimiter() {
+export function createRateLimiter(trustProxy = false) {
   const buckets = new Map();
   function rateLimit(request, category, maximumRequests, now = Date.now()) {
-    const key = `${category}:${clientAddress(request)}`;
+    const key = `${category}:${clientAddress(request, trustProxy)}`;
     let bucket = buckets.get(key);
     if (!bucket || now - bucket.startedAt >= RATE_WINDOW_MS) {
       bucket = { startedAt: now, count: 0 };
@@ -149,11 +149,12 @@ export function createGateway({
   allowedOrigin = "http://localhost:5173",
   maximumBodyBytes = DEFAULT_MAX_BODY_BYTES,
   providerMode = "fixture",
+  trustProxy = false,
 } = {}) {
   if (!provider || typeof provider.planRoute !== "function") {
     throw new TypeError("provider.planRoute is required");
   }
-  const rateLimit = createRateLimiter();
+  const rateLimit = createRateLimiter(trustProxy);
 
   return createServer(async (request, response) => {
     const requestUrl = new URL(request.url ?? "/", "http://gateway.local");
