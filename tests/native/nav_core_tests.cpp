@@ -446,10 +446,22 @@ void test_route_corner_capacity_reduces_horizon_without_skipping_turns() {
 
 void test_missing_heading_preserves_the_last_valid_course() {
   RunningFixture fixture;
+
+  // Note: in this codebase 'heading_deg' is used for the GPS course/heading.
+  GnssFix valid_heading = fix(kMiddle, 1'500);
+  valid_heading.heading_deg = 120.0F;
+  fixture.core.handle(GnssFixReceived{valid_heading});
+  CHECK(fixture.core.snapshot().heading_deg == 120.0F);
+
   GnssFix missing_heading = fix(kMiddle, 2'000);
   missing_heading.heading_deg = std::numeric_limits<float>::quiet_NaN();
   fixture.core.handle(GnssFixReceived{missing_heading});
-  CHECK(fixture.core.snapshot().heading_deg == 90.0F);
+  CHECK(fixture.core.snapshot().heading_deg == 120.0F);
+
+  GnssFix infinite_heading = fix(kMiddle, 2'500);
+  infinite_heading.heading_deg = std::numeric_limits<float>::infinity();
+  fixture.core.handle(GnssFixReceived{infinite_heading});
+  CHECK(fixture.core.snapshot().heading_deg == 120.0F);
 }
 
 void test_invalid_fix_channels_do_not_poison_snapshot() {
