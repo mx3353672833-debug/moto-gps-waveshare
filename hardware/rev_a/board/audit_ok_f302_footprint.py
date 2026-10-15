@@ -7,8 +7,6 @@ and mirroring as well as pad sizes.  It also records the material differences
 from the project's older XUNPU 31-pin connector footprint.
 """
 
-from __future__ import annotations
-
 import argparse
 import hashlib
 import json
