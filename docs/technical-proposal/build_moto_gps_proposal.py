@@ -3,7 +3,6 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from pathlib import Path
 import shutil
-from typing import Iterable
 
 from PIL import Image as PILImage
 from docx import Document
