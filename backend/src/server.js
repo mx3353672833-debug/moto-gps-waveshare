@@ -79,7 +79,7 @@ async function main() {
   const trustProxy = process.env.MOTO_TRUST_PROXY === "true";
   const server = createGateway({ provider, mapProvider, allowedOrigin, providerMode, trustProxy });
 
-  server.listen(port, "127.0.0.1", () => {
+  server.listen(port, "0.0.0.0", () => {
     console.log(`MOTO GPS gateway listening on http://127.0.0.1:${port} (${providerMode})`);
   });
 
