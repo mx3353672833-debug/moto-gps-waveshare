@@ -1,4 +1,4 @@
-name: Source checks
+name: Project Build
 
 on:
   push:
@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: checks-${{ github.ref }}
+  group: project-build-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -65,3 +65,31 @@ jobs:
         with:
           name: Glimpse-MOTO-GPS-Android-Final.apk
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+
+  esp32-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - name: Build ESP32 Firmware
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: v5.5.5
+          target: esp32s3
+          path: platforms/esp32
+          command: 'idf.py set-target esp32s3 && idf.py build'
+      - name: Rename output binary
+        run: |
+          if [ -f "platforms/esp32/build/moto_gps_esp32.bin" ]; then
+            sudo mv platforms/esp32/build/moto_gps_esp32.bin platforms/esp32/build/moto-gps-waveshare.bin
+          fi
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ESP32-Firmware
+          path: |
+            platforms/esp32/build/bootloader/bootloader.bin
+            platforms/esp32/build/partition_table/partition-table.bin
+            platforms/esp32/build/moto-gps-waveshare.bin
