@@ -1,0 +1,30 @@
+package com.motogps.android.jni
+
+data class MotoBLENavigationSnapshot(
+    val stateName: String,
+    val networkName: String,
+    val displayPageName: String,
+    val maneuverName: String,
+    val trafficName: String,
+    val hasDestination: Boolean,
+    val hasFix: Boolean,
+    val gnssStale: Boolean,
+    val offRoute: Boolean,
+    val routeRequestInFlight: Boolean,
+    val trafficRequestInFlight: Boolean,
+    val routeToken: Long,
+    val routeGeneration: Long,
+    val maneuverID: Long,
+    val distanceToManeuverM: Long,
+    val remainingDistanceM: Long,
+    val remainingDurationS: Long,
+    val routeProgressM: Long,
+    val totalDistanceM: Long,
+    val speedDeciKPH: Int,
+    val speedLimitKPH: Int,
+    val headingCentiDegrees: Int,
+    val accuracyDecimeters: Int,
+    val crossTrackDecimeters: Int,
+    val roundaboutExit: Int,
+    val instructionText: String
+)

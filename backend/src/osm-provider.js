@@ -1,11 +1,35 @@
-import { Buffer } from "node:buffer";
+import { createHash } from "node:crypto";
+import { wgs84ToGcj02 } from "./coordinates.js";
+
+function mapOsmManeuver(type, modifier) {
+  const t = String(type || "").toLowerCase();
+  const m = String(modifier || "").toLowerCase();
+
+  if (t === "arrive") return "arrive";
+  if (t === "depart") return "continue";
+  if (t === "roundabout" || t === "rotary") return "roundabout";
+  if (t === "exit roundabout" || t === "exit rotary" || m.includes("exit")) return "exit";
+
+  if (m.includes("uturn") || m.includes("u turn")) {
+    return m.includes("right") ? "u_turn_right" : "u_turn_left";
+  }
+  if (m.includes("sharp left")) return "sharp_left";
+  if (m.includes("sharp right")) return "sharp_right";
+  if (m.includes("slight left")) return "slight_left";
+  if (m.includes("slight right")) return "slight_right";
+  if (m.includes("left")) return "left";
+  if (m.includes("right")) return "right";
+  if (m.includes("straight") || t === "continue" || t === "new name") return "continue";
+
+  return "continue";
+}
 
 export function createOsmProvider({
   nominatimBaseUrl = "https://nominatim.openstreetmap.org",
   osrmBaseUrl = "https://router.project-osrm.org",
   userAgent = "MotoGPSGateway/1.0",
 } = {}) {
-  
+
   async function fetchJson(url, options = {}) {
     const response = await fetch(url, {
       ...options,
@@ -28,8 +52,18 @@ export function createOsmProvider({
   return {
     async searchPlaces(query) {
       const keywords = encodeURIComponent(query.keywords);
-      const url = `${nominatimBaseUrl}/search?q=${keywords}&format=json&addressdetails=1&limit=10`;
-      
+      let url = `${nominatimBaseUrl}/search?q=${keywords}&format=json&addressdetails=1&limit=10`;
+
+      if (query.origin && query.origin.longitude_deg != null && query.origin.latitude_deg != null) {
+        const lon = Number(query.origin.longitude_deg);
+        const lat = Number(query.origin.latitude_deg);
+        const minLon = Math.max(-180, lon - 0.5);
+        const maxLon = Math.min(180, lon + 0.5);
+        const minLat = Math.max(-90, lat - 0.5);
+        const maxLat = Math.min(90, lat + 0.5);
+        url += `&viewbox=${minLon},${maxLat},${maxLon},${minLat}&bounded=0`;
+      }
+
       const data = await fetchJson(url);
 
       const places = data.map((item) => ({
@@ -66,26 +100,90 @@ export function createOsmProvider({
       }
 
       const primaryRoute = data.routes[0];
-      const durationSeconds = primaryRoute.duration;
-      const distanceMeters = primaryRoute.distance;
+      const durationSeconds = Math.round(primaryRoute.duration || 0);
+      const distanceMeters = Math.round(primaryRoute.distance || 0);
 
-      const steps = [];
+      const geometry_gcj02 = (primaryRoute.geometry?.coordinates || []).map(([lon, lat]) => {
+        const gcj = wgs84ToGcj02({ longitude_deg: lon, latitude_deg: lat });
+        return {
+          longitude_deg: gcj.longitude_deg,
+          latitude_deg: gcj.latitude_deg,
+        };
+      });
+
+      const maneuvers = [];
+      let routeOffsetM = 0;
+
       if (primaryRoute.legs && primaryRoute.legs[0] && primaryRoute.legs[0].steps) {
-        for (const step of primaryRoute.legs[0].steps) {
-          steps.push({
-            instruction: step.maneuver.instruction || step.name || "Prosegui",
-            distance_meters: Math.round(step.distance),
-            duration_seconds: Math.round(step.duration),
+        const steps = primaryRoute.legs[0].steps;
+        for (let i = 0; i < steps.length; i++) {
+          const step = steps[i];
+          const stepDistanceM = Math.round(step.distance || 0);
+          routeOffsetM += stepDistanceM;
+
+          let routePointIndex = 0;
+          if (step.maneuver && Array.isArray(step.maneuver.location) && step.maneuver.location.length >= 2) {
+            const mLon = step.maneuver.location[0];
+            const mLat = step.maneuver.location[1];
+            let minDistance = Infinity;
+            for (let pIdx = 0; pIdx < geometry_gcj02.length; pIdx++) {
+              const p = geometry_gcj02[pIdx];
+              const dist = Math.hypot(p.longitude_deg - mLon, p.latitude_deg - mLat);
+              if (dist < minDistance) {
+                minDistance = dist;
+                routePointIndex = pIdx;
+              }
+            }
+          }
+
+          const type = mapOsmManeuver(step.maneuver?.type, step.maneuver?.modifier);
+          const roadName = step.name || "";
+          const instruction = step.maneuver?.instruction || step.name || "Prosegui";
+          const roundaboutExit = step.maneuver?.exit || 0;
+
+          maneuvers.push({
+            index: i + 1,
+            id: i + 1,
+            route_point_index: routePointIndex,
+            type,
+            distance_from_start_m: routeOffsetM,
+            route_offset_m: routeOffsetM,
+            step_distance_m: stepDistanceM,
+            road_name: roadName,
+            instruction,
+            roundabout_exit: roundaboutExit,
           });
         }
       }
 
+      const routeId = `osm-${createHash("sha256").update(JSON.stringify(coords)).digest("hex").slice(0, 20)}`;
+
       return {
+        protocol_version: 1,
+        schema_version: 1,
+        route_id: routeId,
+        provider: "osm",
+        coordinate_system: "GCJ-02",
+        generated_at_ms: Date.now(),
+        origin,
+        destination,
+        total_distance_m: distanceMeters,
+        estimated_duration_s: durationSeconds,
+        total_duration_s: durationSeconds,
+        polyline: geometry_gcj02,
+        geometry_gcj02,
+        maneuvers,
+        traffic: [],
+        traffic_segments: [],
         summary: {
-          total_distance_meters: Math.round(distanceMeters),
-          estimated_duration_seconds: Math.round(durationSeconds),
+          total_distance_meters: distanceMeters,
+          estimated_duration_seconds: durationSeconds,
         },
-        steps,
+        steps: maneuvers.map((m) => ({
+          instruction: m.instruction,
+          distance_meters: m.step_distance_m,
+          duration_seconds: 0,
+        })),
       };
     },
 
