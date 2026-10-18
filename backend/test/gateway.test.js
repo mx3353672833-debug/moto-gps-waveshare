@@ -51,13 +51,40 @@ test("exposes live readiness and provider-neutral place search", async (t) => {
     road_speed_limits: false,
     traffic_light_countdown: false,
     surrounding_map: false,
-    map_city_search: false,
+    map_city_search: true,
   });
   assert.equal(places.query, "北京站");
   assert.deepEqual(receivedPlaceQuery.origin, {
     coordinate_system: "WGS84",
     longitude_deg: 117.12,
     latitude_deg: 36.67,
+  });
+});
+
+test("exposes live readiness when providerMode is osm", async (t) => {
+  const provider = {
+    async planRoute() {
+      throw new Error("not used");
+    },
+  };
+  const server = createGateway({ provider, allowedOrigin: "http://localhost:5173", providerMode: "osm" });
+  await new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(0, "127.0.0.1", resolve);
+  });
+  t.after(() => new Promise((resolve) => server.close(resolve)));
+  const baseUrl = `http://127.0.0.1:${server.address().port}`;
+
+  const health = await (await fetch(`${baseUrl}/healthz`)).json();
+  assert.equal(health.ready_for_live_navigation, true);
+  assert.equal(health.provider, "osm");
+  assert.deepEqual(health.capabilities, {
+    route_planning: true,
+    route_traffic: false,
+    road_speed_limits: false,
+    traffic_light_countdown: false,
+    surrounding_map: false,
+    map_city_search: true,
   });
 });
 
