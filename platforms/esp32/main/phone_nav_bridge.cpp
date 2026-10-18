@@ -345,8 +345,8 @@ void PhoneNavBridge::on_link_state(bool active) {
       last_motion_present_ms_ = 0;
       music_page_enabled_ = false;
       media_state_ = {};
-      media_state_.source_name = "iPhone";
-      media_state_.track_title = "等待连接";
+      media_state_.source_name = "Android";
+      media_state_.track_title = "In Attesa...";
     }
   }
   const std::uint32_t flags = static_cast<std::uint32_t>(RenderNavigation) |
