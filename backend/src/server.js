@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 
+import { createOsmProvider } from "./osm-provider.js";
 import { createAmapProvider } from "./amap-provider.js";
 import { createAmapPlacesProvider } from "./amap-places.js";
 import { createAmapCitiesProvider } from "./amap-cities.js";
@@ -48,9 +49,11 @@ function createDisabledProvider() {
 }
 
 async function main() {
-  const providerMode = process.env.MOTO_PROVIDER ?? "fixture";
+  const providerMode = process.env.MOTO_PROVIDER || process.env.PROVIDER_MODE || "osm";
   let provider;
-  if (providerMode === "amap") {
+  if (providerMode === "osm") {
+    provider = createOsmProvider();
+  } else if (providerMode === "amap") {
     const key = process.env.AMAP_WEB_SERVICE_KEY;
     if (typeof key !== "string" || key.trim() === "") {
       throw new Error("AMAP_WEB_SERVICE_KEY is required when MOTO_PROVIDER=amap");

@@ -172,17 +172,17 @@ export function createGateway({
         200,
         {
           status: "ok",
-          ready_for_live_navigation: providerMode === "amap",
+          ready_for_live_navigation: providerMode === "amap" || providerMode === "osm",
           provider: providerMode,
           capabilities: {
-            route_planning: providerMode === "amap",
+            route_planning: providerMode === "amap" || providerMode === "osm",
             route_traffic: providerMode === "amap",
             // Route Planning v2 exposes neither legal road speed limits nor
             // live signal phases. API readiness must not imply those feeds.
             road_speed_limits: false,
             traffic_light_countdown: false,
             surrounding_map: typeof mapProvider?.getTile === "function",
-            map_city_search: typeof provider.searchCities === "function",
+            map_city_search: providerMode === "amap" || providerMode === "osm",
           },
           map_source: mapProvider?.status?.() ?? { enabled: false },
         },
