@@ -17,8 +17,118 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.ui.viewinterop.AndroidView
 import com.motogps.android.viewmodel.PlaceSearchResult
 import com.motogps.android.viewmodel.RouteOption
+import org.json.JSONArray
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.BoundingBox
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Polyline
+
+@Composable
+fun RouteMapView(
+    geoPoints: List<GeoPoint>,
+    modifier: Modifier = Modifier
+) {
+    AndroidView(
+        factory = { context ->
+            Configuration.getInstance().userAgentValue = context.packageName
+            MapView(context).apply {
+                setTileSource(TileSourceFactory.MAPNIK)
+                setMultiTouchControls(true)
+            }
+        },
+        update = { mapView ->
+            mapView.overlays.clear()
+            if (geoPoints.isNotEmpty()) {
+                val polyline = Polyline().apply {
+                    setPoints(geoPoints)
+                    outlinePaint.color = android.graphics.Color.BLUE
+                    outlinePaint.strokeWidth = 12f
+                }
+                mapView.overlays.add(polyline)
+
+                val boundingBox = BoundingBox.fromGeoPoints(geoPoints)
+                mapView.post {
+                    mapView.zoomToBoundingBox(boundingBox, true, 64)
+                }
+            }
+            mapView.invalidate()
+        },
+        modifier = modifier
+    )
+}
+
+fun extractGeoPoints(
+    selectedRoute: RouteOption?,
+    currentLocation: Pair<Double, Double>?,
+    destination: PlaceSearchResult?
+): List<GeoPoint> {
+    val geoPoints = mutableListOf<GeoPoint>()
+
+    if (selectedRoute != null) {
+        val rawJson = selectedRoute.rawRouteJson
+        val geomArray = rawJson.optJSONArray("geometry_gcj02")
+            ?: rawJson.optJSONArray("polyline")
+            ?: rawJson.optJSONArray("coordinates")
+
+        if (geomArray != null) {
+            for (i in 0 until geomArray.length()) {
+                val item = geomArray.optJSONObject(i)
+                if (item != null) {
+                    val lat = item.optDouble("latitude_deg", item.optDouble("latitude", item.optDouble("lat", Double.NaN)))
+                    val lon = item.optDouble("longitude_deg", item.optDouble("longitude", item.optDouble("lon", Double.NaN)))
+                    if (!lat.isNaN() && !lon.isNaN()) {
+                        geoPoints.add(GeoPoint(lat, lon))
+                    }
+                } else {
+                    val coordArr = geomArray.optJSONArray(i)
+                    if (coordArr != null && coordArr.length() >= 2) {
+                        val lon = coordArr.optDouble(0, Double.NaN)
+                        val lat = coordArr.optDouble(1, Double.NaN)
+                        if (!lat.isNaN() && !lon.isNaN()) {
+                            geoPoints.add(GeoPoint(lat, lon))
+                        }
+                    }
+                }
+            }
+        }
+
+        if (geoPoints.isEmpty()) {
+            val stepsArr = rawJson.optJSONArray("steps") ?: rawJson.optJSONArray("maneuvers")
+            if (stepsArr != null) {
+                for (i in 0 until stepsArr.length()) {
+                    val step = stepsArr.optJSONObject(i) ?: continue
+                    val stepPoly = step.opt("polyline")
+                    if (stepPoly is JSONArray) {
+                        for (j in 0 until stepPoly.length()) {
+                            val pt = stepPoly.optJSONObject(j) ?: continue
+                            val lat = pt.optDouble("latitude_deg", pt.optDouble("latitude", pt.optDouble("lat", Double.NaN)))
+                            val lon = pt.optDouble("longitude_deg", pt.optDouble("longitude", pt.optDouble("lon", Double.NaN)))
+                            if (!lat.isNaN() && !lon.isNaN()) {
+                                geoPoints.add(GeoPoint(lat, lon))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (geoPoints.isEmpty()) {
+        if (currentLocation != null && (currentLocation.first != 0.0 || currentLocation.second != 0.0)) {
+            geoPoints.add(GeoPoint(currentLocation.first, currentLocation.second))
+        }
+        if (destination != null) {
+            geoPoints.add(GeoPoint(destination.latitude, destination.longitude))
+        }
+    }
+
+    return geoPoints
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,6 +143,7 @@ fun NavigationScreen(
     routePreview: PlaceSearchResult?,
     routeOptions: List<RouteOption>,
     selectedRouteIndex: Int,
+    currentLocation: Pair<Double, Double>? = null,
     onRouteOptionSelect: (Int) -> Unit,
     onRouteSelected: (PlaceSearchResult) -> Unit,
     onStartNavigation: (PlaceSearchResult) -> Unit,
@@ -103,15 +214,17 @@ fun NavigationScreen(
     ) { padding ->
         Column(modifier = Modifier.padding(padding).fillMaxSize()) {
             if (routePreview != null) {
-                // Top Half: Map View Placeholder
-                Box(
+                val selectedRoute = routeOptions.getOrNull(selectedRouteIndex)
+                val geoPoints = remember(selectedRoute, currentLocation, routePreview) {
+                    extractGeoPoints(selectedRoute, currentLocation, routePreview)
+                }
+
+                RouteMapView(
+                    geoPoints = geoPoints,
                     modifier = Modifier
                         .weight(1f)
-                        .fillMaxWidth(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("Mappa: Vista Percorso (OSM)", style = MaterialTheme.typography.titleMedium)
-                }
+                        .fillMaxWidth()
+                )
 
                 HorizontalDivider()
 

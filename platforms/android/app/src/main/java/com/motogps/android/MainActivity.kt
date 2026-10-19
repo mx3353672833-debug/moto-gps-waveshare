@@ -85,6 +85,7 @@ class MainActivity : ComponentActivity(), LocationListener {
             val routePreview = viewModel.routePreview.collectAsState().value
             val routeOptions = viewModel.routeOptions.collectAsState().value
             val selectedRouteIndex = viewModel.selectedRouteIndex.collectAsState().value
+            val currentLocation = viewModel.currentLocation.collectAsState().value
 
             if (errorMessage != null) {
                 LaunchedEffect(errorMessage) {
@@ -111,6 +112,7 @@ class MainActivity : ComponentActivity(), LocationListener {
                     routePreview = routePreview,
                     routeOptions = routeOptions,
                     selectedRouteIndex = selectedRouteIndex,
+                    currentLocation = currentLocation,
                     onRouteOptionSelect = { index ->
                         viewModel.selectRouteOption(index)
                     },
