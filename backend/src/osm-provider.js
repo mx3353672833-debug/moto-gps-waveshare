@@ -27,28 +27,44 @@ function mapOsmManeuver(type, modifier) {
 export function createOsmProvider({
   nominatimBaseUrl = "https://nominatim.openstreetmap.org",
   photonBaseUrl = "https://photon.komoot.io",
-  osrmBaseUrl = "https://router.project-osrm.org",
+  osrmBaseUrls,
+  osrmBaseUrl,
   userAgent = "MotoGpsWaveshare/1.0 (https://github.com/thriller47/moto-gps-waveshare)",
 } = {}) {
+  const defaultOsrmEndpoints = [
+    "https://routing.openstreetmap.de/routed-car/route/v1/driving",
+    "https://router.project-osrm.org/route/v1/driving",
+    "https://routing.openstreetmap.de/routed-bike/route/v1/driving",
+  ];
 
-  async function fetchJson(url, options = {}) {
-    const response = await fetch(url, {
-      ...options,
-      headers: {
-        "User-Agent": userAgent,
-        ...(options.headers || {}),
-      },
-    });
+  const endpointsToUse = osrmBaseUrls || (osrmBaseUrl ? [osrmBaseUrl] : defaultOsrmEndpoints);
 
-    if (!response.ok) {
-      const error = new Error(`External service failed with status ${response.status}`);
-      error.code = "UPSTREAM_ERROR";
-      error.status = response.status;
-      error.retryable = true;
-      throw error;
+  async function fetchJsonWithTimeout(url, options = {}, timeoutMs = 10000) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+        headers: {
+          "User-Agent": userAgent,
+          ...(options.headers || {}),
+        },
+      });
+
+      if (!response.ok) {
+        const error = new Error(`External service failed with status ${response.status}`);
+        error.code = "UPSTREAM_ERROR";
+        error.status = response.status;
+        error.retryable = true;
+        throw error;
+      }
+
+      return await response.json();
+    } finally {
+      clearTimeout(timeoutId);
     }
-
-    return response.json();
   }
 
   return {
@@ -62,7 +78,11 @@ export function createOsmProvider({
       }
 
       const keywords = encodeURIComponent(rawKeywords);
-      let nominatimUrl = `${nominatimBaseUrl}/search?q=${keywords}&format=json&addressdetails=1&limit=10`;
+
+      // Provider 1 (Primary): Nominatim
+      let nominatimUrl = nominatimBaseUrl.endsWith("/")
+        ? `${nominatimBaseUrl}search?q=${keywords}&format=json&addressdetails=1&limit=10`
+        : `${nominatimBaseUrl}/search?q=${keywords}&format=json&addressdetails=1&limit=10`;
 
       if (query.origin && query.origin.longitude_deg != null && query.origin.latitude_deg != null) {
         const lon = Number(query.origin.longitude_deg);
@@ -75,11 +95,15 @@ export function createOsmProvider({
       }
 
       try {
-        const data = await fetchJson(nominatimUrl, {
-          headers: {
-            "Accept-Language": "it,en",
+        const data = await fetchJsonWithTimeout(
+          nominatimUrl,
+          {
+            headers: {
+              "Accept-Language": "it,en",
+            },
           },
-        });
+          10000
+        );
 
         if (Array.isArray(data)) {
           const places = data.map((item) => ({
@@ -102,20 +126,30 @@ export function createOsmProvider({
         // Fallback to Photon
       }
 
-      // Fallback: Photon Komoot
+      // Provider 2 (Fallback): Photon Komoot
       try {
-        let photonUrl = `${photonBaseUrl}/api/?q=${keywords}&limit=10&lang=it`;
+        let photonUrl = photonBaseUrl.endsWith("/")
+          ? `${photonBaseUrl}api/?q=${keywords}&limit=10&lang=it`
+          : `${photonBaseUrl}/api/?q=${keywords}&limit=10&lang=it`;
+
         if (query.origin && query.origin.longitude_deg != null && query.origin.latitude_deg != null) {
           photonUrl += `&lon=${query.origin.longitude_deg}&lat=${query.origin.latitude_deg}`;
         }
 
-        const photonData = await fetchJson(photonUrl);
+        const photonData = await fetchJsonWithTimeout(photonUrl, {}, 10000);
         if (photonData && Array.isArray(photonData.features)) {
           const places = photonData.features.map((feat, idx) => {
             const props = feat.properties || {};
             const coords = feat.geometry?.coordinates || [0, 0];
             const name = props.name || props.street || rawKeywords;
-            const addressParts = [props.name, props.street, props.housenumber, props.city, props.state, props.country].filter(Boolean);
+            const addressParts = [
+              props.name,
+              props.street,
+              props.housenumber,
+              props.city,
+              props.state,
+              props.country,
+            ].filter(Boolean);
             const address = addressParts.join(", ") || name;
 
             return {
@@ -150,14 +184,31 @@ export function createOsmProvider({
       const destination = body.destination;
 
       const coords = `${origin.longitude_deg},${origin.latitude_deg};${destination.longitude_deg},${destination.latitude_deg}`;
-      const url = `${osrmBaseUrl}/route/v1/driving/${coords}?overview=full&geometries=geojson&steps=true`;
 
-      const data = await fetchJson(url);
+      let data = null;
+      let lastError = null;
 
-      if (!data.routes || data.routes.length === 0) {
-        const error = new Error("No route found between origin and destination");
-        error.code = "ROUTE_NOT_FOUND";
-        error.retryable = false;
+      for (const baseEndpoint of endpointsToUse) {
+        const cleanEndpoint = baseEndpoint.endsWith("/") ? baseEndpoint : `${baseEndpoint}/`;
+        const url = `${cleanEndpoint}${coords}?overview=full&geometries=geojson&steps=true`;
+
+        try {
+          const resData = await fetchJsonWithTimeout(url, {}, 12000);
+          if (resData && (resData.code === "Ok" || (resData.routes && resData.routes.length > 0))) {
+            data = resData;
+            break;
+          }
+        } catch (err) {
+          lastError = err;
+        }
+      }
+
+      if (!data || !data.routes || data.routes.length === 0) {
+        const error = lastError || new Error("No route found between origin and destination");
+        if (!error.code) {
+          error.code = "ROUTE_NOT_FOUND";
+          error.retryable = false;
+        }
         throw error;
       }
 
