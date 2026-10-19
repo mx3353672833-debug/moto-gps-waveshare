@@ -58,6 +58,8 @@ class MotoBLEManager(private val context: Context) {
     private var handshakeState = HandshakeState.IDLE
     private var currentSessionId: Long = 0L
 
+    private var isScanning = false
+
     // Synchronized FIFO Write Queue for GATT Characteristic Writes
     private val writeQueue = ArrayDeque<ByteArray>()
     private var writeInProgress = false
@@ -332,14 +334,14 @@ class MotoBLEManager(private val context: Context) {
             result?.device?.let { device ->
                 mainHandler.post { onConnectionStateChange?.invoke("Connessione in corso...") }
 
-                val bluetoothManager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
-                bluetoothManager.adapter?.bluetoothLeScanner?.stopScan(this)
+                stopScan()
 
                 connectToDevice(device)
             }
         }
 
         override fun onScanFailed(errorCode: Int) {
+            isScanning = false
             mainHandler.post {
                 onConnectionStateChange?.invoke("Non connesso")
                 onConnectionError?.invoke("Errore di scansione ($errorCode)")
@@ -351,7 +353,19 @@ class MotoBLEManager(private val context: Context) {
         bluetoothGatt = device.connectGatt(context, false, gattCallback, BluetoothDevice.TRANSPORT_LE)
     }
 
+    fun stopScan() {
+        try {
+            val bluetoothManager = context.getSystemService(Context.BLUETOOTH_SERVICE) as? BluetoothManager
+            bluetoothManager?.adapter?.bluetoothLeScanner?.stopScan(scanCallback)
+        } catch (e: Exception) {
+            Log.w("MotoBLEManager", "Error stopping BLE scan: ${e.message}")
+        } finally {
+            isScanning = false
+        }
+    }
+
     fun startScan() {
+        stopScan()
         onConnectionStateChange?.invoke("Ricerca in corso...")
         val bluetoothManager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
         val adapter = bluetoothManager.adapter ?: return
@@ -365,7 +379,15 @@ class MotoBLEManager(private val context: Context) {
             .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
             .build()
 
-        scanner.startScan(listOf(filter), settings, scanCallback)
+        try {
+            isScanning = true
+            scanner.startScan(listOf(filter), settings, scanCallback)
+        } catch (e: Exception) {
+            isScanning = false
+            Log.e("MotoBLEManager", "Failed to start BLE scan: ${e.message}")
+            onConnectionStateChange?.invoke("Non connesso")
+            onConnectionError?.invoke("Impossibile avviare la scansione BLE")
+        }
     }
 
     private fun startHeartbeat() {
@@ -390,6 +412,15 @@ class MotoBLEManager(private val context: Context) {
 
     fun disconnect() {
         stopHeartbeat()
-        bluetoothGatt?.disconnect()
+        stopScan()
+        bluetoothGatt?.let { gatt ->
+            try {
+                gatt.disconnect()
+            } catch (_: Exception) {}
+            try {
+                gatt.close()
+            } catch (_: Exception) {}
+        }
+        bluetoothGatt = null
     }
 }

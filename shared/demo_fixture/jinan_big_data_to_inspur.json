@@ -2,7 +2,7 @@
   "schema_version": 1,
   "fixture_id": "osm-jinan-big-data-d-to-inspur-v2",
   "route_id": "demo-jinan-big-data-d-to-inspur-v2",
-  "display_name": "山东省大数据产业基地D栋 → 浪潮集团(总部)",
+  "display_name": "Edificio D Parco Digitale Shandong -> Centro Langchao",
   "requested_origin_wgs84": [
     36.6748039,
     117.1224488
@@ -161,67 +161,67 @@
       "id": 1,
       "type": "continue",
       "route_point_index": 0,
-      "road_name": "园区道路",
-      "instruction": "沿园区道路驶向新泺大街"
+      "road_name": "Strada Parco",
+      "instruction": "Prosegui su Strada Parco"
     },
     {
       "id": 2,
       "type": "right",
       "route_point_index": 1,
-      "road_name": "新泺大街",
-      "instruction": "右转进入新泺大街"
+      "road_name": "Via Jinan",
+      "instruction": "Svolta a destra in Via Jinan"
     },
     {
       "id": 3,
       "type": "left",
       "route_point_index": 4,
-      "road_name": "崇华路",
-      "instruction": "左转进入崇华路"
+      "road_name": "Via Chonghua",
+      "instruction": "Svolta a sinistra in Via Chonghua"
     },
     {
       "id": 4,
       "type": "right",
       "route_point_index": 12,
-      "road_name": "浪潮路",
-      "instruction": "右转进入浪潮路"
+      "road_name": "Via Langchao",
+      "instruction": "Svolta a destra in Via Langchao"
     },
     {
       "id": 5,
       "type": "arrive",
       "route_point_index": 34,
-      "road_name": "浪潮集团(总部)",
-      "instruction": "到达浪潮集团(总部)附近"
+      "road_name": "Centro Langchao",
+      "instruction": "Arrivo a destinazione"
     }
   ],
   "route_source_ways": [
     {
       "osm_way_id": 1296826090,
-      "name": "大数据产业基地园区道路"
+      "name": "Strada Parco Digitale"
     },
     {
       "osm_way_id": 1222956187,
-      "name": "新泺大街"
+      "name": "Via Jinan"
     },
     {
       "osm_way_id": 562686625,
-      "name": "新泺大街连接段"
+      "name": "Raccordo Via Jinan"
     },
     {
       "osm_way_id": 562686626,
-      "name": "崇华路"
+      "name": "Via Chonghua"
     },
     {
       "osm_way_id": 790389631,
-      "name": "浪潮路北段"
+      "name": "Via Langchao Nord"
     },
     {
       "osm_way_id": 136622031,
-      "name": "浪潮路南段"
+      "name": "Via Langchao Sud"
     }
   ],
   "road_context": [
     {
-      "name": "大数据产业基地园区道路",
+      "name": "Strada Parco Digitale",
       "osm_way_id": 1296826090,
       "osm_way_version": 1,
       "osm_way_timestamp": "2024-06-28T09:13:35Z",
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "name": "新泺大街北侧车道",
+      "name": "Via Jinan Nord",
       "osm_way_id": 1222956211,
       "osm_way_version": 2,
       "osm_way_timestamp": "2025-01-01T03:25:32Z",
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "name": "新泺大街西段双向车道",
+      "name": "Via Jinan Ovest",
       "osm_way_id": 136622039,
       "osm_way_version": 13,
       "osm_way_timestamp": "2021-08-17T12:18:00Z",
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "name": "舜华西路",
+      "name": "Via Shunhua Ovest",
       "osm_way_id": 562686627,
       "osm_way_version": 10,
       "osm_way_timestamp": "2024-04-07T10:17:02Z",
@@ -369,7 +369,7 @@
       ]
     },
     {
-      "name": "北段园区道路（OSM未命名）",
+      "name": "Strada Parco Nord",
       "osm_way_id": 261478935,
       "osm_way_version": 4,
       "osm_way_timestamp": "2025-01-01T03:25:32Z",
@@ -472,7 +472,7 @@
       ]
     },
     {
-      "name": "银荷大厦停车场",
+      "name": "Parcheggio Yinhe",
       "osm_way_id": 261478934,
       "osm_way_version": 3,
       "osm_way_timestamp": "2025-01-01T03:25:32Z",
@@ -531,7 +531,7 @@
       ]
     },
     {
-      "name": "D栋西北侧园区道路（OSM未命名）",
+      "name": "Strada Edificio D",
       "osm_way_id": 1339796791,
       "osm_way_version": 1,
       "osm_way_timestamp": "2024-12-03T10:11:34Z",
@@ -558,7 +558,7 @@
       ]
     },
     {
-      "name": "西侧居住区道路（OSM未命名）",
+      "name": "Strada Residenziale Ovest",
       "osm_way_id": 188224840,
       "osm_way_version": 13,
       "osm_way_timestamp": "2022-11-19T15:33:58Z",
@@ -605,7 +605,7 @@
       ]
     },
     {
-      "name": "西侧园区环路（OSM未命名）",
+      "name": "Circonvallazione Ovest",
       "osm_way_id": 910664044,
       "osm_way_version": 7,
       "osm_way_timestamp": "2024-12-03T22:34:33Z",
@@ -668,7 +668,7 @@
       ]
     },
     {
-      "name": "北中段园区支路（OSM未命名）",
+      "name": "Strada Secondaria Nord",
       "osm_way_id": 910896680,
       "osm_way_version": 2,
       "osm_way_timestamp": "2021-02-25T19:04:51Z",
@@ -703,7 +703,7 @@
       ]
     },
     {
-      "name": "东侧园区道路（OSM未命名）",
+      "name": "Strada Parco Est",
       "osm_way_id": 915085979,
       "osm_way_version": 1,
       "osm_way_timestamp": "2021-03-09T15:33:14Z",
@@ -746,7 +746,7 @@
       ]
     },
     {
-      "name": "中段园区环路（OSM未命名）",
+      "name": "Circonvallazione Centro",
       "osm_way_id": 914735347,
       "osm_way_version": 7,
       "osm_way_timestamp": "2024-06-19T05:33:48Z",
@@ -825,7 +825,7 @@
       ]
     },
     {
-      "name": "中段东侧支路（OSM未命名）",
+      "name": "Strada Secondaria Est",
       "osm_way_id": 914735349,
       "osm_way_version": 7,
       "osm_way_timestamp": "2024-12-31T22:21:57Z",
@@ -868,7 +868,7 @@
       ]
     },
     {
-      "name": "中段西侧园区道路（OSM未命名）",
+      "name": "Strada Parco Ovest",
       "osm_way_id": 977925493,
       "osm_way_version": 2,
       "osm_way_timestamp": "2024-12-31T22:21:57Z",
@@ -931,7 +931,7 @@
       ]
     },
     {
-      "name": "中南段东侧园区道路（OSM未命名）",
+      "name": "Strada Parco Sud-Est",
       "osm_way_id": 915078291,
       "osm_way_version": 2,
       "osm_way_timestamp": "2024-12-31T22:21:57Z",
@@ -982,7 +982,7 @@
       ]
     },
     {
-      "name": "伯乐路",
+      "name": "Via Bole",
       "osm_way_id": 790389632,
       "osm_way_version": 5,
       "osm_way_timestamp": "2026-07-14T15:25:59Z",
@@ -1029,7 +1029,7 @@
       ]
     },
     {
-      "name": "伯乐路南侧支路（OSM未命名）",
+      "name": "Via Bole Sud",
       "osm_way_id": 1270602750,
       "osm_way_version": 1,
       "osm_way_timestamp": "2024-04-07T10:27:19Z",
@@ -1068,7 +1068,7 @@
       ]
     },
     {
-      "name": "南段西侧道路（OSM未命名）",
+      "name": "Strada Sud-Ovest",
       "osm_way_id": 1270602752,
       "osm_way_version": 1,
       "osm_way_timestamp": "2024-04-07T10:27:19Z",
@@ -1103,7 +1103,7 @@
       ]
     },
     {
-      "name": "南段西侧园区环路（OSM未命名）",
+      "name": "Circonvallazione Sud-Ovest",
       "osm_way_id": 910269741,
       "osm_way_version": 6,
       "osm_way_timestamp": "2021-02-25T14:07:53Z",
@@ -1194,7 +1194,7 @@
       ]
     },
     {
-      "name": "坤顺路双向车道",
+      "name": "Via Kunshun",
       "osm_way_id": 973997336,
       "osm_way_version": 5,
       "osm_way_timestamp": "2023-01-28T09:45:50Z",
@@ -1233,7 +1233,7 @@
       ]
     },
     {
-      "name": "浪潮园区北侧道路（OSM未命名）",
+      "name": "Strada Langchao Nord",
       "osm_way_id": 1271695039,
       "osm_way_version": 1,
       "osm_way_timestamp": "2024-04-11T10:17:52Z",
@@ -1256,7 +1256,7 @@
       ]
     },
     {
-      "name": "浪潮园区北侧横向道路（OSM未命名）",
+      "name": "Traversa Langchao Nord",
       "osm_way_id": 610243118,
       "osm_way_version": 3,
       "osm_way_timestamp": "2025-07-13T03:41:40Z",
@@ -1279,7 +1279,7 @@
       ]
     },
     {
-      "name": "浪潮园区中部横向道路（OSM未命名）",
+      "name": "Traversa Langchao Centro",
       "osm_way_id": 610243120,
       "osm_way_version": 3,
       "osm_way_timestamp": "2025-07-13T03:41:40Z",
@@ -1302,7 +1302,7 @@
       ]
     },
     {
-      "name": "浪潮科技园内部道路",
+      "name": "Strada Interna Parco Langchao",
       "osm_way_id": 609637823,
       "osm_way_version": 4,
       "osm_way_timestamp": "2024-07-07T10:02:15Z",

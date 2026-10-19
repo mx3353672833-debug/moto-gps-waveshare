@@ -104,11 +104,11 @@ inline constexpr std::array<nav::Gcj02Point, 35> kRoute{{
 }};
 
 inline constexpr std::array<ManeuverFixture, 5> kManeuvers{{
-    {1, nav::ManeuverType::Continue, 0, "园区道路", "沿园区道路驶向新泺大街"},
-    {2, nav::ManeuverType::Right, 1, "新泺大街", "右转进入新泺大街"},
-    {3, nav::ManeuverType::Left, 4, "崇华路", "左转进入崇华路"},
-    {4, nav::ManeuverType::Right, 12, "浪潮路", "右转进入浪潮路"},
-    {5, nav::ManeuverType::Arrive, 34, "浪潮集团(总部)", "到达浪潮集团(总部)附近"},
+    {1, nav::ManeuverType::Continue, 0, "Strada Parco", "Prosegui su Strada Parco"},
+    {2, nav::ManeuverType::Right, 1, "Via Jinan", "Svolta a destra in Via Jinan"},
+    {3, nav::ManeuverType::Left, 4, "Via Chonghua", "Svolta a sinistra in Via Chonghua"},
+    {4, nav::ManeuverType::Right, 12, "Via Langchao", "Svolta a destra in Via Langchao"},
+    {5, nav::ManeuverType::Arrive, 34, "Centro Langchao", "Arrivo a destinazione"},
 }};
 
 inline constexpr std::array<nav::Gcj02Point, 192> kRoadPoints{{
@@ -307,30 +307,30 @@ inline constexpr std::array<nav::Gcj02Point, 192> kRoadPoints{{
 }};
 
 inline constexpr std::array<RoadSpanFixture, 24> kRoads{{
-    {0, 5, "大数据产业基地园区道路", 1296826090ULL},
-    {5, 3, "新泺大街北侧车道", 1222956211ULL},
-    {8, 5, "新泺大街西段双向车道", 136622039ULL},
-    {13, 9, "舜华西路", 562686627ULL},
-    {22, 22, "北段园区道路（OSM未命名）", 261478935ULL},
-    {44, 11, "银荷大厦停车场", 261478934ULL},
-    {55, 3, "D栋西北侧园区道路（OSM未命名）", 1339796791ULL},
-    {58, 8, "西侧居住区道路（OSM未命名）", 188224840ULL},
-    {66, 12, "西侧园区环路（OSM未命名）", 910664044ULL},
-    {78, 5, "北中段园区支路（OSM未命名）", 910896680ULL},
-    {83, 7, "东侧园区道路（OSM未命名）", 915085979ULL},
-    {90, 16, "中段园区环路（OSM未命名）", 914735347ULL},
-    {106, 7, "中段东侧支路（OSM未命名）", 914735349ULL},
-    {113, 12, "中段西侧园区道路（OSM未命名）", 977925493ULL},
-    {125, 9, "中南段东侧园区道路（OSM未命名）", 915078291ULL},
-    {134, 8, "伯乐路", 790389632ULL},
-    {142, 6, "伯乐路南侧支路（OSM未命名）", 1270602750ULL},
-    {148, 5, "南段西侧道路（OSM未命名）", 1270602752ULL},
-    {153, 19, "南段西侧园区环路（OSM未命名）", 910269741ULL},
-    {172, 6, "坤顺路双向车道", 973997336ULL},
-    {178, 2, "浪潮园区北侧道路（OSM未命名）", 1271695039ULL},
-    {180, 2, "浪潮园区北侧横向道路（OSM未命名）", 610243118ULL},
-    {182, 2, "浪潮园区中部横向道路（OSM未命名）", 610243120ULL},
-    {184, 8, "浪潮科技园内部道路", 609637823ULL},
+    {0, 5, "Strada Parco Digitale", 1296826090ULL},
+    {5, 3, "Via Jinan Nord", 1222956211ULL},
+    {8, 5, "Via Jinan Ovest", 136622039ULL},
+    {13, 9, "Via Shunhua Ovest", 562686627ULL},
+    {22, 22, "Strada Parco Nord", 261478935ULL},
+    {44, 11, "Parcheggio Yinhe", 261478934ULL},
+    {55, 3, "Strada Edificio D", 1339796791ULL},
+    {58, 8, "Strada Residenziale Ovest", 188224840ULL},
+    {66, 12, "Circonvallazione Ovest", 910664044ULL},
+    {78, 5, "Strada Secondaria Nord", 910896680ULL},
+    {83, 7, "Strada Parco Est", 915085979ULL},
+    {90, 16, "Circonvallazione Centro", 914735347ULL},
+    {106, 7, "Strada Secondaria Est", 914735349ULL},
+    {113, 12, "Strada Parco Ovest", 977925493ULL},
+    {125, 9, "Strada Parco Sud-Est", 915078291ULL},
+    {134, 8, "Via Bole", 790389632ULL},
+    {142, 6, "Via Bole Sud", 1270602750ULL},
+    {148, 5, "Strada Sud-Ovest", 1270602752ULL},
+    {153, 19, "Circonvallazione Sud-Ovest", 910269741ULL},
+    {172, 6, "Via Kunshun", 973997336ULL},
+    {178, 2, "Strada Langchao Nord", 1271695039ULL},
+    {180, 2, "Traversa Langchao Nord", 610243118ULL},
+    {182, 2, "Traversa Langchao Centro", 610243120ULL},
+    {184, 8, "Strada Interna Parco Langchao", 609637823ULL},
 }};
 
 inline constexpr std::array<std::uint64_t, 6>
