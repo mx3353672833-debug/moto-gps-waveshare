@@ -9,7 +9,7 @@
 | CMake C++ 原生测试 | 8 / 8 通过 |
 | Node 后端测试 | 33 / 33 通过；未访问真实高德服务 |
 | Swift Package 核心测试 | 10 / 10 通过 |
-| C++ / Swift 济南演示夹具一致性 | `generate_jinan_demo_fixture.mjs --check` 通过 |
+| C++ 济南演示夹具校验 | `generate_jinan_demo_fixture.mjs --check` 通过 |
 | OSM SQLite 完整性 | 通过；47,468 条道路、26,702 个建筑轮廓 |
 | ESP32 完整构建 | ESP-IDF 5.5.5 成功生成 bootloader、分区表、应用；未刷写设备 |
 | iOS App 完整构建 | Xcode 26.6，iOS Simulator，关闭签名；构建成功，未安装到手机 |

@@ -24,20 +24,10 @@ npm --prefix backend test
 
 使用 mock fetch / fixture 检查请求、响应、重试、POI、路线候选与错误边界，不需要 Key。
 
-## Swift
-
-```sh
-swift test --package-path platforms/ios
-```
-
-SPM 仅覆盖可移植 Swift 核心，不能替代完整 App 编译或设备测试。
-完整 App 模拟器构建见 `platforms/ios/README.md`。
-
 ## 地图数据
 
 ```sh
 node scripts/generate_jinan_demo_fixture.mjs --check
-node scripts/offline_map/validate_jinan_sqlite.mjs
 ```
 
 建议 Node.js 24+。只检查已随仓库提供的数据，不拉取高德响应。

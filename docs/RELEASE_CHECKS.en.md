@@ -11,7 +11,7 @@ The checks were completed inside a separate public source copy; the original pro
 | CMake C++ native tests | 8 / 8 passed |
 | Node backend tests | 33 / 33 passed; the real AMap service was not accessed |
 | Swift Package core tests | 10 / 10 passed |
-| C++ / Swift Jinan demo fixture consistency | `generate_jinan_demo_fixture.mjs --check` passed |
+| C++ Jinan demo fixture verification | `generate_jinan_demo_fixture.mjs --check` passed |
 | OSM SQLite integrity | Passed; 47,468 roads, 26,702 building outlines |
 | ESP32 full build | ESP-IDF 5.5.5 successfully generated the bootloader, partition table and application; the device was not flashed |
 | iOS app full build | Xcode 26.6, iOS Simulator, signing disabled; the build succeeded, it was not installed on a phone |

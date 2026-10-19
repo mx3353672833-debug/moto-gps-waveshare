@@ -580,10 +580,8 @@ ctest --test-dir build/native --output-on-failure
 
 npm ci --prefix backend
 npm --prefix backend test
-swift test --package-path platforms/ios
 
 node scripts/generate_jinan_demo_fixture.mjs --check
-node scripts/offline_map/validate_jinan_sqlite.mjs
 ```
 
 The 2026-09-16 round passed 9 native C++ test suites, 60 backend tests and 12 Swift core tests,

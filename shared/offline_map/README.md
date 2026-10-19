@@ -73,7 +73,6 @@ curl -L https://download.geofabrik.de/asia/china/shandong-latest.osm.pbf \
   -o tmp/offline_map_source/shandong-latest.osm.pbf
 ./scripts/offline_map/extract_jinan.sh
 node scripts/offline_map/build_jinan_sqlite.mjs
-node scripts/offline_map/validate_jinan_sqlite.mjs
 ```
 
 第一步生成边界、济南 PBF 和 GeoJSONSeq 中间文件；第二步生成 SQLite 和 manifest；

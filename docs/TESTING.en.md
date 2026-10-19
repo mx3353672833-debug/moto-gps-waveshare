@@ -26,20 +26,10 @@ npm --prefix backend test
 
 Uses mock fetch / fixtures to check requests, responses, retries, POI, route candidates and error boundaries; no key is needed.
 
-## Swift
-
-```sh
-swift test --package-path platforms/ios
-```
-
-SPM covers only the portable Swift core and cannot replace a full app build or device testing.
-For a full app simulator build see `platforms/ios/README.md`.
-
 ## Map data
 
 ```sh
 node scripts/generate_jinan_demo_fixture.mjs --check
-node scripts/offline_map/validate_jinan_sqlite.mjs
 ```
 
 Node.js 24+ is recommended. Only data already provided with the repository is checked; no AMap responses are fetched.

@@ -11,8 +11,8 @@
 路线，灰色线是周边道路；车头固定，二者使用相同的位移、航向旋转和缩放变换。
 
 唯一人工维护的数据源是 `jinan_big_data_to_inspur.json`。运行
-`node scripts/generate_jinan_demo_fixture.mjs` 会生成 C++ 与 Swift 常量；CI 可用
-`node scripts/generate_jinan_demo_fixture.mjs --check` 检查两端是否仍完全一致。
+`node scripts/generate_jinan_demo_fixture.mjs` 会生成 C++ 常量；CI 可用
+`node scripts/generate_jinan_demo_fixture.mjs --check` 检查其完整性。
 动作位置存为路线节点索引，距离和路线进度均由累计几何距离计算，并非按时间手绘。
 
 ## 白色规划路线（离线回退）
