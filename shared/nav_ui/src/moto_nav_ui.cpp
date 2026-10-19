@@ -1181,26 +1181,26 @@ void apply_lifecycle_content(LifecycleVisual visual) {
     switch(visual) {
         case LifecycleVisual::PhoneOffline:
             title = "CONNECT PHONE";
-            subtitle = "请打开手机应用";
+            subtitle = "Apri app su telefono";
             break;
         case LifecycleVisual::PhoneConnecting:
             title = "CONNECTING";
-            subtitle = "正在建立连接";
+            subtitle = "Connessione in corso";
             break;
         case LifecycleVisual::Connected:
             title = "CONNECTED";
-            subtitle = "连接成功";
+            subtitle = "Connesso";
             title_color = kGreen;
             break;
         case LifecycleVisual::Ready:
             kicker = "MOTO GPS / READY";
             title = "READY TO RIDE";
-            subtitle = "请在手机选择目的地";
+            subtitle = "Seleziona destinazione";
             break;
         case LifecycleVisual::Planning:
             kicker = "MOTO GPS / ROUTE";
             title = "BUILDING ROUTE";
-            subtitle = "正在规划路线";
+            subtitle = "Calcolo percorso";
             break;
         case LifecycleVisual::Hidden:
             break;
@@ -1666,7 +1666,7 @@ void create_navigation_page() {
     lv_obj_align(ui.nav_lifecycle_title, LV_ALIGN_TOP_MID, 0, px(231));
 
     ui.nav_lifecycle_subtitle = make_label(
-        ui.nav_lifecycle, &moto_font_nav_16, kSoft, "请打开手机应用");
+        ui.nav_lifecycle, &moto_font_nav_16, kSoft, "Apri app su telefono");
     lv_obj_set_width(ui.nav_lifecycle_subtitle, px(280));
     lv_obj_set_style_text_align(ui.nav_lifecycle_subtitle,
                                 LV_TEXT_ALIGN_CENTER, 0);
