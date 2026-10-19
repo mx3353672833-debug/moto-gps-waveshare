@@ -64,7 +64,11 @@ function safeError(error) {
 }
 
 function validatePlaceQuery(requestUrl) {
-  const keywords = String(requestUrl.searchParams.get("keywords") ?? "").trim();
+  const keywords = String(
+    requestUrl.searchParams.get("keywords") ??
+    requestUrl.searchParams.get("query") ??
+    requestUrl.searchParams.get("q") ?? ""
+  ).trim();
   const region = String(requestUrl.searchParams.get("region") ?? "").trim();
   const longitudeText = String(requestUrl.searchParams.get("longitude_deg") ?? "").trim();
   const latitudeText = String(requestUrl.searchParams.get("latitude_deg") ?? "").trim();

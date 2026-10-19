@@ -68,6 +68,15 @@ class MotoBLEManager(private val context: Context) {
     private val operationQueue = mutableListOf<() -> Unit>()
     private var operationInProgress = false
 
+    private var cccdRetryCount = 0
+    private var cccdWritePending = false
+    private val cccdTimeoutRunnable = Runnable {
+        if (cccdWritePending) {
+            Log.w("MotoBLEManager", "CCCD write timed out after 600ms, retrying")
+            retryCccdWrite()
+        }
+    }
+
     init {
         codecPtr = bleCodec.nativeInit(247)
     }
@@ -197,6 +206,9 @@ class MotoBLEManager(private val context: Context) {
                 }
                 BluetoothProfile.STATE_DISCONNECTED -> {
                     stopHeartbeat()
+                    mainHandler.removeCallbacks(cccdTimeoutRunnable)
+                    cccdWritePending = false
+                    cccdRetryCount = 0
                     handshakeState = HandshakeState.IDLE
                     mainHandler.post { onConnectionStateChange?.invoke("Non connesso") }
                     if (status != BluetoothGatt.GATT_SUCCESS) {
@@ -231,9 +243,11 @@ class MotoBLEManager(private val context: Context) {
                     writeCharacteristic = service.getCharacteristic(phoneToDeviceUuid)
                     readCharacteristic = service.getCharacteristic(deviceToPhoneUuid)
 
-                    enqueueOperation {
-                        gatt.requestMtu(247)
-                    }
+                    mainHandler.postDelayed({
+                        enqueueOperation {
+                            gatt.requestMtu(247)
+                        }
+                    }, 300)
                 } else {
                     mainHandler.post { onConnectionError?.invoke("Errore: Servizio non trovato") }
                 }
@@ -248,43 +262,38 @@ class MotoBLEManager(private val context: Context) {
                 if (codecPtr != 0L) {
                     bleCodec.nativeSetMaximumFrameSize(codecPtr, mtu.coerceAtMost(247))
                 }
-                enqueueOperation {
-                    val characteristic = readCharacteristic
-                    if (characteristic != null) {
-                        gatt.setCharacteristicNotification(characteristic, true)
-                        val descriptor = characteristic.getDescriptor(cccdUuid)
-                        if (descriptor != null) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                                gatt.writeDescriptor(descriptor, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
-                            } else {
-                                @Suppress("DEPRECATION")
-                                descriptor.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
-                                @Suppress("DEPRECATION")
-                                gatt.writeDescriptor(descriptor)
-                            }
-                        } else {
-                            completeOperation()
-                        }
-                    } else {
-                        completeOperation()
-                    }
-                }
+            }
+            enqueueOperation {
+                mainHandler.postDelayed({
+                    startCccdWrite(gatt)
+                }, 300)
             }
             completeOperation()
         }
 
         override fun onDescriptorWrite(gatt: BluetoothGatt, descriptor: BluetoothGattDescriptor, status: Int) {
-            if (status == BluetoothGatt.GATT_SUCCESS && descriptor.uuid == cccdUuid) {
-                // Initiate 4-way handshake step 1: Send PhoneStarting
-                currentSessionId = (System.currentTimeMillis() % 0x7FFFFFFF).coerceAtLeast(1)
-                handshakeState = HandshakeState.STARTING_SENT
-                if (codecPtr != 0L) {
-                    bleCodec.nativeResetInboundState(codecPtr)
-                    val frames = bleCodec.nativeEncodePhoneStarting(codecPtr, currentSessionId)
-                    enqueueSendFramesTask(frames)
+            if (descriptor.uuid == cccdUuid) {
+                mainHandler.removeCallbacks(cccdTimeoutRunnable)
+                if (status == BluetoothGatt.GATT_SUCCESS) {
+                    cccdWritePending = false
+                    cccdRetryCount = 0
+                    // Initiate 4-way handshake step 1: Send PhoneStarting
+                    currentSessionId = (System.currentTimeMillis() % 0x7FFFFFFF).coerceAtLeast(1)
+                    handshakeState = HandshakeState.STARTING_SENT
+                    if (codecPtr != 0L) {
+                        bleCodec.nativeResetInboundState(codecPtr)
+                        val frames = bleCodec.nativeEncodePhoneStarting(codecPtr, currentSessionId)
+                        enqueueSendFramesTask(frames)
+                    }
+                    startHeartbeat()
+                } else if (status == 15 /* GATT_INSUFFICIENT_ENCRYPTION */) {
+                    connectedDevice?.createBond()
+                    retryCccdWrite()
+                    return
+                } else {
+                    retryCccdWrite()
+                    return
                 }
-            } else if (status == 15 /* GATT_INSUFFICIENT_ENCRYPTION */) {
-                connectedDevice?.createBond()
             }
             completeOperation()
         }
@@ -308,6 +317,72 @@ class MotoBLEManager(private val context: Context) {
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic, value: ByteArray) {
             handleInboundFrame(value)
         }
+    }
+
+    private fun doWriteDescriptor(gatt: BluetoothGatt, descriptor: BluetoothGattDescriptor): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val resCode = gatt.writeDescriptor(descriptor, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
+            resCode == android.bluetooth.BluetoothStatusCodes.SUCCESS
+        } else {
+            @Suppress("DEPRECATION")
+            descriptor.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+            @Suppress("DEPRECATION")
+            gatt.writeDescriptor(descriptor)
+        }
+    }
+
+    private fun retryCccdWrite() {
+        mainHandler.removeCallbacks(cccdTimeoutRunnable)
+        if (cccdRetryCount < 5) {
+            cccdRetryCount++
+            mainHandler.postDelayed({
+                val gatt = bluetoothGatt
+                if (gatt != null && cccdWritePending) {
+                    performCccdWrite(gatt)
+                }
+            }, 300)
+        } else {
+            Log.e("MotoBLEManager", "CCCD write failed after 5 retries")
+            cccdWritePending = false
+            mainHandler.post { onConnectionError?.invoke("Errore abilitazione notifiche CCCD") }
+            completeOperation()
+        }
+    }
+
+    private fun performCccdWrite(gatt: BluetoothGatt) {
+        val characteristic = readCharacteristic ?: run {
+            cccdWritePending = false
+            completeOperation()
+            return
+        }
+        gatt.setCharacteristicNotification(characteristic, true)
+        val descriptor = characteristic.getDescriptor(cccdUuid) ?: run {
+            cccdWritePending = false
+            completeOperation()
+            return
+        }
+
+        if (gatt.device.bondState == BluetoothDevice.BOND_BONDING) {
+            mainHandler.postDelayed({
+                if (cccdWritePending) performCccdWrite(gatt)
+            }, 300)
+            return
+        }
+
+        val success = doWriteDescriptor(gatt, descriptor)
+        if (!success) {
+            Log.w("MotoBLEManager", "writeDescriptor returned false/error, retrying CCCD write")
+            retryCccdWrite()
+        } else {
+            mainHandler.removeCallbacks(cccdTimeoutRunnable)
+            mainHandler.postDelayed(cccdTimeoutRunnable, 600)
+        }
+    }
+
+    private fun startCccdWrite(gatt: BluetoothGatt) {
+        cccdRetryCount = 0
+        cccdWritePending = true
+        performCccdWrite(gatt)
     }
 
     private fun handleInboundFrame(frame: ByteArray) {
@@ -395,7 +470,7 @@ class MotoBLEManager(private val context: Context) {
         heartbeatScheduler = Executors.newSingleThreadScheduledExecutor()
         heartbeatScheduler?.scheduleAtFixedRate({
             try {
-                if (handshakeState == HandshakeState.COMPLETED && codecPtr != 0L) {
+                if (codecPtr != 0L && currentSessionId != 0L) {
                     val frames = bleCodec.nativeEncodeHeartbeat(codecPtr, currentSessionId, System.currentTimeMillis() % Int.MAX_VALUE)
                     enqueueSendFramesTask(frames)
                 }

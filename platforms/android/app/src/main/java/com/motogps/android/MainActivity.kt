@@ -69,13 +69,17 @@ class MainActivity : ComponentActivity(), LocationListener {
 
         val sharedPrefs = getSharedPreferences("MotoGpsPrefs", Context.MODE_PRIVATE)
         val defaultGateway = "https://moto-gps-waveshare.onrender.com"
-        val savedGateway = sharedPrefs.getString("gateway_address", null)
-        val initialGateway = if (!savedGateway.isNullOrBlank()) savedGateway else defaultGateway
+        val rawSavedGateway = sharedPrefs.getString("gateway_address", null)
+        if (!rawSavedGateway.isNullOrBlank() && !rawSavedGateway.startsWith(defaultGateway)) {
+            sharedPrefs.edit().remove("gateway_address").apply()
+        }
 
         fun getGatewayToUse(): String {
             val saved = sharedPrefs.getString("gateway_address", null)
-            return if (!saved.isNullOrBlank()) saved else defaultGateway
+            return if (!saved.isNullOrBlank() && saved.startsWith(defaultGateway)) saved else defaultGateway
         }
+
+        val initialGateway = getGatewayToUse()
 
         setContent {
             val connectionState = viewModel.connectionState.collectAsState().value
