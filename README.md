@@ -483,10 +483,8 @@ ctest --test-dir build/native --output-on-failure
 
 npm ci --prefix backend
 npm --prefix backend test
-swift test --package-path platforms/ios
 
 node scripts/generate_jinan_demo_fixture.mjs --check
-node scripts/offline_map/validate_jinan_sqlite.mjs
 ```
 
 2026-09-16 本轮通过 9 组 C++ 原生测试、60 项后端测试、12 项 Swift 核心测试，

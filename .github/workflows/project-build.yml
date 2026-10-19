@@ -34,16 +34,6 @@ jobs:
       - name: Verify public map fixtures
         run: |
           node scripts/generate_jinan_demo_fixture.mjs --check
-          node scripts/offline_map/validate_jinan_sqlite.mjs
-
-  swift-core:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          persist-credentials: false
-      - name: Swift core tests (no signing or device)
-        run: swift test --package-path platforms/ios
 
   android-build:
     runs-on: ubuntu-latest

@@ -1,3 +1,4 @@
+build/
 platforms/android/app/.cxx/
 platforms/android/app/build/
 platforms/android/.gradle/

@@ -17,9 +17,9 @@ surrounding roads; the heading is fixed and both use the same translation, headi
 zoom transforms.
 
 The only hand-maintained data source is `jinan_big_data_to_inspur.json`. Running
-`node scripts/generate_jinan_demo_fixture.mjs` generates the C++ and Swift constants; CI can use
-`node scripts/generate_jinan_demo_fixture.mjs --check` to check whether the two ends are still
-exactly consistent. Manoeuvre positions are stored as route node indices, and distances and
+`node scripts/generate_jinan_demo_fixture.mjs` generates the C++ constants; CI can use
+`node scripts/generate_jinan_demo_fixture.mjs --check` to check whether the fixture is still
+consistent. Manoeuvre positions are stored as route node indices, and distances and
 route progress are computed from accumulated geometric distance, not drawn by hand against
 time.
 

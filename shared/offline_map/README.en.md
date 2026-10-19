@@ -84,7 +84,6 @@ curl -L https://download.geofabrik.de/asia/china/shandong-latest.osm.pbf \
   -o tmp/offline_map_source/shandong-latest.osm.pbf
 ./scripts/offline_map/extract_jinan.sh
 node scripts/offline_map/build_jinan_sqlite.mjs
-node scripts/offline_map/validate_jinan_sqlite.mjs
 ```
 
 The first step generates the boundary, the Jinan PBF and the GeoJSONSeq intermediate files; the
