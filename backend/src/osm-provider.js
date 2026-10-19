@@ -26,8 +26,9 @@ function mapOsmManeuver(type, modifier) {
 
 export function createOsmProvider({
   nominatimBaseUrl = "https://nominatim.openstreetmap.org",
+  photonBaseUrl = "https://photon.komoot.io",
   osrmBaseUrl = "https://router.project-osrm.org",
-  userAgent = "MotoGPSGateway/1.0",
+  userAgent = "MotoGpsWaveshare/1.0 (https://github.com/thriller47/moto-gps-waveshare)",
 } = {}) {
 
   async function fetchJson(url, options = {}) {
@@ -42,6 +43,7 @@ export function createOsmProvider({
     if (!response.ok) {
       const error = new Error(`External service failed with status ${response.status}`);
       error.code = "UPSTREAM_ERROR";
+      error.status = response.status;
       error.retryable = true;
       throw error;
     }
@@ -51,8 +53,16 @@ export function createOsmProvider({
 
   return {
     async searchPlaces(query) {
-      const keywords = encodeURIComponent(query.keywords);
-      let url = `${nominatimBaseUrl}/search?q=${keywords}&format=json&addressdetails=1&limit=10`;
+      const rawKeywords = String(query.keywords || query.query || query.q || "").trim();
+      if (!rawKeywords) {
+        return {
+          protocol_version: 1,
+          places: [],
+        };
+      }
+
+      const keywords = encodeURIComponent(rawKeywords);
+      let nominatimUrl = `${nominatimBaseUrl}/search?q=${keywords}&format=json&addressdetails=1&limit=10`;
 
       if (query.origin && query.origin.longitude_deg != null && query.origin.latitude_deg != null) {
         const lon = Number(query.origin.longitude_deg);
@@ -61,25 +71,77 @@ export function createOsmProvider({
         const maxLon = Math.min(180, lon + 0.5);
         const minLat = Math.max(-90, lat - 0.5);
         const maxLat = Math.min(90, lat + 0.5);
-        url += `&viewbox=${minLon},${maxLat},${maxLon},${minLat}&bounded=0`;
+        nominatimUrl += `&viewbox=${minLon},${maxLat},${maxLon},${minLat}&bounded=0`;
       }
 
-      const data = await fetchJson(url);
+      try {
+        const data = await fetchJson(nominatimUrl, {
+          headers: {
+            "Accept-Language": "it,en",
+          },
+        });
 
-      const places = data.map((item) => ({
-        id: String(item.place_id),
-        name: item.name || item.display_name.split(",")[0],
-        address: item.display_name,
-        location: {
-          coordinate_system: "WGS84",
-          longitude_deg: parseFloat(item.lon),
-          latitude_deg: parseFloat(item.lat),
-        },
-      }));
+        if (Array.isArray(data)) {
+          const places = data.map((item) => ({
+            id: String(item.place_id),
+            name: item.name || (item.display_name ? item.display_name.split(",")[0] : rawKeywords),
+            address: item.display_name || "",
+            location: {
+              coordinate_system: "WGS84",
+              longitude_deg: parseFloat(item.lon),
+              latitude_deg: parseFloat(item.lat),
+            },
+          }));
+
+          return {
+            protocol_version: 1,
+            places,
+          };
+        }
+      } catch (nomErr) {
+        // Fallback to Photon
+      }
+
+      // Fallback: Photon Komoot
+      try {
+        let photonUrl = `${photonBaseUrl}/api/?q=${keywords}&limit=10&lang=it`;
+        if (query.origin && query.origin.longitude_deg != null && query.origin.latitude_deg != null) {
+          photonUrl += `&lon=${query.origin.longitude_deg}&lat=${query.origin.latitude_deg}`;
+        }
+
+        const photonData = await fetchJson(photonUrl);
+        if (photonData && Array.isArray(photonData.features)) {
+          const places = photonData.features.map((feat, idx) => {
+            const props = feat.properties || {};
+            const coords = feat.geometry?.coordinates || [0, 0];
+            const name = props.name || props.street || rawKeywords;
+            const addressParts = [props.name, props.street, props.housenumber, props.city, props.state, props.country].filter(Boolean);
+            const address = addressParts.join(", ") || name;
+
+            return {
+              id: String(props.osm_id || idx + 1),
+              name,
+              address,
+              location: {
+                coordinate_system: "WGS84",
+                longitude_deg: Number(coords[0]),
+                latitude_deg: Number(coords[1]),
+              },
+            };
+          });
+
+          return {
+            protocol_version: 1,
+            places,
+          };
+        }
+      } catch (photonErr) {
+        // Fallthrough to empty list
+      }
 
       return {
         protocol_version: 1,
-        places,
+        places: [],
       };
     },
 
