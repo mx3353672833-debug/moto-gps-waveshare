@@ -1,6 +1,7 @@
 package com.motogps.android
 
 import com.motogps.android.map.HybridMapRepository
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -76,7 +77,7 @@ class HybridMapRepositoryTest {
         """.trimIndent()
         cacheFile.writeText(cachedGeoJson)
 
-        val segments = repository.getNearbyRoadSegments(41.9028, 12.4964, 600.0)
+        val segments = runBlocking { repository.getNearbyRoadSegments(41.9028, 12.4964, 600.0) }
 
         // Regional file must take priority (0 network calls, ignores cache when regional covers)
         assertEquals(1, segments.size)
@@ -113,7 +114,7 @@ class HybridMapRepositoryTest {
         """.trimIndent()
         cacheFile.writeText(cachedGeoJson)
 
-        val segments = repository.getNearbyRoadSegments(41.9028, 12.4964, 600.0)
+        val segments = runBlocking { repository.getNearbyRoadSegments(41.9028, 12.4964, 600.0) }
 
         assertEquals(1, segments.size)
         assertEquals(0, segments[0].roadClass) // motorway
@@ -152,7 +153,7 @@ class HybridMapRepositoryTest {
         val regionalFile = File(mapsDir, "large_map.json")
         regionalFile.writeText(geoJson)
 
-        val segments = repository.getNearbyRoadSegments(41.9028, 12.4964, 1000.0)
+        val segments = runBlocking { repository.getNearbyRoadSegments(41.9028, 12.4964, 1000.0) }
 
         // Must enforce limits: max 24 segments and max 192 total nodes
         assertTrue("Segments count must be <= 24", segments.size <= 24)

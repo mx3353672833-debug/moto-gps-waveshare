@@ -1,12 +1,16 @@
 package com.motogps.android.map
 
 import android.content.Context
+import android.util.Log
 import com.motogps.android.jni.GeoPointE6
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.BufferedInputStream
+import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
-import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.math.atan2
@@ -31,45 +35,55 @@ class HybridMapRepository(
     )
 
     init {
-        if (!mapsDir.exists()) {
-            mapsDir.mkdirs()
-        }
-        if (!cacheDir.exists()) {
-            cacheDir.mkdirs()
+        ensureDirectories()
+    }
+
+    private fun ensureDirectories() {
+        try {
+            if (!mapsDir.exists()) {
+                mapsDir.mkdirs()
+            }
+            if (!cacheDir.exists()) {
+                cacheDir.mkdirs()
+            }
+        } catch (e: Exception) {
+            Log.e("HybridMapRepo", "Errore creazione directory mappe", e)
         }
     }
 
-    fun getNearbyRoadSegments(
+    suspend fun getNearbyRoadSegments(
         centerLat: Double,
         centerLon: Double,
         radiusMeters: Double = 600.0
-    ): List<RoadSegment> {
+    ): List<RoadSegment> = withContext(Dispatchers.IO) {
+        ensureDirectories()
         val rawSegments = loadRoadSegments(centerLat, centerLon, radiusMeters)
-        return filterAndTruncateSegments(rawSegments, centerLat, centerLon, radiusMeters)
+        filterAndTruncateSegments(rawSegments, centerLat, centerLon, radiusMeters)
     }
 
-    private fun loadRoadSegments(
+    private suspend fun loadRoadSegments(
         centerLat: Double,
         centerLon: Double,
         radiusMeters: Double
-    ): List<RoadSegment> {
+    ): List<RoadSegment> = withContext(Dispatchers.IO) {
         enforceLruCacheLimit()
 
         // 1. Check local regional files with highest priority (0 network calls)
         val regionalSegments = loadFromRegionalFiles(centerLat, centerLon, radiusMeters)
         if (regionalSegments != null && regionalSegments.isNotEmpty()) {
-            return regionalSegments
+            return@withContext regionalSegments
         }
 
         // 2. Fallback to dynamic cache or network download (150-200 km bounding box scope)
         val cacheKey = getCacheKey(centerLat, centerLon)
-        val cachedFile = File(cacheDir, "$cacheKey.json")
+        val sanitizedKey = cacheKey.replace("[^a-zA-Z0-9_-]".toRegex(), "_")
+        val cachedFile = File(cacheDir, "$sanitizedKey.json")
 
         if (cachedFile.exists() && cachedFile.length() > 0) {
             cachedFile.setLastModified(System.currentTimeMillis()) // Update LRU access time
             val cachedSegments = parseGeoJsonOrJson(cachedFile.readText())
             if (cachedSegments.isNotEmpty()) {
-                return cachedSegments
+                return@withContext cachedSegments
             }
         }
 
@@ -77,15 +91,24 @@ class HybridMapRepository(
         val downloadedJson = downloadVectorData(centerLat, centerLon)
         if (downloadedJson != null) {
             try {
-                FileOutputStream(cachedFile).use { fos ->
-                    fos.write(downloadedJson.toByteArray(Charsets.UTF_8))
+                BufferedOutputStream(FileOutputStream(cachedFile)).use { bos ->
+                    val bytes = downloadedJson.toByteArray(Charsets.UTF_8)
+                    var offset = 0
+                    val bufferSize = 8192
+                    while (offset < bytes.size) {
+                        val len = minOf(bufferSize, bytes.size - offset)
+                        bos.write(bytes, offset, len)
+                        offset += len
+                    }
+                    bos.flush()
                 }
-            } catch (_: Exception) {
+            } catch (e: Exception) {
+                Log.e("HybridMapRepo", "Errore scrittura file cache", e)
             }
-            return parseGeoJsonOrJson(downloadedJson)
+            return@withContext parseGeoJsonOrJson(downloadedJson)
         }
 
-        return emptyList()
+        emptyList()
     }
 
     internal fun loadFromRegionalFiles(
@@ -142,7 +165,7 @@ class HybridMapRepository(
         }
     }
 
-    private fun downloadVectorData(lat: Double, lon: Double): String? {
+    private suspend fun downloadVectorData(lat: Double, lon: Double): String? = withContext(Dispatchers.IO) {
         val bboxSize = 0.02 // ~2km box around location
         val minLat = lat - bboxSize
         val minLon = lon - bboxSize
@@ -152,7 +175,7 @@ class HybridMapRepository(
         val overpassUrl = "https://overpass-api.de/api/interpreter?data=" +
                 "[out:json];way[highway]($minLat,$minLon,$maxLat,$maxLon);out%20geom;"
 
-        return try {
+        try {
             val url = URL(overpassUrl)
             val conn = url.openConnection() as HttpURLConnection
             conn.requestMethod = "GET"
@@ -161,11 +184,20 @@ class HybridMapRepository(
             conn.readTimeout = 8000
 
             if (conn.responseCode in 200..299) {
-                conn.inputStream.bufferedReader().use { it.readText() }
+                BufferedInputStream(conn.inputStream).use { bis ->
+                    val buffer = ByteArray(8192)
+                    val outBuilder = StringBuilder()
+                    var bytesRead: Int
+                    while (bis.read(buffer).also { bytesRead = it } != -1) {
+                        outBuilder.append(String(buffer, 0, bytesRead, Charsets.UTF_8))
+                    }
+                    outBuilder.toString()
+                }
             } else {
                 null
             }
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            Log.e("HybridMapRepo", "Errore download dati vettoriali", e)
             null
         }
     }

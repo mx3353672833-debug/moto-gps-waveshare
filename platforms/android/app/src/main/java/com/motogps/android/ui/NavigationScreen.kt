@@ -148,7 +148,11 @@ fun MainMapView(
     )
 }
 
-fun triggerOfflineMapDownload(mapView: MapView?, context: Context) {
+fun triggerOfflineMapDownload(
+    mapView: MapView?,
+    context: Context,
+    onDownloadStateChange: (Boolean) -> Unit
+) {
     if (mapView == null) {
         Toast.makeText(context, "Mappa non ancora pronta", Toast.LENGTH_SHORT).show()
         return
@@ -159,12 +163,15 @@ fun triggerOfflineMapDownload(mapView: MapView?, context: Context) {
         val zoomMin = 12
         val zoomMax = 16
         try {
+            onDownloadStateChange(true)
             cacheManager.downloadAreaAsync(context, boundingBox, zoomMin, zoomMax, object : CacheManager.CacheManagerCallback {
                 override fun downloadStarted() {}
                 override fun onTaskComplete() {
+                    onDownloadStateChange(false)
                     Toast.makeText(context, "Mappa offline salvata con successo", Toast.LENGTH_SHORT).show()
                 }
                 override fun onTaskFailed(errors: Int) {
+                    onDownloadStateChange(false)
                     Toast.makeText(context, "Errore download mappa: $errors", Toast.LENGTH_SHORT).show()
                 }
                 override fun updateProgress(progress: Int, currentZoomLevel: Int, zoomMin: Int, zoomMax: Int) {}
@@ -172,6 +179,7 @@ fun triggerOfflineMapDownload(mapView: MapView?, context: Context) {
             })
             Toast.makeText(context, "Download mappa offline avviato...", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
+            onDownloadStateChange(false)
             Toast.makeText(context, "Impossibile salvare la mappa: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     } else {
@@ -276,6 +284,7 @@ fun NavigationScreen(
     var centerOnLocationTrigger by remember { mutableStateOf(0) }
     var activeMapView by remember { mutableStateOf<MapView?>(null) }
     var longPressDestination by remember { mutableStateOf<Pair<Double, Double>?>(null) }
+    var isDownloadingMap by remember { mutableStateOf(false) }
 
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
@@ -477,16 +486,31 @@ fun NavigationScreen(
                     }
 
                     Button(
-                        onClick = { triggerOfflineMapDownload(activeMapView, context) },
+                        onClick = {
+                            triggerOfflineMapDownload(activeMapView, context) { downloading ->
+                                isDownloadingMap = downloading
+                            }
+                        },
+                        enabled = !isDownloadingMap,
                         modifier = Modifier.weight(1f)
                     ) {
-                        Icon(
-                            Icons.Default.Place,
-                            contentDescription = null,
-                            modifier = Modifier.size(18.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text("Salva Mappa Offline", style = MaterialTheme.typography.labelSmall)
+                        if (isDownloadingMap) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(18.dp),
+                                strokeWidth = 2.dp,
+                                color = MaterialTheme.colorScheme.onPrimary
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Download in corso...", style = MaterialTheme.typography.labelSmall)
+                        } else {
+                            Icon(
+                                Icons.Default.Place,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Salva Mappa Offline", style = MaterialTheme.typography.labelSmall)
+                        }
                     }
                 }
 

@@ -1,5 +1,6 @@
 package com.motogps.android.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -104,10 +105,11 @@ class NavigationViewModel(
         lastMapSceneTime = now
 
         viewModelScope.launch(Dispatchers.IO) {
-            val originE6 = GeoPointE6((latitude * 1e6).toInt(), (longitude * 1e6).toInt())
-            val roadsList = mutableListOf<MotoBLEMapRoadPolyline>()
+            try {
+                val originE6 = GeoPointE6((latitude * 1e6).toInt(), (longitude * 1e6).toInt())
+                val roadsList = mutableListOf<MotoBLEMapRoadPolyline>()
 
-            val nearbySegments = mapRepository?.getNearbyRoadSegments(latitude, longitude, 600.0) ?: emptyList()
+                val nearbySegments = mapRepository?.getNearbyRoadSegments(latitude, longitude, 600.0) ?: emptyList()
             if (nearbySegments.isNotEmpty()) {
                 for (seg in nearbySegments) {
                     if (seg.points.size >= 2) {
@@ -163,6 +165,10 @@ class NavigationViewModel(
                 if (frames.isNotEmpty()) {
                     bleManager.enqueueSendFramesTask(frames)
                 }
+            }
+            } catch (e: Exception) {
+                Log.e("MapDownload", "Errore download/generazione mappa", e)
+                _errorMessage.value = "Errore mappa: ${e.message}"
             }
         }
     }
