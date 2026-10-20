@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
@@ -42,33 +45,44 @@ fun RouteMapView(
     geoPoints: List<GeoPoint>,
     modifier: Modifier = Modifier
 ) {
-    AndroidView(
-        factory = { context ->
-            Configuration.getInstance().userAgentValue = context.packageName
-            MapView(context).apply {
-                setTileSource(TileSourceFactory.MAPNIK)
-                setMultiTouchControls(true)
-            }
-        },
-        update = { mapView ->
-            mapView.overlays.clear()
-            if (geoPoints.isNotEmpty()) {
-                val polyline = Polyline().apply {
-                    setPoints(geoPoints)
-                    outlinePaint.color = android.graphics.Color.BLUE
-                    outlinePaint.strokeWidth = 12f
-                }
-                mapView.overlays.add(polyline)
-
-                val boundingBox = BoundingBox.fromGeoPoints(geoPoints)
-                mapView.post {
-                    mapView.zoomToBoundingBox(boundingBox, true, 64)
-                }
-            }
-            mapView.invalidate()
-        },
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = modifier
-    )
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .clipToBounds()
+    ) {
+        AndroidView(
+            factory = { context ->
+                Configuration.getInstance().userAgentValue = context.packageName
+                MapView(context).apply {
+                    setTileSource(TileSourceFactory.MAPNIK)
+                    setMultiTouchControls(true)
+                    clipChildren = true
+                    clipToPadding = true
+                }
+            },
+            update = { mapView ->
+                mapView.overlays.clear()
+                if (geoPoints.isNotEmpty()) {
+                    val polyline = Polyline().apply {
+                        setPoints(geoPoints)
+                        outlinePaint.color = android.graphics.Color.BLUE
+                        outlinePaint.strokeWidth = 12f
+                    }
+                    mapView.overlays.add(polyline)
+
+                    val boundingBox = BoundingBox.fromGeoPoints(geoPoints)
+                    mapView.post {
+                        mapView.zoomToBoundingBox(boundingBox, true, 64)
+                    }
+                }
+                mapView.invalidate()
+            },
+            modifier = Modifier.fillMaxSize()
+        )
+    }
 }
 
 @Composable
@@ -90,65 +104,76 @@ fun MainMapView(
         }
     }
 
-    AndroidView(
-        factory = { ctx ->
-            Configuration.getInstance().userAgentValue = ctx.packageName
-            MapView(ctx).apply {
-                setTileSource(TileSourceFactory.MAPNIK)
-                setMultiTouchControls(true)
-                controller.setZoom(15.0)
-
-                val startPoint = if (currentLocation != null && (currentLocation.first != 0.0 || currentLocation.second != 0.0)) {
-                    GeoPoint(currentLocation.first, currentLocation.second)
-                } else {
-                    GeoPoint(41.9028, 12.4964) // Rome default
-                }
-                controller.setCenter(startPoint)
-
-                val mapEventsReceiver = object : MapEventsReceiver {
-                    override fun singleTapConfirmedHelper(p: GeoPoint?): Boolean = false
-
-                    override fun longPressHelper(p: GeoPoint?): Boolean {
-                        p?.let {
-                            onMapLongPress(it.latitude, it.longitude)
-                        }
-                        return true
-                    }
-                }
-                overlays.add(MapEventsOverlay(mapEventsReceiver))
-
-                mapViewInstance = this
-                onMapViewReady(this)
-            }
-        },
-        update = { mapView ->
-            mapViewInstance = mapView
-            onMapViewReady(mapView)
-
-            mapView.overlays.removeAll { it !is MapEventsOverlay }
-
-            if (currentLocation != null && (currentLocation.first != 0.0 || currentLocation.second != 0.0)) {
-                val locMarker = Marker(mapView).apply {
-                    position = GeoPoint(currentLocation.first, currentLocation.second)
-                    title = "La mia posizione"
-                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                }
-                mapView.overlays.add(locMarker)
-            }
-
-            if (destinationLocation != null) {
-                val destMarker = Marker(mapView).apply {
-                    position = GeoPoint(destinationLocation.first, destinationLocation.second)
-                    title = "Destinazione"
-                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                }
-                mapView.overlays.add(destMarker)
-            }
-
-            mapView.invalidate()
-        },
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = modifier
-    )
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .clipToBounds()
+    ) {
+        AndroidView(
+            factory = { ctx ->
+                Configuration.getInstance().userAgentValue = ctx.packageName
+                MapView(ctx).apply {
+                    setTileSource(TileSourceFactory.MAPNIK)
+                    setMultiTouchControls(true)
+                    clipChildren = true
+                    clipToPadding = true
+                    controller.setZoom(15.0)
+
+                    val startPoint = if (currentLocation != null && (currentLocation.first != 0.0 || currentLocation.second != 0.0)) {
+                        GeoPoint(currentLocation.first, currentLocation.second)
+                    } else {
+                        GeoPoint(41.9028, 12.4964) // Rome default
+                    }
+                    controller.setCenter(startPoint)
+
+                    val mapEventsReceiver = object : MapEventsReceiver {
+                        override fun singleTapConfirmedHelper(p: GeoPoint?): Boolean = false
+
+                        override fun longPressHelper(p: GeoPoint?): Boolean {
+                            p?.let {
+                                onMapLongPress(it.latitude, it.longitude)
+                            }
+                            return true
+                        }
+                    }
+                    overlays.add(MapEventsOverlay(mapEventsReceiver))
+
+                    mapViewInstance = this
+                    onMapViewReady(this)
+                }
+            },
+            update = { mapView ->
+                mapViewInstance = mapView
+                onMapViewReady(mapView)
+
+                mapView.overlays.removeAll { it !is MapEventsOverlay }
+
+                if (currentLocation != null && (currentLocation.first != 0.0 || currentLocation.second != 0.0)) {
+                    val locMarker = Marker(mapView).apply {
+                        position = GeoPoint(currentLocation.first, currentLocation.second)
+                        title = "La mia posizione"
+                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                    }
+                    mapView.overlays.add(locMarker)
+                }
+
+                if (destinationLocation != null) {
+                    val destMarker = Marker(mapView).apply {
+                        position = GeoPoint(destinationLocation.first, destinationLocation.second)
+                        title = "Destinazione"
+                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                    }
+                    mapView.overlays.add(destMarker)
+                }
+
+                mapView.invalidate()
+            },
+            modifier = Modifier.fillMaxSize()
+        )
+    }
 }
 
 
@@ -446,8 +471,8 @@ fun NavigationScreen(
                 RouteMapView(
                     geoPoints = geoPoints,
                     modifier = Modifier
-                        .weight(1f)
                         .fillMaxWidth()
+                        .height(220.dp)
                 )
 
                 HorizontalDivider()
@@ -604,28 +629,45 @@ fun NavigationScreen(
                 HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
 
                 if (isLoading) {
-                    Box(modifier = Modifier.height(60.dp).fillMaxWidth(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
+                    Card(
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 4.dp)
+                    ) {
+                        Box(modifier = Modifier.height(60.dp).fillMaxWidth(), contentAlignment = Alignment.Center) {
+                            CircularProgressIndicator()
+                        }
                     }
                 } else if (searchResults.isNotEmpty()) {
-                    Text(
-                        text = "Risultati di ricerca:",
-                        style = MaterialTheme.typography.titleSmall,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
-                    )
-                    LazyColumn(modifier = Modifier.heightIn(max = 200.dp).fillMaxWidth()) {
-                        items(searchResults) { place ->
-                            ListItem(
-                                headlineContent = { Text(place.name) },
-                                supportingContent = {
-                                    val subtitle = listOf(place.displayArea, place.address).filter { it.isNotBlank() }.joinToString(" · ")
-                                    Text(subtitle)
-                                },
-                                modifier = Modifier.clickable {
-                                    onRouteSelected(place)
-                                }
+                    Card(
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 4.dp)
+                    ) {
+                        Column(modifier = Modifier.padding(8.dp)) {
+                            Text(
+                                text = "Risultati di ricerca:",
+                                style = MaterialTheme.typography.titleSmall,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                             )
-                            HorizontalDivider()
+                            LazyColumn(modifier = Modifier.heightIn(max = 180.dp).fillMaxWidth()) {
+                                items(searchResults) { place ->
+                                    ListItem(
+                                        headlineContent = { Text(place.name) },
+                                        supportingContent = {
+                                            val subtitle = listOf(place.displayArea, place.address).filter { it.isNotBlank() }.joinToString(" · ")
+                                            Text(subtitle)
+                                        },
+                                        modifier = Modifier.clickable {
+                                            onRouteSelected(place)
+                                        }
+                                    )
+                                    HorizontalDivider()
+                                }
+                            }
                         }
                     }
                 }
@@ -649,8 +691,9 @@ fun NavigationScreen(
                         activeMapView = mapView
                     },
                     modifier = Modifier
-                        .weight(1f)
                         .fillMaxWidth()
+                        .height(250.dp)
+                        .weight(1f)
                 )
             }
         }
