@@ -18,6 +18,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.ParcelUuid
 import android.util.Log
+import com.motogps.android.jni.MotoBLENavigationSnapshot
 import com.motogps.android.jni.MotoBLEProtocolCodec
 import java.util.ArrayDeque
 import java.util.UUID
@@ -76,6 +77,15 @@ class MotoBLEManager(private val context: Context) {
 
     init {
         codecPtr = bleCodec.nativeInit(247)
+    }
+
+    fun getCurrentSessionId(): Long = currentSessionId
+
+    fun sendNavigationSnapshot(snapshot: MotoBLENavigationSnapshot) {
+        if (codecPtr != 0L) {
+            val frames = bleCodec.nativeEncodeNavigationSnapshot(codecPtr, snapshot)
+            enqueueSendFramesTask(frames)
+        }
     }
 
     private fun enqueueOperation(operation: () -> Unit) {

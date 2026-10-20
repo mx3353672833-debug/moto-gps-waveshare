@@ -1,5 +1,7 @@
 package com.motogps.android.ui
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,21 +13,25 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.ui.viewinterop.AndroidView
 import com.motogps.android.viewmodel.PlaceSearchResult
 import com.motogps.android.viewmodel.RouteOption
 import org.json.JSONArray
 import org.osmdroid.config.Configuration
+import org.osmdroid.events.MapEventsReceiver
+import org.osmdroid.tileprovider.cachemanager.CacheManager
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.BoundingBox
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.MapEventsOverlay
+import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.Polyline
 
 @Composable
@@ -60,6 +66,117 @@ fun RouteMapView(
         },
         modifier = modifier
     )
+}
+
+@Composable
+fun MainMapView(
+    currentLocation: Pair<Double, Double>?,
+    destinationLocation: Pair<Double, Double>?,
+    centerTrigger: Int,
+    onMapLongPress: (Double, Double) -> Unit,
+    onMapViewReady: (MapView) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    var mapViewInstance by remember { mutableStateOf<MapView?>(null) }
+
+    LaunchedEffect(centerTrigger) {
+        if (centerTrigger > 0 && mapViewInstance != null && currentLocation != null) {
+            val point = GeoPoint(currentLocation.first, currentLocation.second)
+            mapViewInstance?.controller?.animateTo(point)
+            mapViewInstance?.controller?.setZoom(15.0)
+        }
+    }
+
+    AndroidView(
+        factory = { ctx ->
+            Configuration.getInstance().userAgentValue = ctx.packageName
+            MapView(ctx).apply {
+                setTileSource(TileSourceFactory.MAPNIK)
+                setMultiTouchControls(true)
+                controller.setZoom(15.0)
+
+                val startPoint = if (currentLocation != null && (currentLocation.first != 0.0 || currentLocation.second != 0.0)) {
+                    GeoPoint(currentLocation.first, currentLocation.second)
+                } else {
+                    GeoPoint(41.9028, 12.4964) // Rome default
+                }
+                controller.setCenter(startPoint)
+
+                val mapEventsReceiver = object : MapEventsReceiver {
+                    override fun singleTapConfirmedHelper(p: GeoPoint?): Boolean = false
+
+                    override fun longPressHelper(p: GeoPoint?): Boolean {
+                        p?.let {
+                            onMapLongPress(it.latitude, it.longitude)
+                        }
+                        return true
+                    }
+                }
+                overlays.add(MapEventsOverlay(mapEventsReceiver))
+
+                mapViewInstance = this
+                onMapViewReady(this)
+            }
+        },
+        update = { mapView ->
+            mapViewInstance = mapView
+            onMapViewReady(mapView)
+
+            mapView.overlays.removeAll { it !is MapEventsOverlay }
+
+            if (currentLocation != null && (currentLocation.first != 0.0 || currentLocation.second != 0.0)) {
+                val locMarker = Marker(mapView).apply {
+                    position = GeoPoint(currentLocation.first, currentLocation.second)
+                    title = "La mia posizione"
+                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                }
+                mapView.overlays.add(locMarker)
+            }
+
+            if (destinationLocation != null) {
+                val destMarker = Marker(mapView).apply {
+                    position = GeoPoint(destinationLocation.first, destinationLocation.second)
+                    title = "Destinazione"
+                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                }
+                mapView.overlays.add(destMarker)
+            }
+
+            mapView.invalidate()
+        },
+        modifier = modifier
+    )
+}
+
+fun triggerOfflineMapDownload(mapView: MapView?, context: Context) {
+    if (mapView == null) {
+        Toast.makeText(context, "Mappa non ancora pronta", Toast.LENGTH_SHORT).show()
+        return
+    }
+    val boundingBox = mapView.boundingBox
+    if (boundingBox != null) {
+        val cacheManager = CacheManager(mapView)
+        val zoomMin = 12
+        val zoomMax = 16
+        try {
+            cacheManager.downloadAreaAsync(context, boundingBox, zoomMin, zoomMax, object : CacheManager.CacheManagerCallback {
+                override fun downloadStarted() {}
+                override fun onTaskComplete() {
+                    Toast.makeText(context, "Mappa offline salvata con successo", Toast.LENGTH_SHORT).show()
+                }
+                override fun onTaskFailed(errors: Int) {
+                    Toast.makeText(context, "Errore download mappa: $errors", Toast.LENGTH_SHORT).show()
+                }
+                override fun updateProgress(progress: Int, currentZoomLevel: Int, zoomMin: Int, zoomMax: Int) {}
+                override fun setPossibleTilesInArea(total: Int) {}
+            })
+            Toast.makeText(context, "Download mappa offline avviato...", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            Toast.makeText(context, "Impossibile salvare la mappa: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    } else {
+        Toast.makeText(context, "Area mappa non valida", Toast.LENGTH_SHORT).show()
+    }
 }
 
 fun extractGeoPoints(
@@ -153,7 +270,13 @@ fun NavigationScreen(
     var currentGateway by remember { mutableStateOf(initialGateway) }
     var showGatewayDialog by remember { mutableStateOf(initialGateway.isBlank()) }
     var tempGateway by remember { mutableStateOf(initialGateway) }
+
+    var centerOnLocationTrigger by remember { mutableStateOf(0) }
+    var activeMapView by remember { mutableStateOf<MapView?>(null) }
+    var longPressDestination by remember { mutableStateOf<Pair<Double, Double>?>(null) }
+
     val focusManager = LocalFocusManager.current
+    val context = LocalContext.current
 
     if (showGatewayDialog) {
         AlertDialog(
@@ -228,7 +351,6 @@ fun NavigationScreen(
 
                 HorizontalDivider()
 
-                // Bottom Half: Seleziona percorso
                 Column(modifier = Modifier.weight(1f).fillMaxWidth()) {
                     Text(
                         text = "Seleziona percorso (OSM)",
@@ -288,11 +410,23 @@ fun NavigationScreen(
                         .padding(horizontal = 16.dp, vertical = 8.dp),
                     placeholder = { Text("Cerca destinazione") },
                     leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                    trailingIcon = {
+                        IconButton(onClick = {
+                            focusManager.clearFocus()
+                            if (searchQuery.isNotBlank()) {
+                                onSearch(searchQuery)
+                            }
+                        }) {
+                            Icon(Icons.Default.Search, contentDescription = "Cerca")
+                        }
+                    },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions = KeyboardActions(onSearch = {
                         focusManager.clearFocus()
-                        onSearch(searchQuery)
+                        if (searchQuery.isNotBlank()) {
+                            onSearch(searchQuery)
+                        }
                     })
                 )
 
@@ -305,14 +439,52 @@ fun NavigationScreen(
                     modifier = Modifier.clickable { onConnectRequest() }
                 )
 
-                HorizontalDivider()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 4.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Button(
+                        onClick = { centerOnLocationTrigger++ },
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Icon(
+                            Icons.Default.Place,
+                            contentDescription = null,
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("Apri Mappa sulla mia posizione", style = MaterialTheme.typography.labelSmall)
+                    }
+
+                    Button(
+                        onClick = { triggerOfflineMapDownload(activeMapView, context) },
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Icon(
+                            Icons.Default.Place,
+                            contentDescription = null,
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("Salva Mappa Offline", style = MaterialTheme.typography.labelSmall)
+                    }
+                }
+
+                HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
 
                 if (isLoading) {
-                    Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    Box(modifier = Modifier.height(60.dp).fillMaxWidth(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
                     }
                 } else if (searchResults.isNotEmpty()) {
-                    LazyColumn(modifier = Modifier.weight(1f).fillMaxWidth()) {
+                    Text(
+                        text = "Risultati di ricerca:",
+                        style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
+                    )
+                    LazyColumn(modifier = Modifier.heightIn(max = 200.dp).fillMaxWidth()) {
                         items(searchResults) { place ->
                             ListItem(
                                 headlineContent = { Text(place.name) },
@@ -327,24 +499,30 @@ fun NavigationScreen(
                             HorizontalDivider()
                         }
                     }
-                } else {
-                    Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
-                        Column(
-                            modifier = Modifier.padding(32.dp),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Icon(
-                                Icons.Default.Place,
-                                contentDescription = null,
-                                modifier = Modifier.size(48.dp)
-                            )
-                            Spacer(modifier = Modifier.height(16.dp))
-                            Text("Seleziona destinazione", style = MaterialTheme.typography.titleMedium)
-                            Text("Cerca un luogo o un indirizzo, scegli il percorso e parti.")
-                        }
-                    }
                 }
+
+                MainMapView(
+                    currentLocation = currentLocation,
+                    destinationLocation = longPressDestination,
+                    centerTrigger = centerOnLocationTrigger,
+                    onMapLongPress = { lat, lon ->
+                        longPressDestination = Pair(lat, lon)
+                        val place = PlaceSearchResult(
+                            name = "Punto sulla mappa",
+                            address = String.format("Lat: %.4f, Lon: %.4f", lat, lon),
+                            displayArea = "Mappa",
+                            latitude = lat,
+                            longitude = lon
+                        )
+                        onRouteSelected(place)
+                    },
+                    onMapViewReady = { mapView ->
+                        activeMapView = mapView
+                    },
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                )
             }
         }
     }

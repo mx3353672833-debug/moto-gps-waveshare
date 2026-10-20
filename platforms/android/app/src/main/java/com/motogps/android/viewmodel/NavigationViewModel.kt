@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.motogps.android.ble.MotoBLEManager
 import com.motogps.android.jni.MotoBLENavigationSnapshot
-import com.motogps.android.jni.MotoBLEProtocolCodec
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -55,20 +54,6 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
     private val _selectedRouteIndex = MutableStateFlow(0)
     val selectedRouteIndex: StateFlow<Int> = _selectedRouteIndex
 
-    private val bleCodec = MotoBLEProtocolCodec()
-    private var codecPtr: Long = 0
-
-    init {
-        codecPtr = bleCodec.nativeInit(512)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        if (codecPtr != 0L) {
-            bleCodec.nativeDestroy(codecPtr)
-        }
-    }
-
     fun searchDestination(query: String, gatewayUrl: String) {
         if (query.isBlank() || gatewayUrl.isBlank()) return
 
@@ -82,8 +67,11 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                     performSearch(query, gatewayUrl)
                 }
                 _searchResults.value = results
+                if (results.isEmpty()) {
+                    _errorMessage.value = "Nessun risultato trovato per '$query'"
+                }
             } catch (e: Exception) {
-                _errorMessage.value = "Errore di connessione: ${e.message}"
+                _errorMessage.value = "Errore durante la ricerca: ${e.message}"
             } finally {
                 _isLoading.value = false
             }
@@ -137,11 +125,7 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                 val snapshot = withContext(Dispatchers.IO) {
                     performRouting(place, gatewayUrl)
                 }
-
-                if (codecPtr != 0L) {
-                    val frames = bleCodec.nativeEncodeNavigationSnapshot(codecPtr, snapshot)
-                    bleManager.enqueueSendFramesTask(frames)
-                }
+                bleManager.sendNavigationSnapshot(snapshot)
             } catch (e: Exception) {
                 _errorMessage.value = "Errore durante la navigazione: ${e.message}"
             } finally {
@@ -186,10 +170,7 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                     val snapshot = withContext(Dispatchers.IO) {
                         performRouting(dest, activeGatewayUrl)
                     }
-                    if (codecPtr != 0L) {
-                        val frames = bleCodec.nativeEncodeNavigationSnapshot(codecPtr, snapshot)
-                        bleManager.enqueueSendFramesTask(frames)
-                    }
+                    bleManager.sendNavigationSnapshot(snapshot)
                 } catch (_: Exception) {
                 }
             }
@@ -341,9 +322,9 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                 val response = connection.inputStream.bufferedReader().use { it.readText() }
                 val jsonObject = JSONObject(response)
 
-                val protocolVersion = jsonObject.optInt("protocol_version", 0)
+                val protocolVersion = jsonObject.optInt("protocol_version", 1)
                 if (protocolVersion != 1) {
-                    throw Exception("Invalid protocol version")
+                    throw Exception("Versione del protocollo non valida: $protocolVersion")
                 }
 
                 val routeObj = jsonObject.getJSONObject("route")
@@ -414,9 +395,9 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                 val response = connection.inputStream.bufferedReader().use { it.readText() }
                 val jsonObject = JSONObject(response)
 
-                val protocolVersion = jsonObject.optInt("protocol_version", 0)
+                val protocolVersion = jsonObject.optInt("protocol_version", 1)
                 if (protocolVersion != 1) {
-                    throw Exception("Invalid protocol version")
+                    throw Exception("Versione del protocollo non valida: $protocolVersion")
                 }
 
                 val placesArray = jsonObject.optJSONArray("places") ?: return emptyList()
