@@ -70,7 +70,7 @@ class MotoBLEManager(private val context: Context) {
     private var cccdWritePending = false
     private val cccdTimeoutRunnable = Runnable {
         if (cccdWritePending) {
-            Log.w("MotoBLEManager", "CCCD write timed out after 600ms, retrying")
+            Log.w("MotoBLEManager", "CCCD write timed out after 1000ms, retrying")
             retryCccdWrite()
         }
     }
@@ -211,7 +211,7 @@ class MotoBLEManager(private val context: Context) {
 
                     mainHandler.postDelayed({
                         enqueueOperation {
-                            gatt.requestMtu(247)
+                            gatt.requestMtu(185)
                         }
                     }, 300)
                 } else {
@@ -226,7 +226,7 @@ class MotoBLEManager(private val context: Context) {
         override fun onMtuChanged(gatt: BluetoothGatt, mtu: Int, status: Int) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 if (codecPtr != 0L) {
-                    bleCodec.nativeSetMaximumFrameSize(codecPtr, mtu.coerceAtMost(247))
+                    bleCodec.nativeSetMaximumFrameSize(codecPtr, mtu.coerceAtMost(185))
                 }
             }
             enqueueOperation {
@@ -243,15 +243,7 @@ class MotoBLEManager(private val context: Context) {
                 if (status == BluetoothGatt.GATT_SUCCESS) {
                     cccdWritePending = false
                     cccdRetryCount = 0
-                    // Initiate 4-way handshake step 1: Send PhoneStarting
-                    currentSessionId = (System.currentTimeMillis() % 0x7FFFFFFF).coerceAtLeast(1)
-                    handshakeState = HandshakeState.STARTING_SENT
-                    if (codecPtr != 0L) {
-                        bleCodec.nativeResetInboundState(codecPtr)
-                        val frames = bleCodec.nativeEncodePhoneStarting(codecPtr, currentSessionId)
-                        enqueueSendFramesTask(frames)
-                    }
-                    startHeartbeat()
+                    startHandshakeAndHeartbeat()
                 } else {
                     retryCccdWrite()
                     return
@@ -290,9 +282,22 @@ class MotoBLEManager(private val context: Context) {
         }
     }
 
+    private fun startHandshakeAndHeartbeat() {
+        if (handshakeState == HandshakeState.IDLE) {
+            currentSessionId = (System.currentTimeMillis() % 0x7FFFFFFF).coerceAtLeast(1)
+            handshakeState = HandshakeState.STARTING_SENT
+            if (codecPtr != 0L) {
+                bleCodec.nativeResetInboundState(codecPtr)
+                val frames = bleCodec.nativeEncodePhoneStarting(codecPtr, currentSessionId)
+                enqueueSendFramesTask(frames)
+            }
+            startHeartbeat()
+        }
+    }
+
     private fun retryCccdWrite() {
         mainHandler.removeCallbacks(cccdTimeoutRunnable)
-        if (cccdRetryCount < 5) {
+        if (cccdRetryCount < 3) {
             cccdRetryCount++
             mainHandler.postDelayed({
                 val gatt = bluetoothGatt
@@ -301,9 +306,9 @@ class MotoBLEManager(private val context: Context) {
                 }
             }, 300)
         } else {
-            Log.e("MotoBLEManager", "CCCD write failed after 5 retries")
+            Log.w("MotoBLEManager", "CCCD write reached 3 retries without callback; proceeding with handshake anyway")
             cccdWritePending = false
-            mainHandler.post { onConnectionError?.invoke("Errore abilitazione notifiche CCCD") }
+            startHandshakeAndHeartbeat()
             completeOperation()
         }
     }
@@ -314,6 +319,7 @@ class MotoBLEManager(private val context: Context) {
             completeOperation()
             return
         }
+        characteristic.writeType = BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT
         gatt.setCharacteristicNotification(characteristic, true)
         val descriptor = characteristic.getDescriptor(cccdUuid) ?: run {
             cccdWritePending = false
@@ -327,7 +333,7 @@ class MotoBLEManager(private val context: Context) {
             retryCccdWrite()
         } else {
             mainHandler.removeCallbacks(cccdTimeoutRunnable)
-            mainHandler.postDelayed(cccdTimeoutRunnable, 600)
+            mainHandler.postDelayed(cccdTimeoutRunnable, 1000)
         }
     }
 
