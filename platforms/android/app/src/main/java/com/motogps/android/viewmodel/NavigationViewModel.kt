@@ -5,7 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.motogps.android.ble.MotoBLEManager
 import com.motogps.android.jni.GeoPointE6
+import com.motogps.android.jni.MotoBLEMapRoadPolyline
+import com.motogps.android.jni.MotoBLEMapScene
 import com.motogps.android.jni.MotoBLENavigationSnapshot
+import com.motogps.android.jni.MotoBLEProtocolCodec
 import com.motogps.android.jni.MotoBLERouteGeometry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -64,6 +67,90 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
     private var navigationJob: Job? = null
     private var currentSnapshot: MotoBLENavigationSnapshot? = null
     private var currentGeometry: MotoBLERouteGeometry? = null
+
+    private val mapSceneCodec = MotoBLEProtocolCodec()
+    private var mapSceneCodecPtr = mapSceneCodec.nativeInit(185)
+
+    private var mapSceneRevision = 1L
+    private var lastMapSceneLat = 0.0
+    private var lastMapSceneLon = 0.0
+    private var lastMapSceneTime = 0L
+    private val rawRoutePoints = mutableListOf<GeoPointE6>()
+
+    override fun onCleared() {
+        super.onCleared()
+        if (mapSceneCodecPtr != 0L) {
+            mapSceneCodec.nativeDestroy(mapSceneCodecPtr)
+            mapSceneCodecPtr = 0L
+        }
+    }
+
+    private fun maybeSendMapScene(latitude: Double, longitude: Double, force: Boolean = false) {
+        if (!_isNavigating.value) return
+
+        val now = System.currentTimeMillis()
+        val distMoved = if (lastMapSceneLat == 0.0 && lastMapSceneLon == 0.0) 999.0
+        else calculateDistanceMeters(lastMapSceneLat, lastMapSceneLon, latitude, longitude)
+
+        val timeElapsed = now - lastMapSceneTime
+        if (!force && distMoved < 100.0 && timeElapsed < 15000) return
+
+        lastMapSceneLat = latitude
+        lastMapSceneLon = longitude
+        lastMapSceneTime = now
+
+        val originE6 = GeoPointE6((latitude * 1e6).toInt(), (longitude * 1e6).toInt())
+        val roadsList = mutableListOf<MotoBLEMapRoadPolyline>()
+
+        val geom = currentGeometry
+        if (geom != null && geom.points.size >= 2) {
+            val routeChunk = geom.points.take(12)
+            if (routeChunk.size >= 2) {
+                roadsList.add(MotoBLEMapRoadPolyline(roadClass = 1, points = routeChunk)) // primary
+            }
+        }
+
+        if (rawRoutePoints.isNotEmpty()) {
+            var totalPoints = roadsList.sumOf { it.points.size }
+            var idx = 0
+            while (idx < rawRoutePoints.size && roadsList.size < 24 && totalPoints < 192) {
+                val endIdx = minOf(idx + 8, rawRoutePoints.size)
+                val segment = rawRoutePoints.subList(idx, endIdx)
+                if (segment.size >= 2) {
+                    val roadClass = if (roadsList.size % 2 == 0) 2 else 3 // secondary or residential
+                    roadsList.add(MotoBLEMapRoadPolyline(roadClass = roadClass, points = segment))
+                    totalPoints += segment.size
+                }
+                idx += 7
+            }
+        }
+
+        if (roadsList.isEmpty()) {
+            val latE6 = (latitude * 1e6).toInt()
+            val lonE6 = (longitude * 1e6).toInt()
+            val dummyPoints = listOf(
+                GeoPointE6(latE6 - 500, lonE6 - 500),
+                GeoPointE6(latE6 + 500, lonE6 + 500)
+            )
+            roadsList.add(MotoBLEMapRoadPolyline(roadClass = 3, points = dummyPoints))
+        }
+
+        val scene = MotoBLEMapScene(
+            coordinateSystem = 2,
+            sceneRevision = mapSceneRevision++,
+            viewOrigin = originE6,
+            radiusMeters = 500,
+            roads = roadsList,
+            buildings = emptyList()
+        )
+
+        if (mapSceneCodecPtr != 0L) {
+            val frames = mapSceneCodec.nativeEncodeMapScene(mapSceneCodecPtr, scene)
+            if (frames.isNotEmpty()) {
+                bleManager.enqueueSendFramesTask(frames)
+            }
+        }
+    }
 
     fun searchDestination(query: String, gatewayUrl: String) {
         if (query.isBlank() || gatewayUrl.isBlank()) return
@@ -146,6 +233,9 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                 }
                 bleManager.sendNavigationSnapshot(snapshot)
 
+                val (curLat, curLon) = currentLocation.value
+                maybeSendMapScene(curLat, curLon, force = true)
+
                 _isLoading.value = false
 
                 var loopCount = 0
@@ -179,6 +269,10 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
         activeDestination = null
         currentSnapshot = null
         currentGeometry = null
+        lastMapSceneLat = 0.0
+        lastMapSceneLon = 0.0
+        lastMapSceneTime = 0L
+        rawRoutePoints.clear()
 
         val stopSnapshot = MotoBLENavigationSnapshot(
             stateName = "idle",
@@ -229,6 +323,7 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
 
         if (_isNavigating.value && activeDestination != null && activeGatewayUrl.isNotBlank()) {
             checkOffRouteAndRecalculate(latitude, longitude)
+            maybeSendMapScene(latitude, longitude, force = false)
         }
     }
 
@@ -464,6 +559,9 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                     pointsE6.add(GeoPointE6((originLat * 1e6).toInt(), (originLon * 1e6).toInt()))
                     pointsE6.add(GeoPointE6((place.latitude * 1e6).toInt(), (place.longitude * 1e6).toInt()))
                 }
+
+                rawRoutePoints.clear()
+                rawRoutePoints.addAll(pointsE6)
 
                 val boundedPoints = pointsE6.take(24)
                 val viewOrigin = boundedPoints.first()

@@ -1,10 +1,14 @@
 package com.motogps.android
 
 import com.motogps.android.jni.GeoPointE6
+import com.motogps.android.jni.MotoBLEMapBuildingFootprint
+import com.motogps.android.jni.MotoBLEMapRoadPolyline
+import com.motogps.android.jni.MotoBLEMapScene
 import com.motogps.android.jni.MotoBLENavigationSnapshot
 import com.motogps.android.jni.MotoBLEProtocolCodec
 import com.motogps.android.jni.MotoBLERouteGeometry
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -198,6 +202,59 @@ class MotoBLEProtocolCodecTest {
         val geomPayload = codec.nativeEncodeGeometryPayloadForGoldenCheck(handle, routeGeometry)
         assertNotNull(geomPayload)
         assertEquals(expectedGeomHex, hexString(geomPayload!!))
+    }
+
+    @Test
+    fun testMapSceneEncodingAndLimits() {
+        val origin = GeoPointE6(36674804, 117122449)
+        val validMapScene = MotoBLEMapScene(
+            coordinateSystem = 2,
+            sceneRevision = 7L,
+            viewOrigin = origin,
+            radiusMeters = 500,
+            roads = listOf(
+                MotoBLEMapRoadPolyline(
+                    roadClass = 3, // residential
+                    points = listOf(
+                        GeoPointE6(36674800, 117122440),
+                        GeoPointE6(36674810, 117122460)
+                    )
+                )
+            ),
+            buildings = listOf(
+                MotoBLEMapBuildingFootprint(
+                    buildingClass = 0, // generic
+                    points = listOf(
+                        GeoPointE6(36674820, 117122450),
+                        GeoPointE6(36674830, 117122450),
+                        GeoPointE6(36674825, 117122460)
+                    )
+                )
+            )
+        )
+
+        val payload = codec.nativeEncodeMapScenePayloadForGoldenCheck(handle, validMapScene)
+        assertNotNull(payload)
+
+        val frames = codec.nativeEncodeMapScene(handle, validMapScene)
+        assertTrue(frames.isNotEmpty())
+        val frame = frames[0]
+
+        assertEquals(0xB7.toByte(), frame[0]) // MAGIC
+        assertEquals(0x01.toByte(), frame[1]) // PROTOCOL_VERSION
+        assertEquals(0x14.toByte(), frame[2]) // MSG_MAP_SCENE
+
+        val tooManyRoads = MotoBLEMapScene(
+            sceneRevision = 8L,
+            viewOrigin = origin,
+            roads = List(25) {
+                MotoBLEMapRoadPolyline(
+                    roadClass = 3,
+                    points = listOf(GeoPointE6(36674800, 117122440), GeoPointE6(36674810, 117122460))
+                )
+            }
+        )
+        assertNull(codec.nativeEncodeMapScenePayloadForGoldenCheck(handle, tooManyRoads))
     }
 
     private fun hexString(bytes: ByteArray): String {
