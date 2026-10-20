@@ -12,6 +12,7 @@ import com.motogps.android.jni.MotoBLENavigationSnapshot
 import com.motogps.android.jni.MotoBLEProtocolCodec
 import com.motogps.android.jni.MotoBLERouteGeometry
 import com.motogps.android.map.HybridMapRepository
+import com.motogps.android.map.SavedMapInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -39,6 +40,38 @@ data class RouteOption(
     val durationSeconds: Long,
     val steps: List<String>,
     val rawRouteJson: JSONObject
+)
+
+data class RegionPreset(
+    val id: String,
+    val name: String,
+    val minLat: Double,
+    val minLon: Double,
+    val maxLat: Double,
+    val maxLon: Double
+)
+
+val ITALIAN_REGIONS = listOf(
+    RegionPreset("abruzzo", "Abruzzo", 41.68, 13.01, 42.90, 14.79),
+    RegionPreset("basilicata", "Basilicata", 39.89, 15.34, 41.14, 16.87),
+    RegionPreset("calabria", "Calabria", 37.91, 15.62, 40.15, 17.21),
+    RegionPreset("campania", "Campania", 39.99, 13.75, 41.51, 15.81),
+    RegionPreset("emilia_romagna", "Emilia-Romagna", 43.73, 9.20, 45.14, 12.76),
+    RegionPreset("friuli_venezia_giulia", "Friuli-Venezia Giulia", 45.58, 12.33, 46.65, 13.92),
+    RegionPreset("lazio", "Lazio", 41.18, 11.45, 42.84, 14.03),
+    RegionPreset("liguria", "Liguria", 43.77, 7.49, 44.68, 10.08),
+    RegionPreset("lombardia", "Lombardia", 44.68, 8.49, 46.64, 11.43),
+    RegionPreset("marche", "Marche", 42.69, 12.19, 43.97, 13.92),
+    RegionPreset("molise", "Molise", 41.36, 13.94, 42.08, 15.16),
+    RegionPreset("piemonte", "Piemonte", 44.06, 6.62, 46.46, 9.21),
+    RegionPreset("puglia", "Puglia", 39.79, 14.93, 42.23, 18.52),
+    RegionPreset("sardegna", "Sardegna", 38.86, 8.13, 41.31, 9.83),
+    RegionPreset("sicilia", "Sicilia", 36.64, 12.42, 38.82, 15.66),
+    RegionPreset("toscana", "Toscana", 42.23, 9.68, 44.47, 12.37),
+    RegionPreset("trentino_alto_adige", "Trentino-Alto Adige", 45.67, 10.38, 47.09, 12.48),
+    RegionPreset("umbria", "Umbria", 42.36, 11.89, 43.62, 13.26),
+    RegionPreset("valle_daosta", "Valle d'Aosta", 45.46, 6.79, 45.99, 7.95),
+    RegionPreset("veneto", "Veneto", 44.79, 10.62, 46.68, 13.10)
 )
 
 class NavigationViewModel(
@@ -75,6 +108,10 @@ class NavigationViewModel(
     private val _isDownloadingMap = MutableStateFlow(false)
     val isDownloadingMap: StateFlow<Boolean> = _isDownloadingMap
 
+    private val _savedMaps = MutableStateFlow<List<SavedMapInfo>>(emptyList())
+    val savedMaps: StateFlow<List<SavedMapInfo>> = _savedMaps
+
+    private var downloadJob: Job? = null
     private var navigationJob: Job? = null
     private var currentSnapshot: MotoBLENavigationSnapshot? = null
     private var currentGeometry: MotoBLERouteGeometry? = null
@@ -682,67 +719,240 @@ class NavigationViewModel(
         _errorMessage.value = null
     }
 
-    fun startMapDownload(context: android.content.Context) {
+    fun refreshSavedMaps() {
         viewModelScope.launch(Dispatchers.IO) {
+            val list = mapRepository?.listSavedMaps() ?: emptyList()
+            _savedMaps.value = list
+        }
+    }
+
+    fun deleteSavedMap(fileName: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            mapRepository?.deleteSavedMap(fileName)
+            refreshSavedMaps()
+        }
+    }
+
+    fun cancelDownload() {
+        downloadJob?.cancel()
+        downloadJob = null
+        _isDownloadingMap.value = false
+        _downloadStatus.value = "Download annullato dall'utente"
+    }
+
+    fun startMapDownload(context: android.content.Context) {
+        downloadCurrentAreaMap(context)
+    }
+
+    fun downloadCurrentAreaMap(context: android.content.Context, radiusKm: Double = 10.0) {
+        downloadJob?.cancel()
+        downloadJob = viewModelScope.launch(Dispatchers.IO) {
             try {
                 withContext(Dispatchers.Main) {
                     _isDownloadingMap.value = true
-                    _downloadStatus.value = "Avvio download mappa..."
+                    _downloadStatus.value = "Avvio download area attuale..."
                 }
 
                 val appContext = context.applicationContext
                 val mapsDir = java.io.File(appContext.getExternalFilesDir(null), "maps")
-                if (!mapsDir.exists()) {
-                    mapsDir.mkdirs()
-                }
+                if (!mapsDir.exists()) mapsDir.mkdirs()
 
                 val (curLat, curLon) = currentLocation.value
-                val minLat = curLat - 0.03
-                val minLon = curLon - 0.03
-                val maxLat = curLat + 0.03
-                val maxLon = curLon + 0.03
+                val delta = radiusKm / 111.0 // ~0.09 deg for 10km
+                val minLat = curLat - delta
+                val minLon = curLon - delta
+                val maxLat = curLat + delta
+                val maxLon = curLon + delta
 
                 val query = String.format(
                     java.util.Locale.US,
-                    "[out:json][timeout:10];way(%f,%f,%f,%f)[highway~\"motorway|trunk|primary|secondary|tertiary|residential\"];out geom;",
+                    "[out:json][timeout:25];way(%f,%f,%f,%f)[highway~\"motorway|trunk|primary|secondary|tertiary|residential\"];out geom qt;",
                     minLat, minLon, maxLat, maxLon
                 )
-                val overpassUrl = "https://overpass-api.de/api/interpreter?data=" + java.net.URLEncoder.encode(query, "UTF-8")
 
-                val targetFile = java.io.File(mapsDir, "regional_map_${(minLat * 100).toInt()}_${(minLon * 100).toInt()}.json")
-                targetFile.parentFile?.mkdirs()
+                val jsonResponse = mapRepository?.downloadOverpassQueryWithMirrors(query)
+                if (jsonResponse != null) {
+                    val repo = mapRepository ?: HybridMapRepository(appContext)
+                    val segments = repo.parseGeoJsonOrJson(jsonResponse)
+                    val targetFile = java.io.File(mapsDir, "area_corrente_10km.motomap")
+                    if (targetFile.exists()) targetFile.delete()
+                    repo.appendSegmentsToMotoMap(targetFile, segments)
 
-                val url = java.net.URL(overpassUrl)
-                val conn = url.openConnection() as java.net.HttpURLConnection
-                conn.requestMethod = "GET"
-                conn.setRequestProperty("User-Agent", "MotoGpsWaveshare/1.0")
-                conn.connectTimeout = 10000
-                conn.readTimeout = 10000
-
-                if (conn.responseCode in 200..299) {
-                    java.io.BufferedInputStream(conn.inputStream).use { bis ->
-                        java.io.BufferedOutputStream(java.io.FileOutputStream(targetFile)).use { bos ->
-                            val buffer = ByteArray(8192)
-                            var bytesRead: Int
-                            while (bis.read(buffer).also { bytesRead = it } != -1) {
-                                bos.write(buffer, 0, bytesRead)
-                            }
-                            bos.flush()
-                        }
-                    }
                     val fileSizeKb = targetFile.length() / 1024
                     withContext(Dispatchers.Main) {
-                        _downloadStatus.value = "Mappa offline salvata ($fileSizeKb KB)"
+                        _downloadStatus.value = "Mappa area attuale salvata ($fileSizeKb KB)"
                         _isDownloadingMap.value = false
+                        refreshSavedMaps()
                     }
                 } else {
                     withContext(Dispatchers.Main) {
-                        _downloadStatus.value = "Errore HTTP server: ${conn.responseCode}"
+                        _downloadStatus.value = "Errore download dati Overpass per area attuale"
                         _isDownloadingMap.value = false
                     }
                 }
             } catch (t: Throwable) {
-                Log.e("NavigationVM", "CRASH EVITATO durante download mappa", t)
+                if (t is kotlinx.coroutines.CancellationException) throw t
+                Log.e("NavigationVM", "Errore durante download area attuale", t)
+                withContext(Dispatchers.Main) {
+                    _downloadStatus.value = "Errore: ${t.localizedMessage ?: t.javaClass.simpleName}"
+                    _isDownloadingMap.value = false
+                }
+            }
+        }
+    }
+
+    fun downloadRouteCorridorMap(context: android.content.Context, radiusKm: Double = 10.0) {
+        downloadJob?.cancel()
+        downloadJob = viewModelScope.launch(Dispatchers.IO) {
+            try {
+                withContext(Dispatchers.Main) {
+                    _isDownloadingMap.value = true
+                    _downloadStatus.value = "Preparazione corridoio percorso..."
+                }
+
+                val appContext = context.applicationContext
+                val mapsDir = java.io.File(appContext.getExternalFilesDir(null), "maps")
+                if (!mapsDir.exists()) mapsDir.mkdirs()
+
+                val corridorWaypoints = mutableListOf<Pair<Double, Double>>()
+                val (curLat, curLon) = currentLocation.value
+                corridorWaypoints.add(Pair(curLat, curLon))
+
+                if (rawRoutePoints.isNotEmpty()) {
+                    for (pt in rawRoutePoints) {
+                        corridorWaypoints.add(Pair(pt.latitudeE6 / 1e6, pt.longitudeE6 / 1e6))
+                    }
+                } else {
+                    val dest = _routePreview.value
+                    if (dest != null) {
+                        corridorWaypoints.add(Pair(dest.latitude, dest.longitude))
+                    }
+                }
+
+                // Sample waypoints every ~10 km
+                val sampledPoints = mutableListOf<Pair<Double, Double>>()
+                sampledPoints.add(corridorWaypoints.first())
+                var lastSampled = corridorWaypoints.first()
+
+                for (i in 1 until corridorWaypoints.size) {
+                    val pt = corridorWaypoints[i]
+                    val dist = calculateDistanceMeters(lastSampled.first, lastSampled.second, pt.first, pt.second)
+                    if (dist >= 10000.0 || i == corridorWaypoints.size - 1) {
+                        sampledPoints.add(pt)
+                        lastSampled = pt
+                    }
+                }
+
+                val destNameSanitized = (_routePreview.value?.name ?: "attivo").replace("[^a-zA-Z0-9]".toRegex(), "_")
+                val targetFile = java.io.File(mapsDir, "percorso_${destNameSanitized}.motomap")
+                if (targetFile.exists()) targetFile.delete()
+
+                val repo = mapRepository ?: HybridMapRepository(appContext)
+                val delta = radiusKm / 111.0 // ~0.09 deg for 10km radius
+
+                for (idx in sampledPoints.indices) {
+                    val pt = sampledPoints[idx]
+                    withContext(Dispatchers.Main) {
+                        _downloadStatus.value = "Download corridoio percorso: tratto ${idx + 1} di ${sampledPoints.size}..."
+                    }
+
+                    val minLat = pt.first - delta
+                    val minLon = pt.second - delta
+                    val maxLat = pt.first + delta
+                    val maxLon = pt.second + delta
+
+                    val query = String.format(
+                        java.util.Locale.US,
+                        "[out:json][timeout:25];way(%f,%f,%f,%f)[highway~\"motorway|trunk|primary|secondary|tertiary|residential\"];out geom qt;",
+                        minLat, minLon, maxLat, maxLon
+                    )
+
+                    val responseJson = repo.downloadOverpassQueryWithMirrors(query)
+                    if (responseJson != null) {
+                        val segments = repo.parseGeoJsonOrJson(responseJson)
+                        repo.appendSegmentsToMotoMap(targetFile, segments)
+                    }
+                }
+
+                val fileSizeKb = targetFile.length() / 1024
+                withContext(Dispatchers.Main) {
+                    _downloadStatus.value = "Corridoio percorso salvato ($fileSizeKb KB)"
+                    _isDownloadingMap.value = false
+                    refreshSavedMaps()
+                }
+            } catch (t: Throwable) {
+                if (t is kotlinx.coroutines.CancellationException) throw t
+                Log.e("NavigationVM", "Errore durante download corridoio percorso", t)
+                withContext(Dispatchers.Main) {
+                    _downloadStatus.value = "Errore: ${t.localizedMessage ?: t.javaClass.simpleName}"
+                    _isDownloadingMap.value = false
+                }
+            }
+        }
+    }
+
+    fun downloadRegionMap(context: android.content.Context, region: RegionPreset) {
+        downloadJob?.cancel()
+        downloadJob = viewModelScope.launch(Dispatchers.IO) {
+            try {
+                withContext(Dispatchers.Main) {
+                    _isDownloadingMap.value = true
+                    _downloadStatus.value = "Download ${region.name}: Inizializzazione..."
+                }
+
+                val appContext = context.applicationContext
+                val mapsDir = java.io.File(appContext.getExternalFilesDir(null), "maps")
+                if (!mapsDir.exists()) mapsDir.mkdirs()
+
+                val targetFile = java.io.File(mapsDir, "${region.id}.motomap")
+                if (targetFile.exists()) targetFile.delete()
+
+                val repo = mapRepository ?: HybridMapRepository(appContext)
+                val stepDeg = 0.35
+
+                val tiles = mutableListOf<Pair<Pair<Double, Double>, Pair<Double, Double>>>()
+                var currentLat = region.minLat
+                while (currentLat < region.maxLat) {
+                    var currentLon = region.minLon
+                    while (currentLon < region.maxLon) {
+                        val tileMinLat = currentLat
+                        val tileMinLon = currentLon
+                        val tileMaxLat = minOf(currentLat + stepDeg, region.maxLat)
+                        val tileMaxLon = minOf(currentLon + stepDeg, region.maxLon)
+                        tiles.add(Pair(Pair(tileMinLat, tileMinLon), Pair(tileMaxLat, tileMaxLon)))
+                        currentLon += stepDeg
+                    }
+                    currentLat += stepDeg
+                }
+
+                for (i in tiles.indices) {
+                    val tile = tiles[i]
+                    withContext(Dispatchers.Main) {
+                        _downloadStatus.value = "Download ${region.name}: quadrante ${i + 1} di ${tiles.size}..."
+                    }
+
+                    val query = String.format(
+                        java.util.Locale.US,
+                        "[out:json][timeout:25];way(%f,%f,%f,%f)[highway~\"motorway|trunk|primary|secondary|tertiary\"];out geom qt;",
+                        tile.first.first, tile.first.second, tile.second.first, tile.second.second
+                    )
+
+                    val responseJson = repo.downloadOverpassQueryWithMirrors(query)
+                    if (responseJson != null) {
+                        val segments = repo.parseGeoJsonOrJson(responseJson)
+                        repo.appendSegmentsToMotoMap(targetFile, segments)
+                    }
+                }
+
+                val fileSizeKb = targetFile.length() / 1024
+                withContext(Dispatchers.Main) {
+                    _downloadStatus.value = "Mappa ${region.name} salvata ($fileSizeKb KB)"
+                    _isDownloadingMap.value = false
+                    refreshSavedMaps()
+                }
+            } catch (t: Throwable) {
+                if (t is kotlinx.coroutines.CancellationException) throw t
+                Log.e("NavigationVM", "Errore durante download regione ${region.name}", t)
                 withContext(Dispatchers.Main) {
                     _downloadStatus.value = "Errore: ${t.localizedMessage ?: t.javaClass.simpleName}"
                     _isDownloadingMap.value = false

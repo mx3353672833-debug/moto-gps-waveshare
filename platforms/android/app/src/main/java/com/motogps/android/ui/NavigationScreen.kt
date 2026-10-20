@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.viewinterop.AndroidView
+import com.motogps.android.map.SavedMapInfo
+import com.motogps.android.viewmodel.ITALIAN_REGIONS
 import com.motogps.android.viewmodel.NavigationViewModel
 import com.motogps.android.viewmodel.PlaceSearchResult
 import com.motogps.android.viewmodel.RouteOption
@@ -244,6 +246,7 @@ fun NavigationScreen(
     var currentGateway by remember { mutableStateOf(initialGateway) }
     var showGatewayDialog by remember { mutableStateOf(initialGateway.isBlank()) }
     var tempGateway by remember { mutableStateOf(initialGateway) }
+    var showOfflineMapsDialog by remember { mutableStateOf(false) }
 
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
@@ -251,15 +254,129 @@ fun NavigationScreen(
     var centerOnLocationTrigger by remember { mutableStateOf(0) }
     var activeMapView by remember { mutableStateOf<MapView?>(null) }
     var longPressDestination by remember { mutableStateOf<Pair<Double, Double>?>(null) }
-    var isDownloadingMap by remember { mutableStateOf(false) }
 
     val downloadStatus by viewModel?.downloadStatus?.collectAsState() ?: remember { mutableStateOf(null) }
     val isDownloadingFromVm by viewModel?.isDownloadingMap?.collectAsState() ?: remember { mutableStateOf(false) }
+    val savedMaps by viewModel?.savedMaps?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
+
+    LaunchedEffect(Unit) {
+        viewModel?.refreshSavedMaps()
+    }
 
     LaunchedEffect(downloadStatus) {
         downloadStatus?.let { msg ->
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    if (showOfflineMapsDialog) {
+        AlertDialog(
+            onDismissRequest = { showOfflineMapsDialog = false },
+            title = { Text("Gestione Mappe Offline") },
+            text = {
+                Column(modifier = Modifier.fillMaxWidth().heightIn(max = 450.dp)) {
+                    if (downloadStatus != null) {
+                        Surface(
+                            color = MaterialTheme.colorScheme.surfaceVariant,
+                            shape = MaterialTheme.shapes.small,
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                if (isDownloadingFromVm) {
+                                    CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp)
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                }
+                                Text(
+                                    text = downloadStatus ?: "",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    modifier = Modifier.weight(1f)
+                                )
+                                if (isDownloadingFromVm) {
+                                    IconButton(
+                                        onClick = { viewModel?.cancelDownload() },
+                                        modifier = Modifier.size(24.dp)
+                                    ) {
+                                        Icon(Icons.Default.Close, contentDescription = "Annulla", modifier = Modifier.size(16.dp))
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Button(
+                            onClick = { viewModel?.downloadCurrentAreaMap(context.applicationContext) },
+                            enabled = !isDownloadingFromVm,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Area Attuale (10 km)", style = MaterialTheme.typography.labelSmall)
+                        }
+
+                        Button(
+                            onClick = { viewModel?.downloadRouteCorridorMap(context.applicationContext) },
+                            enabled = !isDownloadingFromVm && (routePreview != null || isNavigating),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Corridoio Percorso", style = MaterialTheme.typography.labelSmall)
+                        }
+                    }
+
+                    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+
+                    Text("Mappe Salvate nel Telefono:", style = MaterialTheme.typography.titleSmall)
+                    if (savedMaps.isEmpty()) {
+                        Text("Nessuna mappa offline salvata", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 4.dp))
+                    } else {
+                        LazyColumn(modifier = Modifier.heightIn(max = 120.dp).fillMaxWidth()) {
+                            items(savedMaps) { mapInfo ->
+                                val sizeMb = String.format(java.util.Locale.US, "%.1f MB", mapInfo.sizeBytes / (1024.0 * 1024.0))
+                                ListItem(
+                                    headlineContent = { Text(mapInfo.displayName, style = MaterialTheme.typography.bodyMedium) },
+                                    supportingContent = { Text(sizeMb, style = MaterialTheme.typography.bodySmall) },
+                                    trailingContent = {
+                                        IconButton(onClick = { viewModel?.deleteSavedMap(mapInfo.fileName) }) {
+                                            Icon(Icons.Default.Delete, contentDescription = "Elimina", tint = MaterialTheme.colorScheme.error)
+                                        }
+                                    }
+                                )
+                                HorizontalDivider()
+                            }
+                        }
+                    }
+
+                    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+
+                    Text("Scarica Regione Italiana (20 Regioni):", style = MaterialTheme.typography.titleSmall)
+                    LazyColumn(modifier = Modifier.weight(1f).fillMaxWidth()) {
+                        items(ITALIAN_REGIONS) { region ->
+                            ListItem(
+                                headlineContent = { Text(region.name) },
+                                trailingContent = {
+                                    Button(
+                                        onClick = { viewModel?.downloadRegionMap(context.applicationContext, region) },
+                                        enabled = !isDownloadingFromVm
+                                    ) {
+                                        Text("Scarica", style = MaterialTheme.typography.labelSmall)
+                                    }
+                                }
+                            )
+                            HorizontalDivider()
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showOfflineMapsDialog = false }) {
+                    Text("Chiudi")
+                }
+            }
+        )
     }
 
     if (showGatewayDialog) {
@@ -460,24 +577,18 @@ fun NavigationScreen(
 
                     Button(
                         onClick = {
-                            Log.d("MapDownload", "Pulsante premuto con successo")
-                            try {
-                                viewModel?.startMapDownload(context.applicationContext)
-                            } catch (t: Throwable) {
-                                Log.e("NavigationScreen", "Errore avvio download mappa", t)
-                            }
+                            showOfflineMapsDialog = true
                         },
-                        enabled = !isDownloadingMap && !isDownloadingFromVm,
                         modifier = Modifier.weight(1f)
                     ) {
-                        if (isDownloadingMap || isDownloadingFromVm) {
+                        if (isDownloadingFromVm) {
                             CircularProgressIndicator(
                                 modifier = Modifier.size(18.dp),
                                 strokeWidth = 2.dp,
                                 color = MaterialTheme.colorScheme.onPrimary
                             )
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Download in corso...", style = MaterialTheme.typography.labelSmall)
+                            Text("Download...", style = MaterialTheme.typography.labelSmall)
                         } else {
                             Icon(
                                 Icons.Default.Place,
@@ -485,7 +596,7 @@ fun NavigationScreen(
                                 modifier = Modifier.size(18.dp)
                             )
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Salva Mappa Offline", style = MaterialTheme.typography.labelSmall)
+                            Text("Mappe Offline", style = MaterialTheme.typography.labelSmall)
                         }
                     }
                 }

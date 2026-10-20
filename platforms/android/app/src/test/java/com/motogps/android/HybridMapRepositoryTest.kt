@@ -1,6 +1,8 @@
 package com.motogps.android
 
+import com.motogps.android.jni.GeoPointE6
 import com.motogps.android.map.HybridMapRepository
+import com.motogps.android.map.RoadSegment
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -29,6 +31,44 @@ class HybridMapRepositoryTest {
             cacheDir = cacheDir,
             maxCacheSizeBytes = 1000L // 1000 bytes max for easy LRU testing
         )
+    }
+
+    @Test
+    fun testMotoMapLineByLineParsingAndBBoxFiltering() {
+        val motomapFile = File(mapsDir, "lombardia.motomap")
+        val segs = listOf(
+            RoadSegment(
+                roadClass = 1,
+                points = listOf(
+                    GeoPointE6(45464000, 9190000), // Milan area
+                    GeoPointE6(45465000, 9191000)
+                )
+            ),
+            RoadSegment(
+                roadClass = 2,
+                points = listOf(
+                    GeoPointE6(41902800, 12496400), // Rome area (outside Milan)
+                    GeoPointE6(41903000, 12497000)
+                )
+            )
+        )
+
+        repository.appendSegmentsToMotoMap(motomapFile, segs)
+
+        // Query Milan location (45.464, 9.190) -> should only return the Milan segment
+        val milanSegments = runBlocking { repository.getNearbyRoadSegments(45.464, 9.190, 600.0) }
+        assertEquals(1, milanSegments.size)
+        assertEquals(1, milanSegments[0].roadClass)
+        assertEquals(45464000, milanSegments[0].points[0].latitudeE6)
+
+        // Test file listing and deleting
+        val savedMaps = repository.listSavedMaps()
+        assertEquals(1, savedMaps.size)
+        assertEquals("lombardia.motomap", savedMaps[0].fileName)
+
+        val deleted = repository.deleteSavedMap("lombardia.motomap")
+        assertTrue(deleted)
+        assertEquals(0, repository.listSavedMaps().size)
     }
 
     @Test
