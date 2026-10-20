@@ -455,7 +455,7 @@ fun NavigationScreen(
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("Apri Mappa sulla mia posizione", style = MaterialTheme.typography.labelSmall)
+                        Text("Mostra Mappa / Mia Posizione", style = MaterialTheme.typography.labelSmall)
                     }
 
                     Button(
