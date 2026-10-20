@@ -172,8 +172,12 @@ class HybridMapRepository(
         val maxLat = lat + bboxSize
         val maxLon = lon + bboxSize
 
-        val overpassUrl = "https://overpass-api.de/api/interpreter?data=" +
-                "[out:json];way[highway]($minLat,$minLon,$maxLat,$maxLon);out%20geom;"
+        val query = String.format(
+            java.util.Locale.US,
+            "[out:json][timeout:10];way(%f,%f,%f,%f)[highway~\"motorway|trunk|primary|secondary|tertiary|residential\"];out geom;",
+            minLat, minLon, maxLat, maxLon
+        )
+        val overpassUrl = "https://overpass-api.de/api/interpreter?data=" + java.net.URLEncoder.encode(query, "UTF-8")
 
         try {
             val url = URL(overpassUrl)

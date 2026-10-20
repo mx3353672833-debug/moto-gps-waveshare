@@ -27,7 +27,6 @@ import com.motogps.android.viewmodel.RouteOption
 import org.json.JSONArray
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapEventsReceiver
-import org.osmdroid.tileprovider.cachemanager.CacheManager
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.BoundingBox
 import org.osmdroid.util.GeoPoint
@@ -150,44 +149,6 @@ fun MainMapView(
     )
 }
 
-fun triggerOfflineMapDownload(
-    mapView: MapView?,
-    context: Context,
-    onDownloadStateChange: (Boolean) -> Unit
-) {
-    if (mapView == null) {
-        Toast.makeText(context, "Mappa non ancora pronta", Toast.LENGTH_SHORT).show()
-        return
-    }
-    val boundingBox = mapView.boundingBox
-    if (boundingBox != null) {
-        val cacheManager = CacheManager(mapView)
-        val zoomMin = 12
-        val zoomMax = 16
-        try {
-            onDownloadStateChange(true)
-            cacheManager.downloadAreaAsync(context, boundingBox, zoomMin, zoomMax, object : CacheManager.CacheManagerCallback {
-                override fun downloadStarted() {}
-                override fun onTaskComplete() {
-                    onDownloadStateChange(false)
-                    Toast.makeText(context, "Mappa offline salvata con successo", Toast.LENGTH_SHORT).show()
-                }
-                override fun onTaskFailed(errors: Int) {
-                    onDownloadStateChange(false)
-                    Toast.makeText(context, "Errore download mappa: $errors", Toast.LENGTH_SHORT).show()
-                }
-                override fun updateProgress(progress: Int, currentZoomLevel: Int, zoomMin: Int, zoomMax: Int) {}
-                override fun setPossibleTilesInArea(total: Int) {}
-            })
-            Toast.makeText(context, "Download mappa offline avviato...", Toast.LENGTH_SHORT).show()
-        } catch (e: Exception) {
-            onDownloadStateChange(false)
-            Toast.makeText(context, "Impossibile salvare la mappa: ${e.message}", Toast.LENGTH_SHORT).show()
-        }
-    } else {
-        Toast.makeText(context, "Area mappa non valida", Toast.LENGTH_SHORT).show()
-    }
-}
 
 fun extractGeoPoints(
     selectedRoute: RouteOption?,
@@ -500,12 +461,10 @@ fun NavigationScreen(
                     Button(
                         onClick = {
                             Log.d("MapDownload", "Pulsante premuto con successo")
-                            if (viewModel != null) {
-                                viewModel.startMapDownload(context, activeMapView?.boundingBox)
-                            } else {
-                                triggerOfflineMapDownload(activeMapView, context) { downloading ->
-                                    isDownloadingMap = downloading
-                                }
+                            try {
+                                viewModel?.startMapDownload(context.applicationContext)
+                            } catch (t: Throwable) {
+                                Log.e("NavigationScreen", "Errore avvio download mappa", t)
                             }
                         },
                         enabled = !isDownloadingMap && !isDownloadingFromVm,

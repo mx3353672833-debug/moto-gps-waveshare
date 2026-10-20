@@ -22,6 +22,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.core.content.ContextCompat
 import com.motogps.android.ble.MotoBLEManager
 import com.motogps.android.location.LocationForegroundService
+import com.motogps.android.map.HybridMapRepository
 import com.motogps.android.ui.NavigationScreen
 import com.motogps.android.viewmodel.NavigationViewModel
 import com.motogps.android.viewmodel.NavigationViewModelFactory
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity(), LocationListener {
     private lateinit var locationManager: LocationManager
 
     private val viewModel: NavigationViewModel by viewModels {
-        NavigationViewModelFactory(bleManager)
+        NavigationViewModelFactory(bleManager, HybridMapRepository(applicationContext))
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
@@ -119,6 +120,7 @@ class MainActivity : ComponentActivity(), LocationListener {
                     selectedRouteIndex = selectedRouteIndex,
                     isNavigating = isNavigating,
                     currentLocation = currentLocation,
+                    viewModel = viewModel,
                     onRouteOptionSelect = { index ->
                         viewModel.selectRouteOption(index)
                     },

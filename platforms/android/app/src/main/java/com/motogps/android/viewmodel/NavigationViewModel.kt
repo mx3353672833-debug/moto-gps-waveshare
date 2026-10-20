@@ -79,22 +79,11 @@ class NavigationViewModel(
     private var currentSnapshot: MotoBLENavigationSnapshot? = null
     private var currentGeometry: MotoBLERouteGeometry? = null
 
-    private val mapSceneCodec = MotoBLEProtocolCodec()
-    private var mapSceneCodecPtr = mapSceneCodec.nativeInit(185)
-
     private var mapSceneRevision = 1L
     private var lastMapSceneLat = 0.0
     private var lastMapSceneLon = 0.0
     private var lastMapSceneTime = 0L
     private val rawRoutePoints = mutableListOf<GeoPointE6>()
-
-    override fun onCleared() {
-        super.onCleared()
-        if (mapSceneCodecPtr != 0L) {
-            mapSceneCodec.nativeDestroy(mapSceneCodecPtr)
-            mapSceneCodecPtr = 0L
-        }
-    }
 
     private fun maybeSendMapScene(latitude: Double, longitude: Double, force: Boolean = false) {
         if (!_isNavigating.value) return
@@ -166,12 +155,7 @@ class NavigationViewModel(
                 buildings = emptyList()
             )
 
-            if (mapSceneCodecPtr != 0L) {
-                val frames = mapSceneCodec.nativeEncodeMapScene(mapSceneCodecPtr, scene)
-                if (frames.isNotEmpty()) {
-                    bleManager.enqueueSendFramesTask(frames)
-                }
-            }
+            bleManager.sendMapScene(scene)
             } catch (e: Exception) {
                 Log.e("MapDownload", "Errore download/generazione mappa", e)
                 _errorMessage.value = "Errore mappa: ${e.message}"
@@ -698,7 +682,7 @@ class NavigationViewModel(
         _errorMessage.value = null
     }
 
-    fun startMapDownload(context: android.content.Context, bbox: org.osmdroid.util.BoundingBox? = null) {
+    fun startMapDownload(context: android.content.Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 withContext(Dispatchers.Main) {
@@ -713,15 +697,19 @@ class NavigationViewModel(
                 }
 
                 val (curLat, curLon) = currentLocation.value
-                val minLat = bbox?.latSouth ?: (curLat - 0.05)
-                val minLon = bbox?.lonWest ?: (curLon - 0.05)
-                val maxLat = bbox?.latNorth ?: (curLat + 0.05)
-                val maxLon = bbox?.lonEast ?: (curLon + 0.05)
+                val minLat = curLat - 0.03
+                val minLon = curLon - 0.03
+                val maxLat = curLat + 0.03
+                val maxLon = curLon + 0.03
 
-                val overpassUrl = "https://overpass-api.de/api/interpreter?data=" +
-                        "[out:json];way[highway]($minLat,$minLon,$maxLat,$maxLon);out%20geom;"
+                val query = String.format(
+                    java.util.Locale.US,
+                    "[out:json][timeout:10];way(%f,%f,%f,%f)[highway~\"motorway|trunk|primary|secondary|tertiary|residential\"];out geom;",
+                    minLat, minLon, maxLat, maxLon
+                )
+                val overpassUrl = "https://overpass-api.de/api/interpreter?data=" + java.net.URLEncoder.encode(query, "UTF-8")
 
-                val targetFile = java.io.File(mapsDir, "regional_map_${(minLat*100).toInt()}_${(minLon*100).toInt()}.json")
+                val targetFile = java.io.File(mapsDir, "regional_map_${(minLat * 100).toInt()}_${(minLon * 100).toInt()}.json")
                 targetFile.parentFile?.mkdirs()
 
                 val url = java.net.URL(overpassUrl)
@@ -742,8 +730,9 @@ class NavigationViewModel(
                             bos.flush()
                         }
                     }
+                    val fileSizeKb = targetFile.length() / 1024
                     withContext(Dispatchers.Main) {
-                        _downloadStatus.value = "Download completato con successo"
+                        _downloadStatus.value = "Mappa offline salvata ($fileSizeKb KB)"
                         _isDownloadingMap.value = false
                     }
                 } else {

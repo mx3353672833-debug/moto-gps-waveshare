@@ -18,6 +18,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.ParcelUuid
 import android.util.Log
+import com.motogps.android.jni.MotoBLEMapScene
 import com.motogps.android.jni.MotoBLENavigationSnapshot
 import com.motogps.android.jni.MotoBLEProtocolCodec
 import com.motogps.android.jni.MotoBLERouteGeometry
@@ -85,6 +86,13 @@ class MotoBLEManager(private val context: Context) {
     fun sendNavigationSnapshot(snapshot: MotoBLENavigationSnapshot) {
         if (codecPtr != 0L) {
             val frames = bleCodec.nativeEncodeNavigationSnapshot(codecPtr, snapshot)
+            enqueueSendFramesTask(frames)
+        }
+    }
+
+    fun sendMapScene(scene: MotoBLEMapScene) {
+        if (codecPtr != 0L) {
+            val frames = bleCodec.nativeEncodeMapScene(codecPtr, scene)
             enqueueSendFramesTask(frames)
         }
     }
