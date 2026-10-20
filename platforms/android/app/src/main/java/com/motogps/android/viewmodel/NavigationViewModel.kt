@@ -10,6 +10,7 @@ import com.motogps.android.jni.MotoBLEMapScene
 import com.motogps.android.jni.MotoBLENavigationSnapshot
 import com.motogps.android.jni.MotoBLEProtocolCodec
 import com.motogps.android.jni.MotoBLERouteGeometry
+import com.motogps.android.map.HybridMapRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -39,7 +40,10 @@ data class RouteOption(
     val rawRouteJson: JSONObject
 )
 
-class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() {
+class NavigationViewModel(
+    private val bleManager: MotoBLEManager,
+    private val mapRepository: HybridMapRepository? = null
+) : ViewModel() {
     private val _connectionState = MutableStateFlow("Non connesso")
     val connectionState: StateFlow<String> = _connectionState
 
@@ -99,55 +103,66 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
         lastMapSceneLon = longitude
         lastMapSceneTime = now
 
-        val originE6 = GeoPointE6((latitude * 1e6).toInt(), (longitude * 1e6).toInt())
-        val roadsList = mutableListOf<MotoBLEMapRoadPolyline>()
+        viewModelScope.launch(Dispatchers.IO) {
+            val originE6 = GeoPointE6((latitude * 1e6).toInt(), (longitude * 1e6).toInt())
+            val roadsList = mutableListOf<MotoBLEMapRoadPolyline>()
 
-        val geom = currentGeometry
-        if (geom != null && geom.points.size >= 2) {
-            val routeChunk = geom.points.take(12)
-            if (routeChunk.size >= 2) {
-                roadsList.add(MotoBLEMapRoadPolyline(roadClass = 1, points = routeChunk)) // primary
-            }
-        }
-
-        if (rawRoutePoints.isNotEmpty()) {
-            var totalPoints = roadsList.sumOf { it.points.size }
-            var idx = 0
-            while (idx < rawRoutePoints.size && roadsList.size < 24 && totalPoints < 192) {
-                val endIdx = minOf(idx + 8, rawRoutePoints.size)
-                val segment = rawRoutePoints.subList(idx, endIdx)
-                if (segment.size >= 2) {
-                    val roadClass = if (roadsList.size % 2 == 0) 2 else 3 // secondary or residential
-                    roadsList.add(MotoBLEMapRoadPolyline(roadClass = roadClass, points = segment))
-                    totalPoints += segment.size
+            val nearbySegments = mapRepository?.getNearbyRoadSegments(latitude, longitude, 600.0) ?: emptyList()
+            if (nearbySegments.isNotEmpty()) {
+                for (seg in nearbySegments) {
+                    if (seg.points.size >= 2) {
+                        roadsList.add(MotoBLEMapRoadPolyline(roadClass = seg.roadClass, points = seg.points))
+                    }
                 }
-                idx += 7
+            } else {
+                val geom = currentGeometry
+                if (geom != null && geom.points.size >= 2) {
+                    val routeChunk = geom.points.take(12)
+                    if (routeChunk.size >= 2) {
+                        roadsList.add(MotoBLEMapRoadPolyline(roadClass = 1, points = routeChunk)) // primary
+                    }
+                }
+
+                if (rawRoutePoints.isNotEmpty()) {
+                    var totalPoints = roadsList.sumOf { it.points.size }
+                    var idx = 0
+                    while (idx < rawRoutePoints.size && roadsList.size < 24 && totalPoints < 192) {
+                        val endIdx = minOf(idx + 8, rawRoutePoints.size)
+                        val segment = rawRoutePoints.subList(idx, endIdx)
+                        if (segment.size >= 2) {
+                            val roadClass = if (roadsList.size % 2 == 0) 2 else 3 // secondary or residential
+                            roadsList.add(MotoBLEMapRoadPolyline(roadClass = roadClass, points = segment))
+                            totalPoints += segment.size
+                        }
+                        idx += 7
+                    }
+                }
+
+                if (roadsList.isEmpty()) {
+                    val latE6 = (latitude * 1e6).toInt()
+                    val lonE6 = (longitude * 1e6).toInt()
+                    val dummyPoints = listOf(
+                        GeoPointE6(latE6 - 500, lonE6 - 500),
+                        GeoPointE6(latE6 + 500, lonE6 + 500)
+                    )
+                    roadsList.add(MotoBLEMapRoadPolyline(roadClass = 3, points = dummyPoints))
+                }
             }
-        }
 
-        if (roadsList.isEmpty()) {
-            val latE6 = (latitude * 1e6).toInt()
-            val lonE6 = (longitude * 1e6).toInt()
-            val dummyPoints = listOf(
-                GeoPointE6(latE6 - 500, lonE6 - 500),
-                GeoPointE6(latE6 + 500, lonE6 + 500)
+            val scene = MotoBLEMapScene(
+                coordinateSystem = 2,
+                sceneRevision = mapSceneRevision++,
+                viewOrigin = originE6,
+                radiusMeters = 500,
+                roads = roadsList,
+                buildings = emptyList()
             )
-            roadsList.add(MotoBLEMapRoadPolyline(roadClass = 3, points = dummyPoints))
-        }
 
-        val scene = MotoBLEMapScene(
-            coordinateSystem = 2,
-            sceneRevision = mapSceneRevision++,
-            viewOrigin = originE6,
-            radiusMeters = 500,
-            roads = roadsList,
-            buildings = emptyList()
-        )
-
-        if (mapSceneCodecPtr != 0L) {
-            val frames = mapSceneCodec.nativeEncodeMapScene(mapSceneCodecPtr, scene)
-            if (frames.isNotEmpty()) {
-                bleManager.enqueueSendFramesTask(frames)
+            if (mapSceneCodecPtr != 0L) {
+                val frames = mapSceneCodec.nativeEncodeMapScene(mapSceneCodecPtr, scene)
+                if (frames.isNotEmpty()) {
+                    bleManager.enqueueSendFramesTask(frames)
+                }
             }
         }
     }
@@ -672,11 +687,14 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
     }
 }
 
-class NavigationViewModelFactory(private val bleManager: MotoBLEManager) : ViewModelProvider.Factory {
+class NavigationViewModelFactory(
+    private val bleManager: MotoBLEManager,
+    private val mapRepository: HybridMapRepository? = null
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(NavigationViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return NavigationViewModel(bleManager) as T
+            return NavigationViewModel(bleManager, mapRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
