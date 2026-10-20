@@ -24,7 +24,8 @@ import kotlin.math.sqrt
 
 data class RoadSegment(
     val roadClass: Int = 5, // 0 motorway, 1 primary, 2 secondary, 3 residential, 4 service, 5 other
-    val points: List<GeoPointE6>
+    val points: List<GeoPointE6>,
+    val maxSpeedKph: Int = 0
 )
 
 data class SavedMapInfo(
@@ -41,7 +42,7 @@ class HybridMapRepository(
     private val maxCacheSizeBytes: Long = 1024L * 1024L * 1024L // 1 GB
 ) {
     constructor(context: Context) : this(
-        mapsDir = File(context.getExternalFilesDir(null), "maps"),
+        mapsDir = File(context.getExternalFilesDir(null) ?: context.filesDir, "maps"),
         cacheDir = File(context.cacheDir, "vector_tiles")
     )
 
@@ -223,8 +224,8 @@ class HybridMapRepository(
                         }
                     }
 
-                    // Format: roadClass|minLatE6,minLonE6,maxLatE6,maxLonE6|lat1E6,lon1E6;lat2E6,lon2E6;...
-                    val line = "${seg.roadClass}|$minLatE6,$minLonE6,$maxLatE6,$maxLonE6|$ptsString\n"
+                    // Format: roadClass,maxSpeedKph|minLatE6,minLonE6,maxLatE6,maxLonE6|lat1E6,lon1E6;lat2E6,lon2E6;...
+                    val line = "${seg.roadClass},${seg.maxSpeedKph}|$minLatE6,$minLonE6,$maxLatE6,$maxLonE6|$ptsString\n"
                     writer.write(line)
                 }
                 writer.flush()
@@ -258,7 +259,10 @@ class HybridMapRepository(
         val parts = line.split("|")
         if (parts.size < 3) return null
 
-        val roadClass = parts[0].trim().toIntOrNull() ?: 5
+        val roadClassParts = parts[0].trim().split(",")
+        val roadClass = roadClassParts[0].toIntOrNull() ?: 5
+        val parsedSpeed = if (roadClassParts.size >= 2) (roadClassParts[1].toIntOrNull() ?: 0) else 0
+        val maxSpeedKph = if (parsedSpeed > 0) parsedSpeed else getDefaultSpeedLimit(roadClass)
         val bboxParts = parts[1].split(",")
         if (bboxParts.size < 4) return null
 
@@ -285,7 +289,7 @@ class HybridMapRepository(
             }
         }
 
-        return if (points.size >= 2) RoadSegment(roadClass, points) else null
+        return if (points.size >= 2) RoadSegment(roadClass, points, maxSpeedKph) else null
     }
 
     private fun getCacheKey(lat: Double, lon: Double): String {
@@ -395,6 +399,10 @@ class HybridMapRepository(
                             val roadClass = mapHighwayTagToRoadClass(highwayTag)
                             val points = mutableListOf<GeoPointE6>()
 
+                            val speedTag = tags.optString("maxspeed", "")
+                            val parsedSpeed = parseSpeedTag(speedTag)
+                            val maxSpeedKph = if (parsedSpeed > 0) parsedSpeed else getDefaultSpeedLimit(roadClass)
+
                             if (elem.has("geometry")) {
                                 val geom = elem.getJSONArray("geometry")
                                 for (j in 0 until geom.length()) {
@@ -405,7 +413,7 @@ class HybridMapRepository(
                                 }
                             }
                             if (points.size >= 2) {
-                                segments.add(RoadSegment(roadClass, points))
+                                segments.add(RoadSegment(roadClass, points, maxSpeedKph))
                             }
                         }
                     }
@@ -422,13 +430,17 @@ class HybridMapRepository(
                     val highwayTag = properties.optString("highway", properties.optString("road_class", ""))
                     if (highwayTag.isNotBlank() || properties.has("highway") || properties.has("road_class")) {
                         val roadClass = mapHighwayTagToRoadClass(highwayTag)
+                        val speedTag = properties.optString("maxspeed", "")
+                        val parsedSpeed = parseSpeedTag(speedTag)
+                        val maxSpeedKph = if (parsedSpeed > 0) parsedSpeed else getDefaultSpeedLimit(roadClass)
+
                         val geomType = geometry.optString("type")
 
                         if (geomType == "LineString" && geometry.has("coordinates")) {
                             val coords = geometry.getJSONArray("coordinates")
                             val points = parseLineStringCoordinates(coords)
                             if (points.size >= 2) {
-                                segments.add(RoadSegment(roadClass, points))
+                                segments.add(RoadSegment(roadClass, points, maxSpeedKph))
                             }
                         } else if (geomType == "MultiLineString" && geometry.has("coordinates")) {
                             val multiCoords = geometry.getJSONArray("coordinates")
@@ -436,7 +448,7 @@ class HybridMapRepository(
                                 val coords = multiCoords.getJSONArray(j)
                                 val points = parseLineStringCoordinates(coords)
                                 if (points.size >= 2) {
-                                    segments.add(RoadSegment(roadClass, points))
+                                    segments.add(RoadSegment(roadClass, points, maxSpeedKph))
                                 }
                             }
                         }
@@ -449,6 +461,7 @@ class HybridMapRepository(
                 for (i in 0 until segArray.length()) {
                     val segObj = segArray.getJSONObject(i)
                     val roadClass = segObj.optInt("roadClass", segObj.optInt("road_class", 5))
+                    val maxSpeedKph = segObj.optInt("maxSpeedKph", segObj.optInt("maxspeed", getDefaultSpeedLimit(roadClass)))
                     val ptsArray = segObj.getJSONArray("points")
                     val points = mutableListOf<GeoPointE6>()
                     for (j in 0 until ptsArray.length()) {
@@ -458,7 +471,7 @@ class HybridMapRepository(
                         points.add(GeoPointE6(lat, lon))
                     }
                     if (points.size >= 2) {
-                        segments.add(RoadSegment(roadClass, points))
+                        segments.add(RoadSegment(roadClass, points, maxSpeedKph))
                     }
                 }
             }
@@ -466,6 +479,23 @@ class HybridMapRepository(
         }
 
         return segments
+    }
+
+    private fun parseSpeedTag(speedStr: String): Int {
+        if (speedStr.isBlank()) return 0
+        val digits = speedStr.takeWhile { it.isDigit() }
+        return digits.toIntOrNull() ?: 0
+    }
+
+    private fun getDefaultSpeedLimit(roadClass: Int): Int {
+        return when (roadClass) {
+            0 -> 130 // motorway
+            1 -> 90  // primary
+            2 -> 70  // secondary
+            3 -> 50  // residential/tertiary
+            4 -> 30  // service
+            else -> 50
+        }
     }
 
     private fun parseLineStringCoordinates(coords: JSONArray): List<GeoPointE6> {
@@ -521,7 +551,7 @@ class HybridMapRepository(
                     nearbyPoints
                 }
 
-                filteredSegments.add(RoadSegment(segment.roadClass, truncatedPoints))
+                filteredSegments.add(RoadSegment(segment.roadClass, truncatedPoints, segment.maxSpeedKph))
                 totalNodeCount += truncatedPoints.size
 
                 if (totalNodeCount >= 192) break

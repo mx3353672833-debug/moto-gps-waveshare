@@ -292,7 +292,17 @@ class NavigationViewModel(
                     if (!_isNavigating.value) break
                     loopCount++
 
-                    val activeSnap = currentSnapshot?.copy() ?: snapshot.copy()
+                    val (cLat, cLon) = currentLocation.value
+                    val nearbySegs = mapRepository?.getNearbyRoadSegments(cLat, cLon, 300.0) ?: emptyList()
+                    val detectedSpeedLimit = nearbySegs.firstOrNull { it.maxSpeedKph > 0 }?.maxSpeedKph ?: 50
+
+                    val snapBase = currentSnapshot?.copy() ?: snapshot.copy()
+                    val pageName = if (loopCount <= 2) "navigation" else "keep"
+                    val activeSnap = snapBase.copy(
+                        displayPageName = pageName,
+                        speedLimitKPH = detectedSpeedLimit
+                    )
+
                     bleManager.sendNavigationSnapshot(activeSnap)
 
                     if (loopCount % 4 == 0) {
@@ -871,6 +881,14 @@ class NavigationViewModel(
                     if (responseJson != null) {
                         val segments = repo.parseGeoJsonOrJson(responseJson)
                         repo.appendSegmentsToMotoMap(targetFile, segments)
+                    }
+                }
+
+                // If Overpass yielded no segments or failed, fallback to rawRoutePoints
+                if (!targetFile.exists() || targetFile.length() == 0L) {
+                    if (rawRoutePoints.isNotEmpty()) {
+                        val fallbackSegments = listOf(com.motogps.android.map.RoadSegment(roadClass = 1, points = rawRoutePoints, maxSpeedKph = 90))
+                        repo.appendSegmentsToMotoMap(targetFile, fallbackSegments)
                     }
                 }
 

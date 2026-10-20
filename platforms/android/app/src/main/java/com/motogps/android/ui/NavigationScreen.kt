@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.activity.compose.BackHandler
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.viewinterop.AndroidView
@@ -284,6 +285,18 @@ fun NavigationScreen(
     val isDownloadingFromVm by viewModel?.isDownloadingMap?.collectAsState() ?: remember { mutableStateOf(false) }
     val savedMaps by viewModel?.savedMaps?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
 
+    var backPressedTime by remember { mutableLongStateOf(0L) }
+
+    BackHandler(enabled = routePreview == null) {
+        val now = System.currentTimeMillis()
+        if (now - backPressedTime < 2000) {
+            (context as? android.app.Activity)?.finish()
+        } else {
+            backPressedTime = now
+            Toast.makeText(context, "Premi ancora per uscire", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     LaunchedEffect(Unit) {
         viewModel?.refreshSavedMaps()
     }
@@ -517,6 +530,24 @@ fun NavigationScreen(
                         }
                     }
 
+                    OutlinedButton(
+                        onClick = { viewModel?.downloadRouteCorridorMap(context.applicationContext) },
+                        enabled = !isDownloadingFromVm,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 4.dp)
+                    ) {
+                        if (isDownloadingFromVm) {
+                            CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp)
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Download in corso...", style = MaterialTheme.typography.labelSmall)
+                        } else {
+                            Icon(Icons.Default.Place, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Salva Mappa Corridoio (10 km)", style = MaterialTheme.typography.labelSmall)
+                        }
+                    }
+
                     if (isNavigating) {
                         Button(
                             onClick = onStopNavigation,
@@ -526,7 +557,7 @@ fun NavigationScreen(
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(16.dp)
+                                .padding(horizontal = 16.dp, vertical = 8.dp)
                                 .height(56.dp)
                         ) {
                             Text("Termina Navigazione", style = MaterialTheme.typography.titleMedium)
@@ -536,7 +567,7 @@ fun NavigationScreen(
                             onClick = { onStartNavigation(routePreview) },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(16.dp)
+                                .padding(horizontal = 16.dp, vertical = 8.dp)
                                 .height(56.dp)
                         ) {
                             Text("Avvia navigazione", style = MaterialTheme.typography.titleMedium)

@@ -59,6 +59,7 @@ class HybridMapRepositoryTest {
         val milanSegments = runBlocking { repository.getNearbyRoadSegments(45.464, 9.190, 600.0) }
         assertEquals(1, milanSegments.size)
         assertEquals(1, milanSegments[0].roadClass)
+        assertEquals(90, milanSegments[0].maxSpeedKph)
         assertEquals(45464000, milanSegments[0].points[0].latitudeE6)
 
         // Test file listing and deleting
