@@ -4,8 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.motogps.android.ble.MotoBLEManager
+import com.motogps.android.jni.GeoPointE6
 import com.motogps.android.jni.MotoBLENavigationSnapshot
+import com.motogps.android.jni.MotoBLERouteGeometry
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -53,6 +57,8 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
 
     private val _selectedRouteIndex = MutableStateFlow(0)
     val selectedRouteIndex: StateFlow<Int> = _selectedRouteIndex
+
+    private var navigationJob: Job? = null
 
     fun searchDestination(query: String, gatewayUrl: String) {
         if (query.isBlank() || gatewayUrl.isBlank()) return
@@ -117,15 +123,27 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
         activeGatewayUrl = gatewayUrl
         isNavigating = true
 
-        viewModelScope.launch {
+        navigationJob?.cancel()
+        navigationJob = viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
 
             try {
-                val snapshot = withContext(Dispatchers.IO) {
-                    performRouting(place, gatewayUrl)
+                val (snapshot, geometry) = withContext(Dispatchers.IO) {
+                    performRoutingWithGeometry(place, gatewayUrl)
+                }
+
+                if (geometry != null) {
+                    bleManager.sendRouteGeometry(geometry)
                 }
                 bleManager.sendNavigationSnapshot(snapshot)
+
+                while (isNavigating) {
+                    delay(800)
+                    if (isNavigating) {
+                        bleManager.sendNavigationSnapshot(snapshot)
+                    }
+                }
             } catch (e: Exception) {
                 _errorMessage.value = "Errore durante la navigazione: ${e.message}"
             } finally {
@@ -136,6 +154,8 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
 
     fun stopNavigation() {
         isNavigating = false
+        navigationJob?.cancel()
+        navigationJob = null
         activeDestination = null
     }
 
@@ -167,8 +187,11 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
             lastRecalculationTime = now
             viewModelScope.launch {
                 try {
-                    val snapshot = withContext(Dispatchers.IO) {
-                        performRouting(dest, activeGatewayUrl)
+                    val (snapshot, geometry) = withContext(Dispatchers.IO) {
+                        performRoutingWithGeometry(dest, activeGatewayUrl)
+                    }
+                    if (geometry != null) {
+                        bleManager.sendRouteGeometry(geometry)
                     }
                     bleManager.sendNavigationSnapshot(snapshot)
                 } catch (_: Exception) {
@@ -186,6 +209,15 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                 Math.sin(dLon / 2) * Math.sin(dLon / 2)
         val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
         return r * c
+    }
+
+    private fun computeFnv1aRouteToken(routeId: String): Long {
+        var hash = 2166136261L
+        for (char in routeId.toByteArray(Charsets.UTF_8)) {
+            hash = hash xor (char.toInt() and 0xFF).toLong()
+            hash = (hash * 16777619L) and 0xFFFFFFFFL
+        }
+        return if (hash == 0L) 1L else hash
     }
 
     private fun fetchRouteOptions(place: PlaceSearchResult, gatewayBaseUrl: String): List<RouteOption> {
@@ -275,7 +307,7 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
         }
     }
 
-    private fun performRouting(place: PlaceSearchResult, gatewayBaseUrl: String): MotoBLENavigationSnapshot {
+    private fun performRoutingWithGeometry(place: PlaceSearchResult, gatewayBaseUrl: String): Pair<MotoBLENavigationSnapshot, MotoBLERouteGeometry?> {
         val baseUrl = if (gatewayBaseUrl.endsWith("/")) gatewayBaseUrl else "$gatewayBaseUrl/"
         val endpoint = "${baseUrl}v1/routes"
 
@@ -341,7 +373,57 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                     instruction = firstManeuver.optString("instruction", "Segui il percorso")
                 }
 
-                return MotoBLENavigationSnapshot(
+                val routeToken = computeFnv1aRouteToken(routeID)
+
+                // Extract geometry points (up to 24)
+                val pointsE6 = mutableListOf<GeoPointE6>()
+                val geomArray = routeObj.optJSONArray("geometry_gcj02")
+                    ?: routeObj.optJSONArray("polyline")
+                    ?: routeObj.optJSONArray("coordinates")
+
+                if (geomArray != null) {
+                    for (i in 0 until geomArray.length()) {
+                        val item = geomArray.optJSONObject(i)
+                        if (item != null) {
+                            val lat = item.optDouble("latitude_deg", item.optDouble("latitude", Double.NaN))
+                            val lon = item.optDouble("longitude_deg", item.optDouble("longitude", Double.NaN))
+                            if (!lat.isNaN() && !lon.isNaN()) {
+                                pointsE6.add(GeoPointE6((lat * 1e6).toInt(), (lon * 1e6).toInt()))
+                            }
+                        } else {
+                            val coordArr = geomArray.optJSONArray(i)
+                            if (coordArr != null && coordArr.length() >= 2) {
+                                val lon = coordArr.optDouble(0, Double.NaN)
+                                val lat = coordArr.optDouble(1, Double.NaN)
+                                if (!lat.isNaN() && !lon.isNaN()) {
+                                    pointsE6.add(GeoPointE6((lat * 1e6).toInt(), (lon * 1e6).toInt()))
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (pointsE6.isEmpty()) {
+                    pointsE6.add(GeoPointE6((originLat * 1e6).toInt(), (originLon * 1e6).toInt()))
+                    pointsE6.add(GeoPointE6((place.latitude * 1e6).toInt(), (place.longitude * 1e6).toInt()))
+                }
+
+                val boundedPoints = pointsE6.take(24)
+                val viewOrigin = boundedPoints.first()
+
+                val routeGeometry = MotoBLERouteGeometry(
+                    coordinateSystem = 2,
+                    routeToken = routeToken,
+                    routeGeneration = 1L,
+                    chunkIndex = 0,
+                    chunkCount = 1,
+                    firstPointIndex = 0,
+                    totalPointCount = boundedPoints.size,
+                    viewOrigin = viewOrigin,
+                    points = boundedPoints
+                )
+
+                val snapshot = MotoBLENavigationSnapshot(
                     stateName = "navigating",
                     networkName = "online",
                     displayPageName = "navigation",
@@ -353,7 +435,7 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                     offRoute = false,
                     routeRequestInFlight = false,
                     trafficRequestInFlight = false,
-                    routeToken = (routeID.hashCode().toLong() and 0xFFFFFFFFL),
+                    routeToken = routeToken,
                     routeGeneration = 1L,
                     maneuverID = 1L,
                     distanceToManeuverM = totalDistanceM,
@@ -369,6 +451,8 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                     roundaboutExit = 0,
                     instructionText = instruction
                 )
+
+                return Pair(snapshot, routeGeometry)
             } else {
                 throw Exception("HTTP Error $responseCode")
             }

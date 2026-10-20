@@ -1,6 +1,9 @@
 package com.motogps.android
 
+import com.motogps.android.jni.GeoPointE6
+import com.motogps.android.jni.MotoBLENavigationSnapshot
 import com.motogps.android.jni.MotoBLEProtocolCodec
+import com.motogps.android.jni.MotoBLERouteGeometry
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
@@ -135,5 +138,73 @@ class MotoBLEProtocolCodecTest {
         assertEquals(2, inbound.connStatus!!.role) // Device
         assertEquals(1, inbound.connStatus!!.state) // Ready
         assertEquals(100L, inbound.connStatus!!.sessionId)
+    }
+
+    @Test
+    fun testGoldenNavigationAndGeometryPayloads() {
+        val expectedNavHex = "0103020007029300a61062bf040302012a0000007801000039300000fc030000340800006d380000e3013200a32326007d00000ce4b89ce995bfe5ae89e8a19712e5898de696b9e8b7afe58fa3e58fb3e8bdac"
+        val expectedGeomHex = "0102a61062bf040302010000010000000400a42b6102a461f006049e2b61029861f006e001da0567a901d608800f"
+
+        val navSnapshot = MotoBLENavigationSnapshot(
+            stateName = "navigating",
+            networkName = "online",
+            displayPageName = "navigation",
+            maneuverName = "turn_right",
+            trafficName = "slow",
+            hasDestination = true,
+            hasFix = true,
+            gnssStale = false,
+            offRoute = false,
+            routeRequestInFlight = false,
+            trafficRequestInFlight = false,
+            routeToken = 0xBF6210A6L,
+            routeGeneration = 0x01020304L,
+            maneuverID = 42L,
+            distanceToManeuverM = 376L,
+            remainingDistanceM = 12345L,
+            remainingDurationS = 1020L,
+            routeProgressM = 2100L,
+            totalDistanceM = 14445L,
+            speedDeciKPH = 483,
+            speedLimitKPH = 50,
+            headingCentiDegrees = 9123,
+            accuracyDecimeters = 38,
+            crossTrackDecimeters = 125,
+            roundaboutExit = 0,
+            instructionText = "东长安街\n前方路口右转"
+        )
+
+        val navPayload = codec.nativeEncodeNavigationPayloadForGoldenCheck(handle, navSnapshot)
+        assertNotNull(navPayload)
+        assertEquals(expectedNavHex, hexString(navPayload!!))
+
+        val routeGeometry = MotoBLERouteGeometry(
+            coordinateSystem = 2,
+            routeToken = 0xBF6210A6L,
+            routeGeneration = 0x01020304L,
+            chunkIndex = 0,
+            chunkCount = 1,
+            firstPointIndex = 0,
+            totalPointCount = 4,
+            viewOrigin = GeoPointE6(39922596, 116416932),
+            points = listOf(
+                GeoPointE6(39922590, 116416920),
+                GeoPointE6(39922702, 116417285),
+                GeoPointE6(39922650, 116417200),
+                GeoPointE6(39923205, 116418160)
+            )
+        )
+
+        val geomPayload = codec.nativeEncodeGeometryPayloadForGoldenCheck(handle, routeGeometry)
+        assertNotNull(geomPayload)
+        assertEquals(expectedGeomHex, hexString(geomPayload!!))
+    }
+
+    private fun hexString(bytes: ByteArray): String {
+        val sb = StringBuilder()
+        for (b in bytes) {
+            sb.append(String.format("%02x", b.toInt() and 0xFF))
+        }
+        return sb.toString()
     }
 }

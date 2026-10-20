@@ -5,6 +5,23 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.math.min
 
+data class GeoPointE6(
+    val latitudeE6: Int,
+    val longitudeE6: Int
+)
+
+data class MotoBLERouteGeometry(
+    val coordinateSystem: Int = 2, // GCJ-02
+    val routeToken: Long,
+    val routeGeneration: Long,
+    val chunkIndex: Int = 0,
+    val chunkCount: Int = 1,
+    val firstPointIndex: Int = 0,
+    val totalPointCount: Int,
+    val viewOrigin: GeoPointE6,
+    val points: List<GeoPointE6>
+)
+
 class MotoBLEProtocolCodec {
 
     companion object {
@@ -160,8 +177,18 @@ class MotoBLEProtocolCodec {
         return fragmentMessage(storage, MSG_NAVIGATION_SNAPSHOT, payload, ackRequested = false, urgent = false)
     }
 
+    fun nativeEncodeRouteGeometry(ptr: Long, geometry: MotoBLERouteGeometry): Array<ByteArray> {
+        val storage = instances[ptr] ?: return emptyArray()
+        val payload = buildRouteGeometryPayload(geometry) ?: return emptyArray()
+        return fragmentMessage(storage, MSG_ROUTE_GEOMETRY, payload, ackRequested = false, urgent = false)
+    }
+
     fun nativeEncodeNavigationPayloadForGoldenCheck(ptr: Long, snapshot: MotoBLENavigationSnapshot): ByteArray? {
         return buildNavigationSnapshotPayload(snapshot)
+    }
+
+    fun nativeEncodeGeometryPayloadForGoldenCheck(ptr: Long, geometry: MotoBLERouteGeometry): ByteArray? {
+        return buildRouteGeometryPayload(geometry)
     }
 
     fun nativeEncodeMediaState(ptr: Long, state: Any): Array<ByteArray> {
@@ -347,8 +374,18 @@ class MotoBLEProtocolCodec {
         if (snapshot.hasFix) flags = flags or 2
         if (snapshot.gnssStale) flags = flags or 4
         if (snapshot.offRoute) flags = flags or 8
+        if (snapshot.instructionText.isNotBlank()) flags = flags or 16
         if (snapshot.routeRequestInFlight) flags = flags or 32
         if (snapshot.trafficRequestInFlight) flags = flags or 64
+        if (snapshot.hasDestination && snapshot.routeToken != 0L) flags = flags or 128
+
+        var roadName = ""
+        var instruction = snapshot.instructionText
+        if (snapshot.instructionText.contains("\n")) {
+            val parts = snapshot.instructionText.split("\n", limit = 2)
+            roadName = parts[0]
+            instruction = parts[1]
+        }
 
         val writer = Writer()
         writer.writeU8(PAYLOAD_REVISION.toInt())
@@ -372,8 +409,41 @@ class MotoBLEProtocolCodec {
         writer.writeU16(snapshot.accuracyDecimeters)
         writer.writeU16(snapshot.crossTrackDecimeters)
         writer.writeU8(snapshot.roundaboutExit)
-        writer.writeStringU8("") // road_name
-        writer.writeStringU8(snapshot.instructionText)
+        writer.writeStringU8(roadName)
+        writer.writeStringU8(instruction)
+        return writer.toByteArray()
+    }
+
+    private fun buildRouteGeometryPayload(geometry: MotoBLERouteGeometry): ByteArray? {
+        if (geometry.points.isEmpty()) return null
+
+        val writer = Writer()
+        writer.writeU8(PAYLOAD_REVISION.toInt())
+        writer.writeU8(geometry.coordinateSystem)
+        writer.writeU32(geometry.routeToken)
+        writer.writeU32(geometry.routeGeneration)
+        writer.writeU16(geometry.chunkIndex)
+        writer.writeU16(geometry.chunkCount)
+        writer.writeU16(geometry.firstPointIndex)
+        writer.writeU16(geometry.totalPointCount)
+        writer.writeS32(geometry.viewOrigin.latitudeE6)
+        writer.writeS32(geometry.viewOrigin.longitudeE6)
+        writer.writeU8(geometry.points.size)
+
+        val first = geometry.points.first()
+        writer.writeS32(first.latitudeE6)
+        writer.writeS32(first.longitudeE6)
+
+        var prev = first
+        for (i in 1 until geometry.points.size) {
+            val pt = geometry.points[i]
+            val dLat = pt.latitudeE6 - prev.latitudeE6
+            val dLon = pt.longitudeE6 - prev.longitudeE6
+            writer.writeSignedVarint(dLat)
+            writer.writeSignedVarint(dLon)
+            prev = pt
+        }
+
         return writer.toByteArray()
     }
 
@@ -460,6 +530,27 @@ class MotoBLEProtocolCodec {
         fun writeU32(v: Long) {
             writeU16((v and 0xFFFF).toInt())
             writeU16(((v shr 16) and 0xFFFF).toInt())
+        }
+
+        fun writeS32(v: Int) {
+            writeU32(v.toLong() and 0xFFFFFFFFL)
+        }
+
+        fun writeSignedVarint(value: Int) {
+            val wide = value.toLong()
+            var encoded = if (wide >= 0) {
+                (wide * 2) and 0xFFFFFFFFL
+            } else {
+                ((-wide * 2) - 1) and 0xFFFFFFFFL
+            }
+            do {
+                var b = (encoded and 0x7F).toInt()
+                encoded = encoded ushr 7
+                if (encoded != 0L) {
+                    b = b or 0x80
+                }
+                writeU8(b)
+            } while (encoded != 0L)
         }
 
         fun writeStringU8(str: String) {
