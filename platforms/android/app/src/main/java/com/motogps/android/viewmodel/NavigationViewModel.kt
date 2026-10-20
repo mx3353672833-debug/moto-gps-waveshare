@@ -58,7 +58,12 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
     private val _selectedRouteIndex = MutableStateFlow(0)
     val selectedRouteIndex: StateFlow<Int> = _selectedRouteIndex
 
+    private val _isNavigating = MutableStateFlow(false)
+    val isNavigating: StateFlow<Boolean> = _isNavigating
+
     private var navigationJob: Job? = null
+    private var currentSnapshot: MotoBLENavigationSnapshot? = null
+    private var currentGeometry: MotoBLERouteGeometry? = null
 
     fun searchDestination(query: String, gatewayUrl: String) {
         if (query.isBlank() || gatewayUrl.isBlank()) return
@@ -121,7 +126,7 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
 
         activeDestination = place
         activeGatewayUrl = gatewayUrl
-        isNavigating = true
+        _isNavigating.value = true
 
         navigationJob?.cancel()
         navigationJob = viewModelScope.launch {
@@ -133,15 +138,30 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                     performRoutingWithGeometry(place, gatewayUrl)
                 }
 
+                currentSnapshot = snapshot
+                currentGeometry = geometry
+
                 if (geometry != null) {
                     bleManager.sendRouteGeometry(geometry)
                 }
                 bleManager.sendNavigationSnapshot(snapshot)
 
-                while (isNavigating) {
+                _isLoading.value = false
+
+                var loopCount = 0
+                while (_isNavigating.value) {
                     delay(800)
-                    if (isNavigating) {
-                        bleManager.sendNavigationSnapshot(snapshot)
+                    if (!_isNavigating.value) break
+                    loopCount++
+
+                    val activeSnap = currentSnapshot?.copy() ?: snapshot.copy()
+                    bleManager.sendNavigationSnapshot(activeSnap)
+
+                    if (loopCount % 4 == 0) {
+                        val activeGeom = currentGeometry ?: geometry
+                        if (activeGeom != null) {
+                            bleManager.sendRouteGeometry(activeGeom)
+                        }
                     }
                 }
             } catch (e: Exception) {
@@ -153,10 +173,46 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
     }
 
     fun stopNavigation() {
-        isNavigating = false
+        _isNavigating.value = false
         navigationJob?.cancel()
         navigationJob = null
         activeDestination = null
+        currentSnapshot = null
+        currentGeometry = null
+
+        val stopSnapshot = MotoBLENavigationSnapshot(
+            stateName = "idle",
+            networkName = "online",
+            displayPageName = "idle",
+            maneuverName = "none",
+            trafficName = "none",
+            hasDestination = false,
+            hasFix = false,
+            gnssStale = false,
+            offRoute = false,
+            routeRequestInFlight = false,
+            trafficRequestInFlight = false,
+            routeToken = 0L,
+            routeGeneration = 0L,
+            maneuverID = 0L,
+            distanceToManeuverM = 0L,
+            remainingDistanceM = 0L,
+            remainingDurationS = 0L,
+            routeProgressM = 0L,
+            totalDistanceM = 0L,
+            speedDeciKPH = 0,
+            speedLimitKPH = 0,
+            headingCentiDegrees = 0,
+            accuracyDecimeters = 0,
+            crossTrackDecimeters = 0,
+            roundaboutExit = 0,
+            instructionText = ""
+        )
+        bleManager.sendNavigationSnapshot(stopSnapshot)
+
+        _routePreview.value = null
+        _routeOptions.value = emptyList()
+        _selectedRouteIndex.value = 0
     }
 
     private val _currentLocation = MutableStateFlow<Pair<Double, Double>>(Pair(41.9028, 12.4964))
@@ -165,14 +221,13 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
     private var hasFirstFix = false
     private var activeDestination: PlaceSearchResult? = null
     private var activeGatewayUrl: String = ""
-    private var isNavigating: Boolean = false
     private var lastRecalculationTime: Long = 0
 
     fun updateDeviceLocation(latitude: Double, longitude: Double) {
         hasFirstFix = true
         _currentLocation.value = Pair(latitude, longitude)
 
-        if (isNavigating && activeDestination != null && activeGatewayUrl.isNotBlank()) {
+        if (_isNavigating.value && activeDestination != null && activeGatewayUrl.isNotBlank()) {
             checkOffRouteAndRecalculate(latitude, longitude)
         }
     }
@@ -190,6 +245,8 @@ class NavigationViewModel(private val bleManager: MotoBLEManager) : ViewModel() 
                     val (snapshot, geometry) = withContext(Dispatchers.IO) {
                         performRoutingWithGeometry(dest, activeGatewayUrl)
                     }
+                    currentSnapshot = snapshot
+                    currentGeometry = geometry
                     if (geometry != null) {
                         bleManager.sendRouteGeometry(geometry)
                     }

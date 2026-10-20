@@ -260,10 +260,12 @@ fun NavigationScreen(
     routePreview: PlaceSearchResult?,
     routeOptions: List<RouteOption>,
     selectedRouteIndex: Int,
+    isNavigating: Boolean = false,
     currentLocation: Pair<Double, Double>? = null,
     onRouteOptionSelect: (Int) -> Unit,
     onRouteSelected: (PlaceSearchResult) -> Unit,
     onStartNavigation: (PlaceSearchResult) -> Unit,
+    onStopNavigation: () -> Unit = {},
     onBackToSearch: () -> Unit
 ) {
     var searchQuery by remember { mutableStateOf("") }
@@ -391,14 +393,30 @@ fun NavigationScreen(
                         }
                     }
 
-                    Button(
-                        onClick = { onStartNavigation(routePreview) },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp)
-                            .height(56.dp)
-                    ) {
-                        Text("Avvia navigazione", style = MaterialTheme.typography.titleMedium)
+                    if (isNavigating) {
+                        Button(
+                            onClick = onStopNavigation,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.error,
+                                contentColor = MaterialTheme.colorScheme.onError
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                                .height(56.dp)
+                        ) {
+                            Text("Termina Navigazione", style = MaterialTheme.typography.titleMedium)
+                        }
+                    } else {
+                        Button(
+                            onClick = { onStartNavigation(routePreview) },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                                .height(56.dp)
+                        ) {
+                            Text("Avvia navigazione", style = MaterialTheme.typography.titleMedium)
+                        }
                     }
                 }
             } else {

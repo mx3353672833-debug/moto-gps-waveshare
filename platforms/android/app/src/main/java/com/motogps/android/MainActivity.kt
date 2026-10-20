@@ -89,6 +89,7 @@ class MainActivity : ComponentActivity(), LocationListener {
             val routePreview = viewModel.routePreview.collectAsState().value
             val routeOptions = viewModel.routeOptions.collectAsState().value
             val selectedRouteIndex = viewModel.selectedRouteIndex.collectAsState().value
+            val isNavigating = viewModel.isNavigating.collectAsState().value
             val currentLocation = viewModel.currentLocation.collectAsState().value
 
             if (errorMessage != null) {
@@ -116,6 +117,7 @@ class MainActivity : ComponentActivity(), LocationListener {
                     routePreview = routePreview,
                     routeOptions = routeOptions,
                     selectedRouteIndex = selectedRouteIndex,
+                    isNavigating = isNavigating,
                     currentLocation = currentLocation,
                     onRouteOptionSelect = { index ->
                         viewModel.selectRouteOption(index)
@@ -125,6 +127,9 @@ class MainActivity : ComponentActivity(), LocationListener {
                     },
                     onStartNavigation = { place ->
                         viewModel.startNavigation(place, getGatewayToUse())
+                    },
+                    onStopNavigation = {
+                        viewModel.stopNavigation()
                     },
                     onBackToSearch = {
                         viewModel.clearRoutePreview()
