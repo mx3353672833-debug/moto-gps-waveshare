@@ -69,6 +69,12 @@ class NavigationViewModel(
     private val _isNavigating = MutableStateFlow(false)
     val isNavigating: StateFlow<Boolean> = _isNavigating
 
+    private val _downloadStatus = MutableStateFlow<String?>(null)
+    val downloadStatus: StateFlow<String?> = _downloadStatus
+
+    private val _isDownloadingMap = MutableStateFlow(false)
+    val isDownloadingMap: StateFlow<Boolean> = _isDownloadingMap
+
     private var navigationJob: Job? = null
     private var currentSnapshot: MotoBLENavigationSnapshot? = null
     private var currentGeometry: MotoBLERouteGeometry? = null
@@ -690,6 +696,70 @@ class NavigationViewModel(
 
     fun clearError() {
         _errorMessage.value = null
+    }
+
+    fun startMapDownload(context: android.content.Context, bbox: org.osmdroid.util.BoundingBox? = null) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                withContext(Dispatchers.Main) {
+                    _isDownloadingMap.value = true
+                    _downloadStatus.value = "Avvio download mappa..."
+                }
+
+                val appContext = context.applicationContext
+                val mapsDir = java.io.File(appContext.getExternalFilesDir(null), "maps")
+                if (!mapsDir.exists()) {
+                    mapsDir.mkdirs()
+                }
+
+                val (curLat, curLon) = currentLocation.value
+                val minLat = bbox?.latSouth ?: (curLat - 0.05)
+                val minLon = bbox?.lonWest ?: (curLon - 0.05)
+                val maxLat = bbox?.latNorth ?: (curLat + 0.05)
+                val maxLon = bbox?.lonEast ?: (curLon + 0.05)
+
+                val overpassUrl = "https://overpass-api.de/api/interpreter?data=" +
+                        "[out:json];way[highway]($minLat,$minLon,$maxLat,$maxLon);out%20geom;"
+
+                val targetFile = java.io.File(mapsDir, "regional_map_${(minLat*100).toInt()}_${(minLon*100).toInt()}.json")
+                targetFile.parentFile?.mkdirs()
+
+                val url = java.net.URL(overpassUrl)
+                val conn = url.openConnection() as java.net.HttpURLConnection
+                conn.requestMethod = "GET"
+                conn.setRequestProperty("User-Agent", "MotoGpsWaveshare/1.0")
+                conn.connectTimeout = 10000
+                conn.readTimeout = 10000
+
+                if (conn.responseCode in 200..299) {
+                    java.io.BufferedInputStream(conn.inputStream).use { bis ->
+                        java.io.BufferedOutputStream(java.io.FileOutputStream(targetFile)).use { bos ->
+                            val buffer = ByteArray(8192)
+                            var bytesRead: Int
+                            while (bis.read(buffer).also { bytesRead = it } != -1) {
+                                bos.write(buffer, 0, bytesRead)
+                            }
+                            bos.flush()
+                        }
+                    }
+                    withContext(Dispatchers.Main) {
+                        _downloadStatus.value = "Download completato con successo"
+                        _isDownloadingMap.value = false
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        _downloadStatus.value = "Errore HTTP server: ${conn.responseCode}"
+                        _isDownloadingMap.value = false
+                    }
+                }
+            } catch (t: Throwable) {
+                Log.e("NavigationVM", "CRASH EVITATO durante download mappa", t)
+                withContext(Dispatchers.Main) {
+                    _downloadStatus.value = "Errore: ${t.localizedMessage ?: t.javaClass.simpleName}"
+                    _isDownloadingMap.value = false
+                }
+            }
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 package com.motogps.android.ui
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.viewinterop.AndroidView
+import com.motogps.android.viewmodel.NavigationViewModel
 import com.motogps.android.viewmodel.PlaceSearchResult
 import com.motogps.android.viewmodel.RouteOption
 import org.json.JSONArray
@@ -270,6 +272,7 @@ fun NavigationScreen(
     selectedRouteIndex: Int,
     isNavigating: Boolean = false,
     currentLocation: Pair<Double, Double>? = null,
+    viewModel: NavigationViewModel? = null,
     onRouteOptionSelect: (Int) -> Unit,
     onRouteSelected: (PlaceSearchResult) -> Unit,
     onStartNavigation: (PlaceSearchResult) -> Unit,
@@ -281,13 +284,22 @@ fun NavigationScreen(
     var showGatewayDialog by remember { mutableStateOf(initialGateway.isBlank()) }
     var tempGateway by remember { mutableStateOf(initialGateway) }
 
+    val focusManager = LocalFocusManager.current
+    val context = LocalContext.current
+
     var centerOnLocationTrigger by remember { mutableStateOf(0) }
     var activeMapView by remember { mutableStateOf<MapView?>(null) }
     var longPressDestination by remember { mutableStateOf<Pair<Double, Double>?>(null) }
     var isDownloadingMap by remember { mutableStateOf(false) }
 
-    val focusManager = LocalFocusManager.current
-    val context = LocalContext.current
+    val downloadStatus by viewModel?.downloadStatus?.collectAsState() ?: remember { mutableStateOf(null) }
+    val isDownloadingFromVm by viewModel?.isDownloadingMap?.collectAsState() ?: remember { mutableStateOf(false) }
+
+    LaunchedEffect(downloadStatus) {
+        downloadStatus?.let { msg ->
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+        }
+    }
 
     if (showGatewayDialog) {
         AlertDialog(
@@ -487,14 +499,19 @@ fun NavigationScreen(
 
                     Button(
                         onClick = {
-                            triggerOfflineMapDownload(activeMapView, context) { downloading ->
-                                isDownloadingMap = downloading
+                            Log.d("MapDownload", "Pulsante premuto con successo")
+                            if (viewModel != null) {
+                                viewModel.startMapDownload(context, activeMapView?.boundingBox)
+                            } else {
+                                triggerOfflineMapDownload(activeMapView, context) { downloading ->
+                                    isDownloadingMap = downloading
+                                }
                             }
                         },
-                        enabled = !isDownloadingMap,
+                        enabled = !isDownloadingMap && !isDownloadingFromVm,
                         modifier = Modifier.weight(1f)
                     ) {
-                        if (isDownloadingMap) {
+                        if (isDownloadingMap || isDownloadingFromVm) {
                             CircularProgressIndicator(
                                 modifier = Modifier.size(18.dp),
                                 strokeWidth = 2.dp,
