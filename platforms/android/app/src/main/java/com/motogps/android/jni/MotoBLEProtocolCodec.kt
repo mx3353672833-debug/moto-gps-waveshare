@@ -145,7 +145,7 @@ class MotoBLEProtocolCodec {
             state = 0, // Starting
             minVersion = 1,
             maxVersion = 1,
-            capabilities = 19L, // GattWrite | GattWriteWithoutResponse | GattEncryptedPermission
+            capabilities = 0xFFL, // All capabilities (Navigation, RouteGeom, Traffic, Media, TouchCmds, MusicCmds, CommandAck, MapScene)
             sessionId = sessionID,
             maxFrameSize = storage.maxFrameSize,
             heartbeatIntervalMs = 1000
@@ -160,7 +160,7 @@ class MotoBLEProtocolCodec {
             state = 1, // Ready
             minVersion = 1,
             maxVersion = 1,
-            capabilities = 19L,
+            capabilities = 0xFFL, // All capabilities
             sessionId = sessionID,
             maxFrameSize = storage.maxFrameSize,
             heartbeatIntervalMs = 1000
@@ -376,8 +376,8 @@ class MotoBLEProtocolCodec {
             else -> 2
         }
         val displayPage = when (snapshot.displayPageName) {
-            "speedometer" -> 1
-            "heading" -> 2
+            "speedometer", "speed" -> 1
+            "heading", "compass" -> 2
             "music" -> 3
             else -> 0
         }

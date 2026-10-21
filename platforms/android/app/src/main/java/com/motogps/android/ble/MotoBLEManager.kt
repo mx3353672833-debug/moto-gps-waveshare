@@ -37,6 +37,7 @@ class MotoBLEManager(private val context: Context) {
 
     var onConnectionStateChange: ((String) -> Unit)? = null
     var onConnectionError: ((String) -> Unit)? = null
+    var onDeviceCommandReceived: ((com.motogps.android.jni.MotoBLEDeviceCommand) -> Unit)? = null
     private var bluetoothGatt: BluetoothGatt? = null
     private var connectedDevice: BluetoothDevice? = null
     private var writeCharacteristic: BluetoothGattCharacteristic? = null
@@ -374,6 +375,15 @@ class MotoBLEManager(private val context: Context) {
                     mainHandler.post { onConnectionStateChange?.invoke("Connesso") }
                     startHeartbeat()
                 }
+            }
+
+            val cmd = inboundMessage.command
+            if (cmd != null) {
+                if (codecPtr != 0L) {
+                    val ackFrames = bleCodec.nativeEncodeAck(codecPtr, cmd.sequence, 0 /* Ok */, cmd.commandId)
+                    enqueueSendFramesTask(ackFrames)
+                }
+                mainHandler.post { onDeviceCommandReceived?.invoke(cmd) }
             }
         }
     }

@@ -111,6 +111,17 @@ class NavigationViewModel(
     private val _savedMaps = MutableStateFlow<List<SavedMapInfo>>(emptyList())
     val savedMaps: StateFlow<List<SavedMapInfo>> = _savedMaps
 
+    private val _currentDevicePage = MutableStateFlow(0)
+    val currentDevicePage: StateFlow<Int> = _currentDevicePage
+
+    init {
+        bleManager.onDeviceCommandReceived = { cmd ->
+            if (cmd.kind == 0) { // PageSelected
+                _currentDevicePage.value = cmd.page
+            }
+        }
+    }
+
     private var downloadJob: Job? = null
     private var navigationJob: Job? = null
     private var currentSnapshot: MotoBLENavigationSnapshot? = null
@@ -129,8 +140,7 @@ class NavigationViewModel(
         val distMoved = if (lastMapSceneLat == 0.0 && lastMapSceneLon == 0.0) 999.0
         else calculateDistanceMeters(lastMapSceneLat, lastMapSceneLon, latitude, longitude)
 
-        val timeElapsed = now - lastMapSceneTime
-        if (!force && distMoved < 100.0 && timeElapsed < 15000) return
+        if (!force && distMoved < 100.0) return
 
         lastMapSceneLat = latitude
         lastMapSceneLon = longitude
@@ -138,61 +148,22 @@ class NavigationViewModel(
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val originE6 = GeoPointE6((latitude * 1e6).toInt(), (longitude * 1e6).toInt())
-                val roadsList = mutableListOf<MotoBLEMapRoadPolyline>()
-
-                val nearbySegments = mapRepository?.getNearbyRoadSegments(latitude, longitude, 600.0) ?: emptyList()
-            if (nearbySegments.isNotEmpty()) {
-                for (seg in nearbySegments) {
-                    if (seg.points.size >= 2) {
-                        roadsList.add(MotoBLEMapRoadPolyline(roadClass = seg.roadClass, points = seg.points))
+                if (mapSceneRevision == 0L) mapSceneRevision = 1L
+                val scene = mapRepository?.fetchMapScene(latitude, longitude, mapSceneRevision++)
+                    ?: run {
+                        val (gLat, gLon) = mapRepository?.wgs84ToGcj02(latitude, longitude) ?: Pair(latitude, longitude)
+                        val originE6 = GeoPointE6((gLat * 1e6).toInt(), (gLon * 1e6).toInt())
+                        MotoBLEMapScene(
+                            coordinateSystem = 2,
+                            sceneRevision = mapSceneRevision++,
+                            viewOrigin = originE6,
+                            radiusMeters = 500,
+                            roads = emptyList(),
+                            buildings = emptyList()
+                        )
                     }
-                }
-            } else {
-                val geom = currentGeometry
-                if (geom != null && geom.points.size >= 2) {
-                    val routeChunk = geom.points.take(12)
-                    if (routeChunk.size >= 2) {
-                        roadsList.add(MotoBLEMapRoadPolyline(roadClass = 1, points = routeChunk)) // primary
-                    }
-                }
 
-                if (rawRoutePoints.isNotEmpty()) {
-                    var totalPoints = roadsList.sumOf { it.points.size }
-                    var idx = 0
-                    while (idx < rawRoutePoints.size && roadsList.size < 24 && totalPoints < 192) {
-                        val endIdx = minOf(idx + 8, rawRoutePoints.size)
-                        val segment = rawRoutePoints.subList(idx, endIdx)
-                        if (segment.size >= 2) {
-                            val roadClass = if (roadsList.size % 2 == 0) 2 else 3 // secondary or residential
-                            roadsList.add(MotoBLEMapRoadPolyline(roadClass = roadClass, points = segment))
-                            totalPoints += segment.size
-                        }
-                        idx += 7
-                    }
-                }
-
-                if (roadsList.isEmpty()) {
-                    val latE6 = (latitude * 1e6).toInt()
-                    val lonE6 = (longitude * 1e6).toInt()
-                    val dummyPoints = listOf(
-                        GeoPointE6(latE6 - 500, lonE6 - 500),
-                        GeoPointE6(latE6 + 500, lonE6 + 500)
-                    )
-                    roadsList.add(MotoBLEMapRoadPolyline(roadClass = 3, points = dummyPoints))
-                }
-            }
-
-            val scene = MotoBLEMapScene(
-                coordinateSystem = 2,
-                sceneRevision = mapSceneRevision++,
-                viewOrigin = originE6,
-                radiusMeters = 500,
-                roads = roadsList,
-                buildings = emptyList()
-            )
-
-            bleManager.sendMapScene(scene)
+                bleManager.sendMapScene(scene)
             } catch (e: Exception) {
                 Log.e("MapDownload", "Errore download/generazione mappa", e)
                 _errorMessage.value = "Errore mappa: ${e.message}"
@@ -259,6 +230,7 @@ class NavigationViewModel(
     fun startNavigation(place: PlaceSearchResult, gatewayUrl: String) {
         if (gatewayUrl.isBlank()) return
 
+        _currentDevicePage.value = 0
         activeDestination = place
         activeGatewayUrl = gatewayUrl
         _isNavigating.value = true
@@ -294,10 +266,15 @@ class NavigationViewModel(
 
                     val (cLat, cLon) = currentLocation.value
                     val nearbySegs = mapRepository?.getNearbyRoadSegments(cLat, cLon, 300.0) ?: emptyList()
-                    val detectedSpeedLimit = nearbySegs.firstOrNull { it.maxSpeedKph > 0 }?.maxSpeedKph ?: 50
+                    val detectedSpeedLimit = findNearestRoadSpeedLimit(nearbySegs, cLat, cLon, 50.0)
 
                     val snapBase = currentSnapshot?.copy() ?: snapshot.copy()
-                    val pageName = if (loopCount <= 2) "navigation" else "keep"
+                    val pageName = when (_currentDevicePage.value) {
+                        1 -> "speedometer"
+                        2 -> "heading"
+                        3 -> "music"
+                        else -> "navigation"
+                    }
                     val activeSnap = snapBase.copy(
                         displayPageName = pageName,
                         speedLimitKPH = detectedSpeedLimit
@@ -383,6 +360,50 @@ class NavigationViewModel(
             checkOffRouteAndRecalculate(latitude, longitude)
             maybeSendMapScene(latitude, longitude, force = false)
         }
+    }
+
+    fun findNearestRoadSpeedLimit(segments: List<com.motogps.android.map.RoadSegment>, lat: Double, lon: Double, maxDistMeters: Double = 50.0): Int {
+        var minDistance = maxDistMeters
+        var matchedSpeed = 0
+
+        for (seg in segments) {
+            if (seg.points.isEmpty()) continue
+            for (i in 0 until seg.points.size - 1) {
+                val p1 = seg.points[i]
+                val p2 = seg.points[i + 1]
+                val dist = pointToSegmentDistanceMeters(
+                    lat, lon,
+                    p1.latitudeE6 / 1e6, p1.longitudeE6 / 1e6,
+                    p2.latitudeE6 / 1e6, p2.longitudeE6 / 1e6
+                )
+                if (dist < minDistance) {
+                    minDistance = dist
+                    matchedSpeed = seg.maxSpeedKph
+                }
+            }
+        }
+
+        return matchedSpeed
+    }
+
+    private fun pointToSegmentDistanceMeters(
+        px: Double, py: Double,
+        x1: Double, y1: Double,
+        x2: Double, y2: Double
+    ): Double {
+        val dx = x2 - x1
+        val dy = y2 - y1
+        if (dx == 0.0 && dy == 0.0) {
+            return calculateDistanceMeters(px, py, x1, y1)
+        }
+
+        var t = ((px - x1) * dx + (py - y1) * dy) / (dx * dx + dy * dy)
+        t = t.coerceIn(0.0, 1.0)
+
+        val projX = x1 + t * dx
+        val projY = y1 + t * dy
+
+        return calculateDistanceMeters(px, py, projX, projY)
     }
 
     private fun checkOffRouteAndRecalculate(latitude: Double, longitude: Double) {

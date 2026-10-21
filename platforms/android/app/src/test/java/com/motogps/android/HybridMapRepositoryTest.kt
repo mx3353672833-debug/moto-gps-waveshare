@@ -42,7 +42,8 @@ class HybridMapRepositoryTest {
                 points = listOf(
                     GeoPointE6(45464000, 9190000), // Milan area
                     GeoPointE6(45465000, 9191000)
-                )
+                ),
+                maxSpeedKph = 90
             ),
             RoadSegment(
                 roadClass = 2,
@@ -200,6 +201,43 @@ class HybridMapRepositoryTest {
         assertTrue("Segments count must be <= 24", segments.size <= 24)
         val totalNodes = segments.sumOf { it.points.size }
         assertTrue("Total nodes count must be <= 192", totalNodes <= 192)
+    }
+
+    @Test
+    fun testParseSpeedTagVariations() {
+        assertEquals(50, repository.parseSpeedTag("50"))
+        assertEquals(90, repository.parseSpeedTag("90 km/h"))
+        assertEquals(48, repository.parseSpeedTag("30 mph"))
+        assertEquals(50, repository.parseSpeedTag("IT:urban"))
+        assertEquals(90, repository.parseSpeedTag("IT:rural"))
+        assertEquals(130, repository.parseSpeedTag("IT:motorway"))
+        assertEquals(50, repository.parseSpeedTag("", "urban"))
+        assertEquals(0, repository.parseSpeedTag("", ""))
+    }
+
+    @Test
+    fun testMapSceneBudgetLimitsAndBuildingRing() {
+        val scene = runBlocking {
+            repository.fetchMapScene(41.9028, 12.4964, 1L)
+        }
+
+        assertTrue("Roads count must be <= 24", scene.roads.size <= 24)
+        val totalRoadPoints = scene.roads.sumOf { it.points.size }
+        assertTrue("Total road points must be <= 192", totalRoadPoints <= 192)
+
+        assertTrue("Buildings count must be <= 16", scene.buildings.size <= 16)
+        val totalBuildingPoints = scene.buildings.sumOf { it.points.size }
+        assertTrue("Total building points must be <= 128", totalBuildingPoints <= 128)
+
+        for (bldg in scene.buildings) {
+            assertTrue("Building footprints must have >= 3 points", bldg.points.size >= 3)
+            if (bldg.points.size > 1) {
+                val first = bldg.points.first()
+                val last = bldg.points.last()
+                assertFalse("Building ring must not repeat first point at end",
+                    first.latitudeE6 == last.latitudeE6 && first.longitudeE6 == last.longitudeE6)
+            }
+        }
     }
 
     @Test
