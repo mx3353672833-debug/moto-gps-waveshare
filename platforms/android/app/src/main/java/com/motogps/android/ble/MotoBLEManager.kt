@@ -91,6 +91,13 @@ class MotoBLEManager(private val context: Context) {
         }
     }
 
+    fun sendStartOtaCommand() {
+        if (codecPtr != 0L) {
+            val frames = bleCodec.nativeEncodeStartOtaCommand(codecPtr)
+            enqueueSendFramesTask(frames)
+        }
+    }
+
     fun sendMapScene(scene: MotoBLEMapScene) {
         if (codecPtr != 0L) {
             val frames = bleCodec.nativeEncodeMapScene(codecPtr, scene)

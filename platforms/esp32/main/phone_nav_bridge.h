@@ -58,6 +58,7 @@ class PhoneNavBridge {
   static void page_changed(moto_ui_page_t page, void* context);
   static void music_command(moto_music_command_t command, void* context);
   static void demo_changed(uint8_t enabled, void* context);
+  static void ota_triggered(void* context);
 
   void consume_navigation(const moto::ble::NavigationSnapshot& input);
   moto::ble::AckStatus consume_geometry(

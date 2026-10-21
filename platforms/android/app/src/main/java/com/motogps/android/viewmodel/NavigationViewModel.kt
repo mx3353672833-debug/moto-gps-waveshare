@@ -114,12 +114,96 @@ class NavigationViewModel(
     private val _currentDevicePage = MutableStateFlow(0)
     val currentDevicePage: StateFlow<Int> = _currentDevicePage
 
+    private val _otaProgress = MutableStateFlow(-1)
+    val otaProgress: StateFlow<Int> = _otaProgress
+
+    private val _otaStatus = MutableStateFlow<String?>(null)
+    val otaStatus: StateFlow<String?> = _otaStatus
+
     init {
         bleManager.onDeviceCommandReceived = { cmd ->
             if (cmd.kind == 0) { // PageSelected
                 _currentDevicePage.value = cmd.page
             }
         }
+    }
+
+    fun sendOtaTriggerBleCommand() {
+        try {
+            bleManager.sendStartOtaCommand()
+            _otaStatus.value = "Comando BLE inviato! Connetti il Wi-Fi a MOTO-GPS-OTA"
+        } catch (e: Exception) {
+            _otaStatus.value = "Errore invio comando BLE: ${e.message}"
+        }
+    }
+
+    fun uploadFirmwareFile(contentResolver: android.content.ContentResolver, uri: android.net.Uri) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                withContext(Dispatchers.Main) {
+                    _otaProgress.value = 0
+                    _otaStatus.value = "Inizializzazione caricamento firmware..."
+                }
+
+                val inputStream = contentResolver.openInputStream(uri)
+                    ?: throw Exception("Impossibile aprire il file selezionato")
+
+                val fileBytes = inputStream.use { it.readBytes() }
+                if (fileBytes.isEmpty()) {
+                    throw Exception("Il file selezionato è vuoto")
+                }
+
+                val url = URL("http://192.168.4.1/ota")
+                val connection = url.openConnection() as HttpURLConnection
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/octet-stream")
+                connection.setRequestProperty("Content-Length", fileBytes.size.toString())
+                connection.connectTimeout = 15000
+                connection.readTimeout = 30000
+                connection.doOutput = true
+
+                val totalBytes = fileBytes.size
+                var bytesWritten = 0
+                val chunkSize = 4096
+
+                connection.outputStream.use { os ->
+                    while (bytesWritten < totalBytes) {
+                        val count = minOf(chunkSize, totalBytes - bytesWritten)
+                        os.write(fileBytes, bytesWritten, count)
+                        bytesWritten += count
+
+                        val percent = (bytesWritten * 100L / totalBytes).toInt()
+                        withContext(Dispatchers.Main) {
+                            _otaProgress.value = percent
+                            _otaStatus.value = "Caricamento: $percent% (${bytesWritten / 1024} KB / ${totalBytes / 1024} KB)"
+                        }
+                    }
+                    os.flush()
+                }
+
+                val responseCode = connection.responseCode
+                if (responseCode in 200..299) {
+                    withContext(Dispatchers.Main) {
+                        _otaProgress.value = 100
+                        _otaStatus.value = "Aggiornamento completato con successo! ESP32 in riavvio..."
+                    }
+                } else {
+                    throw Exception("HTTP Error $responseCode")
+                }
+            } catch (t: Throwable) {
+                if (t is kotlinx.coroutines.CancellationException) throw t
+                Log.e("NavigationVM", "Errore durante caricamento firmware OTA", t)
+                withContext(Dispatchers.Main) {
+                    _otaProgress.value = -1
+                    _otaStatus.value = "Errore caricamento: ${t.localizedMessage ?: t.javaClass.simpleName}. Verificare la connessione Wi-Fi a MOTO-GPS-OTA."
+                }
+            }
+        }
+    }
+
+    fun resetOtaStatus() {
+        _otaProgress.value = -1
+        _otaStatus.value = null
     }
 
     private var downloadJob: Job? = null

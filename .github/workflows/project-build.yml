@@ -70,16 +70,16 @@ jobs:
           target: esp32s3
           path: platforms/esp32
           command: 'idf.py set-target esp32s3 && idf.py build'
-      - name: Rename output binary
-        run: |
-          if [ -f "platforms/esp32/build/moto_gps_esp32.bin" ]; then
-            sudo mv platforms/esp32/build/moto_gps_esp32.bin platforms/esp32/build/moto-gps-waveshare.bin
-          fi
-      - name: Upload Artifacts
+      - name: Upload OTA Update Package
         uses: actions/upload-artifact@v4
         with:
-          name: ESP32-Firmware
+          name: OTA Update Package
+          path: platforms/esp32/build/moto_gps_esp32.bin
+      - name: Upload Initial USB Flashing Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: Initial USB Flashing Package
           path: |
             platforms/esp32/build/bootloader/bootloader.bin
             platforms/esp32/build/partition_table/partition-table.bin
-            platforms/esp32/build/moto-gps-waveshare.bin
+            platforms/esp32/build/moto_gps_esp32.bin

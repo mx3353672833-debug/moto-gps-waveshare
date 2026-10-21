@@ -4,6 +4,7 @@
 #include "board_port.h"
 #include "esp_err.h"
 #include "esp_log.h"
+#include "esp_ota_ops.h"
 #include "esp_sleep.h"
 #include "esp_timer.h"
 #include "freertos/FreeRTOS.h"
@@ -192,6 +193,14 @@ extern "C" void app_main(void) {
   if (ble_result != ESP_OK) {
     ESP_LOGE(kTag, "BLE startup failed; display remains in offline mode: %s",
              esp_err_to_name(ble_result));
+  } else {
+    const esp_err_t ota_valid_res = esp_ota_mark_app_valid_cancel_rollback();
+    if (ota_valid_res == ESP_OK) {
+      ESP_LOGI(kTag, "Firmware marked valid; rollback cancelled");
+    } else {
+      ESP_LOGW(kTag, "esp_ota_mark_app_valid_cancel_rollback returned: %s",
+               esp_err_to_name(ota_valid_res));
+    }
   }
 
   static MotionHeadingSensor motion_sensor;

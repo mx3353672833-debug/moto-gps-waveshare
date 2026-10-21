@@ -106,6 +106,7 @@ typedef void (*moto_page_change_callback_t)(moto_ui_page_t page,
                                              void *context);
 typedef void (*moto_demo_change_callback_t)(uint8_t enabled,
                                              void *context);
+typedef void (*moto_ota_trigger_callback_t)(void *context);
 
 typedef struct {
     moto_ui_page_t page;
@@ -172,6 +173,14 @@ void moto_nav_ui_set_demo_active(uint8_t enabled);
 void moto_nav_ui_set_demo_change_callback(
     moto_demo_change_callback_t callback,
     void *context);
+void moto_nav_ui_set_ota_trigger_callback(
+    moto_ota_trigger_callback_t callback,
+    void *context);
+/** Draw the OTA update screen with SoftAP SSID, IP info and progress bar. */
+void moto_nav_ui_show_ota_screen(void);
+/** Update the OTA progress percentage and status text on LVGL UI. */
+void moto_nav_ui_set_ota_progress(uint8_t progress_percent,
+                                   const char *status_msg);
 
 #ifdef __cplusplus
 }
