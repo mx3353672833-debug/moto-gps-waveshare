@@ -11,6 +11,9 @@
 #include "esp_log.h"
 #include "esp_timer.h"
 #include "moto_nav_ui.h"
+#ifdef ESP_PLATFORM
+#include "ota_update_service.h"
+#endif
 
 namespace {
 constexpr char kTag[] = "phone_nav";
@@ -291,6 +294,7 @@ void PhoneNavBridge::install_ui_callbacks() {
   moto_nav_ui_set_page_change_callback(page_changed, this);
   moto_nav_ui_set_music_command_callback(music_command, this);
   moto_nav_ui_set_demo_change_callback(demo_changed, this);
+  moto_nav_ui_set_ota_trigger_callback(ota_triggered, this);
 }
 
 bool PhoneNavBridge::start_renderer() {
@@ -566,6 +570,12 @@ moto::ble::AckStatus PhoneNavBridge::on_message(
                    value.acknowledged_sequence, value.command_id,
                    static_cast<unsigned>(value.status));
         } else if constexpr (std::is_same_v<T, moto::ble::DeviceCommand>) {
+          if (value.kind == moto::ble::DeviceCommandKind::StartOta) {
+#ifdef ESP_PLATFORM
+            ota_update_service_start();
+#endif
+            return moto::ble::AckStatus::Ok;
+          }
           return moto::ble::AckStatus::Unsupported;
         }
         return moto::ble::AckStatus::Ok;
@@ -1021,6 +1031,13 @@ void PhoneNavBridge::music_command(moto_music_command_t command,
 
 void PhoneNavBridge::demo_changed(uint8_t enabled, void* context) {
   static_cast<PhoneNavBridge*>(context)->set_demo_active(enabled != 0U);
+}
+
+void PhoneNavBridge::ota_triggered(void* context) {
+  (void)context;
+#ifdef ESP_PLATFORM
+  ota_update_service_start();
+#endif
 }
 
 void PhoneNavBridge::send_page_command(moto_ui_page_t page) {

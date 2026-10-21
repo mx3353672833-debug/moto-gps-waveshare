@@ -220,6 +220,20 @@ class MotoBLEProtocolCodec {
         return buildMapScenePayload(scene)
     }
 
+    fun nativeEncodeStartOtaCommand(ptr: Long, commandId: Int = 1): Array<ByteArray> {
+        val storage = instances[ptr] ?: return emptyArray()
+        val writer = Writer()
+        writer.writeU8(PAYLOAD_REVISION.toInt())
+        writer.writeU8(20) // kind = StartOta
+        writer.writeU16(commandId)
+        writer.writeU8(0) // page = Navigation
+        writer.writeU16(0xFFFF) // x
+        writer.writeU16(0xFFFF) // y
+        writer.writeU32(System.currentTimeMillis() and 0xFFFFFFFFL)
+        val payload = writer.toByteArray()
+        return fragmentMessage(storage, MSG_DEVICE_COMMAND, payload, ackRequested = true, urgent = true)
+    }
+
     fun nativeEncodeMediaState(ptr: Long, state: Any): Array<ByteArray> {
         val storage = instances[ptr] ?: return emptyArray()
         val writer = Writer()

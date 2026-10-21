@@ -315,6 +315,12 @@ void test_crc_and_sequence_primitives() {
 }
 
 void test_all_message_round_trips() {
+  DeviceCommand ota_cmd;
+  ota_cmd.kind = DeviceCommandKind::StartOta;
+  ota_cmd.command_id = 0x9999U;
+  ota_cmd.page = DisplayPage::Navigation;
+  ota_cmd.event_time_ms = 123456U;
+
   const std::vector<Message> messages = {
       Message{connection_fixture()},
       Message{heartbeat_fixture()},
@@ -325,6 +331,7 @@ void test_all_message_round_trips() {
       Message{media_fixture()},
       Message{map_scene_fixture()},
       Message{command_fixture()},
+      Message{ota_cmd},
   };
   for (const Message& message : messages) {
     const BytesResult encoded = encode_message(message);

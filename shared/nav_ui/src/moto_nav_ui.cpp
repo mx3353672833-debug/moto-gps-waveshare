@@ -177,6 +177,15 @@ struct Ui {
     void *page_callback_context = nullptr;
     moto_demo_change_callback_t demo_callback = nullptr;
     void *demo_callback_context = nullptr;
+    moto_ota_trigger_callback_t ota_callback = nullptr;
+    void *ota_callback_context = nullptr;
+    std::uint16_t current_speed_kph = 0;
+    lv_obj_t *ota_page = nullptr;
+    lv_obj_t *ota_title = nullptr;
+    lv_obj_t *ota_ssid = nullptr;
+    lv_obj_t *ota_ip = nullptr;
+    lv_obj_t *ota_status = nullptr;
+    lv_obj_t *ota_bar = nullptr;
     bool music_page_enabled = true;
     bool demo_active = false;
     bool reduce_motion = false;
@@ -304,6 +313,12 @@ void reveal_page_dots() {
         lv_timer_set_period(ui.page_dots_timer, kPageDotsVisibleMs);
         lv_timer_reset(ui.page_dots_timer);
         lv_timer_resume(ui.page_dots_timer);
+    }
+}
+
+void page_long_press_event(lv_event_t *) {
+    if (ui.current_speed_kph == 0 && ui.ota_callback != nullptr) {
+        ui.ota_callback(ui.ota_callback_context);
     }
 }
 
@@ -1427,6 +1442,7 @@ void update_navigation(const moto_ui_state_t *state) {
 }
 
 void update_speedometer(const moto_ui_state_t *state) {
+    ui.current_speed_kph = state->speed_kph;
     char value[8];
     std::snprintf(value, sizeof(value), "%u",
                   static_cast<unsigned>(state->speed_kph));
@@ -1440,6 +1456,7 @@ void update_speedometer(const moto_ui_state_t *state) {
 }
 
 void update_compass(const moto_ui_state_t *state) {
+    ui.current_speed_kph = state->speed_kph;
     char heading[12];
     std::snprintf(heading, sizeof(heading), "%03u°",
                   static_cast<unsigned>(state->heading_deg));
@@ -1726,6 +1743,7 @@ void create_speed_page() {
     lv_obj_t *caption = make_label(page, &lv_font_montserrat_16, kQuiet, "LIVE SPEED");
     lv_obj_set_style_text_letter_space(caption, px(2), 0);
     lv_obj_align(caption, LV_ALIGN_BOTTOM_MID, 0, px(-49));
+    lv_obj_add_event_cb(page, page_long_press_event, LV_EVENT_LONG_PRESSED, nullptr);
 }
 
 void create_compass_page() {
@@ -1757,6 +1775,7 @@ void create_compass_page() {
     ui.compass_speed = make_label(page, &lv_font_montserrat_20, kWhite, "72 km/h");
     lv_obj_set_style_text_letter_space(ui.compass_speed, px(1), 0);
     lv_obj_align(ui.compass_speed, LV_ALIGN_CENTER, 0, px(57));
+    lv_obj_add_event_cb(page, page_long_press_event, LV_EVENT_LONG_PRESSED, nullptr);
 }
 
 void create_music_page() {
@@ -2121,4 +2140,58 @@ extern "C" void moto_nav_ui_set_demo_change_callback(
     moto_demo_change_callback_t callback, void *context) {
     ui.demo_callback = callback;
     ui.demo_callback_context = context;
+}
+
+extern "C" void moto_nav_ui_set_ota_trigger_callback(
+    moto_ota_trigger_callback_t callback, void *context) {
+    ui.ota_callback = callback;
+    ui.ota_callback_context = context;
+}
+
+extern "C" void moto_nav_ui_show_ota_screen(void) {
+    if(ui.screen == nullptr) return;
+    if(ui.ota_page == nullptr) {
+        ui.ota_page = make_layer(ui.screen);
+        lv_obj_set_style_bg_color(ui.ota_page, kBlack, 0);
+        lv_obj_set_style_bg_opa(ui.ota_page, LV_OPA_COVER, 0);
+
+        ui.ota_title = make_label(ui.ota_page, &lv_font_montserrat_20, kAmber,
+                                  "AGGIORNAMENTO OTA");
+        lv_obj_align(ui.ota_title, LV_ALIGN_TOP_MID, 0, px(50));
+
+        ui.ota_ssid = make_label(ui.ota_page, &lv_font_montserrat_16, kWhite,
+                                 "Wi-Fi: MOTO-GPS-OTA");
+        lv_obj_align(ui.ota_ssid, LV_ALIGN_TOP_MID, 0, px(110));
+
+        ui.ota_ip = make_label(ui.ota_page, &lv_font_montserrat_16, kIce,
+                               "http://192.168.4.1/ota");
+        lv_obj_align(ui.ota_ip, LV_ALIGN_TOP_MID, 0, px(145));
+
+        ui.ota_status = make_label(ui.ota_page, &lv_font_montserrat_16, kQuiet,
+                                   "In attesa file .bin...");
+        lv_obj_set_width(ui.ota_status, px(320));
+        lv_obj_set_style_text_align(ui.ota_status, LV_TEXT_ALIGN_CENTER, 0);
+        lv_obj_align(ui.ota_status, LV_ALIGN_TOP_MID, 0, px(195));
+
+        ui.ota_bar = lv_bar_create(ui.ota_page);
+        lv_obj_set_size(ui.ota_bar, px(260), px(20));
+        lv_obj_align(ui.ota_bar, LV_ALIGN_TOP_MID, 0, px(250));
+        lv_bar_set_range(ui.ota_bar, 0, 100);
+        lv_bar_set_value(ui.ota_bar, 0, LV_ANIM_OFF);
+        lv_obj_set_style_bg_color(ui.ota_bar, kGraphite, LV_PART_MAIN);
+        lv_obj_set_style_bg_color(ui.ota_bar, kIce, LV_PART_INDICATOR);
+    }
+    lv_obj_remove_flag(ui.ota_page, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_move_foreground(ui.ota_page);
+}
+
+extern "C" void moto_nav_ui_set_ota_progress(uint8_t progress_percent,
+                                           const char *status_msg) {
+    if(ui.screen == nullptr || ui.ota_page == nullptr) return;
+    if(ui.ota_bar != nullptr) {
+        lv_bar_set_value(ui.ota_bar, std::min<uint8_t>(100, progress_percent), LV_ANIM_OFF);
+    }
+    if(ui.ota_status != nullptr && status_msg != nullptr) {
+        lv_label_set_text(ui.ota_status, status_msg);
+    }
 }

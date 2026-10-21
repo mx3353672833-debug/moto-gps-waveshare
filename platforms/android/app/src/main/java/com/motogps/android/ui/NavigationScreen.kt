@@ -22,6 +22,8 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.viewinterop.AndroidView
@@ -273,9 +275,21 @@ fun NavigationScreen(
     var showGatewayDialog by remember { mutableStateOf(initialGateway.isBlank()) }
     var tempGateway by remember { mutableStateOf(initialGateway) }
     var showOfflineMapsDialog by remember { mutableStateOf(false) }
+    var showOtaDialog by remember { mutableStateOf(false) }
 
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
+
+    val otaProgress by viewModel?.otaProgress?.collectAsState() ?: remember { mutableStateOf(-1) }
+    val otaStatus by viewModel?.otaStatus?.collectAsState() ?: remember { mutableStateOf(null) }
+
+    val filePickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri ->
+        uri?.let {
+            viewModel?.uploadFirmwareFile(context.contentResolver, it)
+        }
+    }
 
     var centerOnLocationTrigger by remember { mutableStateOf(0) }
     var activeMapView by remember { mutableStateOf<MapView?>(null) }
@@ -417,6 +431,77 @@ fun NavigationScreen(
         )
     }
 
+    if (showOtaDialog) {
+        AlertDialog(
+            onDismissRequest = {
+                showOtaDialog = false
+                viewModel?.resetOtaStatus()
+            },
+            title = { Text("Aggiornamento Firmware (OTA)") },
+            text = {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    Text(
+                        "1. Invia il comando BLE per attivare il SoftAP sull'ESP32:",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Button(
+                        onClick = { viewModel?.sendOtaTriggerBleCommand() },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Avvia SoftAP Wi-Fi (BLE)", style = MaterialTheme.typography.labelMedium)
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(
+                        "2. Connetti il Wi-Fi del telefono alla rete:\n   SSID: MOTO-GPS-OTA\n   Password: motogps1234",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(
+                        "3. Seleziona il file della nuova versione (moto_gps_esp32.bin):",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Button(
+                        onClick = { filePickerLauncher.launch("*/*") },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Icon(Icons.Default.Build, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text("Seleziona File .bin e Carica", style = MaterialTheme.typography.labelMedium)
+                    }
+
+                    if (otaStatus != null) {
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            text = otaStatus ?: "",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+
+                    if (otaProgress >= 0) {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        LinearProgressIndicator(
+                            progress = { otaProgress / 100f },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    showOtaDialog = false
+                    viewModel?.resetOtaStatus()
+                }) {
+                    Text("Chiudi")
+                }
+            }
+        )
+    }
+
     if (showGatewayDialog) {
         AlertDialog(
             onDismissRequest = {
@@ -466,6 +551,9 @@ fun NavigationScreen(
                 TopAppBar(
                     title = { Text("MOTO GPS") },
                     actions = {
+                        IconButton(onClick = { showOtaDialog = true }) {
+                            Icon(Icons.Default.Build, contentDescription = "Aggiornamento Firmware (OTA)")
+                        }
                         IconButton(onClick = { showGatewayDialog = true }) {
                             Icon(Icons.Default.Settings, contentDescription = "Impostazioni Gateway")
                         }
