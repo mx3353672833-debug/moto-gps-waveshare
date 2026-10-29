@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MOTO GPS</string>
+    <string name="media_listener_label">MOTO GPS 圆屏音乐控制</string>
+    <string name="notification_channel_navigation">骑行导航</string>
+    <string name="notification_channel_navigation_description">导航进行中保持定位与圆屏同步</string>
+</resources>
