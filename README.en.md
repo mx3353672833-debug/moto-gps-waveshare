@@ -18,7 +18,7 @@
 
 [Features and user manual](docs/USER_MANUAL.en.md) · [Live navigation gateway configuration](docs/GATEWAY_SETUP.en.md)
 
-**Using an Android phone?** [Build an Android version with AI](docs/ANDROID_AI_GUIDE.en.md): a copyable development prompt, BLE and navigation adaptation, testing and GitHub release steps. There is no ready-to-install Android app yet.
+**Using an Android phone?** The repository now includes a native [Android companion app](platforms/android/README.en.md) (Kotlin + Compose, sharing the navigation core and BLE protocol with iOS, no Google Play services required) that you can build and install; pairing and rides on real phones are still being verified. To keep improving it, see [Build an Android version with AI](docs/ANDROID_AI_GUIDE.en.md).
 
 **Help build Glimpse.** If you build an Android app from this project, we'd love you to share its source
 on GitHub so others can learn from it, use it and help maintain it. Start a conversation in

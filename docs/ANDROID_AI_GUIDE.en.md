@@ -4,9 +4,10 @@
 
 # Develop Glimpse for Android with AI
 
-If you want to connect an Android phone to the round display, you can start with the existing source.
-The repository does not yet include an installable Android App. This guide provides a development
-path and a prompt you can give directly to an AI coding tool; it is not a download page.
+The repository now includes a native Android app in [platforms/android](../platforms/android/README.en.md)
+that you can build and install; pairing and rides on real phones are still being verified. This guide keeps
+the development path and a prompt for AI coding tools, for improving it, supporting more phones or
+building your own version; it is not a download page.
 
 The goal is a native Android companion App that communicates with the existing Waveshare firmware:
 the phone handles positioning, search and route planning, then sends the data needed by the display

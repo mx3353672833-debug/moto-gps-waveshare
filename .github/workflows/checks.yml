@@ -59,3 +59,17 @@ jobs:
           persist-credentials: false
       - name: Swift core tests (no signing or device)
         run: swift test --package-path platforms/ios
+
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Android unit tests, lint and debug APK (shared C++ via NDK, no signing)
+        working-directory: platforms/android
+        run: ./gradlew --no-daemon :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
