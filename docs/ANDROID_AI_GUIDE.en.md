@@ -15,20 +15,20 @@ over Bluetooth. The existing iOS App can serve as a reference for behaviour.
 
 ## Let's build the Android version together
 
-You're welcome to help develop Glimpse. If you build an Android app using this guide, we'd love you
+~~You're welcome to help develop Glimpse. If you build an Android app using this guide, we'd love you
 to share its source on GitHub so other Android users can build, use and improve it. Even if you've
 only finished Bluetooth connectivity, a screen or support for a particular phone, please feel free
-to share your progress. You do not need to wait until every feature is complete.
+to share your progress. You do not need to wait until every feature is complete.~~
 
-Start by discussing your plans or sharing your public repository in
+~~Start by discussing your plans or sharing your public repository in
 [Issues](https://github.com/mx3353672833-debug/moto-gps-waveshare/issues), then contribute features,
 fixes and documentation back through Pull Requests. Include build steps, tested phone models,
 the corresponding firmware and known issues so others can pick up the work. We'll retain credit
 for the people who contributed, and welcome anyone interested in helping maintain the Android
-version over time.
+version over time.~~
 
-This is an invitation; participating is your choice. The existing project and third-party licences
-still apply. See [Contributing](../CONTRIBUTING.en.md) for contribution requirements.
+~~This is an invitation; participating is your choice. The existing project and third-party licences
+still apply. See [Contributing](../CONTRIBUTING.en.md) for contribution requirements.~~
 
 ## What you need first
 
