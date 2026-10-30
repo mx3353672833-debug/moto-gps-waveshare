@@ -184,6 +184,12 @@ curl --fail-with-body --get 'https://nav.example.com/moto-gps/api/v1/places' \
 应返回地点结果或有明确原因的服务错误；无权限、配额不足、超时均不能用 fixture 当作修复。
 `fixture` 只供协议测试；`disabled` 会明确拒绝线上导航。
 
+若服务器上 `curl https://restapi.amap.com/` 正常，网关却持续返回 `PROVIDER_TIMEOUT` 或
+`PROVIDER_UNAVAILABLE`，多半是海外 VPS 没有 IPv6、到高德延迟又超过 250 ms：Node 会提前放弃
+IPv4，再连 IPv6 立即失败。当前 `server.js` 已改为 IPv4 优先直连；旧版本可在服务的
+`[Service]` 中加 `Environment="NODE_OPTIONS=--no-network-family-autoselection --dns-result-order=ipv4first"`
+后重启。Key 失效或配额不足会返回 `AMAP_10xxx`，不会表现为超时。
+
 继续验证城市范围和一个真实周边瓦片：
 
 ```sh

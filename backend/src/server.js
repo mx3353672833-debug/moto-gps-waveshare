@@ -1,4 +1,6 @@
+import { setDefaultResultOrder } from "node:dns";
 import { readFile } from "node:fs/promises";
+import { setDefaultAutoSelectFamily } from "node:net";
 
 import { createAmapProvider } from "./amap-provider.js";
 import { createAmapPlacesProvider } from "./amap-places.js";
@@ -6,6 +8,13 @@ import { createAmapCitiesProvider } from "./amap-cities.js";
 import { createMapTileProvider } from "./map-tiles.js";
 import { transformAmapRouteOptionsV2, transformAmapRouteV2 } from "./amap-transformer.js";
 import { createGateway } from "./gateway.js";
+
+// restapi.amap.com publishes AAAA records, and an overseas VPS often has no
+// IPv6 route and over 250 ms of RTT to AMap. Node's happy-eyeballs then aborts
+// the IPv4 attempt after 250 ms, IPv6 fails at once, and every AMap fetch ends
+// in ETIMEDOUT. Plain IPv4-first connects let each request use its own deadline.
+setDefaultAutoSelectFamily(false);
+setDefaultResultOrder("ipv4first");
 
 async function createFixtureProvider() {
   const fixtureUrl = new URL("../fixtures/amap-route-v2.json", import.meta.url);

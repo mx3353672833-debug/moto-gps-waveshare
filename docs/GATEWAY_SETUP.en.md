@@ -210,6 +210,14 @@ It should return place results or a service error with a clear reason; a lack of
 insufficient quota or a timeout must not be treated as fixed by using the fixture. `fixture` is only
 for protocol tests; `disabled` explicitly refuses online navigation.
 
+If `curl https://restapi.amap.com/` works on the server but the gateway keeps returning
+`PROVIDER_TIMEOUT` or `PROVIDER_UNAVAILABLE`, the usual cause is an overseas VPS with no IPv6 and
+more than 250 ms of latency to AMap: Node gives up on IPv4 too early, then IPv6 fails at once. The
+current `server.js` connects IPv4-first without that timeout; for an older version, add
+`Environment="NODE_OPTIONS=--no-network-family-autoselection --dns-result-order=ipv4first"` to the
+service's `[Service]` section and restart it. An invalid key or exhausted quota returns `AMAP_10xxx`,
+not a timeout.
+
 Next verify city bounds and a real surrounding tile:
 
 ```sh
