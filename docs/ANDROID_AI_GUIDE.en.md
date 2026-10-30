@@ -9,7 +9,7 @@ that you can build and install; pairing and rides on real phones are still being
 the development path and a prompt for AI coding tools, for improving it, supporting more phones or
 building your own version; it is not a download page.
 
-The goal is a native Android companion App that communicates with the existing Waveshare firmware:
+The goal is a native Android App that communicates with the existing Waveshare firmware:
 the phone handles positioning, search and route planning, then sends the data needed by the display
 over Bluetooth. The existing iOS App can serve as a reference for behaviour.
 

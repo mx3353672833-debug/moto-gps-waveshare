@@ -1,6 +1,6 @@
 > **语言 / Language:** 中文 · [English](README.en.md)
 
-# Android 伴侣 App
+# Android App
 
 原生 Kotlin + Jetpack Compose 工程，与 iPhone App 连接同一块微雪
 **ESP32-S3-Touch-AMOLED-1.75C** 圆屏，使用现有固件，不需要重刷安卓专用固件。

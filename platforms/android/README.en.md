@@ -1,6 +1,6 @@
 > **语言 / Language:** [中文](README.md) · English
 
-# Android Companion App
+# Android App
 
 A native Kotlin + Jetpack Compose app for the same Waveshare
 **ESP32-S3-Touch-AMOLED-1.75C** round screen as the iPhone app. It talks to the

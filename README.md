@@ -16,7 +16,7 @@
 
 [功能与使用说明书](docs/USER_MANUAL.md) · [真实导航网关配置](docs/GATEWAY_SETUP.md)
 
-**用安卓手机？** 仓库已包含原生 [Android 伴侣 App](platforms/android/README.md)（Kotlin + Compose，与 iOS 共用导航核心和蓝牙协议，不依赖 Google Play 服务），可自行编译安装；真机配对与骑行仍在验证中。继续改进可参考 [用 AI 开发安卓版本](docs/ANDROID_AI_GUIDE.md)。
+**用安卓手机？** 仓库已包含原生 [Android App](platforms/android/README.md)（Kotlin + Compose，与 iOS 共用导航核心和蓝牙协议，不依赖 Google Play 服务），可自行编译安装；真机配对与骑行仍在验证中。继续改进可参考 [用 AI 开发安卓版本](docs/ANDROID_AI_GUIDE.md)。
 
 **欢迎一起共创 Glimpse。** 如果你基于这个项目做出了安卓 App，希望你愿意把源码也公开到 GitHub，让其他人能够学习、使用并一起维护。可以先在 [Issues](https://github.com/mx3353672833-debug/moto-gps-waveshare/issues) 聊想做的功能，再通过 Pull Request 贡献代码、修复或文档；请附上构建说明和已测试的机型。我们会保留贡献者署名，相关代码沿用项目现有许可。具体参与方式见 [安卓共创邀请](docs/ANDROID_AI_GUIDE.md#一起开发安卓版本)。
 
