@@ -542,3 +542,13 @@ App 待机界面和 Web 状态页也提供可见署名入口。
 第三方库、字体和 OSM 数据分别遵循原许可证；地图服务须按服务商协议使用。
 
 © 2026 Maler X · 地图数据 © OpenStreetMap contributors（ODbL 1.0）。
+
+## Star History
+
+<a href="https://star-history.com/#mx3353672833-debug/moto-gps-waveshare&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=mx3353672833-debug/moto-gps-waveshare&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=mx3353672833-debug/moto-gps-waveshare&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=mx3353672833-debug/moto-gps-waveshare&type=Date" />
+ </picture>
+</a>

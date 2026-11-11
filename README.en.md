@@ -651,3 +651,13 @@ Third-party libraries, fonts and OSM data each follow their own licences; map se
 under the provider's terms.
 
 © 2026 Maler X · Map data © OpenStreetMap contributors (ODbL 1.0).
+
+## Star History
+
+<a href="https://star-history.com/#mx3353672833-debug/moto-gps-waveshare&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=mx3353672833-debug/moto-gps-waveshare&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=mx3353672833-debug/moto-gps-waveshare&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=mx3353672833-debug/moto-gps-waveshare&type=Date" />
+ </picture>
+</a>
