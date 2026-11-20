@@ -6,9 +6,9 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "vars": {
-    "MOTO_PROVIDER": "disabled",
+    "MOTO_PROVIDER": "google",
     "MOTO_MAP_PMTILES_URL": "auto",
-    "WEB_ORIGIN": "http://127.0.0.1:4173",
+    "WEB_ORIGIN": "",
     "MOTO_BASE_PATH": ""
   },
   "r2_buckets": [

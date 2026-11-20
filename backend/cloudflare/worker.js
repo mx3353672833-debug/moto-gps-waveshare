@@ -4,6 +4,7 @@ import { createGateway } from "../src/gateway.js";
 import { createAmapProvider } from "../src/amap-provider.js";
 import { createAmapPlacesProvider } from "../src/amap-places.js";
 import { createAmapCitiesProvider } from "../src/amap-cities.js";
+import { createGoogleProvider } from "../src/google.js";
 import { transformAmapRouteV2, transformAmapRouteOptionsV2 } from "../src/amap-transformer.js";
 import { createMapTileProvider } from "../src/map-tiles.js";
 import fixture from "../fixtures/amap-route-v2.json";
@@ -45,6 +46,10 @@ function createApp(env) {
     if (typeof key !== "string" || !key.trim()) throw new Error("AMAP_WEB_SERVICE_KEY is required");
     provider = { ...createAmapProvider({ key }), ...createAmapPlacesProvider({ key }),
       ...createAmapCitiesProvider({ key }) };
+  } else if (mode === "google") {
+    const key = env.GOOGLE_MAPS_API_KEY;
+    if (typeof key !== "string" || !key.trim()) throw new Error("GOOGLE_MAPS_API_KEY is required");
+    provider = createGoogleProvider({ key });
   } else if (mode === "fixture") {
     provider = {
       async planRoute() { return transformAmapRouteV2(fixture, { generatedAtMs: Date.now() }); },
@@ -52,7 +57,7 @@ function createApp(env) {
       async searchPlaces({ keywords }) { return { protocol_version: 1, query: keywords, places: [] }; },
     };
   } else if (mode === "disabled") {
-    const unavailable = async () => { throw Object.assign(new Error("AMap live navigation is not configured"), {
+    const unavailable = async () => { throw Object.assign(new Error("Live navigation is not configured"), {
       code: "SERVER_MISCONFIGURED", retryable: false,
     }); };
     provider = { planRoute: unavailable, searchPlaces: unavailable };
@@ -60,7 +65,8 @@ function createApp(env) {
     throw new Error("unsupported MOTO_PROVIDER");
   }
   // Fixture and disabled modes must stay offline even with the production 'auto' variable.
-  const mapUrl = mode === "amap" ? (env.MOTO_MAP_PMTILES_URL ?? "auto") : "disabled";
+  const isLive = mode === "amap" || mode === "google";
+  const mapUrl = isLive ? (env.MOTO_MAP_PMTILES_URL ?? "auto") : "disabled";
   if (mapUrl !== "disabled") createR2Storage(env.MAP_CACHE); // Validate the binding without I/O.
   function maps(ctx) {
     return createMapTileProvider({ url: mapUrl, scheduleRefresh: false, fetchImpl: mapFetch,
